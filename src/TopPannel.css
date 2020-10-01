@@ -1,0 +1,47 @@
+.container-top-pannel {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  /* background-color: red; */
+}
+
+.container-consimLogo {
+  display: flex;
+  height: 100%;
+  width: 10%;
+  align-items: center;
+  /* border: blue 1px solid; */
+}
+
+.consimLogo {
+  height: 55px;
+  width: 90px;
+  margin-top: 1.8%;
+  margin-left: 10%;
+  /* background-color: green; */
+}
+
+.container-consimTitle {
+  text-align: flex-start;
+  height: 90%;
+  width: 28%;
+  color: #82cdbf;
+  font-size: 32px;
+  /* background-color: yellow;
+  border: blue 1px solid; */
+  margin-top: auto;
+}
+.container-companyLogo {
+  text-align: right;
+  height: 100%;
+  width: 60%;
+  margin-top: 1%;
+  /* background-color: green; */
+}
+
+.companyLogo-basic {
+  width: 35%;
+  height: 95%;
+  /* border: blue 1px dashed; */
+  margin-right: 3%;
+}

@@ -1,0 +1,95 @@
+/* CSS modules are:  CSS files in which all class names and animation names are scoped locally by default.
+refactoriser si le temps necessaire
+*/
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-left {
+  position: relative;
+  width: 712.5px;
+  height: 768px;
+  opacity: 0.8;
+  background-color: #181a20;
+  background-image: url("./panel-left.png");
+}
+
+.firm {
+  position: absolute;
+  left: 36.8px;
+  top: 25.5px;
+  font-size: 33.8px;
+  color: #ffffff;
+}
+
+.pagetitle {
+  position: absolute;
+  left: 70px;
+  top: 290px;
+  font-size: 45px;
+  letter-spacing: 0.56px;
+
+  text-align: center;
+  color: #ffffff;
+}
+
+.subtitle {
+  position: absolute;
+  left: 240px;
+  top: 436.5px;
+  font-family: PingFangSC-Regular;
+  font-size: 19.5px;
+  color: #898d99;
+  letter-spacing: 0.24px;
+  text-align: center;
+}
+
+.panel-right {
+  width: 367.5px;
+  height: 593px;
+  background-color: #181a20;
+
+  padding-left: 38px;
+  padding-right: 38px;
+  padding-top: 175.5px;
+  font-size: 16.5px;
+  letter-spacing: 0.21px;
+
+  color: #ffffff;
+  text-align: left;
+}
+
+.btn-login {
+  background-color: #82cdbf;
+  width: 292.5px;
+  height: 61.5px;
+  border-radius: 11.3px;
+  font-size: 21px;
+  color: #181a20;
+}
+
+.input {
+  width: 389px;
+  height: 50px;
+  border: none;
+  border-bottom: solid 2px #82cdbf;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-size: 12px;
+}
+
+.imgTitle {
+  width: "150px";
+}
+
+.logInText {
+  font-size: 21px;
+}
+
+.UserLogInText {
+  margin-top: 40px;
+  margin-bottom: 22px;
+}

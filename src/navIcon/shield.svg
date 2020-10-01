@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 19" width="16" height="19">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M-19 -163L521 -163L521 221L-19 221Z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: none;stroke: #82cdbf;stroke-width: 0.81 } 
+		.shp1 { fill: none;stroke: #81ccbe;stroke-width: 0.9 } 
+
+	<!-- tspan { white-space:pre }
+		.shp0 { fill: none;stroke: grey;stroke-width: 0.81 } 
+		.shp1 { fill: none;stroke: grey;stroke-width: 0.9 }  -->
+
+	</style>
+	<g id="Customer Page (Page 2)" clip-path="url(#cp1)">
+		<g id="分组 3">
+			<g id="分组">
+				<g id="分组 4">
+					<path id="路径 copy 2" class="shp0" d="M7.93 1.55L7.92 1.55C6.56 2.24 4.29 3.19 2.84 3.67L1.4 4.14C1.3 4.18 1.24 4.28 1.26 4.39L1.28 4.49C2.07 8.51 4.87 14.24 7.56 17.33L7.86 17.67C7.97 17.8 8.15 17.8 8.27 17.67L8.53 17.36C11.21 14.26 14.03 8.51 14.84 4.49L14.86 4.4C14.88 4.29 14.81 4.18 14.7 4.14L12.53 3.49C11.25 3.11 9.27 2.24 8.12 1.55L8.12 1.55C8.07 1.52 7.98 1.52 7.93 1.55Z" />
+				</g>
+				<path id="路径 4" class="shp1" d="M8.02 6.06L8.02 12.21" />
+				<path id="路径 4 copy" class="shp1" d="M11.01 8.57L5.32 8.57" />
+			</g>
+		</g>
+	</g>
+</svg>

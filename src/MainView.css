@@ -1,0 +1,190 @@
+.main_container {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 90vh;
+  border: blue dashed 5px;
+}
+
+/* container_header */
+.container_header {
+  display: flex;
+  width: 95%;
+  height: 10%;
+  border: red dashed 2px;
+}
+
+.container_header_title {
+  display: inline;
+  margin: 5%;
+  padding: 5%;
+  border: red dashed 2px;
+}
+
+.container_underTop {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  border: white dashed 2px;
+}
+
+.container_nav {
+  display: flex;
+  height: 100%;
+  width: 5%;
+  border: yellow dashed 2px;
+}
+/* container_info_diplay */
+.container_info_diplay {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  border: green dashed 2px;
+}
+.container_info_left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 48%;
+  border: blue solid 2px;
+}
+.container_info_leftTop {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 90%;
+  border: grey dashed 2px;
+}
+
+.container_info_leftTop_title {
+  display: flex;
+  height: 10%;
+  width: 90%;
+  border: green dashed 2px;
+}
+
+.container_info_leftTop_pannel {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 90%;
+  border: grey dashed 2px;
+}
+
+.container_info_leftTop_pannel_one {
+  display: flex;
+  height: 90%;
+  width: 90%;
+  border: blue dashed 2px;
+}
+
+.container_info_leftTop_pannel_two {
+  display: flex;
+  height: 90%;
+  width: 90%;
+  border: red dashed 2px;
+}
+
+.container_info_leftBottom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 90%;
+  border: orange dashed 2px;
+}
+
+.container_info_leftTop_searchBar {
+  display: flex;
+  height: 10%;
+  width: 90%;
+  border: red dashed 2px;
+}
+.container_info_leftTop_sitesList {
+  display: flex;
+  height: 50%;
+  width: 90%;
+  border: white dashed 2px;
+}
+.siteWindow {
+  display: flex;
+  height: 10%;
+  width: 100%;
+  margin: 8%;
+  padding: 8%;
+  border: hotpink dashed 2px;
+}
+
+.container_info_right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 48%;
+  border: white solid 2px;
+}
+
+.container_info_rightTop {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 90%;
+  border: red dashed 2px;
+}
+
+.container_info_rightTop_title {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  height: 5%;
+  width: 100%;
+  border: blue dashed 2px;
+}
+.container_info_rightTop_pannelOne {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: rgba(39, 42, 51, 0.4);
+  margin: 1%;
+  height: 10%;
+  width: 100%;
+  border: green dashed 2px;
+}
+.container_info_rightTop_pannelTwo {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: rgba(39, 42, 51, 0.4);
+  margin: 1%;
+  height: 10%;
+  width: 100%;
+  border: yellow dashed 2px;
+}
+.container_info_rightTop_pannelThree {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: rgba(39, 42, 51, 0.4);
+  margin: 1%;
+  height: 40%;
+  width: 100%;
+  border: hotpink dashed 2px;
+}
+
+.container_info_rightBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 90%;
+  border: hotpink dashed 2px;
+}
+.container_info_rightBottom_map {
+  display: flex;
+  text-align: center;
+  height: 100%;
+  width: 90%;
+  border: white dashed 2px;
+}

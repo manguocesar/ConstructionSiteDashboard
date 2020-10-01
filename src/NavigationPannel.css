@@ -1,0 +1,33 @@
+.menu-basic {
+  list-style-type: none;
+  padding: 0px;
+}
+.icon_nav_basic {
+  width: 35px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent 3px solid;
+  /* border-radius: 15px; */
+  fill: #000000;
+}
+
+.icon-nav-basicInactive {
+  width: 35px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  border: none 3px solid;
+  fill: #000000;
+}
+
+.icon_nav_basic:hover {
+  border-radius: 10px;
+  padding: 10px;
+  border: #82cdbf solid 3px;
+}
+
+.icon-nav-basicInactive:hover {
+  cursor: none;
+}

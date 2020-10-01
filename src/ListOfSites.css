@@ -1,0 +1,83 @@
+.site-item-activeBasic {
+  width: 20%;
+  height: 20%;
+  border-radius: 15px;
+  border: solid 2px #82cdbf;
+  background-color: rgba(39, 42, 51, 0.4);
+  color: #fff;
+  display: inline-block;
+
+  margin: 1% 1% 1% 1%;
+  padding: 1% 1% 1% 1%;
+}
+
+.site-item-inactiveBasic {
+  width: 20%;
+  height: 20%;
+  border-radius: 15px;
+  /* border: solid 1px yellow; */
+  background-color: rgba(39, 42, 51, 0.4);
+  color: #fff;
+  display: inline-block;
+  padding: 1% 1% 1% 1%;
+  margin: 1% 1% 1% 1%;
+}
+
+.site-device-numBasic {
+  font-size: 0.5em;
+  color: #898d99;
+  height: 20%;
+  text-align: center;
+  /* border: solid 2px red; */
+}
+
+.site-enterBasic {
+  background: #82cdbf;
+  color: #181a20;
+  font-size: 0.5em;
+  width: 90%;
+  height: 8%;
+  margin: 5px auto;
+  padding: 1% 0;
+  text-align: center;
+  border-radius: 10px;
+  /* border: solid 1px red; */
+}
+
+.container-emptyIcons {
+  width: 20%;
+  height: 20%;
+  /* border: solid 1px green; */
+  text-align: center;
+  display: inline-block;
+  background-color: rgba(39, 42, 51, 0.4);
+  padding: 1% 1% 1% 1%;
+  margin: 1% 1% 1% 1%;
+  border-radius: 15px;
+}
+
+.emptyIcons {
+  display: inline-block;
+  margin-bottom: auto;
+  /* border: solid 1px blue; */
+  border-radius: 20px;
+  height: 20%;
+  width: 20%;
+}
+
+.container-list-of-sites {
+  /* border: green dashed 1px; */
+  text-align: center;
+  justify-items: center;
+  margin: auto;
+}
+
+.sites-customer-logo {
+  width: 50%;
+  height: 50%;
+  margin: 0px;
+}
+.sites-icon-localisation {
+  height: 2em;
+  margin: 5px 0px 0px 0px;
+}
