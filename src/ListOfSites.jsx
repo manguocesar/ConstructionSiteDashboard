@@ -21,28 +21,29 @@ export default function ListOfSites() {
   }
 
   return (
-    <div className="container-list-of-sites">
+    <div className="container_list_of_sites">
       {list.stateList.map((nbr, key) => (
         <div
           key={key}
           className={
-            nbr.selected ? "site-item-activeBasic" : "site-item-inactiveBasic"
+            nbr.selected ? "site_item_activeBasic" : "site_item_inactiveBasic"
           }
         >
-          <div>
+          <div style={{ border: "solid red 1px" }}>
             <img
+              style={{ border: "solid blue 1px" }}
               src={nbr.img}
               alt="customerLogo"
-              className="sites-customer-logo"
+              className="sites_customer_logo"
             />
 
-            <div className="site-device-numBasic">
+            <div className="site_device_numBasic">
               <img
-                className="sites-icon-localisation"
+                className="sites_icon_localisation"
                 src={positionSmall}
                 alt="positionSmall"
               />
-              <span style={{ fontSize: "10px" }}> {nbr.text} </span>
+              <span style={{ fontSize: "1.5em" }}> {nbr.text} </span>
             </div>
 
             {/* <Link to="/"> */}
@@ -51,7 +52,7 @@ export default function ListOfSites() {
                 addTrue(nbr.order);
                 setHasChosenSite(true);
               }}
-              className="site-enterBasic"
+              className="site_enterBasic"
             >
               进入工地
             </div>
@@ -61,8 +62,16 @@ export default function ListOfSites() {
       ))}
 
       {arrIcon.map(() => (
-        <div className="container-emptyIcons">
-          <img alt="emptySite" src={exPlan} className="emptyIcons" />
+        <div
+          className="container_emptyIcons"
+          style={{ border: "solid blue 1px" }}
+        >
+          <img
+            style={{ border: "solid red 1px" }}
+            alt="emptySite"
+            src={exPlan}
+            className="emptyIcons"
+          />
         </div>
       ))}
     </div>

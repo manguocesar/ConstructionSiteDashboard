@@ -20,9 +20,7 @@ export default function MainView({ signout }) {
           <NavigationPannel signout={signout} />
         </div>
         <div className="container_info_diplay">
-          333
           <div className="container_info_left">
-            444
             <div className="container_info_leftTop">
               <div className="container_info_leftTop_title">复旦大学项目</div>
               <div className="container_info_leftTop_pannel">
@@ -35,34 +33,46 @@ export default function MainView({ signout }) {
               </div>
             </div>
             <div className="container_info_leftBottom">
-              666
-              <div className="container_info_leftTop_searchBar">Search bar</div>
+              <div className="container_info_leftTop_searchBar">
+                <span style={{ marginLeft: "5%" }}>
+                  请输入工地名称/编号。。。
+                </span>
+              </div>
               <div className="container_info_leftTop_sitesList">
                 <ListofSites />
               </div>
             </div>
           </div>
           <div className="container_info_right">
-            777
             <div className="container_info_rightTop">
-              <div className="container_info_rightTop_title">总体指标 </div>
+              <div className="container_info_rightTop_title">
+                <span style={{ margin: "0% 1% 0% 4%" }}>总体指标</span>{" "}
+              </div>
 
-              <div className="container_info_rightTop_pannelOne">工地数量 </div>
+              <div className="container_info_rightTop_pannelOne">
+                <span style={{ margin: "1% 1% 1% 4%" }}>工地数量</span>
+                <span style={{ margin: "1% 4% 1% 1%" }}>2</span>
+              </div>
 
-              <div className="container_info_rightTop_pannelTwo">工人总数 </div>
+              <div className="container_info_rightTop_pannelTwo">
+                <span style={{ margin: "1% 1% 1% 4%" }}>工人总数</span>
+                <span style={{ margin: "1% 4% 1% 1%" }}>548</span>
+              </div>
 
-              <div className="container_info_rightTop_pannelThree">公告栏 </div>
+              <div className="container_info_rightTop_pannelThree">
+                <span>公告栏</span>
+                <span>暂无信息</span>
+              </div>
             </div>
             <div className="container_info_rightBottom">
-              <div className="container_info_rightBottom_title">map</div>
+              <span className="container_info_rightBottom_title">工地位置</span>
               <div className="container_info_rightBottom_map">
                 <SiteLocation />
               </div>
             </div>
           </div>
-          aaa
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

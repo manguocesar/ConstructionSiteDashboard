@@ -14,7 +14,7 @@ import IconSafety from "./navIcon/shield.svg";
 import IconEquipment from "./navIcon/digger.svg";
 import IconSetting from "./navIcon/settings.svg";
 import IconEnvironment from "./navIcon/tree.svg";
-import logoutIcon from "./navIcon/logout.png";
+import logoutIcon from "./navIcon/logout.svg";
 
 export default function NavigationPannel({ signout }) {
   return (
