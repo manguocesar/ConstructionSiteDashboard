@@ -10,6 +10,7 @@ import LogIn from "./pages/LogIn";
 
 //context
 import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itself imports our Reducer
+import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
 
 const LoginStatus = {
   NotLoggedIn: 0,
@@ -35,10 +36,14 @@ function App() {
 
   return (
     <div className="App">
-      <ListSitesContextProvider>
-        {loginStatus === LoginStatus.NotLoggedIn && <LogIn signin={signin} />}
-        {loginStatus === LoginStatus.LoggedIn && <MainView signout={signout} />}
-      </ListSitesContextProvider>
+      <TimeContextProvider>
+        <ListSitesContextProvider>
+          {loginStatus === LoginStatus.NotLoggedIn && <LogIn signin={signin} />}
+          {loginStatus === LoginStatus.LoggedIn && (
+            <MainView signout={signout} />
+          )}
+        </ListSitesContextProvider>
+      </TimeContextProvider>
     </div>
   );
 }

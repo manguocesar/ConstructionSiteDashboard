@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
+//context
+import { TimeContext } from "../contexts/TimeContext";
+
+//style
 import "./ComponentTopLeft.css";
+
+//components
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
+
+//img
 import iconWorker from "./iconWorker.png";
 
 export default function ComponentTopLeft() {
+  const { chinaDate } = useContext(TimeContext);
   const [gaugeData, setGaugeData] = useState([0.3, 0.06, 0.15, 0.1, 0.07, 0.2]);
 
   return (
@@ -28,7 +37,7 @@ export default function ComponentTopLeft() {
         </div>
         <div className="container_info_leftTop_pannel_two">
           <div className="container_info_leftTop_pannel_two_top">
-            <span>2020年10月9日 12:30:57</span>
+            <span>{chinaDate}</span>
           </div>
           <div className="container_info_leftTop_pannel_two_chart">
             <BarChart />

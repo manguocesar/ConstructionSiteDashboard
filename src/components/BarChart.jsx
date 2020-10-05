@@ -40,9 +40,9 @@ function BarChart() {
     const yScale = scaleLinear().domain([0, 350]).range([130, 0]);
 
     const colorScale = scaleLinear()
-      .domain([0, 150, 300])
+      .domain([120, 190, 340])
       .range(["white", "#65AE9D", "#10A583"])
-      .clamp(true);
+      .clamp(false);
 
     const xAxis = axisBottom(xScale).ticks(dataOne.length);
 
