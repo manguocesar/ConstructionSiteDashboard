@@ -11,7 +11,7 @@ import ComponentTopRight from "../components/ComponentTopRight";
 
 export default function Home() {
   return (
-    <div className="container_info_diplay">
+    <div className="container_info_display_home">
       <div className="container_info_left">
         <ComponentTopLeft />
         <ListofSites />

@@ -24,8 +24,6 @@
 .container_underTop {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 100%;
   border: white dashed 2px;
 }
 

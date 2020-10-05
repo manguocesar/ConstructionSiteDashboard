@@ -58,13 +58,13 @@
 .site_item_inactiveBasic {
   display: inline-flex;
   width: 20%;
-  /* height: 35%; */
+  height: 35%;
   border-radius: 15px;
   border: solid 1px yellow;
   background-color: rgba(39, 42, 51, 0.4);
   color: #fff;
   padding: 1% 1% 1% 1%;
-  margin: container_list_of_sites1% 1% 1% 1%;
+  margin: 1% 1% 1% 1%;
 }
 
 .site_device_numBasic {

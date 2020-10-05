@@ -6,7 +6,7 @@ import TopPannel from "../components/TopPannel";
 import NavigationPannel from "../components/NavigationPannel";
 import Home from "./Home";
 import Equipment from "./Equipment";
-import NotFound from "./NotFound";
+import NotFound from "../components/NotFound";
 
 //style
 import "./MainView.css";
