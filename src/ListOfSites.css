@@ -1,9 +1,49 @@
+.container_info_leftTop_sitesList {
+  display: flex;
+  height: 80%;
+  width: 98%;
+  border: white dashed 2px;
+}
+
+.container_info_leftBottom {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 95%;
+  border-radius: 10px;
+  margin: 10px;
+  /* padding: 5px; */
+  align-items: center;
+  background-color: #181a20;
+  border: orange dashed 2px;
+}
+
+.container_info_leftTop_searchBar {
+  display: flex;
+  height: 8%;
+  width: 98%;
+  border-radius: 12px;
+  justify-content: left;
+  align-items: center;
+  margin: 0px auto;
+  border: grey solid 2px;
+}
+
+.siteWindow {
+  display: flex;
+  height: 10%;
+  width: 100%;
+  margin: 8%;
+  padding: 8%;
+  border: hotpink dashed 2px;
+}
+
 .container_site_item_inactiveBasic {
   display: flex;
 }
 
 .site_item_activeBasic {
-  display: flex;
+  display: inline-flex;
   width: 20%;
   height: 35%;
   border-radius: 15px;
