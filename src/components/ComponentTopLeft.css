@@ -28,7 +28,7 @@
 .container_info_leftTop_pannel_one {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 35%;
   justify-content: center;
   border-radius: 20px;
   margin: 5px 5px 10px 10px;
@@ -63,7 +63,7 @@
 .container_info_leftTop_pannel_two {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 65%;
   justify-content: center;
   border-radius: 20px;
   margin: 5px 10px 10px 5px;
