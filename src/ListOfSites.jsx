@@ -30,12 +30,14 @@ export default function ListOfSites() {
           }
         >
           <div style={{ border: "solid red 1px" }}>
-            <img
+            {/* <img
               style={{ border: "solid blue 1px" }}
               src={nbr.img}
               alt="customerLogo"
               className="sites_customer_logo"
-            />
+            /> */}
+
+            <span>复旦大学项目 二建集团第六分公司</span>
 
             <div className="site_device_numBasic">
               <img
@@ -43,7 +45,9 @@ export default function ListOfSites() {
                 src={positionSmall}
                 alt="positionSmall"
               />
-              <span style={{ fontSize: "1.5em" }}> {nbr.text} </span>
+              <span style={{ width: "90%", height: "50%", fontSize: "1.5em" }}>
+                {nbr.text}{" "}
+              </span>
             </div>
 
             {/* <Link to="/"> */}

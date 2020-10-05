@@ -1,3 +1,7 @@
+.container_site_item_inactiveBasic {
+  display: flex;
+}
+
 .site_item_activeBasic {
   display: flex;
   width: 20%;
@@ -14,15 +18,13 @@
 .site_item_inactiveBasic {
   display: inline-flex;
   width: 20%;
-  height: 30%;
-
+  /* height: 35%; */
   border-radius: 15px;
   border: solid 1px yellow;
   background-color: rgba(39, 42, 51, 0.4);
   color: #fff;
-
   padding: 1% 1% 1% 1%;
-  margin: 1% 1% 1% 1%;
+  margin: container_list_of_sites1% 1% 1% 1%;
 }
 
 .site_device_numBasic {
@@ -36,7 +38,7 @@
 .site_enterBasic {
   background: #82cdbf;
   color: #181a20;
-  font-size: 0.7em;
+  font-size: 0.9em;
   width: 90%;
   height: 15%;
   margin: 5px auto;
@@ -48,7 +50,7 @@
 
 .container_emptyIcons {
   width: 20%;
-  height: 20%;
+  height: 35%;
   /* border: solid 1px green; */
   text-align: center;
   display: inline-flex;
@@ -60,27 +62,24 @@
 
 .emptyIcons {
   display: inline-flex;
-  margin-bottom: auto;
+  margin: auto;
   /* border: solid 1px blue; */
   border-radius: 20px;
-  height: 80%;
-  width: 80%;
+  height: 95%;
+  width: 85%;
 }
 
 .container_list_of_sites {
   display: flex wrap;
   flex-direction: row;
   border: green dashed 1px;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  justify-items: center;
-  margin: auto;
+
+  /* margin: auto; */
 }
 
 .sites_customer_logo {
-  width: 80%;
-  height: 70%;
+  width: 90%;
+  height: 80%;
   margin: 0px;
 }
 .sites_icon_localisation {
