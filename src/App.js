@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import "./App.css";
 
 //pages
-import MainView from "./MainView";
-import LogIn from "./LogIn";
+import MainView from "./pages/MainView";
+import LogIn from "./pages/LogIn";
 
 //context
-import ListSitesContextProvider from "./ListSitesContext"; // will itself imports our Reducer
+import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itself imports our Reducer
 
 const LoginStatus = {
   NotLoggedIn: 0,

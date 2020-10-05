@@ -1,12 +1,12 @@
 import React from "react";
 
 //components
-import ListofSites from "./ListOfSites";
-import SiteLocation from "./SiteLocation";
-import TopPannel from "./TopPannel";
-import NavigationPannel from "./NavigationPannel";
-import ComponentTopLeft from "./ComponentTopLeft";
-import ComponentTopRight from "./ComponentTopRight";
+import TopPannel from "../components/TopPannel";
+import NavigationPannel from "../components/NavigationPannel";
+import ListofSites from "../components/ListOfSites";
+import SiteLocation from "../components/SiteLocation";
+import ComponentTopLeft from "../components/ComponentTopLeft";
+import ComponentTopRight from "../components/ComponentTopRight";
 
 //style
 import "./MainView.css";

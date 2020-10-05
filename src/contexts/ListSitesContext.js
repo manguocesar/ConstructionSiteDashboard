@@ -1,6 +1,6 @@
 import React, { createContext, useState, useReducer } from "react";
 
-import { SitesReducer } from "./SitesReducer";
+import { SitesReducer } from "../services/SitesReducer";
 
 import customerLogo from "./img/newLogo.svg";
 

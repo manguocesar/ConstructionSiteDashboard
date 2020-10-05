@@ -1,5 +1,8 @@
 import React from "react";
 
+//style
+import "./SiteLocation.css";
+
 export default function SiteLocation() {
   return (
     <div className="container_info_rightBottom">

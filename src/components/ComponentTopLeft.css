@@ -11,8 +11,10 @@
 
 .container_info_leftTop_title {
   display: flex;
+  margin-left: 5%;
   height: 10%;
-  width: 98%;
+  width: 90%;
+  align-items: center;
   border: green dashed 2px;
 }
 

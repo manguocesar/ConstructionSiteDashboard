@@ -61,29 +61,3 @@
   width: 35%;
   border: white solid 2px;
 }
-
-.container_info_rightBottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 95%;
-  border-radius: 10px;
-  margin: 10px;
-  background-color: #181a20;
-  border: hotpink dashed 2px;
-}
-.container_info_rightBottom_title {
-  border: red dashed 2px;
-  width: 90%;
-  text-align: left;
-}
-
-.container_info_rightBottom_map {
-  display: flex;
-  text-align: center;
-  height: 100%;
-  width: 90%;
-  border: white dashed 2px;
-}

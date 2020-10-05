@@ -6,7 +6,7 @@ import exPlan from "./exPlan.png";
 import positionSmall from "./positionSmall.svg";
 
 //context
-import { ListSitesContext } from "./ListSitesContext";
+import { ListSitesContext } from "../contexts/ListSitesContext";
 
 //styles
 import "./ListOfSites.css";
