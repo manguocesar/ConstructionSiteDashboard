@@ -1,5 +1,6 @@
 .container-top-pannel {
   display: flex;
+  text-align: start;
   width: 100%;
   height: 70px;
   /* background-color: red; */
@@ -21,15 +22,12 @@
   /* background-color: green; */
 }
 
-.container-consimTitle {
-  text-align: flex-start;
-  height: 90%;
+.container_consimTitle {
+  height: 100%;
   width: 28%;
   color: #82cdbf;
-  font-size: 32px;
-  /* background-color: yellow;
-  border: blue 1px solid; */
-  margin-top: auto;
+  font-size: 28px;
+  border: blue 1px solid;
 }
 .container-companyLogo {
   text-align: right;
