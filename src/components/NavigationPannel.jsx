@@ -28,7 +28,7 @@ export default function NavigationPannel({ signout }) {
 
         <div>
           <li>
-            <Link to="equipments">
+            <Link to="Equipment">
               <img src={IconEquipment} alt="logo" className="icon_nav_basic" />
             </Link>
           </li>

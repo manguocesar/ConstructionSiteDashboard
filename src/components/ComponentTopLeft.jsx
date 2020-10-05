@@ -1,15 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./ComponentTopLeft.css";
+import PieChart from "./PieChart";
+import BarChart from "./BarChart";
+import iconWorker from "./iconWorker.png";
 
 export default function ComponentTopLeft() {
+  const [gaugeData, setGaugeData] = useState([0.3, 0.06, 0.15, 0.1, 0.07, 0.2]);
+
   return (
     <div className="container_info_leftTop">
       <div className="container_info_leftTop_title">复旦大学项目</div>
       <div className="container_info_leftTop_pannel">
-        <div className="container_info_leftTop_pannel_one">工人数量</div>
+        <div className="container_info_leftTop_pannel_one">
+          <div className="container_info_leftTop_pannel_one_top">
+            <img src={iconWorker} alt="" />
+            <span>工人数量</span>
+            <span style={{ color: "#82cdbf", fontSize: "1.6em" }}>345</span>
+          </div>
+          <div className="container_info_leftTop_pannel_one_chart">
+            <PieChart data={gaugeData} />
+          </div>
+          <div className="container_info_leftTop_pannel_one_ratio">
+            <span>男性: 85%</span>
+            <span>女性: 15%</span>
+          </div>
+        </div>
         <div className="container_info_leftTop_pannel_two">
-          2020年10月9日 12:30:57
+          <div className="container_info_leftTop_pannel_two_top">
+            <span>2020年10月9日 12:30:57</span>
+          </div>
+          <div className="container_info_leftTop_pannel_two_chart">
+            <BarChart />
+          </div>
+          <div className="container_info_leftTop_pannel_two_ratio">
+            <span>进入人数</span>
+            <span>离开人数</span>
+            <span>工地人数</span>
+          </div>
         </div>
       </div>
     </div>

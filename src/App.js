@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, Router } from "@reach/router";
 
 //style
 import "./App.css";
@@ -17,7 +18,7 @@ const LoginStatus = {
 };
 
 function App() {
-  const [loginStatus, setLoginStatus] = useState(LoginStatus.NotLoggedIn);
+  const [loginStatus, setLoginStatus] = useState(LoginStatus.LoggedIn);
 
   //set back the original state
   function signout() {

@@ -1,12 +1,12 @@
 import React from "react";
+import { Link, Router } from "@reach/router";
 
 //components
 import TopPannel from "../components/TopPannel";
 import NavigationPannel from "../components/NavigationPannel";
-import ListofSites from "../components/ListOfSites";
-import SiteLocation from "../components/SiteLocation";
-import ComponentTopLeft from "../components/ComponentTopLeft";
-import ComponentTopRight from "../components/ComponentTopRight";
+import Home from "./Home";
+import Equipment from "./Equipment";
+import NotFound from "./NotFound";
 
 //style
 import "./MainView.css";
@@ -21,16 +21,13 @@ export default function MainView({ signout }) {
         <div className="container_nav">
           <NavigationPannel signout={signout} />
         </div>
-        <div className="container_info_diplay">
-          <div className="container_info_left">
-            <ComponentTopLeft />
-            <ListofSites />
-          </div>
-          <div className="container_info_right">
-            <ComponentTopRight />
-            <SiteLocation />
-          </div>
-        </div>
+
+        <Router>
+          <Home path="/" />
+          <Equipment path="Equipment" />
+
+          <NotFound default />
+        </Router>
       </div>
     </div>
   );

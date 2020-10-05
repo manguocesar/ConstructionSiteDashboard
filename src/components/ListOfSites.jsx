@@ -59,17 +59,17 @@ export default function ListOfSites() {
                   </span>
                 </div>
 
-                {/* <Link to="/"> */}
-                <div
-                  onClick={() => {
-                    addTrue(nbr.order);
-                    setHasChosenSite(true);
-                  }}
-                  className="site_enterBasic"
-                >
-                  进入工地
-                </div>
-                {/* </Link> */}
+                <Link to="/Equipment">
+                  <div
+                    onClick={() => {
+                      addTrue(nbr.order);
+                      setHasChosenSite(true);
+                    }}
+                    className="site_enterBasic"
+                  >
+                    进入工地
+                  </div>
+                </Link>
               </div>
             </div>
           ))}

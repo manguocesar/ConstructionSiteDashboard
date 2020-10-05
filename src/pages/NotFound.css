@@ -1,0 +1,11 @@
+.container_info_diplay {
+  display: flex;
+  height: 98%;
+  width: 1200px;
+  margin-left: 10px;
+  justify-content: center;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #282c34;
+  border: green dashed 4px;
+}
