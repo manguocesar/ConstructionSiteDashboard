@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 //style
-import "./Equipment.css";
+import "./Operators.css";
 
 //img
 import SearchIcon from "./img/SearchIcon.png";
 
 //components
 
-export default function Equipment() {
+export default function Operators() {
   const [textOne, setTextOne] = useState();
   const [textTwo, setTextTwo] = useState();
 

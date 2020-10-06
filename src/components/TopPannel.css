@@ -1,8 +1,8 @@
-.container-top-pannel {
+.container_top_pannel {
   display: flex;
   text-align: start;
   width: 100%;
-  height: 70px;
+  height: 100%;
   /* background-color: red; */
 }
 
@@ -17,17 +17,23 @@
 .consimLogo {
   height: 90%;
   width: 75%;
-
   margin-left: 5%;
   /* background-color: green; */
 }
 
 .container_consimTitle {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 30%;
   color: #82cdbf;
-  font-size: 28px;
+  font-size: 1.2vw;
   /* border: blue 1px solid; */
+}
+
+.NavRouter {
+  display: flex;
+  font-size: 1.2vw;
 }
 
 .container-companyLogo {

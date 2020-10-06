@@ -5,7 +5,7 @@ import { Link, Router } from "@reach/router";
 import TopPannel from "../components/TopPannel";
 import NavigationPannel from "../components/NavigationPannel";
 import Home from "./Home";
-import Equipment from "./Equipment";
+import Operators from "./Operators";
 import NotFound from "../components/NotFound";
 
 //style
@@ -29,7 +29,7 @@ export default function MainView({ signout }) {
             }}
           >
             <Home path="/" />
-            <Equipment path="Equipment" />
+            <Operators path="Operators" />
             <NotFound default />
           </Router>
         </div>{" "}

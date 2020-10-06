@@ -5,7 +5,7 @@ import { Router, Link } from "@reach/router";
 import "./TopPannel.css";
 
 // navigation reminder icons
-import { HomeNav, EquipmentNav } from "./navReminder/TopNavBar";
+import { HomeNav, OperatorsNav } from "./navReminder/TopNavBar";
 
 //photo
 import consimLogo from "./img/consimLogo.png";
@@ -13,18 +13,16 @@ import imagecompany from "./img/LogoCompany.svg";
 
 export default function TopPannel() {
   return (
-    <div className="container-top-pannel">
+    <div className="container_top_pannel">
       <div className="container-consimLogo">
         <img className="consimLogo" alt="" src={consimLogo} />
       </div>
       <div className="container_consimTitle">
         <span>数字孪生施工管理平台</span>
-        <div
-        // style={{ border: "solid 1px yellow" }}
-        >
-          <Router primary={false}>
+        <div>
+          <Router>
             <HomeNav path="/" />
-            <EquipmentNav path="Equipment" />
+            <OperatorsNav path="Operators" />
           </Router>
         </div>
       </div>

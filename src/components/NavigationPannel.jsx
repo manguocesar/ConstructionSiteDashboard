@@ -32,7 +32,7 @@ export default function NavigationPannel({ signout }) {
         <li className="menu_basic_li">
           <Link
             style={{ display: "flex", height: "100%", width: "100%" }}
-            to="Equipment"
+            to="Equipments"
           >
             <img
               src={IconEquipment}
@@ -45,7 +45,7 @@ export default function NavigationPannel({ signout }) {
         <li className="menu_basic_li">
           <Link
             style={{ display: "flex", height: "100%", width: "100%" }}
-            to="operators"
+            to="Operators"
           >
             <img src={IconOperator} alt="logo" className="icon_nav_basic" />
           </Link>

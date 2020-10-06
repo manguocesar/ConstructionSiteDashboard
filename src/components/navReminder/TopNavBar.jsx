@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 import "./TopNavBar.css";
 
 export const HomeNav = () => (
-  <table style={{ fontSize: "13.5px", color: "#82cdbf" }}>
+  <table className="TopNavBar_Table_container">
     <tbody>
       <tr>
         <td>
@@ -20,8 +20,8 @@ export const HomeNav = () => (
   </table>
 );
 
-export const EquipmentNav = () => (
-  <table style={{ fontSize: "13.5px", color: "#82cdbf" }}>
+export const OperatorsNav = () => (
+  <table className="TopNavBar_Table_container">
     <tbody>
       <tr>
         <td>
@@ -37,7 +37,7 @@ export const EquipmentNav = () => (
         </td>
 
         <td>
-          <Link to="/sites/1" style={{ color: "#82cdbf" }}>
+          <Link to="/Operators" style={{ color: "#82cdbf" }}>
             人员
           </Link>
         </td>
