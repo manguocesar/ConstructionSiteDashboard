@@ -11,11 +11,11 @@
 		</clipPath>
 	</defs>
 	<style>
-		<!-- tspan { white-space:pre }
-		.shp0 { fill: grey }  -->
+		tspan { white-space:pre }
+		.shp0 { fill: grey } 
 
-	tspan { white-space:pre }
-		.shp0 { fill: #82cdbf } 
+	<!-- tspan { white-space:pre }
+		.shp0 { fill: #82cdbf }  -->
 
 
 	</style>

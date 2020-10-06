@@ -5,15 +5,15 @@
 		</clipPath>
 	</defs>
 	<style>
-		tspan { white-space:pre }
+		<!-- tspan { white-space:pre }
 		.shp0 { fill: #000000 } 
 		.shp1 { fill: #82cdbf;stroke: #82cdbf;stroke-width: 0.338 } 
-		.shp2 { fill: #82cdbf } 
+		.shp2 { fill: #82cdbf }  -->
 
-	<!-- tspan { white-space:pre }
+	 tspan { white-space:pre }
 		.shp0 { fill: #000000 } 
 		.shp1 { fill: grey;stroke: grey;stroke-width: 0.338 } 
-		.shp2 { fill: grey }  -->
+		.shp2 { fill: grey } 
 
 	</style>
 	<g id="Customer Page (Page 2)" clip-path="url(#cp1)">

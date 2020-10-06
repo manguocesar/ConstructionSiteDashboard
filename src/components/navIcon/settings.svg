@@ -8,11 +8,11 @@
 		</clipPath>
 	</defs>
 	<style>
-		tspan { white-space:pre }
-		.shp0 { fill: #82cdbf } 
+		<!-- tspan { white-space:pre }
+		.shp0 { fill: #82cdbf }  -->
 
-	<!-- tspan { white-space:pre }
-		.shp0 { fill: grey }  -->
+	tspan { white-space:pre }
+		.shp0 { fill: grey } 
 
 	</style>
 	<g id="Customer Page (Page 2)" clip-path="url(#cp1)">

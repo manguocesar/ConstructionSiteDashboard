@@ -18,16 +18,21 @@ export default function MainView({ signout }) {
         <TopPannel />
       </div>
       <div className="container_underTop">
-        <div className="container_nav">
-          <NavigationPannel signout={signout} />
-        </div>
-
-        <Router>
-          <Home path="/" />
-          <Equipment path="Equipment" />
-
-          <NotFound default />
-        </Router>
+        <NavigationPannel signout={signout} />
+        <div className="container_body">
+          <Router
+            style={{
+              border: "red solid 2px",
+              display: "flex",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <Home path="/" />
+            <Equipment path="Equipment" />
+            <NotFound default />
+          </Router>
+        </div>{" "}
       </div>
     </div>
   );

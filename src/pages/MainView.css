@@ -2,28 +2,29 @@
   display: flex;
   flex-direction: column;
   width: 85vw;
-  height: 90vh;
+  height: 85vh;
   border: blue dashed 5px;
 }
 
-/* container_header */
 .container_header {
   display: flex;
-
   height: 10%;
-  /* border: red dashed 2px; */
+  width: 100%;
+  border: red dashed 5px;
 }
 
 .container_underTop {
   display: flex;
   flex-direction: row;
-
-  border: white dashed 2px;
+  width: 100%;
+  height: 90%;
+  /* border: white dashed 2px; */
 }
 
-.container_nav {
+.container_body {
   display: flex;
+  flex-direction: row;
+  width: 95%;
   height: 100%;
-  width: 5%;
-  border: yellow dashed 2px;
+  border: hotpink dashed 2px;
 }
