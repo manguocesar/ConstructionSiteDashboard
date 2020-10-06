@@ -9,15 +9,10 @@ export default function SiteLocation() {
       <span className="container_info_rightBottom_title">工地位置</span>
       <div className="container_info_rightBottom_map">
         <iframe
-          style={{
-            borderRadius: "20px",
-            border: "4px solid #000",
-          }}
+          className="map_localisation"
           title="mapLocalisation"
           allowfullscreen="false"
           allowpaymentrequest="false"
-          height="260"
-          width="150%"
           id="gmap_canvas"
           content="none"
           src="http://api.map.baidu.com/marker?location=34.7,113.6&iwloc=near&output=html"
