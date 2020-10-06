@@ -1,12 +1,12 @@
 .container_info_leftTop {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 55%;
   width: 95%;
   border-radius: 10px;
   margin: 10px;
   background-color: #181a20;
-  border: grey dotted 2px;
+  border: green dotted 2px;
 }
 
 .container_info_leftTop_title {

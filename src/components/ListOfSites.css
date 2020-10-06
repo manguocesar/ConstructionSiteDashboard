@@ -1,8 +1,9 @@
 .container_info_leftTop_sitesList {
   display: flex;
-  height: 80%;
+  align-items: center;
+  height: 88%;
   width: 98%;
-  border: white dashed 2px;
+  border: blue dashed 2px;
 }
 
 .container_info_leftBottom {
@@ -20,26 +21,13 @@
 
 .container_info_leftTop_searchBar {
   display: flex;
-  height: 8%;
-  width: 98%;
+  height: 12%;
+  width: 92%;
   border-radius: 12px;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   margin: 0px auto;
   border: grey solid 2px;
-}
-
-.siteWindow {
-  display: flex;
-  height: 10%;
-  width: 100%;
-  margin: 8%;
-  padding: 8%;
-  border: hotpink dashed 2px;
-}
-
-.container_site_item_inactiveBasic {
-  display: flex;
 }
 
 .site_item_activeBasic {
@@ -50,33 +38,42 @@
   border: solid 2px #82cdbf;
   background-color: rgba(39, 42, 51, 0.4);
   color: #fff;
-
   margin: 1% 1% 1% 1%;
   padding: 1% 1% 1% 1%;
 }
 
 .site_item_inactiveBasic {
   display: inline-flex;
-  width: 20%;
-  height: 35%;
+  width: 21%;
+  height: 38%;
   border-radius: 15px;
   border: solid 1px yellow;
   background-color: rgba(39, 42, 51, 0.4);
   color: #fff;
-  padding: 1% 1% 1% 1%;
-  margin: 1% 1% 1% 1%;
+  padding: 1%;
+  margin: 1% 0.5% 1% 0.5%;
 }
 
 .site_device_numBasic {
+  display: flex;
   font-size: 0.5em;
   color: #898d99;
   height: 20%;
-  text-align: center;
-  /* border: solid 2px red; */
+  width: 90%;
+  margin: 0px auto;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+  border: solid 2px red;
 }
 
-.site_enterBasic {
+.site_enterBasic_home {
   background: #82cdbf;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
   color: #181a20;
   font-size: 0.9em;
   width: 90%;
@@ -88,40 +85,34 @@
   /* border: solid 1px red; */
 }
 
-.container_emptyIcons {
-  width: 20%;
-  height: 35%;
-  /* border: solid 1px green; */
-  text-align: center;
+.container_emptyIcons_home {
   display: inline-flex;
+  width: 21%;
+  height: 38%;
+  border: solid 1px green;
   background-color: rgba(39, 42, 51, 0.4);
-  padding: 1% 1% 1% 1%;
-  margin: 1% 1% 1% 1%;
+  padding: 1%;
+  margin: 0.5%;
   border-radius: 15px;
 }
 
-.emptyIcons {
+.emptyIcons_home {
   display: inline-flex;
   margin: auto;
-  /* border: solid 1px blue; */
+  border: solid 1px blue;
   border-radius: 20px;
   height: 95%;
-  width: 85%;
+  width: 80%;
 }
 
-.container_list_of_sites {
+.container_home_list_of_sites {
   display: flex wrap;
   flex-direction: row;
+  height: 100%;
   border: green dashed 1px;
-
   /* margin: auto; */
 }
 
-.sites_customer_logo {
-  width: 90%;
-  height: 80%;
-  margin: 0px;
-}
 .sites_icon_localisation {
   height: 2em;
   margin: 5px 0px 0px 0px;

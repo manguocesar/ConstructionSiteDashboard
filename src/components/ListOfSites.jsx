@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 //image
 import exPlan from "./exPlan.png";
 import positionSmall from "./positionSmall.svg";
+import SearchIcon from "./SearchIcon.png";
 
 //context
 import { ListSitesContext } from "../contexts/ListSitesContext";
@@ -23,10 +24,11 @@ export default function ListOfSites() {
   return (
     <div className="container_info_leftBottom">
       <div className="container_info_leftTop_searchBar">
-        <span style={{ marginLeft: "5%" }}>请输入工地名称/编号。。。</span>
+        <span style={{ marginLeft: "2%" }}>请输入工地名称/编号。。。</span>{" "}
+        <img style={{ marginRight: "2%" }} alt="" src={SearchIcon} />
       </div>
       <div className="container_info_leftTop_sitesList">
-        <div className="container_list_of_sites">
+        <div className="container_home_list_of_sites">
           {list.stateList.map((nbr, key) => (
             <div
               key={key}
@@ -36,15 +38,32 @@ export default function ListOfSites() {
                   : "site_item_inactiveBasic"
               }
             >
-              <div style={{ border: "solid red 1px" }}>
+              <div
+                style={{
+                  border: "solid blue 1px",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 {/* <img
               style={{ border: "solid blue 1px" }}
               src={nbr.img}
               alt="customerLogo"
               className="sites_customer_logo"
+
+              .sites_customer_logo {
+  width: 90%;
+  height: 80%;
+  margin: 0px;
+}
             /> */}
 
-                <span>复旦大学项目 二建集团第六分公司</span>
+                <span>
+                  复旦大学项目
+                  <br /> 二建集团第六分公司
+                </span>
 
                 <div className="site_device_numBasic">
                   <img
@@ -65,7 +84,7 @@ export default function ListOfSites() {
                       addTrue(nbr.order);
                       setHasChosenSite(true);
                     }}
-                    className="site_enterBasic"
+                    className="site_enterBasic_home"
                   >
                     进入工地
                   </div>
@@ -75,16 +94,8 @@ export default function ListOfSites() {
           ))}
 
           {arrIcon.map(() => (
-            <div
-              className="container_emptyIcons"
-              style={{ border: "solid blue 1px" }}
-            >
-              <img
-                style={{ border: "solid red 1px" }}
-                alt="emptySite"
-                src={exPlan}
-                className="emptyIcons"
-              />
+            <div className="container_emptyIcons_home">
+              <img alt="emptySite" src={exPlan} className="emptyIcons_home" />
             </div>
           ))}
         </div>
