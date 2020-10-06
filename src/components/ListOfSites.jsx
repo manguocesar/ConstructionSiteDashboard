@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "@reach/router";
 
 //image
@@ -21,11 +21,40 @@ export default function ListOfSites() {
     arrIcon.push(i);
   }
 
+  const [text, setText] = useState();
+
+  function handleChange(e) {
+    e.preventDefault();
+    setText(e.target.value);
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    console.log("Search for => ", text);
+    setText("");
+  }
+
   return (
     <div className="container_info_leftBottom">
       <div className="container_info_leftTop_searchBar">
-        <span style={{ marginLeft: "2%" }}>请输入工地名称/编号。。。</span>{" "}
-        <img style={{ marginRight: "2%" }} alt="" src={SearchIcon} />
+        <label>
+          <input
+            className="ListOfSite_SearchBar"
+            onChange={handleChange}
+            placeholder="请输入工地名称/编号。。。"
+            type="text"
+            name="newText"
+            id="mainInput"
+            maxlength="100" //maximum of caracter for latest annoucement
+            value={text}
+          ></input>
+        </label>
+        <img
+          onClick={handleClick}
+          style={{ marginRight: "2%", height: "60%" }}
+          alt=""
+          src={SearchIcon}
+        />
       </div>
       <div className="container_info_leftTop_sitesList">
         <div className="container_home_list_of_sites">
@@ -60,7 +89,7 @@ export default function ListOfSites() {
 }
             /> */}
                 <div className="site_device_name_site">
-                  <span>
+                  <span className="site_device_name_title">
                     复旦大学项目
                     <br /> 二建集团第六分公司
                   </span>
