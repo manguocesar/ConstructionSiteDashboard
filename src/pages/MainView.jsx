@@ -20,19 +20,12 @@ export default function MainView({ signout }) {
       <div className="container_underTop">
         <NavigationPannel signout={signout} />
         <div className="container_body">
-          <Router
-            style={{
-              border: "red solid 2px",
-              display: "flex",
-              width: "100%",
-              height: "100%",
-            }}
-          >
+          <Router className="container_body_router">
             <Home path="/" />
             <Operators path="Operators" />
             <NotFound default />
           </Router>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

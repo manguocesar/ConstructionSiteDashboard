@@ -1,12 +1,12 @@
 .container_info_leftTop {
   display: flex;
   flex-direction: column;
-  height: 55%;
-  width: 95%;
+  height: 50%;
+  width: 97.5%;
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px 5px 10px 10px;
   background-color: #181a20;
-  border: green dotted 2px;
+  /* border: green dotted 2px; */
 }
 
 .container_info_leftTop_title {
@@ -14,15 +14,16 @@
   margin-left: 5%;
   height: 10%;
   width: 90%;
+  font-size: 1vw;
   align-items: center;
-  border: green dashed 2px;
+  /* border: green dashed 2px; */
 }
 
 .container_info_leftTop_pannel {
   display: flex;
   flex-direction: row;
   height: 100%;
-  border: grey dashed 2px;
+  /* border: grey dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one {
@@ -31,10 +32,10 @@
   width: 35%;
   justify-content: center;
   border-radius: 20px;
-  margin: 5px 5px 10px 10px;
+  margin: 5px 5px 15px 15px;
   padding: 5px;
   background: rgba(39, 42, 51, 0.4);
-  border: blue dashed 2px;
+  /* border: blue dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one_top {
@@ -42,13 +43,14 @@
   align-items: center;
   width: 80%;
   margin: 0px auto;
+  font-size: 1vw;
   justify-content: space-between;
-  border: dotted red 1px;
+  /* border: dotted red 1px; */
 }
 
 .container_info_leftTop_pannel_one_chart {
-  border: solid white 1px;
-  height: 60%;
+  /* border: solid white 1px; */
+  height: 70%;
   margin: auto;
 }
 
@@ -56,8 +58,9 @@
   display: flex;
   margin: 2px auto;
   width: 80%;
+  font-size: 1vw;
   justify-content: space-between;
-  border: dotted green 1px;
+  /* border: dotted green 1px; */
 }
 
 .container_info_leftTop_pannel_two {

@@ -5,7 +5,7 @@
   margin: auto;
   border-radius: 20px;
   background-color: #282c34;
-  border: green dashed 4px;
+  /* border: green dashed 4px; */
 }
 
 .container_info_left {
@@ -14,7 +14,7 @@
   height: 100%;
   width: 65%;
   align-items: center;
-  border: blue solid 2px;
+  /* border: blue solid 2px; */
 }
 .container_info_right {
   display: flex;
@@ -22,5 +22,5 @@
   align-items: center;
   height: 100%;
   width: 35%;
-  border: white solid 2px;
+  /* border: white solid 2px; */
 }

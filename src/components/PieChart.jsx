@@ -4,6 +4,9 @@ import useResizeObserver from "./useResizeObserver";
 
 import legendColor from "./img/legendColor.png";
 
+//style
+import "./PieChart.css";
+
 export default function PieChart({ data }) {
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -59,18 +62,13 @@ export default function PieChart({ data }) {
           return arcGenerator(interpolator(t));
         };
       });
-
-    // draw the gauge
   }, [data, dimensions]);
 
   return (
     <div>
-      <div
-        ref={wrapperRef}
-        style={{ display: "flex", border: "1px solid blue", height: "10%" }}
-      >
+      <div ref={wrapperRef} className="Container_PieChart">
         <svg ref={svgRef}></svg>
-        <div style={{ margin: "20px 30px 0px 0px" }}>
+        <div className="Container_PieChart_Legend">
           <img alt="" src={legendColor} />
         </div>
         {/* {data[0].toFixed(2)}, {data[1].toFixed(2)} */}
