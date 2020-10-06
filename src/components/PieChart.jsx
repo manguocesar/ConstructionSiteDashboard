@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { select, arc, pie, interpolate } from "d3";
 import useResizeObserver from "./useResizeObserver";
 
-import legendColor from "./legendColor.png";
+import legendColor from "./img/legendColor.png";
 
 export default function PieChart({ data }) {
   const svgRef = useRef();

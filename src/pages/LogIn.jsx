@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //img
-import Title from "./Consim_Dark.png";
+import Title from "./img/Consim_Dark.png";
 
 //refactoriser le style de ce composant si j'ai le temps
 import styles from "./Login.module.css";

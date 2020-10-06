@@ -11,7 +11,7 @@ import PieChart from "./PieChart";
 import BarChart from "./BarChart";
 
 //img
-import iconWorker from "./iconWorker.png";
+import iconWorker from "./img/iconWorker.png";
 
 export default function ComponentTopLeft() {
   const { chinaDate } = useContext(TimeContext);

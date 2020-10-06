@@ -4,7 +4,7 @@ import React from "react";
 import "./Equipment.css";
 
 //img
-import SearchIcon from "./SearchIcon.png";
+import SearchIcon from "./img/SearchIcon.png";
 
 //components
 

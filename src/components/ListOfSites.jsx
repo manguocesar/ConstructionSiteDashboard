@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "@reach/router";
 
 //image
-import exPlan from "./exPlan.png";
-import positionSmall from "./positionSmall.svg";
-import SearchIcon from "./SearchIcon.png";
+import exPlan from "./img/exPlan.png";
+import positionSmall from "./img/positionSmall.svg";
+import SearchIcon from "./img/SearchIcon.png";
 
 //context
 import { ListSitesContext } from "../contexts/ListSitesContext";
@@ -40,7 +40,7 @@ export default function ListOfSites() {
             >
               <div
                 style={{
-                  border: "solid blue 1px",
+                  // border: "solid blue 1px",
                   width: "100%",
                   height: "100%",
                   display: "flex",
@@ -59,12 +59,12 @@ export default function ListOfSites() {
   margin: 0px;
 }
             /> */}
-
-                <span>
-                  复旦大学项目
-                  <br /> 二建集团第六分公司
-                </span>
-
+                <div className="site_device_name_site">
+                  <span>
+                    复旦大学项目
+                    <br /> 二建集团第六分公司
+                  </span>
+                </div>
                 <div className="site_device_numBasic">
                   <img
                     className="sites_icon_localisation"

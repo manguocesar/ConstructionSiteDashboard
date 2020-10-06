@@ -8,8 +8,8 @@ import "./TopPannel.css";
 import { HomeNav, EquipmentNav } from "./navReminder/TopNavBar";
 
 //photo
-import consimLogo from "./consimLogo.png";
-import imagecompany from "./imagecompany.png";
+import consimLogo from "./img/consimLogo.png";
+import imagecompany from "./img/imagecompany.png";
 
 export default function TopPannel() {
   return (
