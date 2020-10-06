@@ -9,7 +9,7 @@ import { HomeNav, EquipmentNav } from "./navReminder/TopNavBar";
 
 //photo
 import consimLogo from "./img/consimLogo.png";
-import imagecompany from "./img/imagecompany.png";
+import imagecompany from "./img/LogoCompany.svg";
 
 export default function TopPannel() {
   return (
@@ -19,7 +19,9 @@ export default function TopPannel() {
       </div>
       <div className="container_consimTitle">
         <span>数字孪生施工管理平台</span>
-        <div style={{ border: "solid 1px yellow" }}>
+        <div
+        // style={{ border: "solid 1px yellow" }}
+        >
           <Router primary={false}>
             <HomeNav path="/" />
             <EquipmentNav path="Equipment" />
@@ -27,7 +29,7 @@ export default function TopPannel() {
         </div>
       </div>
       <div className="container-companyLogo">
-        <img alt="" src={imagecompany} className="companyLogo-basic" />
+        <img alt="" src={imagecompany} className="companyLogo_basic" />
       </div>
     </div>
   );

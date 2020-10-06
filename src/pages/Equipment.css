@@ -45,13 +45,27 @@
 .EquipmentOne_searchBar {
   display: flex;
   height: 55%;
-  width: 60%;
-  border-radius: 12px;
-  justify-content: space-between;
+  width: 50%;
 
+  border-radius: 10px;
+  justify-content: space-between;
+  color: white;
   align-items: center;
-  margin: 0px auto;
-  border: #d8d8d8 solid 2px;
+  margin: 0% 0% 0% 10%;
+  background-color: #181a20;
+  border: #d8d8d8 solid 1px;
+}
+.Equipment_SearchBar {
+  display: flex;
+
+  height: 55%;
+  width: 200%;
+  border: none;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  margin: 0% 0% 0% 15%;
+  background-color: #181a20;
 }
 
 .container_bottom_Equipment {

@@ -9,16 +9,9 @@
 /* container_header */
 .container_header {
   display: flex;
-  width: 95%;
-  height: 10%;
-  border: red dashed 2px;
-}
 
-.container_header_title {
-  display: inline;
-  margin: 5%;
-  padding: 5%;
-  border: red dashed 2px;
+  height: 10%;
+  /* border: red dashed 2px; */
 }
 
 .container_underTop {
