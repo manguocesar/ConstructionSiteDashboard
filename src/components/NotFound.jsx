@@ -6,5 +6,5 @@ import "./NotFound.css";
 //components
 
 export default function NotFound() {
-  return <div className="container_info_diplay">NotFound</div>;
+  return <div className="container_info_diplay">Not Found</div>;
 }

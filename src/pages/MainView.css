@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 85vw;
   height: 85vh;
-  border: blue dashed 5px;
+  /* border: blue dashed 5px; */
 }
 
 .container_header {

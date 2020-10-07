@@ -1,11 +1,14 @@
 .container_info_diplay {
   display: flex;
-  height: 98%;
-  width: 1200px;
+  height: 100%;
+  width: 100%;
   margin-left: 10px;
   justify-content: center;
+  align-items: center;
   margin: auto;
+  font-style: italic;
+  font-size: 5vh;
   border-radius: 20px;
   background-color: #282c34;
-  border: green dashed 4px;
+  /* border: green dashed 4px; */
 }

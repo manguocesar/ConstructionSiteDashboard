@@ -1,0 +1,78 @@
+.Operators_SiteEmploymentInformation {
+  display: flex;
+  flex-direction: column;
+  background-color: #181a20;
+  height: 50%;
+  width: 95%;
+  margin: 2%;
+  border-radius: 20px;
+  /* border: red solid 1px; */
+}
+
+.Operators_SiteEmploymentInformation_title {
+  font-size: 2.5vh;
+  text-align: left;
+  width: 15%;
+  /* border: 1px solid blue; */
+}
+
+.Operators_SiteEmploymentInformation_top {
+  display: flex;
+  margin: 0% auto;
+  height: 20%;
+  width: 95%;
+  align-items: center;
+  border-radius: 20px;
+  justify-content: space-between;
+  /* border: hotpink solid 1px; */
+}
+
+.Operators_SiteEmploymentInformation_table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #272a33;
+  margin: 0px auto 10px auto;
+  height: 80%;
+  width: 95%;
+  border-radius: 12px;
+  /* border: blue solid 1px; */
+}
+
+.Operators_SiteEmploymentInformation_searchBar_container {
+  display: flex;
+  height: 55%;
+  width: 50%;
+  border-radius: 10px;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  margin: 0% 0% 0% 2%;
+  background-color: #181a20;
+  border: #d8d8d8 solid 1px;
+}
+.Operators_SiteEmploymentInformation_SearchBar_content {
+  display: flex;
+  font-size: 0.9vw;
+  height: 55%;
+  width: 200%;
+  border: none;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  margin: 0% 0% 0% 15%;
+  background-color: transparent;
+}
+
+.Operators_SiteEmploymentInformation_export {
+  display: flex;
+  height: 55%;
+  width: 7%;
+  font-size: 1vw;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  color: #82cdbf;
+  margin: 0px 5px 0px auto;
+  border: #82cdbf solid 2px;
+}
