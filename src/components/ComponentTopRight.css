@@ -13,8 +13,8 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 1%;
-  height: 5%;
+
+  height: 8%;
   width: 90%;
   margin: 0px auto;
   /* border: blue dashed 2px; */
@@ -28,7 +28,7 @@
   padding: 1%;
   height: 10%;
   width: 90%;
-  margin: 2% auto;
+  margin: 2% auto 1%;
   /* border: green dashed 2px; */
 }
 .container_info_rightTop_pannelTwo {
@@ -71,7 +71,7 @@
 
 .container_info_rightTop_title {
   font-size: 1.1vw;
-  margin: 1% 1% 1% 4%;
+  margin: 1% 1% 1% 3%;
 }
 
 .container_info_rightTop_text {

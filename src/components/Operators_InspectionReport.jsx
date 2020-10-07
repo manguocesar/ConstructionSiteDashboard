@@ -20,7 +20,7 @@ export default function Operators_InspectionReport() {
         </div>
       </div>
       <div className="Operators_InspectionReport_table">
-        <p>Table</p>
+        <p>Table : inspection DB from glass log</p>
       </div>
     </div>
   );

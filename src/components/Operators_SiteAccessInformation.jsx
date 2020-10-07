@@ -58,7 +58,7 @@ export default function Operators_SiteAccessInformation() {
         </div>
       </div>
       <div className="Operators_SiteAccessInformation_table">
-        <p>Table</p>
+        <p>Table : In and out DB from site gate system</p>
       </div>
     </div>
   );

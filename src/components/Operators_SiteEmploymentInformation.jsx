@@ -58,7 +58,7 @@ export default function Operators_SiteEmploymentInformation() {
         </div>
       </div>
       <div className="Operators_SiteEmploymentInformation_table">
-        <p>Table</p>
+        <p>Table : Replica of worker DB from gov. website</p>
       </div>
     </div>
   );
