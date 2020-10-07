@@ -106,7 +106,7 @@ function BarChart() {
       <svg
         ref={svgRef}
         style={{
-          border: "solid red 1px",
+          //  border: "solid red 1px",
           height: "100%",
           width: "100%",
         }}

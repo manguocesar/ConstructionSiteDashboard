@@ -36,7 +36,7 @@ export default function ListOfSites() {
 
   return (
     <div className="container_info_leftBottom">
-      <div className="container_info_leftTop_searchBar">
+      <div className="container_info_leftBottom_searchBar">
         <label>
           <input
             className="ListOfSite_SearchBar"
@@ -45,7 +45,7 @@ export default function ListOfSites() {
             type="text"
             name="newText"
             id="mainInput"
-            maxlength="100" //maximum of caracter for latest annoucement
+            maxlength="100"
             value={text}
           ></input>
         </label>
@@ -67,27 +67,7 @@ export default function ListOfSites() {
                   : "site_item_inactiveBasic"
               }
             >
-              <div
-                style={{
-                  // border: "solid blue 1px",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                {/* <img
-              style={{ border: "solid blue 1px" }}
-              src={nbr.img}
-              alt="customerLogo"
-              className="sites_customer_logo"
-
-              .sites_customer_logo {
-  width: 90%;
-  height: 80%;
-  margin: 0px;
-}
-            /> */}
+              <div className="site_item_inactiveBasic_container_text">
                 <div className="site_device_name_site">
                   <span className="site_device_name_title">
                     复旦大学项目
@@ -101,9 +81,9 @@ export default function ListOfSites() {
                     alt="positionSmall"
                   />
                   <span
-                    style={{ width: "90%", height: "50%", fontSize: "1.5em" }}
+                    style={{ width: "90%", height: "50%", fontSize: "0.8vw" }}
                   >
-                    {nbr.text}{" "}
+                    {nbr.text}
                   </span>
                 </div>
 
