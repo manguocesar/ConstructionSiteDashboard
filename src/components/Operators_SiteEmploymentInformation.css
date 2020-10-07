@@ -3,8 +3,8 @@
   flex-direction: column;
   background-color: #181a20;
   height: 50%;
-  width: 95%;
-  margin: 2%;
+  width: 98%;
+  margin: 1% 1% 1% 1%;
   border-radius: 20px;
   /* border: red solid 1px; */
 }
@@ -32,9 +32,9 @@
   justify-content: center;
   align-items: center;
   background-color: #272a33;
-  margin: 0px auto 10px auto;
-  height: 80%;
-  width: 95%;
+  margin: 0px auto auto auto;
+  height: 75%;
+  width: 97.5%;
   border-radius: 12px;
   /* border: blue solid 1px; */
 }

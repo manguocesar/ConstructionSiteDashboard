@@ -9,7 +9,7 @@ const TimeContextProvider = (props) => {
   const [chinaDate, setChinaDate] = useState();
 
   const interval = setInterval(() => {
-    setChinaDate(moment().format("MMMM Do YYYY - h:mm:ss"));
+    setChinaDate(moment().format("ll LTS"));
     return () => {
       clearInterval(interval);
     };

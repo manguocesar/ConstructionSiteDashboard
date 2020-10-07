@@ -5,14 +5,14 @@
   width: 100%;
   border-radius: 20px;
   background-color: #282c34;
-  /* border: green dashed 2px; */
+  border: green dashed 2px;
 }
 
 .container_bottom_Operators {
   display: flex;
   height: 50%;
-  width: 95%;
+  width: 98%;
   flex-direction: row;
-  margin: 0% 2% 2% 2%;
+  margin: 0% 1% 1% 1%;
   /* border: green solid 1px; */
 }
