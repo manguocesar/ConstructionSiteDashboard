@@ -11,14 +11,20 @@ export default function ComponentTopRight() {
 
       <div className="container_info_rightTop_pannelOne">
         <span className="container_info_rightTop_title">工地数量</span>
-        <span className="green_numbers" style={{ margin: "1% 4% 1% 1%" }}>
+        <span
+          className="container_info_rightTop_green_numbers"
+          style={{ margin: "1% 4% 1% 1%" }}
+        >
           2
         </span>
       </div>
 
       <div className="container_info_rightTop_pannelTwo">
         <span className="container_info_rightTop_title">工人总数</span>
-        <span className="green_numbers" style={{ margin: "1% 4% 1% 1%" }}>
+        <span
+          className="container_info_rightTop_green_numbers"
+          style={{ margin: "1% 4% 1% 1%" }}
+        >
           548
         </span>
       </div>
