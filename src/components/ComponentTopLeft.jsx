@@ -15,7 +15,7 @@ import iconWorker from "./img/iconWorker.png";
 
 export default function ComponentTopLeft() {
   const { chinaDate } = useContext(TimeContext);
-  const [gaugeData, setGaugeData] = useState([0.3, 0.06, 0.15, 0.1, 0.07, 0.2]);
+  const [gaugeData, setGaugeData] = useState([0.3, 0.06, 0.15, 0.1, 0.2]);
 
   return (
     <div className="container_info_leftTop">

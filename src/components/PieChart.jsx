@@ -25,24 +25,24 @@ export default function PieChart({ data }) {
       .sort(null);
 
     const instructions = pieGenerator(data);
+    console.log(instructions, dimensions);
 
     svg
       .selectAll(".slice")
       .data(instructions)
       .join("path")
       .attr("class", "slice")
+
       .attr("fill", (instruction, index) =>
         index === 0
-          ? "#82cdbf"
-          : index === 1
-          ? "#B4FDEC"
-          : index === 2
-          ? "#65AE9D"
-          : index === 3
           ? "#10A583"
-          : index === 4
-          ? "#C7E6DF"
-          : "#eee"
+          : index === 1
+          ? "#65AE9D"
+          : index === 2
+          ? "#82cdbf"
+          : index === 3
+          ? "#B4FDEC"
+          : "#C7E6DF"
       )
       .style(
         "transform",
@@ -50,8 +50,6 @@ export default function PieChart({ data }) {
       )
       .transition()
       .attrTween("d", function (nextInstruction, index) {
-        // bonus, which wasn't in video 07:
-        // animate chart initially, but setting initial instruction
         const initialInstruction = pieGenerator([-1, 1])[index];
         const interpolator = interpolate(
           this.lastInstruction || initialInstruction,
@@ -62,6 +60,18 @@ export default function PieChart({ data }) {
           return arcGenerator(interpolator(t));
         };
       });
+
+    svg
+      .selectAll(".label")
+      .data(data)
+      .join("text")
+      .text((data) => `${data}`)
+      .attr("class", "label")
+      .attr("fill", "black")
+      .attr("font-size", "12px")
+      .attr("x", (index) => index * 200)
+      .transition()
+      .attr("y", (index) => index * 300);
   }, [data, dimensions]);
 
   return (

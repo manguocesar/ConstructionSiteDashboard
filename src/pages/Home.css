@@ -11,7 +11,7 @@
 .container_info_left {
   display: flex;
   flex-direction: column;
-  height: 99%;
+  height: 100%;
   width: 65%;
   align-items: center;
   border: blue solid 2px;
