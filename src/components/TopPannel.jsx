@@ -14,7 +14,7 @@ import imagecompany from "./img/LogoCompany.svg";
 export default function TopPannel() {
   return (
     <div className="container_top_pannel">
-      <div className="container-consimLogo">
+      <div className="container_consimLogo">
         <img className="consimLogo" alt="" src={consimLogo} />
       </div>
       <div className="container_consimTitle">
@@ -26,7 +26,7 @@ export default function TopPannel() {
           </Router>
         </div>
       </div>
-      <div className="container-companyLogo">
+      <div className="container_companyLogo">
         <img alt="" src={imagecompany} className="companyLogo_basic" />
       </div>
     </div>
