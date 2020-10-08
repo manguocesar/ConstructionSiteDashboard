@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 //context
-import { TimeContext } from "../contexts/TimeContext";
+import { TimeContext } from "../../../contexts/TimeContext";
 
 //style
 import "./ComponentTopLeft.css";

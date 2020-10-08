@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, Router } from "@reach/router";
 
 //style
 import "./App.css";

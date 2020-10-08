@@ -20,18 +20,18 @@ const ListSitesContextProvider = (props) => {
       text: "中原数字",
       selected: false,
     },
-    {
-      order: 3,
-      img: customerLogo,
-      text: "中原数字",
-      selected: false,
-    },
-    {
-      order: 4,
-      img: customerLogo,
-      text: "中原数字",
-      selected: false,
-    },
+    // {
+    //   order: 3,
+    //   img: customerLogo,
+    //   text: "中原数字",
+    //   selected: false,
+    // },
+    // {
+    //   order: 4,
+    //   img: customerLogo,
+    //   text: "中原数字",
+    //   selected: false,
+    // },
   ];
 
   const [hasChosenSite, setHasChosenSite] = useState(false);

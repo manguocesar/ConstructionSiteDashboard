@@ -1,13 +1,13 @@
 import React from "react";
 
 //style
-import "./Home.css";
+import "./index.css";
 
 //components
-import ListofSites from "../components/ListOfSites";
-import SiteLocation from "../components/SiteLocation";
-import ComponentTopLeft from "../components/ComponentTopLeft";
-import ComponentTopRight from "../components/ComponentTopRight";
+import ListofSites from "./components/ListOfSites";
+import SiteLocation from "./components/SiteLocation";
+import ComponentTopLeft from "./components/ComponentTopLeft";
+import ComponentTopRight from "./components/ComponentTopRight";
 
 export default function Home() {
   return (

@@ -1,11 +1,11 @@
 import React from "react";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 
 //components
 import TopPannel from "../components/TopPannel";
 import NavigationPannel from "../components/NavigationPannel";
-import Home from "./Home";
-import Operators from "./Operators";
+import Home from "./Home/index";
+import Operators from "./Operators/index";
 import NotFound from "../components/NotFound";
 
 //style

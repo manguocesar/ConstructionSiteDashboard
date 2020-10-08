@@ -7,7 +7,7 @@ import positionSmall from "./img/positionSmall.svg";
 import SearchIcon from "./img/SearchIcon.png";
 
 //context
-import { ListSitesContext } from "../contexts/ListSitesContext";
+import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
 //styles
 import "./ListOfSites.css";
@@ -56,7 +56,7 @@ export default function ListOfSites() {
           src={SearchIcon}
         />
       </div>
-      <div className="container_info_leftTop_sitesList">
+      <div className="container_info_leftBottom_sitesList">
         <div className="container_home_list_of_sites">
           {list.stateList.map((nbr, key) => (
             <div
@@ -104,7 +104,7 @@ export default function ListOfSites() {
 
           {arrIcon.map(() => (
             <div className="container_emptyIcons_home">
-              <img alt="emptySite" src={exPlan} className="emptyIcons_home" />
+              <img alt="empty_Site" src={exPlan} className="emptyIcons_home" />
             </div>
           ))}
         </div>

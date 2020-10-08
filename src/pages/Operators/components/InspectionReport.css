@@ -1,4 +1,4 @@
-.Operators_InspectionReport {
+.InspectionReport {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
   /* border: red solid 1px; */
 }
 
-.Operators_InspectionReport_title {
+.InspectionReport_title {
   font-size: 2.5vh;
   margin-left: 5%;
   text-align: left;
@@ -18,7 +18,7 @@
   /* border: 1px solid blue; */
 }
 
-.Operators_InspectionReport_top {
+.InspectionReport_top {
   display: flex;
   margin: 0% auto;
   height: 20%;
@@ -29,7 +29,7 @@
   /* border: hotpink solid 1px; */
 }
 
-.Operators_InspectionReport_table {
+.InspectionReport_table {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@
   border-radius: 12px;
   /* border: blue solid 1px; */
 }
-.Operators_InspectionReport_export {
+.InspectionReport_export {
   display: flex;
   height: 55%;
   width: 22%;

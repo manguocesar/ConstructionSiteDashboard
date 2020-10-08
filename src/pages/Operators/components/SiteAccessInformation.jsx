@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 //img
-import SearchIcon from "./img/SearchIcon.png";
+import SearchIcon from "./SearchIcon.png";
 
-import "./Operators_SiteAccessInformation.css";
+//style
+import "./SiteAccessInformation.css";
 
-export default function Operators_SiteAccessInformation() {
+export default function SiteAccessInformation() {
   const [textTwo, setTextTwo] = useState();
 
   function handleChangeSearch_SiteAccessInformation(e) {
@@ -25,15 +26,13 @@ export default function Operators_SiteAccessInformation() {
   }
 
   return (
-    <div className="Operators_SiteAccessInformation">
-      <div className="Operators_SiteAccessInformation_top">
-        <span className="Operators_SiteAccessInformation_title">
-          工地出入信息
-        </span>
-        <div className="Operators_SiteAccessInformation_searchBar_container">
+    <div className="SiteAccessInformation">
+      <div className="SiteAccessInformation_top">
+        <span className="SiteAccessInformation_title">工地出入信息</span>
+        <div className="SiteAccessInformation_searchBar_container">
           <label>
             <input
-              className="Operators_SiteAccessInformation_SearchBar_content"
+              className="SiteAccessInformation_SearchBar_content"
               onChange={handleChangeSearch_SiteAccessInformation}
               placeholder="请输入工地名称/编号。。。"
               type="text"
@@ -50,14 +49,11 @@ export default function Operators_SiteAccessInformation() {
             src={SearchIcon}
           />
         </div>
-        <div
-          onClick={handleExportTwo}
-          className="Operators_SiteAccessInformation_export"
-        >
+        <div onClick={handleExportTwo} className="SiteAccessInformation_export">
           <span style={{ margin: "0% auto" }}>导出</span>
         </div>
       </div>
-      <div className="Operators_SiteAccessInformation_table">
+      <div className="SiteAccessInformation_table">
         <p>Table : In and out DB from site gate system</p>
       </div>
     </div>
