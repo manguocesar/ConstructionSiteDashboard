@@ -4,7 +4,7 @@
   height: 40vh;
   width: 95%;
   border-radius: 10px;
-  margin: 10px;
+  margin: 1vh;
   background-color: #181a20;
   /* border: yellow dashed 2px; */
 }
@@ -28,7 +28,7 @@
   padding: 1%;
   height: 10%;
   width: 90%;
-  margin: 2% auto 1%;
+  margin: 1vh auto 0.1vh auto;
   /* border: green dashed 2px; */
 }
 .container_info_rightTop_pannelTwo {
@@ -40,7 +40,7 @@
   padding: 1%;
   height: 10%;
   width: 90%;
-  margin: 4px auto;
+  margin: 1vh auto 1vh auto;
   /* border: yellow dashed 2px; */
 }
 .container_info_rightTop_pannelThree {
@@ -51,7 +51,7 @@
   height: 90%;
   width: 90%;
   padding: 1%;
-  margin: 4px auto 15px auto;
+  margin: 0vh auto 1.2vh auto;
   /* border: hotpink dashed 2px; */
 }
 

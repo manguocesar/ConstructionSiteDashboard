@@ -1,12 +1,12 @@
 .container_info_leftTop {
   display: flex;
   flex-direction: column;
-  height: 45%;
+  height: 34.5vh;
   width: 97.5%;
   border-radius: 10px;
-  margin: 10px 5px 10px 10px;
+  margin: 1vh;
   background-color: #181a20;
-  border: green dotted 4px;
+  /* border: green dotted 4px; */
 }
 
 .container_info_leftTop_title {
@@ -16,7 +16,7 @@
   width: 90%;
   font-size: 1.1vw;
   align-items: center;
-  border: green dashed 2px;
+  /* border: green dashed 2px; */
 }
 
 .container_info_leftTop_pannel {

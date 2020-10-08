@@ -12,9 +12,9 @@ export default function InspectionReport() {
     <div className="InspectionReport">
       <div className="InspectionReport_top">
         <span className="InspectionReport_title">巡检报告</span>
-        <div onClick={handleExportThree} className="InspectionReport_export">
+        <button onClick={handleExportThree} className="InspectionReport_export">
           <span>导出</span>
-        </div>
+        </button>
       </div>
       <div className="InspectionReport_table">
         <p>Table : inspection DB from glass log</p>

@@ -73,6 +73,7 @@
   justify-content: center;
   align-items: center;
   color: #82cdbf;
+  background-color: transparent;
   margin: 0px 5px 0px auto;
   border: #82cdbf solid 2px;
 }

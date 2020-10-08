@@ -48,12 +48,12 @@ export default function SiteEmploymentInformation() {
             src={SearchIcon}
           />
         </div>
-        <div
+        <button
           onClick={handleExportOne}
           className="SiteEmploymentInformation_export"
         >
           <span style={{ margin: "0% auto" }}>导出</span>
-        </div>
+        </button>
       </div>
       <div className="SiteEmploymentInformation_table">
         <p>Table : Replica of worker DB from gov. website</p>

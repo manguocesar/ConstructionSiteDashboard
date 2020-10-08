@@ -37,7 +37,7 @@ export default function ListOfSites() {
   return (
     <div className="container_info_leftBottom">
       <div className="container_info_leftBottom_searchBar">
-        <label>
+        <label className="ListOfSite_SearchBar">
           <input
             className="ListOfSite_SearchBar"
             onChange={handleChange}
@@ -76,13 +76,11 @@ export default function ListOfSites() {
                 </div>
                 <div className="site_device_numBasic">
                   <img
-                    className="sites_icon_localisation"
+                    className="sites_icon_localisation_img"
                     src={positionSmall}
                     alt="positionSmall"
                   />
-                  <span
-                    style={{ width: "90%", height: "50%", fontSize: "0.8vw" }}
-                  >
+                  <span className="sites_icon_localisation_text">
                     {nbr.text}
                   </span>
                 </div>

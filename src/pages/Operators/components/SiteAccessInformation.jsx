@@ -49,9 +49,12 @@ export default function SiteAccessInformation() {
             src={SearchIcon}
           />
         </div>
-        <div onClick={handleExportTwo} className="SiteAccessInformation_export">
+        <button
+          onClick={handleExportTwo}
+          className="SiteAccessInformation_export"
+        >
           <span style={{ margin: "0% auto" }}>导出</span>
-        </div>
+        </button>
       </div>
       <div className="SiteAccessInformation_table">
         <p>Table : In and out DB from site gate system</p>
