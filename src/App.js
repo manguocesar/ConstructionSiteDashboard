@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+//style
+import "./App.css";
+
+//pages
+import MainView from "./pages/MainView";
+import LogIn from "./pages/LogIn";
+
+//context
+import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itself imports our Reducer
+import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
+
+const LoginStatus = {
+  NotLoggedIn: 0,
+  LoggedIn: 1,
+  LoggedInAdmin: 2,
+};
 
 function App() {
+  const [loginStatus, setLoginStatus] = useState(LoginStatus.LoggedIn);
+
+  //set back the original state
+  function signout() {
+    setLoginStatus(LoginStatus.NotLoggedIn);
+  }
+
+  const signin = (username, password) => {
+    if (username === "other" && password === "other") {
+      setLoginStatus(LoginStatus.LoggedInAdmin);
+    } else {
+      setLoginStatus(LoginStatus.LoggedIn);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TimeContextProvider>
+        <ListSitesContextProvider>
+          {loginStatus === LoginStatus.NotLoggedIn && <LogIn signin={signin} />}
+          {loginStatus === LoginStatus.LoggedIn && (
+            <MainView signout={signout} />
+          )}
+        </ListSitesContextProvider>
+      </TimeContextProvider>
     </div>
   );
 }

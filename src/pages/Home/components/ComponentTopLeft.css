@@ -1,0 +1,103 @@
+.container_info_leftTop {
+  display: flex;
+  flex-direction: column;
+  height: 34.5vh;
+  width: 97.5%;
+  border-radius: 10px;
+  margin: 1vh;
+  background-color: #181a20;
+  /* border: green dotted 4px; */
+}
+
+.container_info_leftTop_title {
+  display: flex;
+  margin-left: 5%;
+  height: 10%;
+  width: 90%;
+  font-size: 1.1vw;
+  align-items: center;
+  /* border: green dashed 2px; */
+}
+
+.container_info_leftTop_pannel {
+  display: flex;
+  flex-direction: row;
+  height: 88%;
+  width: 99%;
+  /* border: grey dashed 2px; */
+}
+
+.container_info_leftTop_pannel_one {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  height: 87%;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 5px 8px 10px 15px;
+  padding: 5px;
+  background: rgba(39, 42, 51, 0.4);
+  /* border: blue dashed 2px; */
+}
+
+.container_info_leftTop_pannel_one_top {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0px auto;
+  font-size: 1.1vw;
+  justify-content: space-between;
+  /* border: dotted red 1px; */
+}
+
+.container_info_leftTop_pannel_one_chart {
+  /* border: solid white 1px; */
+  height: 70%;
+  margin: auto;
+}
+
+.container_info_leftTop_pannel_one_ratio {
+  display: flex;
+  margin: 2px auto;
+  width: 80%;
+  font-size: 1vw;
+  justify-content: space-between;
+  /* border: dotted green 1px; */
+}
+
+.container_info_leftTop_pannel_two {
+  display: flex;
+  flex-direction: column;
+  width: 62%;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 5px 10px 10px 8px;
+  padding: 5px;
+  background: rgba(39, 42, 51, 0.4);
+  /* border: red dashed 2px; */
+}
+
+.container_info_leftTop_pannel_two_top {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2vw;
+  width: 60%;
+  margin: 0px auto;
+  /* border: dotted red 1px; */
+}
+
+.container_info_leftTop_pannel_two_chart {
+  border: solid white 1px;
+  height: 70%;
+  width: 80%;
+  margin: auto;
+}
+
+.container_info_leftTop_pannel_two_ratio {
+  display: flex;
+  margin: 2px auto;
+  width: 80%;
+  font-size: 1vw;
+  justify-content: space-between;
+  /* border: dotted green 3px; */
+}

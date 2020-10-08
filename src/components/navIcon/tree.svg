@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18" width="20" height="18">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M-24 -190L516 -190L516 194L-24 194Z" />
+		</clipPath>
+	</defs>
+	<style>
+		<!-- tspan { white-space:pre }
+		.shp0 { fill: none;stroke: #80cabc;stroke-width: 0.9 } 
+		.shp1 { fill: #71b1a4 } 
+		.shp2 { fill: none;stroke: #80cabc;stroke-width: 1.125 }  -->
+
+	tspan { white-space:pre }
+		.shp0 { fill: none;stroke: grey;stroke-width: 0.9 } 
+		.shp1 { fill: grey } 
+		.shp2 { fill: none;stroke: grey;stroke-width: 1.125 }  
+
+	</style>
+	<g id="Customer Page (Page 2)" clip-path="url(#cp1)">
+		<g id="分组 3">
+			<g id="分组 8">
+				<g id="分组 7">
+					<path id="矩形" class="shp0" d="M2.36 1L2.91 1C4.03 1 4.93 1.91 4.93 3.02L4.93 17L4.93 17L0.34 17L0.34 17L0.34 3.02C0.34 1.91 1.24 1 2.36 1Z" />
+					<path id="矩形 copy 12" class="shp1" d="M1.89 4.2L3.24 4.2L3.24 5.79L1.89 5.79L1.89 4.2Z" />
+					<path id="矩形 copy 16" class="shp0" d="M4.66 6.31L4.87 6.31C6.06 6.31 7.03 7.28 7.03 8.47L7.03 17L7.03 17L4.66 17L4.66 17L4.66 6.31L4.66 6.31Z" />
+					<path id="矩形 copy 13" class="shp1" d="M1.89 6.94L3.24 6.94L3.24 8.53L1.89 8.53L1.89 6.94Z" />
+					<path id="矩形 copy 14" class="shp1" d="M1.89 10.14L3.24 10.14L3.24 11.73L1.89 11.73L1.89 10.14Z" />
+					<path id="矩形 copy 15" class="shp1" d="M1.89 12.89L3.24 12.89L3.24 14.47L1.89 14.47L1.89 12.89Z" />
+					<path id="路径 5" class="shp2" d="M6.87 16.4L18.39 16.4" />
+					<path id="路径 22" class="shp0" d="M13.01 16.4L13.01 11.09" />
+					<path id="路径 23" class="shp0" d="M12.98 11.17C12.98 11.17 10.22 12.54 8.78 10.37C7.74 8.81 9.98 7.11 9.98 7.11C9.98 7.11 8.86 5.96 9.61 4.79C10.36 3.63 11.32 3.93 11.32 3.93C11.32 3.93 11.05 1.48 12.98 1.48" />
+					<path id="路径 23 copy" class="shp0" d="M12.87 11.17C12.87 11.17 15.81 12.54 17.25 10.37C18.29 8.81 16.05 7.11 16.05 7.11C16.05 7.11 17.16 5.96 16.41 4.79C15.66 3.63 14.71 3.93 14.71 3.93C14.71 3.93 14.91 1.48 12.98 1.48" />
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

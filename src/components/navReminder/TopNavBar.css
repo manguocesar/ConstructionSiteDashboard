@@ -1,0 +1,13 @@
+.TopNavBar_Table_container {
+  font-size: 13.5px;
+  color: #82cdbf;
+  font-size: 1.1vw;
+}
+
+.triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 0.2vw solid transparent;
+  border-left: 0.4vw solid #82cdbf;
+  border-bottom: 0.2vw solid transparent;
+}
