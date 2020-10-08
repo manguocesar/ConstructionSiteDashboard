@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //img
 import SearchIcon from "./SearchIcon.png";
 
+//style
 import "./SiteEmploymentInformation.css";
 
 export default function SearchInput(handleChangeSearchOne) {
@@ -20,7 +21,7 @@ export default function SearchInput(handleChangeSearchOne) {
   }
 
   return (
-    <>
+    <div className="SiteEmploymentInformation_searchBar_container">
       <label>
         <input
           className="SiteEmploymentInformation_SearchBar_content"
@@ -39,6 +40,6 @@ export default function SearchInput(handleChangeSearchOne) {
         alt=""
         src={SearchIcon}
       />
-    </>
+    </div>
   );
 }

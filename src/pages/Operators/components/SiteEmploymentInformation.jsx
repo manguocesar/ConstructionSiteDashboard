@@ -11,16 +11,16 @@ import SearchInput from "./SearchInput";
 export default function SiteEmploymentInformation() {
   const [textOne, setTextOne] = useState();
 
-  function handleChangeSearchOne(e) {
-    e.preventDefault();
-    setTextOne(e.target.value);
-  }
+  // function handleChangeSearchOne(e) {
+  //   e.preventDefault();
+  //   setTextOne(e.target.value);
+  // }
 
-  function handleClickOne(e) {
-    e.preventDefault();
-    console.log("Search for => ", textOne);
-    setTextOne("");
-  }
+  // function handleClickOne(e) {
+  //   e.preventDefault();
+  //   console.log("Search for => ", textOne);
+  //   setTextOne("");
+  // }
 
   function handleExportOne(e) {
     e.preventDefault();
@@ -31,7 +31,10 @@ export default function SiteEmploymentInformation() {
     <div className="SiteEmploymentInformation">
       <div className="SiteEmploymentInformation_top">
         <span className="SiteEmploymentInformation_title">工地用工信息</span>
-        <div className="SiteEmploymentInformation_searchBar_container">
+
+        <SearchInput />
+
+        {/* <div className="SiteEmploymentInformation_searchBar_container">
           <label>
             <input
               className="SiteEmploymentInformation_SearchBar_content"
@@ -50,7 +53,7 @@ export default function SiteEmploymentInformation() {
             alt=""
             src={SearchIcon}
           />
-        </div>
+        </div> */}
         <button
           onClick={handleExportOne}
           className="SiteEmploymentInformation_export"

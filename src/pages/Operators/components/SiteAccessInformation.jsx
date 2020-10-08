@@ -32,7 +32,10 @@ export default function SiteAccessInformation() {
     <div className="SiteAccessInformation">
       <div className="SiteAccessInformation_top">
         <span className="SiteAccessInformation_title">工地出入信息</span>
-        <div className="SiteAccessInformation_searchBar_container">
+
+        <SearchInput />
+
+        {/* <div className="SiteAccessInformation_searchBar_container">
           <label>
             <input
               className="SiteAccessInformation_SearchBar_content"
@@ -51,7 +54,7 @@ export default function SiteAccessInformation() {
             alt=""
             src={SearchIcon}
           />
-        </div>
+        </div> */}
         <button
           onClick={handleExportTwo}
           className="SiteAccessInformation_export"
