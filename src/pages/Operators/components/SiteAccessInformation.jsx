@@ -3,6 +3,9 @@ import React, { useState } from "react";
 //img
 import SearchIcon from "./SearchIcon.png";
 
+//component
+import SearchInput from "./SearchInput";
+
 //style
 import "./SiteAccessInformation.css";
 

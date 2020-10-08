@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "@reach/router";
+// import { Link } from "@reach/router";
 
 //image
 import exPlan from "./img/exPlan.png";
@@ -13,9 +13,10 @@ import { ListSitesContext } from "../../../contexts/ListSitesContext";
 import "./ListOfSites.css";
 
 export default function ListOfSites() {
-  const { setHasChosenSite, list, addTrue } = useContext(ListSitesContext);
-
-  let nbrMap = 8 - list.stateList.length;
+  const { sites, selectedSite, setSelectedSiteId } = useContext(
+    ListSitesContext
+  );
+  let nbrMap = 8 - sites.length;
   let arrIcon = [];
   for (let i = 0; nbrMap > i; i++) {
     arrIcon.push(i);
@@ -58,11 +59,11 @@ export default function ListOfSites() {
       </div>
       <div className="container_info_leftBottom_sitesList">
         <div className="container_home_list_of_sites">
-          {list.stateList.map((nbr, key) => (
+          {sites.map((nbr, key) => (
             <div
               key={key}
               className={
-                nbr.selected
+                nbr.order === selectedSite.order
                   ? "site_item_activeBasic"
                   : "site_item_inactiveBasic"
               }
@@ -85,17 +86,16 @@ export default function ListOfSites() {
                   </span>
                 </div>
 
-                <Link to="/Equipment">
-                  <div
-                    onClick={() => {
-                      addTrue(nbr.order);
-                      setHasChosenSite(true);
-                    }}
-                    className="site_enterBasic_home"
-                  >
-                    进入工地
-                  </div>
-                </Link>
+                {/* <Link to="/Equipment"> */}
+                <div
+                  onClick={() => {
+                    setSelectedSiteId(nbr.order);
+                  }}
+                  className="site_enterBasic_home"
+                >
+                  进入工地
+                </div>
+                {/* </Link> */}
               </div>
             </div>
           ))}

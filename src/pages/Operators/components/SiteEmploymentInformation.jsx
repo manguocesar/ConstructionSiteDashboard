@@ -5,6 +5,9 @@ import "./SiteEmploymentInformation.css";
 //img
 import SearchIcon from "./SearchIcon.png";
 
+//component
+import SearchInput from "./SearchInput";
+
 export default function SiteEmploymentInformation() {
   const [textOne, setTextOne] = useState();
 
