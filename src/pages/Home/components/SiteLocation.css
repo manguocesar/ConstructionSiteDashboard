@@ -29,8 +29,8 @@
 }
 
 .map_localisation {
-  border-radius: 20px;
-  border: 4px solid #000;
-  height: 90%;
+  border-radius: 2vh;
+  border: 1vh solid #000;
   width: 100%;
+  height: 85%;
 }

@@ -61,17 +61,17 @@ export default function PieChart({ data }) {
         };
       });
 
-    svg
-      .selectAll(".label")
-      .data(data)
-      .join("text")
-      .text((data) => `${data}`)
-      .attr("class", "label")
-      .attr("fill", "black")
-      .attr("font-size", "12px")
-      .attr("x", (index) => index * 200)
-      .transition()
-      .attr("y", (index) => index * 300);
+    // svg //text
+    //   .selectAll(".label")
+    //   .data(data)
+    //   .join("text")
+    //   .text((data) => `${data}`)
+    //   .attr("class", "label")
+    //   .attr("fill", "black")
+    //   .attr("font-size", "12px")
+    //   .attr("x", (index) => index * 200)
+    //   .transition()
+    //   .attr("y", (index) => index * 300);
   }, [data, dimensions]);
 
   return (

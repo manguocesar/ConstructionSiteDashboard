@@ -30,7 +30,7 @@ export default function SiteLocation() {
     <div className="container_info_rightBottom">
       <span className="container_info_rightBottom_title">工地位置</span>
       <div className="container_info_rightBottom_map">
-        <div style={{ width: "100%", height: "160px" }}>
+        <div className="map_localisation">
           <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
             <Map center={{ lng: 116.393345, lat: 39.936183 }} />
             {/* <Map center={{ lng: ${positionMap[0]}, lat:  ${positionMap[1]} }} /> */}

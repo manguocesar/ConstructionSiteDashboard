@@ -14,7 +14,7 @@
   height: 100%;
   width: 65%;
   align-items: center;
-  border: blue solid 2px;
+  /* border: blue solid 2px; */
 }
 .container_info_right {
   display: flex;

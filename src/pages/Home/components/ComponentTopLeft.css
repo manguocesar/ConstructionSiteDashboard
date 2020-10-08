@@ -24,7 +24,7 @@
   flex-direction: row;
   height: 88%;
   width: 99%;
-  border: grey dashed 2px;
+  /* border: grey dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one {
@@ -37,7 +37,7 @@
   margin: 5px 8px 10px 15px;
   padding: 5px;
   background: rgba(39, 42, 51, 0.4);
-  border: blue dashed 2px;
+  /* border: blue dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one_top {
@@ -51,7 +51,7 @@
 }
 
 .container_info_leftTop_pannel_one_chart {
-  border: solid white 1px;
+  /* border: solid white 1px; */
   height: 70%;
   margin: auto;
 }

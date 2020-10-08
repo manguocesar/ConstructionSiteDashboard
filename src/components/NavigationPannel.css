@@ -63,8 +63,8 @@
 }
 
 .icon_nav_basicInactive:hover {
-  cursor: none;
+  cursor: not-allowed;
   border-radius: 10px;
   padding: 8px;
-  border: #ba3636 solid 5px;
+  border: grey solid 5px;
 }
