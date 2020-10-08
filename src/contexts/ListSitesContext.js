@@ -13,25 +13,33 @@ const ListSitesContextProvider = (props) => {
       img: customerLogo,
       text: "中原数字印刷产业园项目",
       selected: false,
+      lat: 121.512959,
+      long: 31.306697,
     },
     {
       order: 2,
       img: customerLogo,
       text: "中原数字",
       selected: false,
+      lat: 121.480944,
+      long: 31.236171,
     },
-    // {
-    //   order: 3,
-    //   img: customerLogo,
-    //   text: "中原数字",
-    //   selected: false,
-    // },
-    // {
-    //   order: 4,
-    //   img: customerLogo,
-    //   text: "中原数字",
-    //   selected: false,
-    // },
+    {
+      order: 3,
+      img: customerLogo,
+      text: "中原数字",
+      selected: false,
+      lat: 114.183361,
+      long: 22.303099,
+    },
+    {
+      order: 4,
+      img: customerLogo,
+      text: "中原数字",
+      selected: false,
+      lat: 116.412309,
+      long: 39.904413,
+    },
   ];
 
   const [hasChosenSite, setHasChosenSite] = useState(false);

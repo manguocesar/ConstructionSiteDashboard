@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Map, APILoader } from "@uiw/react-baidu-map";
 
 //style
 import "./SiteLocation.css";
 
+//context
+import { ListSitesContext } from "../../../contexts/ListSitesContext";
+
 export default function SiteLocation() {
+  const { list } = useContext(ListSitesContext);
+
+  const [positionMap, setPositionMap] = useState([0, 0]);
+
+  var itemSelected = {};
+
+  const whichIsTrue = (arr) => {
+    return arr.selected === true;
+  };
+
+  const giveValues = (itemSelected) => {
+    itemSelected = list.stateList.find(whichIsTrue);
+    return itemSelected;
+  };
+  giveValues(itemSelected);
+
+  // setPositionMap([isSelected.lat, isSelected.long]);
+
   return (
     <div className="container_info_rightBottom">
       <span className="container_info_rightBottom_title">工地位置</span>
       <div className="container_info_rightBottom_map">
-        <iframe
+        <div style={{ width: "100%", height: "160px" }}>
+          <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
+            <Map center={{ lng: 116.393345, lat: 39.936183 }} />
+            {/* <Map center={{ lng: ${positionMap[0]}, lat:  ${positionMap[1]} }} /> */}
+          </APILoader>
+        </div>
+
+        {/* <iframe
           className="map_localisation"
           title="mapLocalisation"
           allowfullscreen="false"
@@ -21,7 +50,7 @@ export default function SiteLocation() {
           scrolling="no"
           marginheight="0"
           marginwidth="0"
-        ></iframe>
+        ></iframe> */}
       </div>
     </div>
   );
