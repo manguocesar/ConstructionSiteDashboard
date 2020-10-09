@@ -25,7 +25,7 @@ export default function ComponentTopLeft() {
           <div className="container_info_leftTop_pannel_one_top">
             <img style={{ height: "2vw" }} src={iconWorker} alt="" />
             <span>工人数量</span>
-            <span style={{ color: "#82cdbf" }}>345</span>
+            <span style={{ color: "#82cdbf", fontSize: "1.4vw" }}>345</span>
           </div>
           <div className="container_info_leftTop_pannel_one_chart">
             <PieChart data={gaugeData} />
@@ -41,11 +41,6 @@ export default function ComponentTopLeft() {
           </div>
           <div className="container_info_leftTop_pannel_two_chart">
             <BarChart />
-          </div>
-          <div className="container_info_leftTop_pannel_two_ratio">
-            <span>进入人数</span>
-            <span>离开人数</span>
-            <span>工地人数</span>
           </div>
         </div>
       </div>
