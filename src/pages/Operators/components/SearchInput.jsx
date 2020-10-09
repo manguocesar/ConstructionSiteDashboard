@@ -6,36 +6,31 @@ import SearchIcon from "./SearchIcon.png";
 //style
 import "./SiteEmploymentInformation.css";
 
-export default function SearchInput(handleChangeSearchOne) {
-  const [textOne, setTextOne] = useState();
-
-  function handleClickOne(e) {
-    e.preventDefault();
-    console.log("Search for => ", textOne);
-    setTextOne("");
-  }
-
-  function handleExportOne(e) {
-    e.preventDefault();
-    console.log("Exporting SiteEmploymentInformation data");
-  }
+export default function SearchInput(props) {
+  const {
+    onChange,
+    value,
+    placeholder,
+    onClickIcon,
+    container,
+    content,
+    style,
+  } = props;
 
   return (
-    <div className="SiteEmploymentInformation_searchBar_container">
+    <div className={container} style={style}>
       <label>
         <input
-          className="SiteEmploymentInformation_SearchBar_content"
-          onChange={handleChangeSearchOne}
-          placeholder="请输入工地名称/编号。。。"
+          className={content}
+          onChange={onChange}
+          placeholder={placeholder}
           type="text"
-          name="newText"
-          id="mainInput"
           maxlength="100"
-          value={textOne}
+          value={value}
         />
       </label>
       <img
-        onClick={handleClickOne}
+        onClick={onClickIcon}
         style={{ marginRight: "2%", height: "60%" }}
         alt=""
         src={SearchIcon}

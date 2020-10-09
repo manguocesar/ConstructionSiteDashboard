@@ -11,16 +11,16 @@ import SearchInput from "./SearchInput";
 export default function SiteEmploymentInformation() {
   const [textOne, setTextOne] = useState();
 
-  // function handleChangeSearchOne(e) {
-  //   e.preventDefault();
-  //   setTextOne(e.target.value);
-  // }
+  function handleChangeSearchOne(e) {
+    e.preventDefault();
+    setTextOne(e.target.value);
+  }
 
-  // function handleClickOne(e) {
-  //   e.preventDefault();
-  //   console.log("Search for => ", textOne);
-  //   setTextOne("");
-  // }
+  function onClickIcon(e) {
+    e.preventDefault();
+    console.log("Search for => ", textOne);
+    setTextOne("");
+  }
 
   function handleExportOne(e) {
     e.preventDefault();
@@ -32,28 +32,15 @@ export default function SiteEmploymentInformation() {
       <div className="SiteEmploymentInformation_top">
         <span className="SiteEmploymentInformation_title">工地用工信息</span>
 
-        <SearchInput />
+        <SearchInput
+          value={textOne}
+          onChange={handleChangeSearchOne}
+          onClickIcon={onClickIcon}
+          placeholder={"请输入工地名称/编号。。。"}
+          container={"SiteEmploymentInformation_searchBar_container"}
+          content={"SiteEmploymentInformation_searchBar_content"}
+        />
 
-        {/* <div className="SiteEmploymentInformation_searchBar_container">
-          <label>
-            <input
-              className="SiteEmploymentInformation_SearchBar_content"
-              onChange={handleChangeSearchOne}
-              placeholder="请输入工地名称/编号。。。"
-              type="text"
-              name="newText"
-              id="mainInput"
-              maxlength="100"
-              value={textOne}
-            />
-          </label>
-          <img
-            onClick={handleClickOne}
-            style={{ marginRight: "2%", height: "60%" }}
-            alt=""
-            src={SearchIcon}
-          />
-        </div> */}
         <button
           onClick={handleExportOne}
           className="SiteEmploymentInformation_export"

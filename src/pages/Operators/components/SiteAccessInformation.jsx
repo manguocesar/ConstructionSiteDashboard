@@ -32,29 +32,14 @@ export default function SiteAccessInformation() {
     <div className="SiteAccessInformation">
       <div className="SiteAccessInformation_top">
         <span className="SiteAccessInformation_title">工地出入信息</span>
-
-        <SearchInput />
-
-        {/* <div className="SiteAccessInformation_searchBar_container">
-          <label>
-            <input
-              className="SiteAccessInformation_SearchBar_content"
-              onChange={handleChangeSearch_SiteAccessInformation}
-              placeholder="请输入工地名称/编号。。。"
-              type="text"
-              name="newText"
-              id="mainInput"
-              maxlength="100"
-              value={textTwo}
-            />
-          </label>
-          <img
-            onClick={handleClick_SiteAccessInformation}
-            style={{ marginRight: "2%", height: "60%" }}
-            alt=""
-            src={SearchIcon}
-          />
-        </div> */}
+        <SearchInput
+          value={textTwo}
+          onChange={handleChangeSearch_SiteAccessInformation}
+          onClickIcon={handleClick_SiteAccessInformation}
+          container={"SiteAccessInformation_searchBar_container"}
+          content={"SiteAccessInformation_searchBar_content"}
+          placeholder={"请输入工地名称/编号。。。"}
+        />
         <button
           onClick={handleExportTwo}
           className="SiteAccessInformation_export"
