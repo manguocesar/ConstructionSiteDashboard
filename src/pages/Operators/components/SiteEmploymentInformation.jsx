@@ -7,6 +7,7 @@ import SearchIcon from "./SearchIcon.png";
 
 //component
 import SearchInput from "./SearchInput";
+import ExportButton from "./ExportButton";
 
 export default function SiteEmploymentInformation() {
   const [textOne, setTextOne] = useState();
@@ -41,12 +42,10 @@ export default function SiteEmploymentInformation() {
           content={"SiteEmploymentInformation_searchBar_content"}
         />
 
-        <button
-          onClick={handleExportOne}
-          className="SiteEmploymentInformation_export"
-        >
-          <span style={{ margin: "0% auto" }}>导出</span>
-        </button>
+        <ExportButton
+          onClickButton={handleExportOne}
+          button_style={"SiteEmploymentInformation_export"}
+        />
       </div>
       <div className="SiteEmploymentInformation_table">
         <p>Table : Replica of worker DB from gov. website</p>

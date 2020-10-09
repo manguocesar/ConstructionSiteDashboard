@@ -5,6 +5,7 @@ import SearchIcon from "./SearchIcon.png";
 
 //component
 import SearchInput from "./SearchInput";
+import ExportButton from "./ExportButton";
 
 //style
 import "./SiteAccessInformation.css";
@@ -40,12 +41,10 @@ export default function SiteAccessInformation() {
           content={"SiteAccessInformation_searchBar_content"}
           placeholder={"请输入工地名称/编号。。。"}
         />
-        <button
-          onClick={handleExportTwo}
-          className="SiteAccessInformation_export"
-        >
-          <span style={{ margin: "0% auto" }}>导出</span>
-        </button>
+        <ExportButton
+          onClickButton={handleExportTwo}
+          button_style={"SiteAccessInformation_export"}
+        />
       </div>
       <div className="SiteAccessInformation_table">
         <p>Table : In and out DB from site gate system</p>

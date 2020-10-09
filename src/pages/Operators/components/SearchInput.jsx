@@ -3,9 +3,6 @@ import React, { useState } from "react";
 //img
 import SearchIcon from "./SearchIcon.png";
 
-//style
-import "./SiteEmploymentInformation.css";
-
 export default function SearchInput(props) {
   const {
     onChange,
