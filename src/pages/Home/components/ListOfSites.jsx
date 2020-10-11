@@ -58,7 +58,7 @@ export default function ListOfSites() {
         />
       </div>
       <div className="container_info_leftBottom_sitesList">
-        <div className="container_home_list_of_sites">
+       
           {sites.map((nbr, key) => (
             <div
               key={key}
@@ -86,7 +86,7 @@ export default function ListOfSites() {
                   </span>
                 </div>
 
-                {/* <Link to="/Equipment"> */}
+             
                 <div
                   onClick={() => {
                     setSelectedSiteId(nbr.order);
@@ -95,7 +95,7 @@ export default function ListOfSites() {
                 >
                   进入工地
                 </div>
-                {/* </Link> */}
+               
               </div>
             </div>
           ))}
@@ -107,6 +107,6 @@ export default function ListOfSites() {
           ))}
         </div>
       </div>
-    </div>
+  
   );
 }

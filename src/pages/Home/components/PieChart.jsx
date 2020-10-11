@@ -14,7 +14,7 @@ export default function BarChart() {
         legend: {
           orient: "vertical",
           color: "white",
-          left: 200,
+          right: 0,
           top: 30,
           data: ["建筑普工", "建筑焊工", "机械司机", "其他工种"],
           textStyle: {
