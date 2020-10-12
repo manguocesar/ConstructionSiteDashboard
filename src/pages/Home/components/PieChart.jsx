@@ -32,19 +32,20 @@ export default function BarChart() {
           {
             name: "建筑普工",
             type: "pie",
-            center: ["30%", "50%"],
-            radius: ["35%", "70%"],
+            center: ["25%", "50%"],
+            radius: ["35%", "75%"],
             avoidLabelOverlap: false,
             label: {
               
 
               
-              formatter: "{d}",
+              formatter: ( { data,value} ) => {
+                return Math.floor(100*value / data.total) + "%"
+              },
               show: true,
               position: "inside",
               color: "black",
-
-              fontWeight: "bold",
+              // fontWeight: "bold",
             },
             emphasis: {
               label: {
@@ -56,10 +57,10 @@ export default function BarChart() {
               show: false,
             },
             data: [
-              { value: 235, name: "建筑普工" },
-              { value: 210, name: "建筑焊工" },
-              { value: 134, name: "机械司机" },
-              { value: 35, name: "其他工种" },
+              { value: 235, name: "建筑普工", total: 235+210+135+35},
+              { value: 210, name: "建筑焊工" , total: 235+210+135+35},
+              { value: 135, name: "机械司机" , total: 235+210+135+35},
+              { value: 35, name: "其他工种", total: 235+210+135+35 },
             ],
           },
         ],
