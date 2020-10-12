@@ -5,6 +5,9 @@ import ReactEcharts from "echarts-for-react";
 export default function BarChart() {
   return (
     <ReactEcharts
+    style={{
+      height: '100%'
+    }}
       option={{
         backgroundColor: "transparent",
         color: ["#65AE9D", "#D2E9E5"],
@@ -16,12 +19,18 @@ export default function BarChart() {
         },
         legend: {
           data: ["进入人数", "离开人数", "工地人数"],
-          left: 120,
-          bottom: 75,
-
+        itemGap: 20,
+          bottom: 0,
+          itemWidth: 12,
+          itemHeight: 9,
           textStyle: {
             color: "white",
-            padding: 10,
+            width:300,
+            fontSize: 13,
+            // fontFamily: ,
+            // fontWeight: "italic" ,
+            lineHeight: "",
+          
           },
         },
         xAxis: {
@@ -44,7 +53,7 @@ export default function BarChart() {
           axisLabel: {
             show: true,
             textStyle: {
-              color: "grey",
+              color: "grey",fontSize: 12,
             },
           },
           axisTick: { show: false },
@@ -58,7 +67,7 @@ export default function BarChart() {
           axisLabel: {
             show: true,
             textStyle: {
-              color: "grey",
+              color: "grey",fontSize: 12,
             },
           },
           axisTick: { show: false },
@@ -68,7 +77,7 @@ export default function BarChart() {
         },
         grid: {
           top: 10,
-          bottom: 140,
+       
         },
         series: [
           {
