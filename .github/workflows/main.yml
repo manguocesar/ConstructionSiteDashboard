@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Update local repository branches
         run: git fetch --all
-        working-directory: /home/atlasai/projects/noticeboardpublic/
+        working-directory: /home/atlasai/projects/inspection/
 
       - name: checkout to right release/tag
         run: git checkout $GITHUB_REF
-        working-directory: /home/atlasai/projects/noticeboardpublic/
+        working-directory: /home/atlasai/projects/inspection/
 
   down:
     needs: prepare
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Down previous image
         run: docker-compose down -v
-        working-directory: /home/atlasai/projects/noticeboardpublic/
+        working-directory: /home/atlasai/projects/inspection/
 
   run:
     needs: down
@@ -33,4 +33,4 @@ jobs:
     steps:
       - name: Build React image for docker compose build and run it
         run: docker-compose up --force-recreate --build -d
-        working-directory: /home/atlasai/projects/noticeboardpublic/
+        working-directory: /home/atlasai/projects/inspection/
