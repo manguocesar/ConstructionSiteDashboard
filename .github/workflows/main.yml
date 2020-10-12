@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  prepare:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - name: Update local repository branches
+        run: git fetch --all
+        working-directory: /home/atlasai/projects/noticeboardpublic/
+
+      - name: checkout to right release/tag
+        run: git checkout $GITHUB_REF
+        working-directory: /home/atlasai/projects/noticeboardpublic/
+
+  down:
+    needs: prepare
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - name: Down previous image
+        run: docker-compose down -v
+        working-directory: /home/atlasai/projects/noticeboardpublic/
+
+  run:
+    needs: down
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - name: Build React image for docker compose build and run it
+        run: docker-compose up --force-recreate --build -d
+        working-directory: /home/atlasai/projects/noticeboardpublic/
