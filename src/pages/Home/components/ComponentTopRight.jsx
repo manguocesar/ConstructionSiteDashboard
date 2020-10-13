@@ -12,7 +12,7 @@ export default function ComponentTopRight() {
   return (
     <div className="container_info_rightTop">
       <div className="container_info_rightTop_head">
-        <span className="container_info_rightTop_title">总体指标</span>{" "}
+        <span className="container_info_rightTop_title">总体指标</span>
       </div>
 
       <div className="container_info_rightTop_pannelOne">

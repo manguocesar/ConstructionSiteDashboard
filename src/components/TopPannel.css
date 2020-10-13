@@ -24,10 +24,16 @@
 .container_consimTitle {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 90%;
   width: 30%;
   color: #82cdbf;
   font-size: 1.4vw;
+  /* border: blue 1px solid; */
+}
+.container_consimTitle_router {
+  display: flex;
+  flex-direction: column;
+
   /* border: blue 1px solid; */
 }
 
@@ -38,14 +44,15 @@
 
 .container_companyLogo {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   width: 60%;
   align-items: center;
-  /* background-color: green; */
+  /* border: green 1px dashed; */
 }
 
 .companyLogo_basic {
   display: flex;
+
   width: 35%;
   height: 60%;
   opacity: 0.9;

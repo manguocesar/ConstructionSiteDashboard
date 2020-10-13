@@ -18,7 +18,7 @@ export default function BarChart() {
           color: "white",
          
      itemWidth: 12,
-     itemHeight: 8,
+     itemHeight: 10,
         left: '60%',top: 'middle',
           data: ["建筑普工", "建筑焊工", "机械司机", "其他工种"],
           textStyle: {

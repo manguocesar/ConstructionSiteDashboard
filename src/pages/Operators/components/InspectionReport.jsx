@@ -22,7 +22,7 @@ export default function InspectionReport() {
         />
       </div>
       <div className="InspectionReport_table">
-        <p>Table : inspection DB from glass log</p>
+        <p style={{fontSize:"2vh"}}>Table : inspection DB from glass log</p>
       </div>
     </div>
   );
