@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function SearchInput() {
+//img
+import SearchIcon from "./SearchIcon.png";
+
+export default function SearchInput(props) {
+  const {
+    onChange,
+    value,
+    placeholder,
+    onClickIcon,
+    container,
+    content,
+    style,
+  } = props;
+
   return (
-    <input
-      className="SiteEmploymentInformation_SearchBar_content"
-      onChange={handleChangeSearchOne}
-      placeholder="请输入工地名称/编号。。。"
-      type="text"
-      name="newText"
-      id="mainInput"
-      maxlength="100"
-      value={textOne}
-    />
+    <div className={container} style={style}>
+      <label>
+        <input
+          className={content}
+          onChange={onChange}
+          placeholder={placeholder}
+          type="text"
+          maxlength="100"
+          value={value}
+        />
+      </label>
+      <img
+        onClick={onClickIcon}
+        style={{ marginRight: "2%", height: "60%" }}
+        alt=""
+        src={SearchIcon}
+      />
+    </div>
   );
 }

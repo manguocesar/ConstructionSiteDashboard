@@ -1,88 +1,70 @@
-import React, { useRef, useEffect } from "react";
-import { select, arc, pie, interpolate } from "d3";
-import useResizeObserver from "./useResizeObserver";
+import React, { Component } from "react";
 
-import legendColor from "./img/legendColor.png";
+import ReactEcharts from "echarts-for-react";
 
-//style
-import "./PieChart.css";
-
-export default function PieChart({ data }) {
-  const svgRef = useRef();
-  const wrapperRef = useRef();
-  const dimensions = useResizeObserver(wrapperRef);
-
-  // will be called initially and on every data change
-  useEffect(() => {
-    const svg = select(svgRef.current);
-    if (!dimensions) return;
-
-    const arcGenerator = arc().innerRadius(30).outerRadius(55);
-
-    const pieGenerator = pie()
-      .startAngle(-1 * Math.PI)
-      .endAngle(1 * Math.PI)
-      .sort(null);
-
-    const instructions = pieGenerator(data);
-    console.log(instructions, dimensions);
-
-    svg
-      .selectAll(".slice")
-      .data(instructions)
-      .join("path")
-      .attr("class", "slice")
-
-      .attr("fill", (instruction, index) =>
-        index === 0
-          ? "#10A583"
-          : index === 1
-          ? "#65AE9D"
-          : index === 2
-          ? "#82cdbf"
-          : index === 3
-          ? "#B4FDEC"
-          : "#C7E6DF"
-      )
-      .style(
-        "transform",
-        `translate(${dimensions.width / 4.2}px, ${dimensions.height * 0.4}px)`
-      )
-      .transition()
-      .attrTween("d", function (nextInstruction, index) {
-        const initialInstruction = pieGenerator([-1, 1])[index];
-        const interpolator = interpolate(
-          this.lastInstruction || initialInstruction,
-          nextInstruction
-        );
-        this.lastInstruction = interpolator(1);
-        return function (t) {
-          return arcGenerator(interpolator(t));
-        };
-      });
-
-    // svg //text
-    //   .selectAll(".label")
-    //   .data(data)
-    //   .join("text")
-    //   .text((data) => `${data}`)
-    //   .attr("class", "label")
-    //   .attr("fill", "black")
-    //   .attr("font-size", "12px")
-    //   .attr("x", (index) => index * 200)
-    //   .transition()
-    //   .attr("y", (index) => index * 300);
-  }, [data, dimensions]);
-
+export default function BarChart() {
   return (
-    <div>
-      <div ref={wrapperRef} className="Container_PieChart">
-        <svg ref={svgRef}></svg>
-        <div className="Container_PieChart_Legend">
-          <img alt="" src={legendColor} />
-        </div>
-        {/* {data[0].toFixed(2)}, {data[1].toFixed(2)} */}
-      </div>
-    </div>
+    <ReactEcharts style={{
+      height: '100%'
+    }}
+      option={{
+        color: ["#65AE9D", "#82cdbf", "#B4FDEC", "#D2E9E5"],
+        tooltip: {
+          trigger: "item",
+          formatter: "",
+        },
+        legend: {
+          orient: "vertical",
+          color: "white",
+         
+     itemWidth: 12,
+     itemHeight: 8,
+        left: '60%',top: 'middle',
+          data: ["建筑普工", "建筑焊工", "机械司机", "其他工种"],
+          textStyle: {
+            color: "white",
+            lineHeight: 8,fontSize: 12,
+
+          },
+        },
+
+        series: [
+          {
+            name: "建筑普工",
+            type: "pie",
+            center: ["25%", "50%"],
+            radius: ["35%", "75%"],
+            avoidLabelOverlap: false,
+            label: {
+              
+
+              
+              formatter: ( { data,value} ) => {
+                return Math.floor(100*value / data.total) + "%"
+              },
+              show: true,
+              position: "inside",
+              color: "black",
+              // fontWeight: "bold",
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: "30",
+              },
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              { value: 235, name: "建筑普工", total: 235+210+135+35},
+              { value: 210, name: "建筑焊工" , total: 235+210+135+35},
+              { value: 135, name: "机械司机" , total: 235+210+135+35},
+              { value: 35, name: "其他工种", total: 235+210+135+35 },
+            ],
+          },
+        ],
+      }}
+    />
   );
 }

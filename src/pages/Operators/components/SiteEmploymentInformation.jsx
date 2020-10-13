@@ -5,6 +5,10 @@ import "./SiteEmploymentInformation.css";
 //img
 import SearchIcon from "./SearchIcon.png";
 
+//component
+import SearchInput from "./SearchInput";
+import ExportButton from "./ExportButton";
+
 export default function SiteEmploymentInformation() {
   const [textOne, setTextOne] = useState();
 
@@ -13,7 +17,7 @@ export default function SiteEmploymentInformation() {
     setTextOne(e.target.value);
   }
 
-  function handleClickOne(e) {
+  function onClickIcon(e) {
     e.preventDefault();
     console.log("Search for => ", textOne);
     setTextOne("");
@@ -28,32 +32,20 @@ export default function SiteEmploymentInformation() {
     <div className="SiteEmploymentInformation">
       <div className="SiteEmploymentInformation_top">
         <span className="SiteEmploymentInformation_title">工地用工信息</span>
-        <div className="SiteEmploymentInformation_searchBar_container">
-          <label>
-            <input
-              className="SiteEmploymentInformation_SearchBar_content"
-              onChange={handleChangeSearchOne}
-              placeholder="请输入工地名称/编号。。。"
-              type="text"
-              name="newText"
-              id="mainInput"
-              maxlength="100"
-              value={textOne}
-            />
-          </label>
-          <img
-            onClick={handleClickOne}
-            style={{ marginRight: "2%", height: "60%" }}
-            alt=""
-            src={SearchIcon}
-          />
-        </div>
-        <button
-          onClick={handleExportOne}
-          className="SiteEmploymentInformation_export"
-        >
-          <span style={{ margin: "0% auto" }}>导出</span>
-        </button>
+
+        <SearchInput
+          value={textOne}
+          onChange={handleChangeSearchOne}
+          onClickIcon={onClickIcon}
+          placeholder={"请输入工地名称/编号。。。"}
+          container={"SiteEmploymentInformation_searchBar_container"}
+          content={"SiteEmploymentInformation_searchBar_content"}
+        />
+
+        <ExportButton
+          onClickButton={handleExportOne}
+          button_style={"SiteEmploymentInformation_export"}
+        />
       </div>
       <div className="SiteEmploymentInformation_table">
         <p>Table : Replica of worker DB from gov. website</p>

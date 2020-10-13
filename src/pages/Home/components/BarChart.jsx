@@ -1,121 +1,109 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { Component } from "react";
 
-import {
-  select,
-  axisBottom,
-  axisLeft,
-  scaleLinear,
-  scaleBand,
-  line,
-  curveCardinal,
-} from "d3";
+import ReactEcharts from "echarts-for-react";
 
-function BarChart() {
-  const [dataOne, setDataOne] = useState([265, 220, 210, 150]);
-  const [dataTwo, setDataTwo] = useState([245, 240, 220, 210]);
-  const [dataThree, setDataThree] = useState([
-    115,
-    290,
-    180,
-    210,
-    315,
-    140,
-    220,
-    210,
-  ]);
-  const svgRef = useRef();
-
-  // will be called initially and on every data change
-  useEffect(() => {
-    const svg = select(svgRef.current);
-    const xScale = scaleBand()
-      .domain(dataOne.map((value, index) => index))
-      .range([0, 350])
-      .padding(0.7);
-    const xScaleLine = scaleBand()
-      .domain(dataThree.map((value, index) => index))
-      .range([0, 220])
-      .padding(2);
-
-    const yScale = scaleLinear().domain([0, 350]).range([130, 0]);
-
-    const colorScale = scaleLinear()
-      .domain([120, 190, 340])
-      .range(["white", "#65AE9D", "#10A583"])
-      .clamp(false);
-
-    const xAxis = axisBottom(xScale).ticks(dataOne.length);
-
-    svg
-      .select(".x-axis")
-      .style("transform", "translate(20px, 150px)")
-      .call(xAxis);
-
-    const yAxis = axisLeft(yScale).ticks(3);
-    svg
-      .select(".y-axis")
-      .style("transform", "translate(26px, 20px)")
-      .attr("stroke", "grey")
-      .call(yAxis);
-
-    svg
-      .selectAll(".bar")
-      .data(dataOne)
-      .join("rect")
-      .attr("class", "barOne")
-      .style("transform", "scale(1, -1)")
-      .attr("x", (value, index) => xScale(index) + 8)
-      .attr("y", -150)
-      .attr("width", xScale.bandwidth())
-      .transition()
-      .attr("fill", colorScale)
-      .attr("height", (value) => 100 - yScale(value));
-
-    svg
-      .selectAll(".bar")
-      .data(dataTwo)
-      .join("rect")
-      .attr("class", "barTwo")
-      .style("transform", "scale(1, -1)")
-      .attr("x", (value, index) => xScale(index) + 32)
-      .attr("y", -150)
-      .attr("width", xScale.bandwidth())
-      .transition()
-      .attr("fill", colorScale)
-      .attr("height", (value) => 60 - yScale(value));
-
-    const myLine = line()
-      .x((value, index) => xScaleLine(index)) //scale the value
-      .y((value) => yScale(value)) //scale the value
-      .curve(curveCardinal);
-
-    svg
-      .selectAll(".line")
-      .data([dataThree])
-      .join("path")
-      .attr("class", "line")
-      .attr("d", myLine) //or value => myLine(value)
-      .attr("fill", "none")
-      .attr("stroke", "#82CDBF") //"#00CD98
-      .attr("stroke-width", "2")
-      .style("transform", "translate(10px, 0px)");
-  }, [dataOne]);
-
+export default function BarChart() {
   return (
-    <React.Fragment>
-      <svg
-        ref={svgRef}
-        style={{
-          //  border: "solid red 1px",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <g className="x-axis" />
-        <g className="y-axis" />
-      </svg>
-    </React.Fragment>
+    <ReactEcharts
+    style={{
+      height: '100%'
+    }}
+      option={{
+        backgroundColor: "transparent",
+        color: ["#65AE9D", "#D2E9E5"],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+        },
+        legend: {
+          data: ["进入人数", "离开人数", "工地人数"],
+        itemGap: 20,
+          bottom: 0,
+          itemWidth: 12,
+          itemHeight: 9,
+          textStyle: {
+            color: "white",
+            width:300,
+            fontSize: 13,
+            // fontFamily: ,
+            // fontWeight: "italic" ,
+            lineHeight: "",
+          
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "08.00",
+            "",
+            "",
+            "",
+            "12.00",
+            "",
+            "",
+            "",
+            "16.00",
+            "",
+            "",
+            "",
+            "20.00",
+          ],
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: "grey",fontSize: 12,
+            },
+          },
+          axisTick: { show: false },
+          splitLine: {
+            show: false,
+          },
+        },
+        yAxis: {
+          type: "value",
+          max: "400",
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: "grey",fontSize: 12,
+            },
+          },
+          axisTick: { show: false },
+          splitLine: {
+            show: false,
+          },
+        },
+        grid: {
+          top: 10,
+       
+        },
+        series: [
+          {
+            name: "进入人数",
+            type: "bar",
+            barGap: 0,
+            barMaxWidth: 25,
+            label: "one",
+            data: [250, 125, 60],
+          },
+          {
+            name: "离开人数",
+            type: "bar",
+            label: "two",
+            barMaxWidth: 25,
+            data: [80, 40, 20],
+          },
+          {
+            name: "工地人数",
+            type: "line",
+            label: "three",
+            smooth: true,
+            data: [210, 320, 370, 190, 150, 210],
+          },
+        ],
+      }}
+    />
   );
 }
-
-export default BarChart;

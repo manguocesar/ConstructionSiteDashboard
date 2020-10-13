@@ -2,6 +2,9 @@ import React from "react";
 
 import "./InspectionReport.css";
 
+//component
+import ExportButton from "./ExportButton";
+
 export default function InspectionReport() {
   function handleExportThree(e) {
     e.preventDefault();
@@ -12,9 +15,11 @@ export default function InspectionReport() {
     <div className="InspectionReport">
       <div className="InspectionReport_top">
         <span className="InspectionReport_title">巡检报告</span>
-        <button onClick={handleExportThree} className="InspectionReport_export">
-          <span>导出</span>
-        </button>
+
+        <ExportButton
+          onClickButton={handleExportThree}
+          button_style={"InspectionReport_export"}
+        />
       </div>
       <div className="InspectionReport_table">
         <p>Table : inspection DB from glass log</p>

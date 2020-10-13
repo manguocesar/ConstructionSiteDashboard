@@ -3,9 +3,9 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 2vh;
   background-color: #282c34;
-  border: green dashed 2px;
+  /* border: green dashed 2px; */
 }
 
 .container_bottom_Operators {

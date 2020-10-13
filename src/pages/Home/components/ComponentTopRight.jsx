@@ -7,7 +7,7 @@ import "./ComponentTopRight.css";
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
 export default function ComponentTopRight() {
-  const { list } = useContext(ListSitesContext);
+  const { sites } = useContext(ListSitesContext);
 
   return (
     <div className="container_info_rightTop">
@@ -21,7 +21,7 @@ export default function ComponentTopRight() {
           className="container_info_rightTop_green_numbers"
           style={{ margin: "1% 4% 1% 1%" }}
         >
-          {list.stateList.length}
+          {sites.length}
         </span>
       </div>
 
