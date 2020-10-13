@@ -49,7 +49,7 @@
   align-items: center;
   margin: 0% 0% 0% 2%;
   background-color: #181a20;
-  /* border: #d8d8d8 solid 0.2vh; */
+  border: #d8d8d8 solid 0.2vh;
 }
 .SiteAccessInformation_searchBar_content {
   display: flex;
