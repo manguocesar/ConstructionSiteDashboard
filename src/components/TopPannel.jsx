@@ -19,7 +19,7 @@ export default function TopPannel() {
       </div>
       <div className="container_consimTitle">
         <span>数字孪生施工管理平台</span>
-        <div>
+        <div className="container_consimTitle_router">
           <Router>
             <HomeNav path="/" />
             <OperatorsNav path="Operators" />

@@ -48,7 +48,7 @@ export default function SiteEmploymentInformation() {
         />
       </div>
       <div className="SiteEmploymentInformation_table">
-        <p>Table : Replica of worker DB from gov. website</p>
+        <p style={{fontSize:"2vh"}}>Table : Replica of worker DB from gov. website</p>
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ export default function SiteAccessInformation() {
         />
       </div>
       <div className="SiteAccessInformation_table">
-        <p>Table : In and out DB from site gate system</p>
+        <p style={{fontSize:"2vh"}}>Table : In and out DB from site gate system</p>
       </div>
     </div>
   );

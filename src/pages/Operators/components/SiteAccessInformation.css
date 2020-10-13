@@ -3,54 +3,53 @@
   flex-direction: column;
   justify-content: center;
   background-color: #181a20;
-  height: 100%;
   width: 70%;
-  margin-right: 0.5%;
-  border-radius: 20px;
+  margin: 0vh 0.5vh 0vh 0vh;
+  border-radius: 1.5vh;
   justify-content: center;
-  /* border: yellow solid 1px; */
+  /* border: yellow solid 0.2vh; */
 }
 
 .SiteAccessInformation_title {
   font-size: 2.5vh;
   text-align: left;
   width: 20%;
-  /* border: 1px solid blue; */
+  /* border: 0.2vh solid blue; */
 }
 
 .SiteAccessInformation_top {
   display: flex;
   margin: 0% auto;
-  height: 20%;
+  height: 5vh;
   width: 95%;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 1.2vh;
   justify-content: center;
-  /* border: hotpink solid 1px; */
+  /* border: hotpink solid 0.2vh; */
 }
 .SiteAccessInformation_table {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 29vh;
   width: 96.2%;
-  margin: 0px auto 15px auto;
+  margin: 0vh auto 0.8vh auto;
   background-color: #272a33;
-  border-radius: 12px;
-  /* border: blue solid 1px; */
+  border-radius: 1vh;
+  /* border: blue solid 0.2vh; */
 }
 
 .SiteAccessInformation_searchBar_container {
   display: flex;
   height: 55%;
   width: 50%;
-  border-radius: 10px;
+  border-radius: 1.5vh;
   justify-content: space-between;
   color: white;
   align-items: center;
   margin: 0% 0% 0% 2%;
   background-color: #181a20;
-  border: #d8d8d8 solid 1px;
+  /* border: #d8d8d8 solid 0.2vh; */
 }
 .SiteAccessInformation_searchBar_content {
   display: flex;
@@ -67,14 +66,14 @@
 
 .SiteAccessInformation_export {
   display: flex;
-  height: 55%;
-  width: 10%;
+  height: 4vh;
+  width: 6vw;
   font-size: 1vw;
-  border-radius: 8px;
+  border-radius: 0.8vh;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   color: #82cdbf;
-  margin: 0px 5px 0px auto;
-  border: #82cdbf solid 2px;
+  margin: 0vh 0.5vh 0vh auto;
+  border: #82cdbf solid 0.2vh;
 }

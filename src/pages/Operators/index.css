@@ -11,8 +11,8 @@
 .container_bottom_Operators {
   display: flex;
   height: 50%;
-  width: 98%;
+
   flex-direction: row;
-  margin: 0% 1% 1% 1%;
-  /* border: green solid 1px; */
+  margin: 0vh 1vh 1vh 1vh;
+  /* border: blue solid 1px; */
 }

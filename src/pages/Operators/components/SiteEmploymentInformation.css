@@ -3,28 +3,28 @@
   flex-direction: column;
   background-color: #181a20;
   height: 50%;
-  width: 98%;
-  margin: 1% 1% 1% 1%;
-  border-radius: 20px;
-  /* border: red solid 1px; */
+
+  margin: 1vh 1vh 1vh 1vh;
+  border-radius: 1.5vh;
+  /* border: red solid 0.2vh; */
 }
 
 .SiteEmploymentInformation_title {
   font-size: 2.5vh;
   text-align: left;
   width: 15%;
-  /* border: 1px solid blue; */
+  /* border: 0.2vh solid blue; */
 }
 
 .SiteEmploymentInformation_top {
   display: flex;
   margin: 0% auto;
-  height: 20%;
+  height: 5vh;
   width: 95%;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 1.5vh;
   justify-content: space-between;
-  /* border: hotpink solid 1px; */
+  /* border: hotpink solid 0.2vh; */
 }
 
 .SiteEmploymentInformation_table {
@@ -32,24 +32,24 @@
   justify-content: center;
   align-items: center;
   background-color: #272a33;
-  margin: 0px auto auto auto;
-  height: 75%;
+  margin: 0% auto auto auto;
+  height: 30vh;
   width: 97.5%;
-  border-radius: 12px;
-  /* border: blue solid 1px; */
+  border-radius: 1vh;
+  /* border: blue solid 0.2vh; */
 }
 
 .SiteEmploymentInformation_searchBar_container {
   display: flex;
-  height: 55%;
+  height: 65%;
   width: 50%;
-  border-radius: 10px;
+  border-radius: 1.5vh;
   justify-content: space-between;
   color: white;
   align-items: center;
   margin: 0% 0% 0% 2%;
   background-color: #181a20;
-  border: #d8d8d8 solid 1px;
+  border: #d8d8d8 solid 0.2vh;
 }
 .SiteEmploymentInformation_searchBar_content {
   display: flex;
@@ -66,14 +66,14 @@
 
 .SiteEmploymentInformation_export {
   display: flex;
-  height: 55%;
-  width: 7%;
+  height: 4vh;
+  width: 6vw;
   font-size: 1vw;
-  border-radius: 8px;
+  border-radius: 0.8vh;
   justify-content: center;
   align-items: center;
   color: #82cdbf;
   background-color: transparent;
-  margin: 0px 5px 0px auto;
-  border: #82cdbf solid 2px;
+  margin: 0vh 0.5vh 0vh auto;
+  border: #82cdbf solid 0.2vh;
 }

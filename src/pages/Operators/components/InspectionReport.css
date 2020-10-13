@@ -5,9 +5,9 @@
   background-color: #181a20;
   margin-left: 0.5%;
   width: 30%;
-  border-radius: 20px;
+  border-radius: 1.5vh;
   justify-content: center;
-  /* border: red solid 1px; */
+  /* border: red solid 0.2vh; */
 }
 
 .InspectionReport_title {
@@ -15,41 +15,41 @@
   margin-left: 5%;
   text-align: left;
   width: 30%;
-  /* border: 1px solid blue; */
+  /* border: 0.2vh solid blue; */
 }
 
 .InspectionReport_top {
   display: flex;
-  margin: 0% auto;
-  height: 20%;
+  margin: 0vh auto;
+  height: 5vh;
   width: 95%;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 1.5vh;
   justify-content: center;
-  /* border: hotpink solid 1px; */
+  /* border: hotpink solid 0.2vh; */
 }
 
 .InspectionReport_table {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 29vh;
   width: 91.5%;
-  margin: 0px auto 15px auto;
+  margin: 0vh auto 0.5vh auto;
   background-color: #272a33;
-  border-radius: 12px;
-  /* border: blue solid 1px; */
+  border-radius: 1vh;
+  /* border: blue solid 0.2vh; */
 }
 .InspectionReport_export {
   display: flex;
-  height: 55%;
-  width: 22%;
+  height: 4vh;
+  width: 6vw;
   font-size: 1vw;
-  border-radius: 8px;
+  border-radius: 0.8vh;
   justify-content: center;
   align-items: center;
   color: #82cdbf;
   background-color: transparent;
-  margin: 0px 5px 0px auto;
-  border: #82cdbf solid 2px;
+  margin: 0vh 1vh 0vh auto;
+  border: #82cdbf solid 0.2vh;
 }
