@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "@reach/router";
+import {motion} from 'framer-motion'
 
 //style
 import "./NavigationPannel.css";
 
-//context
+
 
 //SVG defines vector-based graphics in XML format.
 import IconCustomer from "./navIcon/home.svg";
@@ -16,16 +17,24 @@ import IconSetting from "./navIcon/settings.svg";
 import IconEnvironment from "./navIcon/tree.svg";
 import logoutIcon from "./navIcon/logout.svg";
 
+//context
+import { AnimationsContext } from "../contexts/AnimationsContext";
+
 export default function NavigationPannel({ signout }) {
+
+  const { buttonVariants } = useContext(AnimationsContext);
+
   return (
     <div className="container_nav">
       <ul className="menu_basic">
-        <li className="menu_basic_li">
+        <li className="menu_basic_li" >
           <Link
+          
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="/"
           >
-            <img src={IconCustomer} alt="logo" className="icon_nav_basic" />
+            <motion.img variants={buttonVariants}
+          whileHover ="hover" src={IconCustomer} alt="logo" className="icon_nav_basic" />
           </Link>
         </li>
 
@@ -34,7 +43,9 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="Equipments"
           >
-            <img
+            <motion.img 
+          //   variants={buttonVariants}
+          // whileHover ="hover"
               src={IconEquipment}
               alt="logo"
               className="icon_nav_basicInactive"
@@ -47,7 +58,8 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="Operators"
           >
-            <img src={IconOperator} alt="logo" className="icon_nav_basic" />
+            <motion.img variants={buttonVariants}
+          whileHover ="hover" src={IconOperator} alt="logo" className="icon_nav_basic" />
           </Link>
         </li>
         <li className="menu_basic_li">
@@ -55,7 +67,9 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="shield"
           >
-            <img
+            <motion.img
+          //    variants={buttonVariants}
+          // whileHover ="hover"
               src={IconSafety}
               alt="logo"
               className="icon_nav_basicInactive"
@@ -67,7 +81,9 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="tree"
           >
-            <img
+            <motion.img 
+          //   variants={buttonVariants}
+          // whileHover ="hover"
               src={IconEnvironment}
               alt="logo"
               className="icon_nav_basicInactive"
@@ -79,7 +95,9 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="calandar"
           >
-            <img
+            <motion.img 
+          //   variants={buttonVariants}
+          // whileHover ="hover"
               src={IconSchedule}
               alt="logo"
               className="icon_nav_basicInactive"
@@ -92,7 +110,9 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to="setting"
           >
-            <img
+            <motion.img
+          //    variants={buttonVariants}
+          // whileHover ="hover"
               src={IconSetting}
               alt="logo"
               className="icon_nav_basicInactive"
@@ -105,7 +125,8 @@ export default function NavigationPannel({ signout }) {
             style={{ display: "flex", height: "100%", width: "100%" }}
             to={`/`}
           >
-            <img
+            <motion.img variants={buttonVariants}
+          whileHover ="hover"
               src={logoutIcon}
               alt="logout"
               className="icon_nav_basic"

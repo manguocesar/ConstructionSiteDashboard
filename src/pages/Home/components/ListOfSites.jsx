@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-// import { Link } from "@reach/router";
+import {motion} from "framer-motion"
 
 //image
 import exPlan from "./img/exPlan.png";
@@ -8,6 +8,7 @@ import SearchIcon from "./img/SearchIcon.png";
 
 //context
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
+import { AnimationsContext } from "../../../contexts/AnimationsContext";
 
 //styles
 import "./ListOfSites.css";
@@ -34,6 +35,8 @@ export default function ListOfSites() {
     console.log("Search for => ", text);
     setText("");
   }
+
+  const { buttonVariants } = useContext(AnimationsContext);
 
   return (
     <div className="container_info_leftBottom">
@@ -87,14 +90,16 @@ export default function ListOfSites() {
                 </div>
 
              
-                <div
+                <motion.div
                   onClick={() => {
                     setSelectedSiteId(nbr.order);
                   }}
                   className="site_enterBasic_home"
+                  variants={buttonVariants}
+       whileHover ="hover"
                 >
                   进入工地
-                </div>
+                </motion.div>
                
               </div>
             </div>

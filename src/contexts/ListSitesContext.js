@@ -48,8 +48,7 @@ const ListSitesContextProvider = (props) => {
 
   return (
     <ListSitesContext.Provider
-      value={{ sites, setSelectedSiteId, selectedSite }}
-    >
+      value={{ sites, setSelectedSiteId, selectedSite }} >
       {props.children}
     </ListSitesContext.Provider>
   );

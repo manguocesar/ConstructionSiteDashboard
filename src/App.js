@@ -10,6 +10,7 @@ import LogIn from "./pages/LogIn";
 //context
 import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itself imports our Reducer
 import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
+import AnimationsContextProvider from "./contexts/AnimationsContext"; // will itself imports our Reducer
 
 const LoginStatus = {
   NotLoggedIn: 0,
@@ -18,7 +19,7 @@ const LoginStatus = {
 };
 
 function App() {
-  const [loginStatus, setLoginStatus] = useState(LoginStatus.LoggedIn);
+  const [loginStatus, setLoginStatus] = useState(LoginStatus.NotLoggedIn);
 
   //set back the original state
   function signout() {
@@ -37,10 +38,12 @@ function App() {
     <div className="App">
       <TimeContextProvider>
         <ListSitesContextProvider>
+        <AnimationsContextProvider>
           {loginStatus === LoginStatus.NotLoggedIn && <LogIn signin={signin} />}
           {loginStatus === LoginStatus.LoggedIn && (
             <MainView signout={signout} />
           )}
+           </AnimationsContextProvider>
         </ListSitesContextProvider>
       </TimeContextProvider>
     </div>

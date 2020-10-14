@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import {motion} from 'framer-motion'
 
 //img
 import Title from "./img/Consim_Dark.png";
@@ -6,7 +7,14 @@ import Title from "./img/Consim_Dark.png";
 //refactoriser le style de ce composant si j'ai le temps
 import styles from "./Login.module.css";
 
+//context
+import { AnimationsContext } from "../contexts/AnimationsContext";
+
 function LogIn({ signin }) {
+
+
+  const { buttonVariants } = useContext(AnimationsContext);
+
   const [user, setUser] = useState({});
 
   //store the values
@@ -18,6 +26,8 @@ function LogIn({ signin }) {
     e.preventDefault();
     signin(user.username, user.password);
   }
+
+
 
   return (
     <div>
@@ -64,9 +74,10 @@ function LogIn({ signin }) {
             <p className={styles["UserLogInText"]}>忘记密码</p>
 
             <div style={{ textAlign: "center" }}>
-              <button className={styles["btn-login"]} onClick={handleClick}>
+              <motion.button className={styles["btn-login"]} onClick={handleClick} variants={buttonVariants}
+       whileHover ="hover">
                 登陆
-              </button>
+              </motion.button>
             </div>
           </form>
         </div>
