@@ -1,8 +1,15 @@
 .SiteEmploymentInformation {
+position: absolute;
+left: 0;
+top: 0;
+height: 50%;
+right: 0;
+
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   background-color: #181a20;
-  height: 50%;
+  /* height: 50%; */
 
   margin: 1vh 1vh 1vh 1vh;
   border-radius: 1.5vh;

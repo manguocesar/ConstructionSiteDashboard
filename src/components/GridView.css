@@ -1,0 +1,49 @@
+
+.gridview-outer-container {
+  display: flex;
+  flex-grow: 1;
+  background-color: #282c34;
+  border-radius: 2vh;
+  padding: 16px;
+}
+
+.gridview-container {
+  flex-grow: 1;
+  position: relative;
+}
+
+.gridview-cell {
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  background-color: #181a20;
+  border-radius: 16px;
+  padding-top: 16px;
+}
+
+.gridview-cell-header {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.gridview-cell-header-action {
+  position: absolute;
+  right: 16px;
+  top: 0;
+  bottom: 0;
+}
+
+.gridview-cell-body {
+  flex-grow: 1;
+  background-color: #1F2129;
+  /* margin-left: 16px; */
+  /* margin-right: 16px; */
+  /* margin-bottom: 16px; */
+  margin: 16px;
+  padding: 16px;
+}
+

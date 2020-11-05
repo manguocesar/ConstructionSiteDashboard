@@ -12,10 +12,8 @@ export default function Operators() {
   return (
     <div className="container_info_display_Operators">
       <SiteEmploymentInformation />
-      <div className="container_bottom_Operators">
         <SiteAccessInformation />
         <InspectionReport />
-      </div>
     </div>
   );
 }

@@ -20,7 +20,9 @@ export default function TopPannel() {
          />
       </div>
       <div className="container_consimTitle">
-        <span>数字孪生施工管理平台</span>
+        <span className="container_title_text">数字孪生施工管理平台</span>
+
+        {/* TODO FIX BREADCUMB */}
         <div className="container_consimTitle_router">
           <Router>
             <HomeNav path="/" />
@@ -28,9 +30,7 @@ export default function TopPannel() {
           </Router>
         </div>
       </div>
-      <div className="container_companyLogo">
-        <img alt="" src={imagecompany} className="companyLogo_basic" />
-      </div>
+      <img alt="" src={imagecompany} className="companyLogo_basic" />
     </div>
   );
 }

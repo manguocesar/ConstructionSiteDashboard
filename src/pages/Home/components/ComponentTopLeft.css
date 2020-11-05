@@ -1,94 +1,57 @@
-.container_info_leftTop {
-  display: flex;
-  flex-direction: column;
-  height: 34.5vh;
-  width: 97.5%;
-  border-radius: 1.2vh;
-  margin: 1vh;
-  background-color: #181a20;
-  /* border: green dotted 4px; */
-}
-
-.container_info_leftTop_title {
-  display: flex;
-  margin-left: 5%;
-  height: 3vh;
-  width: 90%;
-  font-size: 1.1vw;
-  align-items: center;
-  /* border: green dashed 2px; */
-}
 
 .container_info_leftTop_pannel {
   display: flex;
+  flex-grow: 1;
+  padding: 8px;
   flex-direction: row;
-  height: 31vh;
-  width: 99%;
-  /* border: grey dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one {
   display: flex;
+  border-radius: 8px;
+  flex-grow: 1;
   flex-direction: column;
-  width: 33%;
-
-  justify-content: center;
-  border-radius: 1.5vh;
-  margin: 1vh 1vh 1vh 2vh;
-  padding: 1vh;
+  margin-right: 16px;
   background: rgba(39, 42, 51, 0.4);
-  /* border: blue dashed 2px; */
 }
 
 .container_info_leftTop_pannel_one_top {
   display: flex;
+  flex-grow: 1;
   align-items: center;
-  width: 80%;
-  margin: 0% auto;
-  font-size: 1.1vw;
-  justify-content: space-between;
-  /* border: dotted red 1px; */
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .container_info_leftTop_pannel_one_chart {
-  /* border: solid white 1px; */
-  height: 18vh;
-  margin: 0vh;
+  flex-grow: 8;
 }
 
 .container_info_leftTop_pannel_one_ratio {
   display: flex;
-  margin: 0.3vh auto;
-  width: 80%;
-  font-size: 1vw;
-  justify-content: space-between;
-  /* border: dotted green 1px; */
+  flex-grow: 1;
+  justify-content: space-around;
+  padding-bottom: 16px;
 }
 
 .container_info_leftTop_pannel_two {
   display: flex;
+  flex-grow: 2;
   flex-direction: column;
-  width: 60%;
   justify-content: center;
-  border-radius: 1.5vh;
-  margin: 1vh 1vw 1vh 1vw;
-  padding: 1vh;
+  border-radius: 8px;
   background: rgba(39, 42, 51, 0.4);
-  /* border: red dashed 2px; */
 }
 
 .container_info_leftTop_pannel_two_top {
   display: flex;
   justify-content: center;
-  font-size: 1.2vw;
   width: 60%;
   margin: 0% auto;
-  /* border: dotted red 1px; */
 }
 
 .container_info_leftTop_pannel_two_chart {
-  /* border: solid white 1px; */
-  height: 22vh;
-  width: 98%;
+  width: 100%;
   margin: auto;
 }

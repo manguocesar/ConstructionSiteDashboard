@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 .App {
   background: #181a20 none repeat scroll 0% 0%;
   min-height: 100vh;
@@ -5,4 +7,36 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+}
+
+/* global ovewrite antd styles */
+.ant-table-thead > tr > th {
+  background-color: #1F2129;
+  border-width: 0px;
+  color: white;
+  font-size: 18px;
+}
+
+.ant-table-small .ant-table-thead > tr > th {
+  background-color: #1F2129;
+  border-width: 0px;
+  color: white;
+  font-size: 18px;
+}
+
+.ant-table {
+  background: #1F2129;
+  color: white;
+}
+
+.ant-table-tbody > tr > td {
+  border-width: 0px;
+  font-size: 16px;
+}
+
+.ant-table-thead>tr.ant-table-row-hover:not(.ant-table-expanded-row)>td, 
+.ant-table-tbody>tr.ant-table-row-hover:not(.ant-table-expanded-row)>td, 
+.ant-table-thead>tr:hover:not(.ant-table-expanded-row)>td, 
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+    background: unset;
 }

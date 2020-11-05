@@ -8,7 +8,6 @@ import "./ComponentTopLeft.css";
 
 //components
 import PieChart from "./PieChart";
-import BarChart from "./BarChart";
 
 //img
 import iconWorker from "./img/iconWorker.png";
@@ -18,30 +17,27 @@ export default function ComponentTopLeft() {
   const [gaugeData, setGaugeData] = useState([0.3, 0.06, 0.15, 0.1, 0.2]);
 
   return (
-    <div className="container_info_leftTop">
-      <div className="container_info_leftTop_title">复旦大学项目</div>
-      <div className="container_info_leftTop_pannel">
-        <div className="container_info_leftTop_pannel_one">
-          <div className="container_info_leftTop_pannel_one_top">
-            <img style={{ height: "2vw" }} src={iconWorker} alt="" />
-            <span>工人数量</span>
-            <span style={{ color: "#82cdbf", fontSize: "1.4vw" }}>345</span>
-          </div>
-          <div className="container_info_leftTop_pannel_one_chart">
-            <PieChart data={gaugeData} />
-          </div>
-          <div className="container_info_leftTop_pannel_one_ratio">
-            <span>男性: 85%</span>
-            <span>女性: 15%</span>
-          </div>
+    <div className="container_info_leftTop_pannel">
+      <div className="container_info_leftTop_pannel_one">
+        <div className="container_info_leftTop_pannel_one_top">
+          <img style={{ height: "32px", width: "32px", marginRight: "16px" }} src={iconWorker} alt="" />
+          <span style={{flexGrow: 1, textAlign: "start", fontSize: 16}}>工人数量</span>
+          <span style={{ color: "#82cdbf", fontSize: "24px" }}>345</span>
         </div>
-        <div className="container_info_leftTop_pannel_two">
-          <div className="container_info_leftTop_pannel_two_top">
-            <span>{chinaDate}</span>
-          </div>
-          <div className="container_info_leftTop_pannel_two_chart">
-            <BarChart />
-          </div>
+        <div className="container_info_leftTop_pannel_one_chart">
+          <PieChart data={gaugeData} />
+        </div>
+        <div className="container_info_leftTop_pannel_one_ratio">
+          <span>男性: 85%</span>
+          <span>女性: 15%</span>
+        </div>
+      </div>
+      <div className="container_info_leftTop_pannel_two">
+        <div className="container_info_leftTop_pannel_two_top">
+          <span>{chinaDate}</span>
+        </div>
+        <div className="container_info_leftTop_pannel_two_chart">
+          {/* add table */}
         </div>
       </div>
     </div>

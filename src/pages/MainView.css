@@ -8,8 +8,9 @@
 
 .container_header {
   display: flex;
-  height: 10%;
-  width: 100%;
+  flex-grow: 1;
+  height: 48px;
+  align-items: center;
   /* border: red dashed 5px; */
 }
 
