@@ -8,94 +8,35 @@ function Inspection() {
   return (
     <GridView>
       <GridView.Cell
-        title={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>工地用工数据库对结果</div>
-            <Divider
-              style={{
-                backgroundColor: "white",
-                width: "2px",
-                height: "24px",
-                marginLeft: 24,
-                marginRight: 24,
-              }}
-              color="white"
-              type="vertical"
-            />
-            <div>TODO: datetime component</div>
-          </div>
-        }
+        title="安标网用工信息"
         left="0"
         top="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(40% - 4px)"
+        height="calc(43% - 4px)"
       >
         <Table
           size="small"
           onRow={null}
           bordered={false}
           style={{ backgroundColor: "black" }}
-          rowClassName="company-outsourcing"
           pagination={false}
           dataSource={[
-            {
-              gov_site_status: "用工",
-              gate_status: "录入",
-              recog_tag: "合格",
-              people_count: "115",
-              alarm: "green",
-              action: {
-                label: "下载",
-                onClick: () => {},
-                disabled: false,
-              },
-            },
-            {
-              gov_site_status: "用工",
-              gate_status: "未录入",
-              recog_tag: "合格",
-              people_count: "10",
-              alarm: "orange",
-              action: {
-                label: "下载",
-                onClick: () => {},
-              },
-            },
+            { device_id: "498", date: "历史记录人数", time: "xxx" },
+            { device_id: "371", date: "已退工人数", time: "xxx" },
+            
           ]}
         >
-          <Table.Column title="安标网" dataIndex="gov_site_status" align="center" />
-          <Table.Column title="门禁系统" dataIndex="gate_status" align="center" />
-          <Table.Column title="识别标签" dataIndex="recog_tag" align="center" />
-          <Table.Column
-            title="人员数量"
-            dataIndex="people_count"
-            align="center" 
-            render={(val, row) => {
-              return <div style={{ color: row.alarm }}>{val}</div>;
-            }}
-          />
-          <Table.Column
-            title="人员数量"
-            dataIndex="action"
-            align="center" 
-            render={(action, row) => {
-            return <Button size="small" disabled={action.disabled} type="primary" ghost={true} onClick={action.onClick}>{action.label}</Button>;
-            }}
-          />
+          <Table.Column title="合法用工人数" dataIndex="date" align="center" />
+         
+          <Table.Column title="127" dataIndex="device_id" align="center" />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
-        title="Chart"
+        title="用工/退工历史记录"
         right="0"
         top="0"
-        width="calc(34% - 4px)"
+        width="calc(60% - 4px)"
         height="calc(50% - 4px)"
       >
         <ReactEcharts
@@ -112,7 +53,7 @@ function Inspection() {
               },
             },
             legend: {
-              data: ["进入人数", "离开人数", "工地人数"],
+              data: ["用工人数", "退工人数"],
               itemGap: 20,
               bottom: 0,
               itemWidth: 12,
@@ -129,25 +70,25 @@ function Inspection() {
             xAxis: {
               type: "category",
               data: [
-                "08.00",
-                "",
-                "",
-                "",
-                "12.00",
-                "",
-                "",
-                "",
-                "16.00",
-                "",
-                "",
-                "",
-                "20.00",
+                "2020.04",
+               
+                "2020.05",
+                
+                "2020.06",
+
+                "2020.07",
+               
+                "2020.08",
+                
+                "2020.09",
+                "2020.10",
+               
               ],
               axisLabel: {
                 show: true,
                 textStyle: {
                   color: "grey",
-                  fontSize: 12,
+                  fontSize: 8,
                 },
               },
               axisTick: { show: false },
@@ -157,7 +98,7 @@ function Inspection() {
             },
             yAxis: {
               type: "value",
-              max: "400",
+              max: "150",
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -175,39 +116,64 @@ function Inspection() {
             },
             series: [
               {
-                name: "进入人数",
+                name: "用工人数",
                 type: "bar",
-                barGap: 0,
-                barMaxWidth: 25,
+                barGap: 0.2,
+                barMaxWidth: 10,
                 label: "one",
-                data: [250, 125, 60],
+                data: [250, 125, 60, 125, 60, 125,80],
               },
               {
-                name: "离开人数",
+                name: "退工人数",
                 type: "bar",
                 label: "two",
-                barMaxWidth: 25,
-                data: [80, 40, 20],
+                barMaxWidth: 10,
+                data: [80, 40, 20,40, 20,30,50],
               },
-              {
-                name: "工地人数",
-                type: "line",
-                label: "three",
-                smooth: true,
-                data: [210, 320, 370, 190, 150, 210],
-              },
+             
             ],
           }}
         />
       </GridView.Cell>
 
       <GridView.Cell
-        title="巡检记录"
+        title="工种分布"
         left="0"
         bottom="0"
-        width="calc(34% - 4px)"
+        width="calc(40% - 4px)"
+        height="calc(57% - 4px)"
+      >
+        <Table
+          size="small"
+          onRow={null}
+          bordered={false}
+          style={{ color: "black" }}
+          pagination={false}
+          dataSource={[
+            { device_id: "2", date: "上海天怡建筑装潢有限公司", time: "建筑起重机械司机" },
+            { device_id: "16", date: "上海翊荣建筑装潢有限公司", time: "建筑、装饰工程普工" },
+            { device_id: "2", date: "上海翊荣建筑装潢有限公司", time: "建筑焊工" },
+            { device_id: "31", date: "上海翊荣建筑装潢有限公司", time: "钢筋工" },
+          ]}
+        >
+          <Table.Column title="分包企业" dataIndex="date" align="center" />
+          <Table.Column title="工种" dataIndex="time" align="center" />
+          <Table.Column title="人数" dataIndex="device_id" align="center" />
+        </Table>
+      </GridView.Cell>
+
+      <GridView.Cell
+        title="安标网数据库"
+        action={{
+          label: "下载",
+          onClick: () => {},
+        }}
+        right="0"
+        bottom="0"
+        width="calc(60% - 4px)"
         height="calc(50% - 4px)"
       >
+       
         <Table
           size="small"
           onRow={null}
@@ -219,24 +185,13 @@ function Inspection() {
             { device_id: "xxx", date: "xxx", time: "xxx" },
           ]}
         >
-          <Table.Column title="日期" dataIndex="date" align="center" />
-          <Table.Column title="时间" dataIndex="time" align="center" />
-          <Table.Column title="设备" dataIndex="device_id" align="center" />
+          <Table.Column title="ID" dataIndex="date" align="center" />
+          <Table.Column title="姓名" dataIndex="time" align="center" />
+          <Table.Column title="身份证" dataIndex="device_id" align="center" />
+          <Table.Column title="性别" dataIndex="date" align="center" />
+          <Table.Column title="工种" dataIndex="time" align="center" />
+          <Table.Column title="用工日期" dataIndex="device_id" align="center" />
         </Table>
-      </GridView.Cell>
-
-      <GridView.Cell
-        title="xxx"
-        action={{
-          label: "下载",
-          onClick: () => {},
-        }}
-        right="0"
-        bottom="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
-      >
-        Hello there
       </GridView.Cell>
     </GridView>
   );

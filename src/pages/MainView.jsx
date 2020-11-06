@@ -10,6 +10,9 @@ import NotFound from "../components/NotFound";
 import GridView from '../components/GridView';
 import Inspection from './Inspection';
 
+import NetworkInformation from './AnbiaoNetworkInformation';
+import YiYunGate from './YiYunGate';
+
 //style
 import "./MainView.css";
 
@@ -27,6 +30,9 @@ export default function MainView({ signout }) {
             <Operators path="Operators" />
             <GridView path="Equipments"/>
             <Inspection path="Inspection" />
+            
+            <NetworkInformation path="networkinformation" />
+            <YiYunGate path="yiyungate" />
             <NotFound default />
           </Router>
         </div>
