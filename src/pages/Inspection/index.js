@@ -92,7 +92,7 @@ function Inspection() {
       </GridView.Cell>
 
       <GridView.Cell
-        title="xxx"
+        title="Chart"
         right="0"
         top="0"
         width="calc(34% - 4px)"

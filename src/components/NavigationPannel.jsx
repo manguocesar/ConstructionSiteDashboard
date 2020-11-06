@@ -10,7 +10,7 @@ import "./NavigationPannel.css";
 import { ReactComponent as IconCustomer } from "./navIcon/home.svg";
 
 import { ReactComponent as IconMen } from "./navIcon/men.svg";
-import IconSchedule from "./navIcon/calandar.svg";
+import { ReactComponent as IconSchedule} from "./navIcon/calandar.svg";
 import IconSafety from "./navIcon/shield.svg";
 import IconEquipment from "./navIcon/digger.svg";
 import IconSetting from "./navIcon/settings.svg";
@@ -27,7 +27,7 @@ const menuItems = [
     to: "/Inspection",
   },
   // {
-  //   src: IconCustomer,
+  //   src: IconSchedule,
   //   to: "/",
   // },
   // {

@@ -25,7 +25,7 @@ export default function Home() {
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title="xxx"
+        title="xxx - Title"
         left="0"
         top="0"
         width="calc(66% - 4px)"

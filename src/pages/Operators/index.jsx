@@ -11,6 +11,7 @@ import InspectionReport from "./components/InspectionReport";
 export default function Operators() {
   return (
     <div className="container_info_display_Operators">
+      
       <SiteEmploymentInformation />
         <SiteAccessInformation />
         <InspectionReport />
