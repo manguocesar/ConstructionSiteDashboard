@@ -11,7 +11,7 @@ import { ReactComponent as IconCustomer } from "./navIcon/home.svg";
 
 import { ReactComponent as IconMen } from "./navIcon/men.svg";
 import { ReactComponent as IconSchedule} from "./navIcon/calandar.svg";
-import IconSafety from "./navIcon/shield.svg";
+import { ReactComponent as IconSafety } from "./navIcon/shield.svg";
 import IconEquipment from "./navIcon/digger.svg";
 import IconSetting from "./navIcon/settings.svg";
 import IconEnvironment from "./navIcon/tree.svg";
@@ -28,11 +28,11 @@ const menuItems = [
   },
   // {
   //   src: IconSchedule,
-  //   to: "/",
+  //   to: "/networkinformation",
   // },
   // {
-  //   src: IconCustomer,
-  //   to: "/",
+  //   src: IconSafety,
+  //   to: "/yiyungate",
   // },
 ];
 
