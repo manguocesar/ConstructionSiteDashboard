@@ -40,10 +40,8 @@
 .gridview-cell-body {
   flex-grow: 1;
   background-color: #1F2129;
-  /* margin-left: 16px; */
-  /* margin-right: 16px; */
-  /* margin-bottom: 16px; */
   margin: 16px;
   padding: 16px;
+  border-radius: 8px;
 }
 

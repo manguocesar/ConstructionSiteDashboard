@@ -21,8 +21,8 @@ export default function ComponentTopLeft() {
       <div className="container_info_leftTop_pannel_one">
         <div className="container_info_leftTop_pannel_one_top">
           <img style={{ height: "32px", width: "32px", marginRight: "16px" }} src={iconWorker} alt="" />
-          <span style={{flexGrow: 1, textAlign: "start", fontSize: 16}}>工人数量</span>
-          <span style={{ color: "#82cdbf", fontSize: "24px" }}>345</span>
+          <span style={{textAlign: "start", fontSize: 16}}>工人数量</span>
+          <span style={{ color: "#82cdbf", fontSize: "24px", flexGrow: 1,  }}>345</span>
         </div>
         <div className="container_info_leftTop_pannel_one_chart">
           <PieChart data={gaugeData} />

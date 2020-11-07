@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import {motion} from "framer-motion"
+import { Button, Row, Col } from "antd";
 
 //image
 import exPlan from "./img/exPlan.png";
@@ -8,7 +8,6 @@ import SearchIcon from "./img/SearchIcon.png";
 
 //context
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
-import { AnimationsContext } from "../../../contexts/AnimationsContext";
 
 //styles
 import "./ListOfSites.css";
@@ -36,8 +35,6 @@ export default function ListOfSites() {
     setText("");
   }
 
-  const { buttonVariants } = useContext(AnimationsContext);
-
   return (
     <div className="container_info_leftBottom">
       <div className="container_info_leftBottom_searchBar">
@@ -60,58 +57,55 @@ export default function ListOfSites() {
           src={SearchIcon}
         />
       </div>
-      <div className="container_info_leftBottom_sitesList">
-       
-          {sites.map((nbr, key) => (
-            <div
-              key={key}
-              className={
-                nbr.order === selectedSite.order
-                  ? "site_item_activeBasic"
-                  : "site_item_inactiveBasic"
-              }
-            >
-              <div className="site_item_inactiveBasic_container_text">
-                <div className="site_device_name_site">
-                  <span className="site_device_name_title">
-                    复旦大学项目
-                    <br /> 二建集团第六分公司
-                  </span>
+        <div className="container_info_leftBottom_sitesList">
+          <Row className="row">
+            {sites.map((nbr, key) => (
+              <Col key={key} className="col" span={6}>
+                <div className={`site_item_container ${selectedSite.order === nbr.order ? 'selected' : ''}`}>
+                  <div className="site_item_inactiveBasic_container_text">
+                    <div className="site_device_name_site">
+                      <span className="site_device_name_title">
+                        复旦大学项目
+                      </span>
+                      <span className="site_device_name_subtitle">
+                        二建集团第六分公司
+                      </span>
+                    </div>
+                    <div className="site_device_numBasic">
+                      <img
+                        className="sites_icon_localisation_img"
+                        src={positionSmall}
+                        alt="positionSmall"
+                      />
+                      <span className="sites_icon_localisation_text">
+                        {nbr.text}
+                      </span>
+                    </div>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setSelectedSiteId(nbr.order);
+                      }}
+                    >
+                      进入工地
+                    </Button>
+                  </div>
                 </div>
-                <div className="site_device_numBasic">
+              </Col>
+            ))}
+            {arrIcon.map((_, key) => (
+              <Col key={key} className="col" span={6}>
+                <div className="site_item_container container_emptyIcons_home">
                   <img
-                    className="sites_icon_localisation_img"
-                    src={positionSmall}
-                    alt="positionSmall"
+                    alt="empty_Site"
+                    src={exPlan}
+                    className="emptyIcons_home"
                   />
-                  <span className="sites_icon_localisation_text">
-                    {nbr.text}
-                  </span>
                 </div>
-
-             
-                <motion.div
-                  onClick={() => {
-                    setSelectedSiteId(nbr.order);
-                  }}
-                  className="site_enterBasic_home"
-                  variants={buttonVariants}
-       whileHover ="hover"
-                >
-                  进入工地
-                </motion.div>
-               
-              </div>
-            </div>
-          ))}
-
-          {arrIcon.map(() => (
-            <div className="container_emptyIcons_home">
-              <img alt="empty_Site" src={exPlan} className="emptyIcons_home" />
-            </div>
-          ))}
-        </div>
+              </Col>
+            ))}
+          </Row>
       </div>
-  
+    </div>
   );
 }
