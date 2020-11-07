@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Divider, Button } from "antd";
 import GridView from "../../components/GridView";
-import "./index.css";
+
 import ReactEcharts from "echarts-for-react";
 
 function Inspection() {
