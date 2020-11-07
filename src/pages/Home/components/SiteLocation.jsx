@@ -12,7 +12,6 @@ export default function SiteLocation() {
 
   return (
     <div className="container_info_rightBottom">
-      <span className="container_info_rightBottom_title">工地位置</span>
       <div className="container_info_rightBottom_map">
         <div className="map_localisation">
           <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">

@@ -1,9 +1,15 @@
 .SiteAccessInformation {
   display: flex;
+  flex-grow: 1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50%;
+  width: 50%;
   flex-direction: column;
   justify-content: center;
   background-color: #181a20;
-  width: 70%;
+  /* width: 70%; */
   margin: 0vh 0.5vh 0vh 0vh;
   border-radius: 1.5vh;
   justify-content: center;

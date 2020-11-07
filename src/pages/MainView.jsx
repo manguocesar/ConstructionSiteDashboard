@@ -7,6 +7,11 @@ import NavigationPannel from "../components/NavigationPannel";
 import Home from "./Home/index";
 import Operators from "./Operators/index";
 import NotFound from "../components/NotFound";
+import GridView from '../components/GridView';
+import Inspection from './Inspection';
+
+import NetworkInformation from './AnbiaoNetworkInformation';
+import YiYunGate from './YiYunGate';
 
 //style
 import "./MainView.css";
@@ -23,6 +28,11 @@ export default function MainView({ signout }) {
           <Router className="container_body_router">
             <Home path="/" />
             <Operators path="Operators" />
+            <GridView path="Equipments"/>
+            <Inspection path="Inspection" />
+            
+            <NetworkInformation path="networkinformation" />
+            <YiYunGate path="yiyungate" />
             <NotFound default />
           </Router>
         </div>
