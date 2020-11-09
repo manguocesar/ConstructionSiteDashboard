@@ -6,10 +6,11 @@ import axios from "axios"
 
 function Inspection() {
 
-  const [apiList, setApiList] = useState()
+  const [apiList, setApiList] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
   const [test, setTest] = useState()
     
   
+       
 
   let api_url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
      
@@ -20,7 +21,7 @@ function Inspection() {
     })
   }, [api_url])
 
-console.log(apiList)
+
  
 
   return (
@@ -204,20 +205,22 @@ console.log(apiList)
 
          
 // { id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
-       
-{if (apiList){ 
-  apiList.map((item, index) => {
-      return ({
-        id: apiList[index].序号,
-        name: apiList[index].姓名,
-        idCard: apiList[index].身份证,
-        gender: apiList[index].性别,
-        workType: apiList[index].工种,
-        employmentDate: apiList[index].用工日期,  
-})
-})
+    
+{apiList}
 
-  } }
+// {if (apiList){ 
+//   apiList.map((item, index) => {
+//       return ({
+//         id: item.序号,
+//         name: item.姓名,
+//         idCard: item.身份证,
+//         gender: item.性别,
+//         workType: item.工种,
+//         employmentDate: item.用工日期,  
+// });
+// })
+
+//   } }
    
   
             
