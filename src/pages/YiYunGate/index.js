@@ -10,51 +10,53 @@ function Inspection() {
 //accessControl
 let accessControl_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
 const [accessControl, setAccessControl] = useState()
-useEffect(()=> {
-  axios.get(accessControl_Url)
-  .then(response => {
-    setAccessControl(response.data)
-  })
-  .catch(console.log("Wrong URL"))
-}, [accessControl_Url])
+useEffect( async ()=> {
+  const res = await fetch(accessControl_Url)
+  const data = await res.json()
+  setAccessControl(data)
+},
+ [accessControl_Url])
 
-//TwoWeeksRecognition
-let twoWeeksRecognition_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json"
-const [twoWeeksRecognition, setTwoWeeksRecognition] = useState()
-useEffect(()=> {
-  axios.get(twoWeeksRecognition_Url)
-  .then(response => {
-    setTwoWeeksRecognition(response.data)
-  })
-  .catch(console.log("Wrong URL"))
-}, [twoWeeksRecognition_Url])
+// //TwoWeeksRecognition
+// let twoWeeksRecognition_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json"
+// const [twoWeeksRecognition, setTwoWeeksRecognition] = useState()
+// useEffect(()=> {
+//   axios.get(twoWeeksRecognition_Url)
+//   .then(response => {
+//     setTwoWeeksRecognition(response.data)
+//   })
+//   .catch(console.log("Wrong URL"))
+// }, [twoWeeksRecognition_Url])
 
 
-//teamDistribution
-let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
-const [teamDistributionData, setTeamDistributionData] = useState()
-useEffect(()=> {
-  axios.get(teamDistribution_Url)
-  .then(response => {
-    setTeamDistributionData(response.data)
-  })
-  .catch(console.log("Wrong URL"))
+// //teamDistribution
+ let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+  
+   const [teamDistribution, setTeamDistribution] = useState()
+   useEffect( async () => {
+    const res = await fetch(teamDistribution_Url)
+    const data = await res.json()
+    setTeamDistribution(data)
+ 
 }, [teamDistribution_Url])
 
-//Access control record
-let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
-const [accessControlRecord, setAccessControlRecord] = useState()
-useEffect(()=> {
-  axios.get(accessControlRecord_Url)
-  .then(response => {
-    setAccessControlRecord(response.data)
-  })
-  .catch(console.log("Wrong URL"))
-}, [teamDistribution_Url])
+console.log('hoy', teamDistribution);
+
+// //Access control record
+// let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
+// const [accessControlRecord, setAccessControlRecord] = useState()
+// useEffect(()=> {
+//   axios.get(accessControlRecord_Url)
+//   .then(response => {
+//     setAccessControlRecord(response.data)
+//   })
+//   .catch(console.log("Wrong URL"))
+// }, [accessControlRecord_Url])
 
 
   return (
     <GridView>
+      {/* done */}
       <GridView.Cell
         title="羿云门禁信息"
         left="0"
@@ -70,21 +72,12 @@ useEffect(()=> {
           pagination={false}
           dataSource={[
 
- // accessControl
 
-// {if (accessControl){ 
-//   accessControl.map((item) => {
-//       return ({
-//         number: item.number,
-//         name: item.name,
-// });
-// })
-//   } }
 
-            { number: "286", name: "录入人脸数量" },
-            { number: "107", name: "管理员数量" },
-            { number: "117", name: "合格人员数量" },
-            { number: "62", name: "未归类人员" },
+            { number: accessControl && accessControl.录入人脸数量, name: "录入人脸数量" },
+            { number:  accessControl && accessControl.管理员数量, name: "管理员数量" },
+            { number: accessControl && accessControl.合格人员数量, name: "合格人员数量" },
+            { number: accessControl && accessControl.未归类人员, name: "未归类人员" },
             
           ]}
         >
@@ -239,21 +232,11 @@ useEffect(()=> {
 
 // teamDistribution 
 
-// {if (teamDistribution){ 
-//   teamDistribution.map((item, index) => {
-//       return ({
-//         分包企业: item.分包企业,
-//         工种: item.工种,
-//         人数: item.人数,
-// });
-// })
-//   } }
+teamDistribution && teamDistribution.forEach((data, index) => {
+  return {nbrWorkers: "2", name: "上海天怡建", team: "建筑起重机械司机"}
+})
 
 
-            { nbrWorkers: "2", name: "上海天怡建", team: "建筑起重机械司机" },
-            { nbrWorkers: "16", name: "上海翊荣建", team: "建筑、装饰工程普工" },
-            { nbrWorkers: "2", name: "上海翊荣建", team: "建筑焊工" },
-            { nbrWorkers: "31", name: "上海翊荣建", team: "钢筋工" },
           ]}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
