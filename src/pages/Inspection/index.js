@@ -1,10 +1,25 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Table, Divider, Button } from "antd";
 import GridView from "../../components/GridView";
+import axios from "axios"
 
 import ReactEcharts from "echarts-for-react";
 
 function Inspection() {
+
+//inspectionRecord
+
+let inspectionRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json"
+const [inspectionRecord, setInspectionRecord] = useState()
+useEffect(()=> {
+  axios.get(inspectionRecord_Url)
+  .then(response => {
+    setInspectionRecord(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [inspectionRecord_Url])
+
+
   return (
     <GridView>
       <GridView.Cell
@@ -215,12 +230,25 @@ function Inspection() {
           style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={[
-            { device_id: "xxx", date: "xxx", time: "xxx" },
-            { device_id: "xxx", date: "xxx", time: "xxx" },
+
+//inspectionRecord
+
+// {if (inspectionRecord){ 
+//   inspectionRecord.map((item) => {
+//       return ({
+//         device_id: item.device_id,
+//         min: item.min,
+//         max: item.max,
+// });
+// })
+//   } }
+
+          
+            { device_id: "xxx", min: "xxx", max: "xxx" },
           ]}
         >
-          <Table.Column title="日期" dataIndex="date" align="center" />
-          <Table.Column title="时间" dataIndex="time" align="center" />
+          <Table.Column title="日期" dataIndex="min" align="center" />
+          <Table.Column title="时间" dataIndex="max" align="center" />
           <Table.Column title="设备" dataIndex="device_id" align="center" />
         </Table>
       </GridView.Cell>

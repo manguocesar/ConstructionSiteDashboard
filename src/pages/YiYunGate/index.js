@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Table, Divider, Button } from "antd";
 import GridView from "../../components/GridView";
+import axios from "axios"
 
 import ReactEcharts from "echarts-for-react";
 
 function Inspection() {
+
+//accessControl
+let accessControl_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
+const [accessControl, setAccessControl] = useState()
+useEffect(()=> {
+  axios.get(accessControl_Url)
+  .then(response => {
+    setAccessControl(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [accessControl_Url])
+
+//TwoWeeksRecognition
+let twoWeeksRecognition_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json"
+const [twoWeeksRecognition, setTwoWeeksRecognition] = useState()
+useEffect(()=> {
+  axios.get(twoWeeksRecognition_Url)
+  .then(response => {
+    setTwoWeeksRecognition(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [twoWeeksRecognition_Url])
+
+
   return (
     <GridView>
       <GridView.Cell
@@ -21,15 +46,28 @@ function Inspection() {
           style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={[
-            { device_id: "107", date: "管理员数量", time: "xxx" },
-            { device_id: "117", date: "合格人员数量", time: "xxx" },
-            { device_id: "62", date: "未归类人员", time: "xxx" },
+
+ // accessControl
+
+// {if (accessControl){ 
+//   accessControl.map((item) => {
+//       return ({
+//         number: item.number,
+//         name: item.name,
+// });
+// })
+//   } }
+
+            { number: "286", name: "录入人脸数量" },
+            { number: "107", name: "管理员数量" },
+            { number: "117", name: "合格人员数量" },
+            { number: "62", name: "未归类人员" },
             
           ]}
         >
-          <Table.Column title="录入人脸数量" dataIndex="date" align="center" />
+          <Table.Column title="" dataIndex="name" align="center" />
          
-          <Table.Column title="286" dataIndex="device_id" align="center" />
+          <Table.Column title="" dataIndex="number" align="center" />
         </Table>
       </GridView.Cell>
 
@@ -40,6 +78,10 @@ function Inspection() {
         width="calc(65% - 4px)"
         height="calc(50% - 4px)"
       >
+
+
+
+        
         <ReactEcharts
           style={{
             height: "100%",
@@ -71,6 +113,17 @@ function Inspection() {
             xAxis: {
               type: "category",
               data: [
+
+ // twoWeeksRecognition - date
+
+// {if (twoWeeksRecognition){ 
+//   twoWeeksRecognition.map((item) => {
+//       return ({
+//         时间: item.时间,
+// });
+// })
+//   } }
+
                 "2020.10.15",
                 "",
                 "",
@@ -122,7 +175,23 @@ function Inspection() {
                 barGap: 0,
                 barMaxWidth: 14,
                 label: "one",
-                data: [100, 60, 30, 120, 105, 140, 140, 60, 80, 110, 120,90,40,60],
+                data: [
+                  
+
+ // twoWeeksRecognition
+
+// {if (twoWeeksRecognition){ 
+//   twoWeeksRecognition.map((item) => {
+//       return ({
+//         录入人数: item.录入人数,
+// });
+// })
+//   } }
+
+
+                  100, 60, 30, 120, 105, 140, 140, 60, 80, 110, 120,90,40,60
+
+                ],
               },
          
             ],

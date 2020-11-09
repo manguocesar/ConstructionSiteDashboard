@@ -6,20 +6,41 @@ import axios from "axios"
 
 function Inspection() {
 
-  const [apiList, setApiList] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
-  const [test, setTest] = useState()
     
   
-       
-
-  let api_url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
-     
+//jobDistributionData
+  let jobDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+  const [jobDistributionData, setJobDistributionData] = useState()
   useEffect(()=> {
-    axios.get(api_url)
+    axios.get(jobDistribution_Url)
     .then(response => {
-      setApiList(response.data)
+      setJobDistributionData(response.data)
     })
-  }, [api_url])
+    .catch(console.log("Wrong URL"))
+  }, [jobDistribution_Url])
+
+  //employmentRetirementRecords
+  let employmentRetirementRecords_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
+  const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
+  useEffect(()=> {
+    axios.get(employmentRetirementRecords_Url)
+    .then(response => {
+      setEmploymentRetirementRecords(response.data)
+    })
+    .catch(console.log("Wrong URL"))
+  }, [employmentRetirementRecords_Url])
+
+  
+  //safetyStandard
+  let safetyStandard_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
+  const [safetyStandardData, setSafetyStandardData] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
+  useEffect(()=> {
+    axios.get(safetyStandard_Url)
+    .then(response => {
+      setSafetyStandardData(response.data)
+    })
+    .catch(console.log("Wrong URL"))
+  }, [safetyStandard_Url])
 
 
  
@@ -59,6 +80,9 @@ function Inspection() {
         width="calc(60% - 4px)"
         height="calc(50% - 4px)"
       >
+
+
+
         <ReactEcharts
           style={{
             height: "100%",
@@ -90,6 +114,10 @@ function Inspection() {
             xAxis: {
               type: "category",
               data: [
+
+
+
+
                 "2020.04",
                
                 "2020.05",
@@ -135,7 +163,19 @@ function Inspection() {
               top: 10,
             },
             series: [
+
+
+// employmentRetirementRecords 
+
               {
+                // {if (employmentRetirementRecords){ 
+//   employmentRetirementRecords.map((item, index) => {
+//       return ({
+//         Enter: item.Enter,
+// });
+// })
+//   } }
+ 
                 name: "用工人数",
                 type: "bar",
                 barGap: 0.2,
@@ -144,6 +184,13 @@ function Inspection() {
                 data: [250, 125, 60, 125, 60, 125,80],
               },
               {
+                // {if (employmentRetirementRecords){ 
+//   employmentRetirementRecords.map((item, index) => {
+//       return ({
+//         Exit: item.Exit,
+// });
+// })
+//   } }
                 name: "退工人数",
                 type: "bar",
                 label: "two",
@@ -170,18 +217,30 @@ function Inspection() {
           style={{ color: "black" }}
           pagination={false}
           dataSource={[
-            { device_id: "2", date: "上海天怡建筑装潢有限公司", time: "建筑起重机械司机" },
-            { device_id: "16", date: "上海翊荣建筑装潢有限公司", time: "建筑、装饰工程普工" },
-            { device_id: "2", date: "上海翊荣建筑装潢有限公司", time: "建筑焊工" },
-            { device_id: "31", date: "上海翊荣建筑装潢有限公司", time: "钢筋工" },
+
+// jobDistributionData 
+
+// {if (jobDistributionData){ 
+//   jobDistributionData.map((item, index) => {
+//       return ({
+//         分包企业: item.分包企业,
+//         工种: item.工种,
+//         人数: item.人数,
+// });
+// })
+//   } }
+
+
+            { 分包企业: "上海天怡建筑装潢有限公司", 工种: "建筑起重机械司机", 人数: "2" },
+         
           ]}
         >
-          <Table.Column title="分包企业" dataIndex="date" align="center" />
-          <Table.Column title="工种" dataIndex="time" align="center" />
-          <Table.Column title="人数" dataIndex="device_id" align="center" />
+          <Table.Column title="分包企业" dataIndex="分包企业" align="center" />
+          <Table.Column title="工种" dataIndex="工种" align="center" />
+          <Table.Column title="人数" dataIndex="人数" align="center" />
         </Table>
       </GridView.Cell>
-      
+     
       <GridView.Cell
       
         title="安标网数据库"
@@ -194,7 +253,7 @@ function Inspection() {
         width="calc(60% - 4px)"
         height="calc(50% - 4px)"
       >
-       
+      
         <Table
           size="small"
           onRow={null}
@@ -204,9 +263,8 @@ function Inspection() {
           dataSource={[
 
          
-// { id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
+{ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
     
-{apiList}
 
 // {if (apiList){ 
 //   apiList.map((item, index) => {
@@ -219,12 +277,8 @@ function Inspection() {
 //         employmentDate: item.用工日期,  
 // });
 // })
-
 //   } }
    
-  
-            
-            
 
           ]}
         >
