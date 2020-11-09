@@ -1,14 +1,34 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { Table, Divider, Button } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios"
 
 import ReactEcharts from "echarts-for-react";
+//context
+import { TimeContext } from "../../contexts/TimeContext";
 
 function Inspection() {
+  const { chinaDate } = useContext(TimeContext)
+
+  
+//Comparison results of site employment database
+//first apicall ----
+
+//Second ApiCall ----
+let comparisonResults_Url_xlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%90%88%E6%A0%BC.xlsx"
+const [comparisonResults, setComparisonResults] = useState()
+useEffect(()=> {
+  axios.get(comparisonResults_Url_xlsx)
+  .then(response => {
+    setComparisonResults(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [comparisonResults_Url_xlsx])
+
+
+
 
 //inspectionRecord
-
 let inspectionRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json"
 const [inspectionRecord, setInspectionRecord] = useState()
 useEffect(()=> {
@@ -18,6 +38,17 @@ useEffect(()=> {
   })
   .catch(console.log("Wrong URL"))
 }, [inspectionRecord_Url])
+
+//Patrol log
+let patrolLog_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json"
+const [patrolLog, setPatrolLog] = useState()
+useEffect(()=> {
+  axios.get(patrolLog_Url)
+  .then(response => {
+    setPatrolLog(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [patrolLog_Url])
 
 
   return (
@@ -43,7 +74,7 @@ useEffect(()=> {
               color="white"
               type="vertical"
             />
-            <div>TODO: datetime component</div>
+            <div><span>{chinaDate}</span></div>
           </div>
         }
         left="0"
@@ -79,7 +110,22 @@ useEffect(()=> {
               alarm: "orange",
               action: {
                 label: "下载",
-                onClick: () => {},
+                onClick: () => {
+
+//comparisonResults_xlsx
+
+// {if (comparisonResults_xlsx){ 
+//   comparisonResults_xlsx.map((item) => {
+//       return ({
+//       
+// });
+// })
+//   } }
+
+
+
+
+                },
               },
             },
           ]}
@@ -100,14 +146,15 @@ useEffect(()=> {
             dataIndex="action"
             align="center" 
             render={(action, row) => {
-            return <Button size="small" disabled={action.disabled} type="primary" ghost={true} onClick={action.onClick}>{action.label}</Button>;
+            return <Button size="small" disabled={action.disabled}
+             type="primary" ghost={true} onClick={action.onClick}>{action.label}</Button>;
             }}
           />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
-        title="Chart"
+        title="用工/退工历史记录"
         right="0"
         top="0"
         width="calc(34% - 4px)"
@@ -220,7 +267,7 @@ useEffect(()=> {
         title="巡检记录"
         left="0"
         bottom="0"
-        width="calc(34% - 4px)"
+        width="calc(36% - 4px)"
         height="calc(50% - 4px)"
       >
         <Table
@@ -254,18 +301,54 @@ useEffect(()=> {
       </GridView.Cell>
 
       <GridView.Cell
-        title="xxx"
-        action={{
-          label: "下载",
-          onClick: () => {},
-        }}
-        right="0"
-        bottom="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
+      
+      title="巡检日志"
+      action={{
+        label: "下载",
+        onClick: () => {},
+      }}
+      right="0"
+      bottom="0"
+      width="calc(64% - 4px)"
+      height="calc(50% - 4px)"
+    >
+    
+      <Table
+        size="small"
+        onRow={null}
+        bordered={false}
+        style={{ backgroundColor: "white" }}
+        pagination={false}
+        dataSource={[
+
+       
+{ 设备: "xx", 姓名: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", }
+  
+
+// {if (apiList){ 
+//   apiList.map((item, index) => {
+//       return ({
+//         设备: item.设备,
+//         name: item.name,
+//         idCard: item.身份证,
+//         gender: item.性别,
+//         workType: item.工种,
+//        
+// });
+// })
+//   } }
+ 
+
+        ]}
       >
-        Hello there
-      </GridView.Cell>
+        <Table.Column title="设备" dataIndex="设备" align="center" />
+        <Table.Column title="姓名" dataIndex="name" align="center" />
+        <Table.Column title="身份证" dataIndex="idCard" align="center" />
+        <Table.Column title="识别时间" dataIndex="gender" align="center" />
+        <Table.Column title="类型" dataIndex="workType" align="center" />
+          </Table>
+    </GridView.Cell>
+
     </GridView>
   );
 }

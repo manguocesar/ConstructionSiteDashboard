@@ -17,7 +17,7 @@ export default function ComponentTopLeft() {
   const { chinaDate } = useContext(TimeContext);
 
 //numberOfWorkers
-
+// !!!!! TO BE ADDED IN THE CONTEXT BECAUSE 2 PAGES (Home and Inspection) AT LEAST USE ITS DATA !!!!!
 let numberOfWorkers_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json"
 const [numberOfWorkers, setNumberOfWorkers] = useState()
 useEffect(()=> {

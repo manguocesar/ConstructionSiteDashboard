@@ -6,7 +6,16 @@ import axios from "axios"
 
 function Inspection() {
 
-    
+    //employmentRetirementRecords
+  let employmentRetirementRecords_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
+  const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
+  useEffect(()=> {
+    axios.get(employmentRetirementRecords_Url)
+    .then(response => {
+      setEmploymentRetirementRecords(response.data)
+    })
+    .catch(console.log("Wrong URL"))
+  }, [employmentRetirementRecords_Url])
   
 //jobDistributionData
   let jobDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
@@ -19,25 +28,16 @@ function Inspection() {
     .catch(console.log("Wrong URL"))
   }, [jobDistribution_Url])
 
-  //employmentRetirementRecords
-  let employmentRetirementRecords_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
-  const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
-  useEffect(()=> {
-    axios.get(employmentRetirementRecords_Url)
-    .then(response => {
-      setEmploymentRetirementRecords(response.data)
-    })
-    .catch(console.log("Wrong URL"))
-  }, [employmentRetirementRecords_Url])
+  
 
   
   //safetyStandard
   let safetyStandard_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
-  const [safetyStandardData, setSafetyStandardData] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
+  const [safetyStandard, setSafetyStandard] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
   useEffect(()=> {
     axios.get(safetyStandard_Url)
     .then(response => {
-      setSafetyStandardData(response.data)
+      setSafetyStandard(response.data)
     })
     .catch(console.log("Wrong URL"))
   }, [safetyStandard_Url])
@@ -181,7 +181,7 @@ function Inspection() {
                 barGap: 0.2,
                 barMaxWidth: 10,
                 label: "one",
-                data: [250, 125, 60, 125, 60, 125,80],
+                data: [150, 125, 60, 125, 60, 125,80],
               },
               {
                 // {if (employmentRetirementRecords){ 
@@ -266,8 +266,8 @@ function Inspection() {
 { id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
     
 
-// {if (apiList){ 
-//   apiList.map((item, index) => {
+// {if (safetyStandard){ 
+//   safetyStandard.map((item, index) => {
 //       return ({
 //         id: item.序号,
 //         name: item.姓名,

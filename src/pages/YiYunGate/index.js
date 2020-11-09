@@ -30,6 +30,29 @@ useEffect(()=> {
 }, [twoWeeksRecognition_Url])
 
 
+//teamDistribution
+let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+const [teamDistributionData, setTeamDistributionData] = useState()
+useEffect(()=> {
+  axios.get(teamDistribution_Url)
+  .then(response => {
+    setTeamDistributionData(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [teamDistribution_Url])
+
+//Access control record
+let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
+const [accessControlRecord, setAccessControlRecord] = useState()
+useEffect(()=> {
+  axios.get(accessControlRecord_Url)
+  .then(response => {
+    setAccessControlRecord(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [teamDistribution_Url])
+
+
   return (
     <GridView>
       <GridView.Cell
@@ -200,7 +223,7 @@ useEffect(()=> {
       </GridView.Cell>
 
       <GridView.Cell
-        title="工种分布"
+        title="班组分布"
         left="0"
         bottom="0"
         width="calc(35% - 4px)"
@@ -213,15 +236,29 @@ useEffect(()=> {
           style={{ color: "black" }}
           pagination={false}
           dataSource={[
-            { device_id: "2", date: "上海天怡建筑装潢有限公司", time: "建筑起重机械司机" },
-            { device_id: "16", date: "上海翊荣建筑装潢有限公司", time: "建筑、装饰工程普工" },
-            { device_id: "2", date: "上海翊荣建筑装潢有限公司", time: "建筑焊工" },
-            { device_id: "31", date: "上海翊荣建筑装潢有限公司", time: "钢筋工" },
+
+// teamDistribution 
+
+// {if (teamDistribution){ 
+//   teamDistribution.map((item, index) => {
+//       return ({
+//         分包企业: item.分包企业,
+//         工种: item.工种,
+//         人数: item.人数,
+// });
+// })
+//   } }
+
+
+            { nbrWorkers: "2", name: "上海天怡建", team: "建筑起重机械司机" },
+            { nbrWorkers: "16", name: "上海翊荣建", team: "建筑、装饰工程普工" },
+            { nbrWorkers: "2", name: "上海翊荣建", team: "建筑焊工" },
+            { nbrWorkers: "31", name: "上海翊荣建", team: "钢筋工" },
           ]}
         >
-          <Table.Column title="分包企业" dataIndex="date" align="center" />
-          <Table.Column title="工种" dataIndex="time" align="center" />
-          <Table.Column title="人数" dataIndex="device_id" align="center" />
+          <Table.Column title="分包企业" dataIndex="name" align="center" />
+          <Table.Column title="工种" dataIndex="team" align="center" />
+          <Table.Column title="人数" dataIndex="nbrWorkers" align="center" />
         </Table>
       </GridView.Cell>
 
@@ -313,6 +350,21 @@ useEffect(()=> {
               top: 10,
             },
             series: [
+
+ // accessControlRecord
+
+// {if (accessControlRecord){ 
+//   accessControlRecord.map((item) => {
+//       return ({
+//         entry: item.entry,
+//         exit: item.exit,
+//         nbrWorkers: item.nbrWorkers,
+// });
+// })
+//   } }
+
+
+
               {
                 name: "进入人数",
                 type: "bar",
