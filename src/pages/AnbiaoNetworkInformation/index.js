@@ -1,12 +1,30 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Table, Divider, Button } from "antd";
 import GridView from "../../components/GridView";
-
 import ReactEcharts from "echarts-for-react";
+import axios from "axios"
 
 function Inspection() {
+
+  const [apiList, setApiList] = useState()
+  const [test, setTest] = useState()
+    
+  
+
+  let api_url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
+     
+  useEffect(()=> {
+    axios.get(api_url)
+    .then(response => {
+      setApiList(response.data)
+    })
+  }, [api_url])
+
+console.log(apiList)
+ 
+
   return (
-    <GridView>
+    <GridView >
       <GridView.Cell
         title="安标网用工信息"
         left="0"
@@ -14,6 +32,7 @@ function Inspection() {
         width="calc(40% - 4px)"
         height="calc(43% - 4px)"
       >
+         <div></div>
         <Table
           size="small"
           onRow={null}
@@ -161,8 +180,9 @@ function Inspection() {
           <Table.Column title="人数" dataIndex="device_id" align="center" />
         </Table>
       </GridView.Cell>
-
+      
       <GridView.Cell
+      
         title="安标网数据库"
         action={{
           label: "下载",
@@ -178,19 +198,39 @@ function Inspection() {
           size="small"
           onRow={null}
           bordered={false}
-          style={{ backgroundColor: "black" }}
+          style={{ backgroundColor: "white" }}
           pagination={false}
           dataSource={[
-            { device_id: "xxx", date: "xxx", time: "xxx" },
-            { device_id: "xxx", date: "xxx", time: "xxx" },
+
+         
+// { id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
+       
+{if (apiList){ 
+  apiList.map((item, index) => {
+      return ({
+        id: apiList[index].序号,
+        name: apiList[index].姓名,
+        idCard: apiList[index].身份证,
+        gender: apiList[index].性别,
+        workType: apiList[index].工种,
+        employmentDate: apiList[index].用工日期,  
+})
+})
+
+  } }
+   
+  
+            
+            
+
           ]}
         >
-          <Table.Column title="ID" dataIndex="date" align="center" />
-          <Table.Column title="姓名" dataIndex="time" align="center" />
-          <Table.Column title="身份证" dataIndex="device_id" align="center" />
-          <Table.Column title="性别" dataIndex="date" align="center" />
-          <Table.Column title="工种" dataIndex="time" align="center" />
-          <Table.Column title="用工日期" dataIndex="device_id" align="center" />
+          <Table.Column title="ID" dataIndex="id" align="center" />
+          <Table.Column title="姓名" dataIndex="name" align="center" />
+          <Table.Column title="身份证" dataIndex="idCard" align="center" />
+          <Table.Column title="性别" dataIndex="gender" align="center" />
+          <Table.Column title="工种" dataIndex="workType" align="center" />
+          <Table.Column title="用工日期" dataIndex="employmentDate" align="center" />
         </Table>
       </GridView.Cell>
     </GridView>
