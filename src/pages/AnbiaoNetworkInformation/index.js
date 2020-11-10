@@ -4,7 +4,21 @@ import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios"
 
+import moment from "moment";
+import "moment/locale/zh-cn";
+moment.locale("zh-cn");
+
 function Inspection() {
+
+  let today = moment().format("M.D")
+  let yesterday = moment().subtract(1, 'days').format("DD-MM")
+  let twoDaysAgo = moment().subtract(2, 'days').format("DD-MM")
+  let threeDaysAgo = moment().subtract(3, 'days').format("DD-MM")
+  let fourDaysAgo = moment().subtract(4, 'days').format("DD-MM")
+  let fiveDaysAgo = moment().subtract(5, 'days').format("DD-MM")
+  let sixDaysAgo = moment().subtract(6, 'days').format("DD-MM")
+
+ 
 
   //Employment information of safety standard network
   let employmentInfo_Url ="aaa"
@@ -150,19 +164,13 @@ function Inspection() {
             xAxis: {
               type: "category",
               data: [
-                "2020.04",
-               
-                "2020.05",
-                
-                "2020.06",
-
-                "2020.07",
-               
-                "2020.08",
-                
-                "2020.09",
-                "2020.10",
-               
+                sixDaysAgo,
+                fiveDaysAgo,
+               fourDaysAgo,
+                threeDaysAgo,
+                twoDaysAgo,
+                yesterday,
+                today,
               ],
               axisLabel: {
                 show: true,
