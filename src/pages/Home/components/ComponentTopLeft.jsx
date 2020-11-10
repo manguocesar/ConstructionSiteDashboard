@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useContext } from "react";
 import axios from "axios"
-
+import { Table,  } from "antd";
 //context
 import { TimeContext } from "../../../contexts/TimeContext";
 
@@ -22,6 +22,7 @@ export default function ComponentTopLeft() {
 const [datas, setDatas] = useState(0);
 
 
+
 let numberOfWorkers_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json"
 
 useEffect(()=> {
@@ -33,9 +34,17 @@ useEffect(()=> {
   })
   .catch((err) => console.log("error:",err))
 },[0])
-// console.log("hoy",datas);
 
 
+  //accessControl
+  let accessControl_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
+  const [accessControl, setAccessControl] = useState()
+  useEffect( async ()=> {
+    const res = await fetch(accessControl_Url)
+    const data = await res.json()
+    setAccessControl(data)
+  },
+   [accessControl_Url])
 
 
   return (
@@ -69,7 +78,35 @@ useEffect(()=> {
           <span>{chinaDate}</span>
         </div>
         <div className="container_info_leftTop_pannel_two_chart">
-          {/* add table */}
+        
+      
+        <Table
+        color="red"
+          size="small"
+          onRow={null}
+          bordered={false}
+          style={{ backgroundColor: "white", color: "blue" }}
+          pagination={false}
+         
+         
+          dataSource={[
+
+
+
+            { number: accessControl && accessControl.录入人脸数量, name: "较昨日安标网新增工人数量" },
+            { number:  accessControl && accessControl.管理员数量, name: "较昨日门禁新增人脸数量" },
+            { number: accessControl && accessControl.合格人员数量, name: "今日巡检次数" },
+            { number: accessControl && accessControl.未归类人员, name: "今日巡检检测异常事件数量" },
+            
+          ]}
+        >
+          <Table.Column  title="" dataIndex="name" align="center" />
+         
+          <Table.Column title="" dataIndex="number" align="center" />
+        </Table>
+     
+
+        
         </div>
       </div>
     </div>

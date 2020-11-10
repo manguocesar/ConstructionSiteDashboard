@@ -6,6 +6,26 @@ import axios from "axios"
 
 function Inspection() {
 
+  //Employment information of safety standard network
+  let employmentInfo_Url ="aaa"
+  const [employmentInfo, setEmploymentInfo] = useState()
+  useEffect(()=> {
+    axios.get(employmentInfo_Url)
+    .then(response => {
+      if (response.data) {
+        const employInfo = response.data.map((data) => {
+          return {
+            type: data['分包企业'],
+            number: data['工种'],
+          }
+        })
+        setEmploymentInfo(employInfo)
+    }})
+    .catch((err) => console.log("Wrong URL", err))
+  }, [0])
+
+
+
     //employmentRetirementRecords
   let employmentRetirementRecords_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
   const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
@@ -14,7 +34,7 @@ function Inspection() {
     .then(response => {
       setEmploymentRetirementRecords(response.data)
     })
-    .catch(console.log("Wrong URL"))
+    .catch(console.log("error"))
   }, [employmentRetirementRecords_Url])
   
 //jobDistributionData
@@ -23,26 +43,41 @@ function Inspection() {
   useEffect(()=> {
     axios.get(jobDistribution_Url)
     .then(response => {
-      setJobDistributionData(response.data)
-    })
-    .catch(console.log("Wrong URL"))
+      if (response.data) {
+        const teamD = response.data.map((data) => {
+          return {
+            name: data['分包企业'],
+            team: data['工种'],
+            nbrWorkers: data['人数'],
+          }
+        })
+      setJobDistributionData(teamD)
+    }})
+    .catch((err) => console.log("error: ", err))
   }, [jobDistribution_Url])
 
-  
-
-  
   //safetyStandard
+  let safetyStandard_UrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.xlsx"
   let safetyStandard_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
-  const [safetyStandard, setSafetyStandard] = useState({ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"})
+  const [safetyStandard, setSafetyStandard] = useState()
   useEffect(()=> {
     axios.get(safetyStandard_Url)
     .then(response => {
-      setSafetyStandard(response.data)
-    })
-    .catch(console.log("Wrong URL"))
-  }, [safetyStandard_Url])
-
-
+      if (response.data) {
+        const newArray = response.data.map((data) => {
+          return {
+            id: data['序号'],
+            name: data['姓名'],
+            idCard: data['身份证'],
+            gender: data['性别'],
+            workType: data['工种'],
+            employmentDate: data['用工日期'],
+          }
+        })
+        setSafetyStandard(newArray)
+    }})
+    .catch((err) => console.log("error: ", err))
+  }, [0])
  
 
   return (
@@ -62,14 +97,15 @@ function Inspection() {
           style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={[
-            { device_id: "498", date: "历史记录人数", time: "xxx" },
-            { device_id: "371", date: "已退工人数", time: "xxx" },
+            { number: "xxx", type: "xxx" },
+            employmentInfo
+            
             
           ]}
         >
-          <Table.Column title="合法用工人数" dataIndex="date" align="center" />
+          <Table.Column title="" dataIndex="type" align="center" />
          
-          <Table.Column title="127" dataIndex="device_id" align="center" />
+          <Table.Column title="" dataIndex="number" align="center" />
         </Table>
       </GridView.Cell>
 
@@ -114,10 +150,6 @@ function Inspection() {
             xAxis: {
               type: "category",
               data: [
-
-
-
-
                 "2020.04",
                
                 "2020.05",
@@ -216,28 +248,12 @@ function Inspection() {
           bordered={false}
           style={{ color: "black" }}
           pagination={false}
-          dataSource={[
-
-// jobDistributionData 
-
-// {if (jobDistributionData){ 
-//   jobDistributionData.map((item, index) => {
-//       return ({
-//         分包企业: item.分包企业,
-//         工种: item.工种,
-//         人数: item.人数,
-// });
-// })
-//   } }
-
-
-            { 分包企业: "上海天怡建筑装潢有限公司", 工种: "建筑起重机械司机", 人数: "2" },
-         
-          ]}
+          scroll={{ y: "22vh" }}
+          dataSource={  jobDistributionData }
         >
-          <Table.Column title="分包企业" dataIndex="分包企业" align="center" />
-          <Table.Column title="工种" dataIndex="工种" align="center" />
-          <Table.Column title="人数" dataIndex="人数" align="center" />
+          <Table.Column title="分包企业" dataIndex="name" align="center" />
+          <Table.Column title="工种" dataIndex="team" align="center" />
+          <Table.Column title="人数" dataIndex="nbrWorkers" align="center" />
         </Table>
       </GridView.Cell>
      
@@ -246,7 +262,8 @@ function Inspection() {
         title="安标网数据库"
         action={{
           label: "下载",
-          onClick: () => {},
+            onClick: () => window.open(safetyStandard_UrlXlsx, "_blank"),
+            disabled: false,
         }}
         right="0"
         bottom="0"
@@ -260,27 +277,8 @@ function Inspection() {
           bordered={false}
           style={{ backgroundColor: "white" }}
           pagination={false}
-          dataSource={[
-
-         
-{ id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
-    
-
-// {if (safetyStandard){ 
-//   safetyStandard.map((item, index) => {
-//       return ({
-//         id: item.序号,
-//         name: item.姓名,
-//         idCard: item.身份证,
-//         gender: item.性别,
-//         workType: item.工种,
-//         employmentDate: item.用工日期,  
-// });
-// })
-//   } }
-   
-
-          ]}
+          scroll={{ y: "22vh" }}
+          dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />

@@ -21,7 +21,7 @@ function Inspection() {
   let patrolLogUrl =
     "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json";
-
+    let patrolLogUrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
 
 //Comparison results of site employment database
 //first apicall ----
@@ -33,7 +33,7 @@ useEffect(()=> {
   .then(response => {
     setComparisonResults(response.data)
   })
-  .catch((err) => console.log("Wrong URL", err))
+  .catch((err) => console.log("Error: ", err))
 }, [comparisonResultsUrlXlsx])
 
 
@@ -65,12 +65,16 @@ const inspectionData = data.inspectionData.map((item) => {
   };
 });
 
-
-
-
 const patrolData = data.patrolData.map((item) => {
-  console.log(item) 
+  return {
+    id: item.id,
+    name: item.name,
+    idCard: item.idCard,
+    gender: item.gender,
+    workType: item.workType,
+  };
 });
+
 
 
   return (
@@ -316,7 +320,8 @@ const patrolData = data.patrolData.map((item) => {
       title="巡检日志"
       action={{
         label: "下载",
-        onClick: () => {},
+          onClick: () => window.open(patrolLogUrlXlsx, "_blank"),
+          disabled: false,
       }}
       right="0"
       bottom="0"
@@ -328,16 +333,13 @@ const patrolData = data.patrolData.map((item) => {
         size="small"
         onRow={null}
         bordered={false}
-        style={{ backgroundColor: "white" }}
+        style={{ backgroundColor: "white", color: "white" }}
         pagination={false}
-        dataSource={[
+        dataSource={
 
-       
-{ 设备: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx" },
-  
-patrolData
-
-        ]}
+ { 设备: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx" },
+ patrolData
+        }
       >
         <Table.Column title="设备" dataIndex="设备" align="center" />
         <Table.Column title="姓名" dataIndex="name" align="center" />

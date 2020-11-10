@@ -10,16 +10,6 @@ import SiteLocation from "./components/SiteLocation";
 import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
 
-{/* <div className="container_info_display_home">
-<div className="container_info_left">
-  
-  <ListofSites />
-</div>
-<div className="container_info_right">
-  
-  <SiteLocation />
-</div>
-</div> */}
 export default function Home() {
   return (
     <GridView>

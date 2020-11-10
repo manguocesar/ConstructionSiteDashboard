@@ -48,23 +48,21 @@ useEffect(()=> {
       }
      })
      .catch((err) => console.log("Wrong URL", err))
-    
-
-
 }, [teamDistribution_Url])
 
 
 
-// //Access control record
-// let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
-// const [accessControlRecord, setAccessControlRecord] = useState()
-// useEffect(()=> {
-//   axios.get(accessControlRecord_Url)
-//   .then(response => {
-//     setAccessControlRecord(response.data)
-//   })
-//   .catch(console.log("Wrong URL"))
-// }, [accessControlRecord_Url])
+//Access control record
+let accessControlRecord_UrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
+let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
+const [accessControlRecord, setAccessControlRecord] = useState()
+useEffect(()=> {
+  axios.get(accessControlRecord_Url)
+  .then(response => {
+    setAccessControlRecord(response.data)
+  })
+  .catch(console.log("Wrong URL"))
+}, [accessControlRecord_Url])
 
 
   return (
@@ -241,12 +239,8 @@ useEffect(()=> {
           bordered={false}
           style={{ color: "black" }}
           pagination={false}
-          dataSource={
-teamDistribution
- 
-
-
-          }
+          scroll={{ y: "20vh" }}
+          dataSource={teamDistribution }
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
           <Table.Column title="工种" dataIndex="team" align="center" />
@@ -258,7 +252,8 @@ teamDistribution
         title="门禁出入记录"
         action={{
           label: "下载",
-          onClick: () => {},
+            onClick: () => window.open(accessControlRecord_UrlXlsx, "_blank"),
+            disabled: false,
         }}
         right="0"
         bottom="0"
