@@ -9,46 +9,68 @@ import { TimeContext } from "../../contexts/TimeContext";
 
 function Inspection() {
   const { chinaDate } = useContext(TimeContext)
+  const [data, setData] = useState(null);
 
-  
+  let comparisonResultsUrlXlsx =
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%90%88%E6%A0%BC.xlsx";
+
+  // use this proxy until this issue is fixed: https://github.com/atlas-ai/scraping-facerecognition-scg-internal/issues/5
+  let inspectionRecordUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json";
+  let patrolLogUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json";
+
+
 //Comparison results of site employment database
 //first apicall ----
 
 //Second ApiCall ----
-let comparisonResults_Url_xlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%90%88%E6%A0%BC.xlsx"
 const [comparisonResults, setComparisonResults] = useState()
 useEffect(()=> {
-  axios.get(comparisonResults_Url_xlsx)
+  axios.get(comparisonResultsUrlXlsx)
   .then(response => {
     setComparisonResults(response.data)
   })
-  .catch(console.log("Wrong URL"))
-}, [comparisonResults_Url_xlsx])
+  .catch((err) => console.log("Wrong URL", err))
+}, [comparisonResultsUrlXlsx])
 
 
 
 
-//inspectionRecord
-let inspectionRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json"
-const [inspectionRecord, setInspectionRecord] = useState()
-useEffect(()=> {
-  axios.get(inspectionRecord_Url)
-  .then(response => {
-    setInspectionRecord(response.data)
-  })
-  .catch(console.log("Wrong URL"))
-}, [inspectionRecord_Url])
+useEffect(() => {
+  // TODO error handling
+  async function fetchData() {
+    const { data: inspectionData } = await axios.get(inspectionRecordUrl);
+    const { data: patrolData } = await axios.get(patrolLogUrl);
+    setData({
+      inspectionData,
+      patrolData,
+    });
+  }
+  fetchData();
+}, [0]);
 
-//Patrol log
-let patrolLog_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json"
-const [patrolLog, setPatrolLog] = useState()
-useEffect(()=> {
-  axios.get(patrolLog_Url)
-  .then(response => {
-    setPatrolLog(response.data)
-  })
-  .catch(console.log("Wrong URL"))
-}, [patrolLog_Url])
+if (!data) {
+  return <div >loading...</div>;
+}
+
+const inspectionData = data.inspectionData.map((item) => {
+  return {
+    device_id: item.device_id,
+    min: item.min,
+    max: item.max,
+    
+  };
+});
+
+
+
+
+const patrolData = data.patrolData.map((item) => {
+  console.log(item) 
+});
 
 
   return (
@@ -98,7 +120,7 @@ useEffect(()=> {
               alarm: "green",
               action: {
                 label: "下载",
-                onClick: () => {},
+                onClick: () => window.open(comparisonResultsUrlXlsx, "_blank"),
                 disabled: false,
               },
             },
@@ -110,19 +132,7 @@ useEffect(()=> {
               alarm: "orange",
               action: {
                 label: "下载",
-                onClick: () => {
-
-//comparisonResults_xlsx
-
-// {if (comparisonResults_xlsx){ 
-//   comparisonResults_xlsx.map((item) => {
-//       return ({
-//       
-// });
-// })
-//   } }
-
-
+                onClick: () => { 
 
 
                 },
@@ -130,8 +140,16 @@ useEffect(()=> {
             },
           ]}
         >
-          <Table.Column title="安标网" dataIndex="gov_site_status" align="center" />
-          <Table.Column title="门禁系统" dataIndex="gate_status" align="center" />
+         <Table.Column
+            title="安标网"
+            dataIndex="gov_site_status"
+            align="center"
+          />
+          <Table.Column
+            title="门禁系统"
+            dataIndex="gate_status"
+            align="center"
+          />
           <Table.Column title="识别标签" dataIndex="recog_tag" align="center" />
           <Table.Column
             title="人员数量"
@@ -146,8 +164,17 @@ useEffect(()=> {
             dataIndex="action"
             align="center" 
             render={(action, row) => {
-            return <Button size="small" disabled={action.disabled}
-             type="primary" ghost={true} onClick={action.onClick}>{action.label}</Button>;
+              return (
+                <Button
+                  size="small"
+                  disabled={action.disabled}
+                  type="primary"
+                  ghost={true}
+                  onClick={action.onClick}
+                >
+                  {action.label}
+                </Button>
+              );
             }}
           />
         </Table>
@@ -183,8 +210,6 @@ useEffect(()=> {
                 color: "white",
                 width: 300,
                 fontSize: 13,
-                // fontFamily: ,
-                // fontWeight: "italic" ,
                 lineHeight: "",
               },
             },
@@ -276,23 +301,9 @@ useEffect(()=> {
           bordered={false}
           style={{ backgroundColor: "black" }}
           pagination={false}
-          dataSource={[
-
-//inspectionRecord
-
-// {if (inspectionRecord){ 
-//   inspectionRecord.map((item) => {
-//       return ({
-//         device_id: item.device_id,
-//         min: item.min,
-//         max: item.max,
-// });
-// })
-//   } }
-
-          
-            { device_id: "xxx", min: "xxx", max: "xxx" },
-          ]}
+          dataSource={inspectionData}
+          scroll={{ y: "20vh" }}
+         
         >
           <Table.Column title="日期" dataIndex="min" align="center" />
           <Table.Column title="时间" dataIndex="max" align="center" />
@@ -322,22 +333,9 @@ useEffect(()=> {
         dataSource={[
 
        
-{ 设备: "xx", 姓名: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", }
+{ 设备: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx" },
   
-
-// {if (apiList){ 
-//   apiList.map((item, index) => {
-//       return ({
-//         设备: item.设备,
-//         name: item.name,
-//         idCard: item.身份证,
-//         gender: item.性别,
-//         workType: item.工种,
-//        
-// });
-// })
-//   } }
- 
+patrolData
 
         ]}
       >

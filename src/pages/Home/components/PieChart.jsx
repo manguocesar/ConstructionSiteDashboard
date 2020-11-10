@@ -1,9 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import ReactEcharts from "echarts-for-react";
 
-export default function BarChart() {
+export default function PieChart(datas) {
+
+ console.log("PieChartData:", datas.datas.工种)
+
+
+
   return (
+   <div>
     <ReactEcharts
       style={{
         height: "100%",
@@ -63,6 +69,6 @@ export default function BarChart() {
           },
         ],
       }}
-    />
+    /></div>
   );
 }

@@ -30,17 +30,30 @@ useEffect( async ()=> {
 
 
 // //teamDistribution
- let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
   
-   const [teamDistribution, setTeamDistribution] = useState()
-   useEffect( async () => {
-    const res = await fetch(teamDistribution_Url)
-    const data = await res.json()
-    setTeamDistribution(data)
- 
+const [teamDistribution, setTeamDistribution] = useState()
+useEffect(()=> {
+     axios.get(teamDistribution_Url)
+     .then(response => {
+      if (response.data) {
+        const teamD = response.data.map((data) => {
+          return {
+            name: data['分包企业'],
+            team: data['工种'],
+            nbrWorkers: data['人数'],
+          }
+        })
+        setTeamDistribution(teamD);
+      }
+     })
+     .catch((err) => console.log("Wrong URL", err))
+    
+
+
 }, [teamDistribution_Url])
 
-console.log('hoy', teamDistribution);
+
 
 // //Access control record
 // let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
@@ -228,16 +241,12 @@ console.log('hoy', teamDistribution);
           bordered={false}
           style={{ color: "black" }}
           pagination={false}
-          dataSource={[
-
-// teamDistribution 
-
-teamDistribution && teamDistribution.forEach((data, index) => {
-  return {nbrWorkers: "2", name: "上海天怡建", team: "建筑起重机械司机"}
-})
+          dataSource={
+teamDistribution
+ 
 
 
-          ]}
+          }
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
           <Table.Column title="工种" dataIndex="team" align="center" />

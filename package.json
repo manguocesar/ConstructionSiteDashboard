@@ -42,5 +42,6 @@
   },
   "devDependencies": {
     "use-resize-observer": "^6.1.0"
-  }
+  },
+  "proxy": "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn"
 }

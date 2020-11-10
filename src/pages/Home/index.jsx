@@ -25,7 +25,7 @@ export default function Home() {
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title="xxx - Title"
+        title="复旦大学邯郸校区中华经济文化研究中心项目"
         left="0"
         top="0"
         width="calc(66% - 4px)"
@@ -68,7 +68,7 @@ export default function Home() {
 
       <GridView.Cell
         noBodyStyle={true}
-        title="xxx"
+        title="工地位置"
         right="0"
         bottom="0"
         width="calc(34% - 4px)"
