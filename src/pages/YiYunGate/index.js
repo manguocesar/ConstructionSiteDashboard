@@ -20,22 +20,18 @@ function Inspection() {
   const { chinaDate } = useContext(TimeContext);
 
   let accessControl_Url =
-    "https://thingproxy.freeboard.io/fetch/" +
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
 
   let twoWeeksRecognition_Url =
-    "https://thingproxy.freeboard.io/fetch/" +
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json";
 
   let teamDistribution_Url =
-    "https://thingproxy.freeboard.io/fetch/" +
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json";
 
   let accessControlRecord_UrlXlsx =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.xlsx";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.xlsx";
   let accessControlRecord_Url =
-    "https://thingproxy.freeboard.io/fetch/" +
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.json";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.json";
 
   useEffect(() => {
     async function fetchData() {
