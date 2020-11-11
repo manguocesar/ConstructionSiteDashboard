@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import lockr from 'lockr'
 
 //style
 import "./App.css";
@@ -20,20 +21,28 @@ moment.locale("zh-cn");
 const LoginStatus = {
   NotLoggedIn: 0,
   LoggedIn: 1,
-  LoggedInAdmin: 2,
 };
 
 function App() {
   let [loginStatus, setLoginStatus] = useState(LoginStatus.NotLoggedIn);
 
+  useEffect(() => {
+    const isLoggedIn = !!lockr.get('login_status');
+    if (isLoggedIn) {
+      setLoginStatus(LoginStatus.LoggedIn)
+    }
+  }, [0]);
+
   const signout = useCallback(() => {
     setLoginStatus(LoginStatus.NotLoggedIn);
+    lockr.rm('login_status');
   }, [setLoginStatus]);
 
   const signin = useCallback(
     (username, password) => {
       // if (username === "other" && password === "other") {
         setLoginStatus(LoginStatus.LoggedIn);
+        lockr.set('login_status', true);
       // }
     },
     [setLoginStatus]
