@@ -27,7 +27,7 @@ let teamDistribution_Url =
 let accessControlRecord_UrlXlsx = "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.xlsx"
 let accessControlRecord_Url =
 "https://thingproxy.freeboard.io/fetch/" +
-"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.json"
+"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.json"
 
 useEffect(() => {
   async function fetchData() {
@@ -60,19 +60,23 @@ let arrayOfValue = data && Object.values(data.accessControl)
       name: item['分包企业'],   team: item['工种'],  nbrWorkers: item['人数']
     };});
 
-
 console.log("accessControlRecord", data && data.accessControlRecord);
 
-const entryRecords = data && data.accessControlRecord.map((item) => {
-  return  item.用工日期
- })
-const exitRecords = data &&  data.accessControlRecord.map((item) => {
-  return  item.退工日期
- })
-const totalRecords = data &&  data.accessControlRecord.map((item) => {
-  return  item.用工日期 + item.退工日期
+const timeHours = data && data.accessControlRecord.map((item) => {
+  return  item.时间.split("2020-00-11")
  })
 
+const entryRecords = data && data.accessControlRecord.map((item) => {
+  return  item.进入人数
+ })
+const exitRecords = data &&  data.accessControlRecord.map((item) => {
+  return  item.离开人数
+ })
+const totalRecords = data &&  data.accessControlRecord.map((item) => {
+  return  item.进入人数 + item.离开人数
+ })
+
+ console.log("timeHours", data && timeHours, );
 
 if (!data) {
   return <div>Loading...</div>;
@@ -256,15 +260,7 @@ if (!data) {
             },
             xAxis: {
               type: "category",
-              data: [
-                "08.00",
-                "",
-                "12.00",
-                "",
-                "16.00",
-                "",
-                "20.00",
-              ],
+              data: timeHours,
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -279,7 +275,7 @@ if (!data) {
             },
             yAxis: {
               type: "value",
-              max: "200",
+              max: 50,
               axisLabel: {
                 show: true,
                 textStyle: {
