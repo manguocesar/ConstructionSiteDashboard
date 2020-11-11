@@ -4,18 +4,24 @@ import ReactEcharts from "echarts-for-react";
 
 export default function PieChart(datas) {
 
- console.log("PieChartData:", datas.datas.工种)
+let arrayOfName = datas.datas.工种 && Object.keys(datas.datas.工种)
+let arrayOfValue = datas.datas.工种 && Object.values(datas.datas.工种)
+let totalValue
 
-
+ arrayOfValue && arrayOfValue.forEach((item) =>{ totalValue = arrayOfValue[0] + arrayOfValue[1] + arrayOfValue[2] + arrayOfValue[3] +
+  arrayOfValue[4]} )
 
   return (
-   <div>
+ 
+   
+     
     <ReactEcharts
       style={{
+       
         height: "100%",
       }}
       option={{
-        color: ["#65AE9D", "#82cdbf", "#B4FDEC", "#D2E9E5"],
+        color: ["#65AE9D", "#82cdbf", "#B4FDEC", "#D2E9E5","#F2E9E5"],
         tooltip: {
           trigger: "item",
           formatter: "",
@@ -25,9 +31,9 @@ export default function PieChart(datas) {
           color: "white",
           itemWidth: 12,
           itemHeight: 10,
-          right: "0",
+          right: -15,
           top: "middle",
-          data: ["建筑普工", "建筑焊工", "机械司机", "其他工种"],
+          data: arrayOfName,
           textStyle: {
             color: "white",
             lineHeight: 8,
@@ -37,10 +43,10 @@ export default function PieChart(datas) {
 
         series: [
           {
-            name: "建筑普工",
+            name: "",
             type: "pie",
-            center: ["35%", "50%"],
-            radius: ["35%", "75%"],
+            center: ["30%", "50%"],
+            radius: ["35%", "90%"],
             avoidLabelOverlap: false,
             label: {
               formatter: ({ data, value }) => {
@@ -61,14 +67,15 @@ export default function PieChart(datas) {
               show: false,
             },
             data: [
-              { value: 235, name: "建筑普工", total: 235 + 210 + 135 + 35 },
-              { value: 210, name: "建筑焊工", total: 235 + 210 + 135 + 35 },
-              { value: 135, name: "机械司机", total: 235 + 210 + 135 + 35 },
-              { value: 35, name: "其他工种", total: 235 + 210 + 135 + 35 },
+              { value: arrayOfValue && arrayOfValue[0], name: arrayOfName && arrayOfName[0], total: totalValue },
+              { value: arrayOfValue && arrayOfValue[1], name: arrayOfName && arrayOfName[1], total: totalValue },
+              { value: arrayOfValue && arrayOfValue[2], name: arrayOfName && arrayOfName[2], total: totalValue },
+              { value: arrayOfValue && arrayOfValue[3], name: arrayOfName && arrayOfName[3], total: totalValue },
+              { value: arrayOfValue && arrayOfValue[4], name: arrayOfName && arrayOfName[4], total: totalValue },
             ],
           },
         ],
       }}
-    /></div>
+    />
   );
 }

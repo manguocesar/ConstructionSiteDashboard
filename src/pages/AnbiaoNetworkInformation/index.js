@@ -21,7 +21,9 @@ function Inspection() {
  
 
   //Employment information of safety standard network
-  let employmentInfo_Url ="aaa"
+  let employmentInfo_Url =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json"
   const [employmentInfo, setEmploymentInfo] = useState()
   useEffect(()=> {
     axios.get(employmentInfo_Url)
@@ -41,7 +43,9 @@ function Inspection() {
 
 
     //employmentRetirementRecords
-  let employmentRetirementRecords_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
+  let employmentRetirementRecords_Url =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
   const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
   useEffect(()=> {
     axios.get(employmentRetirementRecords_Url)
@@ -52,7 +56,9 @@ function Inspection() {
   }, [employmentRetirementRecords_Url])
   
 //jobDistributionData
-  let jobDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+  let jobDistribution_Url =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
   const [jobDistributionData, setJobDistributionData] = useState()
   useEffect(()=> {
     axios.get(jobDistribution_Url)
@@ -72,7 +78,9 @@ function Inspection() {
 
   //safetyStandard
   let safetyStandard_UrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.xlsx"
-  let safetyStandard_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
+  let safetyStandard_Url =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
   const [safetyStandard, setSafetyStandard] = useState()
   useEffect(()=> {
     axios.get(safetyStandard_Url)

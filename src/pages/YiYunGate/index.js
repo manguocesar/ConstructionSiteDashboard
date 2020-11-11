@@ -8,7 +8,9 @@ import ReactEcharts from "echarts-for-react";
 function Inspection() {
 
 //accessControl
-let accessControl_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
+let accessControl_Url =
+"https://thingproxy.freeboard.io/fetch/" +
+"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
 const [accessControl, setAccessControl] = useState()
 useEffect( async ()=> {
   const res = await fetch(accessControl_Url)
@@ -30,7 +32,9 @@ useEffect( async ()=> {
 
 
 // //teamDistribution
-let teamDistribution_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
+let teamDistribution_Url =
+"https://thingproxy.freeboard.io/fetch/" +
+"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
   
 const [teamDistribution, setTeamDistribution] = useState()
 useEffect(()=> {
@@ -54,7 +58,9 @@ useEffect(()=> {
 
 //Access control record
 let accessControlRecord_UrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
-let accessControlRecord_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
+let accessControlRecord_Url =
+"https://thingproxy.freeboard.io/fetch/" +
+"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/门禁出入记录.xlsx"
 const [accessControlRecord, setAccessControlRecord] = useState()
 useEffect(()=> {
   axios.get(accessControlRecord_Url)
@@ -67,7 +73,6 @@ useEffect(()=> {
 
   return (
     <GridView>
-      {/* done */}
       <GridView.Cell
         title="羿云门禁信息"
         left="0"

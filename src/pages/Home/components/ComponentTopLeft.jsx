@@ -1,6 +1,7 @@
 import React, { useState,useEffect, useContext } from "react";
 import axios from "axios"
-import { Table,  } from "antd";
+import { Table} from "antd";
+
 //context
 import { TimeContext } from "../../../contexts/TimeContext";
 
@@ -23,7 +24,9 @@ const [datas, setDatas] = useState(0);
 
 
 
-let numberOfWorkers_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json"
+let numberOfWorkers_Url =
+"https://thingproxy.freeboard.io/fetch/" +
+"https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json"
 
 useEffect(()=> {
   axios.get(numberOfWorkers_Url)
@@ -37,7 +40,9 @@ useEffect(()=> {
 
 
   //accessControl
-  let accessControl_Url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
+  let accessControl_Url =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json"
   const [accessControl, setAccessControl] = useState()
   useEffect( async ()=> {
     const res = await fetch(accessControl_Url)
