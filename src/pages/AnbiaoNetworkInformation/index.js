@@ -18,89 +18,68 @@ function Inspection() {
   let fiveDaysAgo = moment().subtract(5, 'days').format("DD-MM")
   let sixDaysAgo = moment().subtract(6, 'days').format("DD-MM")
 
- 
+ const [data,setData] = useState("")
 
-  //Employment information of safety standard network
   let employmentInfo_Url =
   "https://thingproxy.freeboard.io/fetch/" +
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json"
-  const [employmentInfo, setEmploymentInfo] = useState()
-  useEffect(()=> {
-    axios.get(employmentInfo_Url)
-    .then(response => {
-      if (response.data) {
-        const employInfo = response.data.map((data) => {
-          return {
-            type: data['分包企业'],
-            number: data['工种'],
-          }
-        })
-        setEmploymentInfo(employInfo)
-    }})
-    .catch((err) => console.log("Wrong URL", err))
-  }, [0])
-
-
-
-    //employmentRetirementRecords
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E7%94%A8%E5%B7%A5%E4%BF%A1%E6%81%AF.json"
+    
   let employmentRetirementRecords_Url =
   "https://thingproxy.freeboard.io/fetch/" +
   "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json"
-  const [employmentRetirementRecords, setEmploymentRetirementRecords] = useState()
-  useEffect(()=> {
-    axios.get(employmentRetirementRecords_Url)
-    .then(response => {
-      setEmploymentRetirementRecords(response.data)
-    })
-    .catch(console.log("error"))
-  }, [employmentRetirementRecords_Url])
-  
-//jobDistributionData
+
   let jobDistribution_Url =
   "https://thingproxy.freeboard.io/fetch/" +
   "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json"
-  const [jobDistributionData, setJobDistributionData] = useState()
-  useEffect(()=> {
-    axios.get(jobDistribution_Url)
-    .then(response => {
-      if (response.data) {
-        const teamD = response.data.map((data) => {
-          return {
-            name: data['分包企业'],
-            team: data['工种'],
-            nbrWorkers: data['人数'],
-          }
-        })
-      setJobDistributionData(teamD)
-    }})
-    .catch((err) => console.log("error: ", err))
-  }, [jobDistribution_Url])
 
-  //safetyStandard
   let safetyStandard_UrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.xlsx"
   let safetyStandard_Url =
   "https://thingproxy.freeboard.io/fetch/" +
   "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
-  const [safetyStandard, setSafetyStandard] = useState()
-  useEffect(()=> {
-    axios.get(safetyStandard_Url)
-    .then(response => {
-      if (response.data) {
-        const newArray = response.data.map((data) => {
-          return {
-            id: data['序号'],
-            name: data['姓名'],
-            idCard: data['身份证'],
-            gender: data['性别'],
-            workType: data['工种'],
-            employmentDate: data['用工日期'],
-          }
-        })
-        setSafetyStandard(newArray)
-    }})
-    .catch((err) => console.log("error: ", err))
-  }, [0])
- 
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: employmentInfo } = await axios.get(employmentInfo_Url);
+      const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecords_Url);
+      const { data: jobDistributionData } = await axios.get(jobDistribution_Url);
+      const { data: safetyStandard } = await axios.get(safetyStandard_Url);
+  
+      setData({
+        employmentInfo,
+        employmentRetirementRecords,
+        jobDistributionData,
+        safetyStandard,
+      });
+    }
+    fetchData();
+  }, [0]);
+  
+
+let arrayOfName = data && Object.keys(data.employmentInfo)
+let arrayOfValue = data && Object.values(data.employmentInfo)
+
+  const employmentRecords = data.employmentRetirementRecords && data.employmentRetirementRecords.map((item) => {
+    return  item.用工日期
+   })
+  const retirementRecords = data.employmentRetirementRecords && data.employmentRetirementRecords.map((item) => {
+    return  item.退工日期
+   })
+
+
+   const jobDistributionData = data && data.jobDistributionData.map((item) => {
+    return {
+      name: item['分包企业'],   team: item['工种'],  nbrWorkers: item['人数']
+    };});
+
+    const safetyStandard = data && data.safetyStandard.map((item) => {
+      return {
+        id: item['序号'],   name: item['姓名'],  idCard: item['身份证'],
+        gender: item['性别'],   workType: item['工种'],  employmentDate: item['用工日期']
+      };});
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <GridView >
@@ -119,10 +98,9 @@ function Inspection() {
           style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={[
-            { number: "xxx", type: "xxx" },
-            employmentInfo
-            
-            
+            { number: data && arrayOfValue[0], type: arrayOfName[0] },
+            { number:  data && arrayOfValue[1], type: arrayOfName[1] },
+            { number: data && arrayOfValue[2], type: arrayOfName[2] }, 
           ]}
         >
           <Table.Column title="" dataIndex="type" align="center" />
@@ -211,41 +189,21 @@ function Inspection() {
               top: 10,
             },
             series: [
-
-
-// employmentRetirementRecords 
-
               {
-                // {if (employmentRetirementRecords){ 
-//   employmentRetirementRecords.map((item, index) => {
-//       return ({
-//         Enter: item.Enter,
-// });
-// })
-//   } }
- 
                 name: "用工人数",
                 type: "bar",
                 barGap: 0.2,
                 barMaxWidth: 10,
                 label: "one",
-                data: [150, 125, 60, 125, 60, 125,80],
+                data: employmentRecords,
               },
               {
-                // {if (employmentRetirementRecords){ 
-//   employmentRetirementRecords.map((item, index) => {
-//       return ({
-//         Exit: item.Exit,
-// });
-// })
-//   } }
                 name: "退工人数",
                 type: "bar",
                 label: "two",
                 barMaxWidth: 10,
-                data: [80, 40, 20,40, 20,30,50],
+                data: retirementRecords,
               },
-             
             ],
           }}
         />
@@ -293,7 +251,7 @@ function Inspection() {
           bordered={false}
           style={{ backgroundColor: "white" }}
           pagination={false}
-          scroll={{ y: "22vh" }}
+          scroll={{ y: "20vh" }}
           dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />

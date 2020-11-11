@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Table, Divider, Button } from "antd";
-import GridView from "../../components/GridView";
 import axios from "axios"
-
 import ReactEcharts from "echarts-for-react";
+
+//components
+import GridView from "../../components/GridView";
+
 //context
 import { TimeContext } from "../../contexts/TimeContext";
 
@@ -14,6 +16,10 @@ function Inspection() {
   let comparisonResultsUrl =
   "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json";
+
+    let employmentRetirementRecordsUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
 
    let inspectionRecordUrl =
     "https://thingproxy.freeboard.io/fetch/" +
@@ -26,24 +32,23 @@ function Inspection() {
 
 
 useEffect(() => {
-  // TODO error handling
   async function fetchData() {
     const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
+    const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecordsUrl);
     const { data: inspectionData } = await axios.get(inspectionRecordUrl);
     const { data: patrolData } = await axios.get(patrolLogUrl);
     setData({
       comparisonResults,
+      employmentRetirementRecords,
       inspectionData,
       patrolData,
     });
   }
   fetchData();
 }, [0]);
-
 if (!data) {
-  return <div >loading...</div>;
+  return <div>Loading...</div>;
 }
-console.log("comparisonResults1",data.comparisonResults);
 
 const comparisonResults = data.comparisonResults.map((item) => {
   return {
@@ -58,11 +63,23 @@ const comparisonResults = data.comparisonResults.map((item) => {
   },
  };});
 
+ const employmentRecords = data.employmentRetirementRecords.map((item) => {
+  return  item.用工日期
+ })
+const retirementRecords = data.employmentRetirementRecords.map((item) => {
+  return  item.退工日期
+ })
+const totalRecords = data.employmentRetirementRecords.map((item) => {
+  return  item.用工日期 + item.退工日期
+ })
+
+ 
+
 const inspectionData = data.inspectionData.map((item) => {
   return {
-    device_id: item.device_id,
-    min: item.min,
-    max: item.max,  };});
+    device_id: item.device_id,   min: item.min,  max: item.max
+  };});
+   
 
 const patrolData = data.patrolData.map((item) => {
   return {
@@ -244,21 +261,21 @@ const patrolData = data.patrolData.map((item) => {
                 barGap: 0,
                 barMaxWidth: 25,
                 label: "one",
-                data: [250, 125, 60],
+                data: employmentRecords,
               },
               {
                 name: "离开人数",
                 type: "bar",
                 label: "two",
                 barMaxWidth: 25,
-                data: [80, 40, 20],
+                data: retirementRecords,
               },
               {
                 name: "工地人数",
                 type: "line",
                 label: "three",
                 smooth: true,
-                data: [210, 320, 370, 190, 150, 210],
+                data: totalRecords,
               },
             ],
           }}
