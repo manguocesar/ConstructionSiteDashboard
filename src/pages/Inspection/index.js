@@ -11,40 +11,28 @@ function Inspection() {
   const { chinaDate } = useContext(TimeContext)
   const [data, setData] = useState(null);
 
-  let comparisonResultsUrlXlsx =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%90%88%E6%A0%BC.xlsx";
+  let comparisonResultsUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json";
 
-  // use this proxy until this issue is fixed: https://github.com/atlas-ai/scraping-facerecognition-scg-internal/issues/5
-  let inspectionRecordUrl =
+   let inspectionRecordUrl =
     "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json";
-  let patrolLogUrl =
+  
+    let patrolLogUrl =
     "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json";
-    let patrolLogUrlXlsx ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
-
-//Comparison results of site employment database
-//first apicall ----
-
-//Second ApiCall ----
-const [comparisonResults, setComparisonResults] = useState()
-useEffect(()=> {
-  axios.get(comparisonResultsUrlXlsx)
-  .then(response => {
-    setComparisonResults(response.data)
-  })
-  .catch((err) => console.log("Error: ", err))
-}, [comparisonResultsUrlXlsx])
-
-
+    let patrolLogUrlXlsx = "https://thingproxy.freeboard.io/fetch/" + "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
 
 
 useEffect(() => {
   // TODO error handling
   async function fetchData() {
+    const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
     const { data: inspectionData } = await axios.get(inspectionRecordUrl);
     const { data: patrolData } = await axios.get(patrolLogUrl);
     setData({
+      comparisonResults,
       inspectionData,
       patrolData,
     });
@@ -55,15 +43,26 @@ useEffect(() => {
 if (!data) {
   return <div >loading...</div>;
 }
+console.log("comparisonResults1",data.comparisonResults);
+
+const comparisonResults = data.comparisonResults.map((item) => {
+  return {
+    gov_site_status: item.门禁系统,
+    gate_status: item.安标网,
+    recog_tag: item.识别标签,
+    people_count: item.人员数量,
+      action: {
+    label: "下载",
+     onClick: () => window.open(item.人员列表, "_blank"),
+    disabled: false,
+  },
+ };});
 
 const inspectionData = data.inspectionData.map((item) => {
   return {
     device_id: item.device_id,
     min: item.min,
-    max: item.max,
-    
-  };
-});
+    max: item.max,  };});
 
 const patrolData = data.patrolData.map((item) => {
   return {
@@ -115,34 +114,8 @@ const patrolData = data.patrolData.map((item) => {
           style={{ backgroundColor: "black" }}
           rowClassName="company-outsourcing"
           pagination={false}
-          dataSource={[
-            {
-              gov_site_status: "用工",
-              gate_status: "录入",
-              recog_tag: "合格",
-              people_count: "115",
-              alarm: "green",
-              action: {
-                label: "下载",
-                onClick: () => window.open(comparisonResultsUrlXlsx, "_blank"),
-                disabled: false,
-              },
-            },
-            {
-              gov_site_status: "用工",
-              gate_status: "未录入",
-              recog_tag: "合格",
-              people_count: "10",
-              alarm: "orange",
-              action: {
-                label: "下载",
-                onClick: () => { 
-
-
-                },
-              },
-            },
-          ]}
+          scroll={{ y: "20vh" }}
+          dataSource={ comparisonResults  }
         >
          <Table.Column
             title="安标网"
@@ -170,13 +143,13 @@ const patrolData = data.patrolData.map((item) => {
             render={(action, row) => {
               return (
                 <Button
-                  size="small"
-                  disabled={action.disabled}
-                  type="primary"
-                  ghost={true}
-                  onClick={action.onClick}
+                   size="small"
+                   disabled={action.disabled}
+                   type="primary"
+                   ghost={true}
+                   onClick={action.onClick}
                 >
-                  {action.label}
+                  {action.label} 
                 </Button>
               );
             }}
