@@ -82,6 +82,7 @@ export default function ListOfSites() {
                       </span>
                     </div>
                     <Button
+                      className="sites_button"
                       type="primary"
                       onClick={() => {
                         setSelectedSiteId(nbr.order);

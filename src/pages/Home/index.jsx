@@ -1,37 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 //style
 import "./index.css";
 
 //components
+import Loading from "../../components/Loading";
 import GridView from "../../components/GridView";
 import ListofSites from "./components/ListOfSites";
 import SiteLocation from "./components/SiteLocation";
 import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
 
-{/* <div className="container_info_display_home">
-<div className="container_info_left">
-  
-  <ListofSites />
-</div>
-<div className="container_info_right">
-  
-  <SiteLocation />
-</div>
-</div> */}
 export default function Home() {
+  const [data, setData] = useState(null);
+
+  const numberOfWorkersUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
+
+  const accessControlUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: numberOfWorkersData } = await axios.get(numberOfWorkersUrl);
+      const { data: accessControlData } = await axios.get(accessControlUrl);
+
+      setData({
+        numberOfWorkersData,
+        accessControlData,
+      });
+    }
+    fetchData();
+  }, [0]);
+
   return (
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title="xxx - Title"
+        title="复旦大学邯郸校区中华经济文化研究中心项目"
         left="0"
         top="0"
         width="calc(66% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ComponentTopLeft />
+        {!!data ? (
+          <ComponentTopLeft
+            numberOfWorkersData={data.numberOfWorkersData}
+            accessControlData={data.accessControlData}
+          />
+        ) : (
+          <Loading />
+        )}
       </GridView.Cell>
 
       <GridView.Cell
@@ -52,7 +74,7 @@ export default function Home() {
         width="calc(34% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ComponentTopRight />
+        {!!data ? <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} /> : <Loading />}
       </GridView.Cell>
 
       <GridView.Cell
@@ -62,19 +84,18 @@ export default function Home() {
         width="calc(66% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ListofSites/>
+        {!!data ? <ListofSites /> : <Loading />}
       </GridView.Cell>
-
 
       <GridView.Cell
         noBodyStyle={true}
-        title="xxx"
+        title="工地位置"
         right="0"
         bottom="0"
         width="calc(34% - 4px)"
         height="calc(50% - 4px)"
       >
-        <SiteLocation />
+        {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>
     </GridView>
   );

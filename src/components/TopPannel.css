@@ -1,60 +1,55 @@
 .container_top_pannel {
   display: flex;
   flex-grow: 1;
-  /* text-align: start; */
-  /* background-color: red; */
 }
 
 .container_consimLogo {
   display: flex;
-
   align-items: flex-start;
-  /* border: blue 1px solid; */
 }
 
 .consimLogo {
   display: flex;
   height: 48px;
   width: 80px;
-  /* background-color: green; */
-}
-
-.container_consimTitle {
-  margin-left: 18px;
-  display: flex;
-  text-align: start;
-  flex-grow: 1;
-  flex-direction: column;
-  color: #82cdbf;
-  /* border: blue 1px solid; */
-}
-
-.container_title_text {
-  font-size: 18px;
 }
 
 .container_consimTitle_router {
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  /* border: blue 1px solid; */
 }
 
 .NavRouter {
   display: flex;
-  font-size: 1.2vw;
+  font-size: 14px;
 }
 
 .container_companyLogo {
   display: flex;
   width: 160px;
   height: 33px;
-  /* border: green 1px dashed; */
+}
+
+.display_logo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 30px;
+  flex-grow: 1;
 }
 
 .companyLogo_basic {
   display: flex;
-  width: 160px;
-  height: 33px;
-  /* border: blue 1px dashed; */
+  width: 64px;
+}
+
+.text_logo {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.container_router {
+  display: flex;
+  flex-grow: 1;
 }

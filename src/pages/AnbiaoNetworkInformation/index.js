@@ -1,30 +1,98 @@
-import React, {useEffect, useState} from "react";
-import { Table, Divider, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
-import axios from "axios"
+import axios from "axios";
+
+import moment from "moment";
+
+const employmentInfoUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E7%94%A8%E5%B7%A5%E4%BF%A1%E6%81%AF.json";
+const employmentRetirementRecordsUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
+const jobDistributionUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json";
+const safetyStandardUrlXlsx =
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.xlsx";
+const safetyStandardUrl =
+  "https://thingproxy.freeboard.io/fetch/" +
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json";
 
 function Inspection() {
+  const today = moment().format("M.D");
+  const yesterday = moment().subtract(1, "days").format("DD-MM");
+  const twoDaysAgo = moment().subtract(2, "days").format("DD-MM");
+  const threeDaysAgo = moment().subtract(3, "days").format("DD-MM");
+  const fourDaysAgo = moment().subtract(4, "days").format("DD-MM");
+  const fiveDaysAgo = moment().subtract(5, "days").format("DD-MM");
+  const sixDaysAgo = moment().subtract(6, "days").format("DD-MM");
 
-  const [apiList, setApiList] = useState()
-  const [test, setTest] = useState()
-    
-  
+  const [data, setData] = useState({
+    loading: true,
+    employmentInfo: [],
+    employmentRetirementRecords: [],
+    jobDistributionData: [],
+    safetyStandard: [],
+  });
 
-  let api_url ="https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json"
-     
-  useEffect(()=> {
-    axios.get(api_url)
-    .then(response => {
-      setApiList(response.data)
-    })
-  }, [api_url])
+  useEffect(() => {
+    async function fetchData() {
+      const { data: employmentInfo } = await axios.get(employmentInfoUrl);
+      const { data: employmentRetirementRecords } = await axios.get(
+        employmentRetirementRecordsUrl
+      );
+      const { data: jobDistributionData } = await axios.get(jobDistributionUrl);
+      const { data: safetyStandard } = await axios.get(safetyStandardUrl);
+      setData({
+        employmentInfo,
+        employmentRetirementRecords,
+        jobDistributionData,
+        safetyStandard,
+      });
+    }
+    fetchData();
+  }, [0]);
 
-console.log(apiList)
- 
+  const employmentInfo = Object.entries(data.employmentInfo).map(
+    ([key, value]) => {
+      return {
+        number: value,
+        type: key,
+      };
+    }
+  );
+
+  const employmentRecords = data.employmentRetirementRecords.map((item) => {
+    return item.用工日期;
+  });
+  const retirementRecords = data.employmentRetirementRecords.map((item) => {
+    return item.退工日期;
+  });
+
+  const jobDistributionData = data.jobDistributionData.map((item) => {
+    return {
+      name: item["分包企业"],
+      team: item["工种"],
+      nbrWorkers: item["人数"],
+    };
+  });
+
+  const safetyStandard = data.safetyStandard.map((item) => {
+    return {
+      id: item["序号"],
+      name: item["姓名"],
+      idCard: item["身份证"],
+      gender: item["性别"],
+      workType: item["工种"],
+      employmentDate: item["用工日期"],
+    };
+  });
 
   return (
-    <GridView >
+    <GridView>
       <GridView.Cell
         title="安标网用工信息"
         left="0"
@@ -32,22 +100,17 @@ console.log(apiList)
         width="calc(40% - 4px)"
         height="calc(43% - 4px)"
       >
-         <div></div>
         <Table
           size="small"
           onRow={null}
           bordered={false}
+          loading={data.loading}
           style={{ backgroundColor: "black" }}
           pagination={false}
-          dataSource={[
-            { device_id: "498", date: "历史记录人数", time: "xxx" },
-            { device_id: "371", date: "已退工人数", time: "xxx" },
-            
-          ]}
+          dataSource={employmentInfo}
         >
-          <Table.Column title="合法用工人数" dataIndex="date" align="center" />
-         
-          <Table.Column title="127" dataIndex="device_id" align="center" />
+          <Table.Column title="" dataIndex="type" align="center" />
+          <Table.Column title="" dataIndex="number" align="center" />
         </Table>
       </GridView.Cell>
 
@@ -81,27 +144,18 @@ console.log(apiList)
                 color: "white",
                 width: 300,
                 fontSize: 13,
-                // fontFamily: ,
-                // fontWeight: "italic" ,
-                lineHeight: "",
               },
             },
             xAxis: {
               type: "category",
               data: [
-                "2020.04",
-               
-                "2020.05",
-                
-                "2020.06",
-
-                "2020.07",
-               
-                "2020.08",
-                
-                "2020.09",
-                "2020.10",
-               
+                sixDaysAgo,
+                fiveDaysAgo,
+                fourDaysAgo,
+                threeDaysAgo,
+                twoDaysAgo,
+                yesterday,
+                today,
               ],
               axisLabel: {
                 show: true,
@@ -140,16 +194,15 @@ console.log(apiList)
                 barGap: 0.2,
                 barMaxWidth: 10,
                 label: "one",
-                data: [250, 125, 60, 125, 60, 125,80],
+                data: employmentRecords,
               },
               {
                 name: "退工人数",
                 type: "bar",
                 label: "two",
                 barMaxWidth: 10,
-                data: [80, 40, 20,40, 20,30,50],
+                data: retirementRecords,
               },
-             
             ],
           }}
         />
@@ -163,74 +216,49 @@ console.log(apiList)
         height="calc(57% - 4px)"
       >
         <Table
+          loading={data.loading}
           size="small"
           onRow={null}
           bordered={false}
-          style={{ color: "black" }}
           pagination={false}
-          dataSource={[
-            { device_id: "2", date: "上海天怡建筑装潢有限公司", time: "建筑起重机械司机" },
-            { device_id: "16", date: "上海翊荣建筑装潢有限公司", time: "建筑、装饰工程普工" },
-            { device_id: "2", date: "上海翊荣建筑装潢有限公司", time: "建筑焊工" },
-            { device_id: "31", date: "上海翊荣建筑装潢有限公司", time: "钢筋工" },
-          ]}
+          scroll={{ y: "22vh" }}
+          dataSource={jobDistributionData}
         >
-          <Table.Column title="分包企业" dataIndex="date" align="center" />
-          <Table.Column title="工种" dataIndex="time" align="center" />
-          <Table.Column title="人数" dataIndex="device_id" align="center" />
+          <Table.Column title="分包企业" dataIndex="name" align="center" />
+          <Table.Column title="工种" dataIndex="team" align="center" />
+          <Table.Column title="人数" dataIndex="nbrWorkers" align="center" />
         </Table>
       </GridView.Cell>
-      
+
       <GridView.Cell
-      
         title="安标网数据库"
         action={{
           label: "下载",
-          onClick: () => {},
+          onClick: () => window.open(safetyStandardUrlXlsx, "_blank"),
+          disabled: false,
         }}
         right="0"
         bottom="0"
         width="calc(60% - 4px)"
         height="calc(50% - 4px)"
       >
-       
         <Table
           size="small"
-          onRow={null}
-          bordered={false}
-          style={{ backgroundColor: "white" }}
+          loading={data.loading}
           pagination={false}
-          dataSource={[
-
-         
-// { id: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx", employmentDate: "xxx"}
-       
-{if (apiList){ 
-  apiList.map((item, index) => {
-      return ({
-        id: apiList[index].序号,
-        name: apiList[index].姓名,
-        idCard: apiList[index].身份证,
-        gender: apiList[index].性别,
-        workType: apiList[index].工种,
-        employmentDate: apiList[index].用工日期,  
-})
-})
-
-  } }
-   
-  
-            
-            
-
-          ]}
+          scroll={{ y: "20vh" }}
+          dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />
           <Table.Column title="身份证" dataIndex="idCard" align="center" />
           <Table.Column title="性别" dataIndex="gender" align="center" />
           <Table.Column title="工种" dataIndex="workType" align="center" />
-          <Table.Column title="用工日期" dataIndex="employmentDate" align="center" />
+          <Table.Column
+            title="用工日期"
+            dataIndex="employmentDate"
+            align="center"
+          />
         </Table>
       </GridView.Cell>
     </GridView>

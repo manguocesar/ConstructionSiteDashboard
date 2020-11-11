@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import lockr from 'lockr'
 
 //style
-import "./App.css";
+import "./App.less";
 
 //pages
 import MainView from "./pages/MainView";
@@ -13,29 +14,39 @@ import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itse
 import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
 import AnimationsContextProvider from "./contexts/AnimationsContext"; // will itself imports our Reducer
 
+import moment from "moment";
+import "moment/locale/zh-cn";
+moment.locale("zh-cn");
+
 const LoginStatus = {
   NotLoggedIn: 0,
   LoggedIn: 1,
-  LoggedInAdmin: 2,
 };
 
 function App() {
   let [loginStatus, setLoginStatus] = useState(LoginStatus.NotLoggedIn);
 
-  //set back the original state
-  function signout() {
-    setLoginStatus(LoginStatus.NotLoggedIn);
-  }
-
-  const signin = (username, password) => {
-    if (username === "other" && password === "other") {
-      setLoginStatus(LoginStatus.LoggedInAdmin);
-    } else {
-      setLoginStatus(LoginStatus.LoggedIn);
+  useEffect(() => {
+    const isLoggedIn = !!lockr.get('login_status');
+    if (isLoggedIn) {
+      setLoginStatus(LoginStatus.LoggedIn)
     }
-  };
+  }, [0]);
 
-  loginStatus = LoginStatus.LoggedIn;
+  const signout = useCallback(() => {
+    setLoginStatus(LoginStatus.NotLoggedIn);
+    lockr.rm('login_status');
+  }, [setLoginStatus]);
+
+  const signin = useCallback(
+    (username, password) => {
+      // if (username === "other" && password === "other") {
+        setLoginStatus(LoginStatus.LoggedIn);
+        lockr.set('login_status', true);
+      // }
+    },
+    [setLoginStatus]
+  );
 
   return (
     <div className="App">

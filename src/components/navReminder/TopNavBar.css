@@ -13,3 +13,17 @@
   border-bottom: 0.2vw solid transparent;
   margin: 0.2vh 0.5vh 0.2vh 0.5vh;
 }
+
+.container_consimTitle {
+  margin-left: 18px;
+  display: flex;
+  text-align: start;
+
+  flex-direction: column;
+  color: #82cdbf;
+  /* border: blue 1px solid; */
+}
+
+.container_title_text {
+  font-size: 18px;
+}

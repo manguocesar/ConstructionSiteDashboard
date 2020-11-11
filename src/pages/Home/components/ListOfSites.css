@@ -119,6 +119,13 @@
   /* border: solid 1px red; */
 }
 
+.sites_button {
+  color: black;
+}
+
+.sites_button:hover {
+  color: black;
+}
 
 .emptyIcons_home {
 }
