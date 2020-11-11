@@ -323,7 +323,6 @@ function Inspection() {
       >
         <Table
           size="small"
-          style={{ backgroundColor: "white", color: "white" }}
           dataSource={patrolData}
           scroll={{ y: "20vh" }}
           loading={data.loading}

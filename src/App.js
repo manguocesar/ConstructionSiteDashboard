@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import lockr from 'lockr'
 
 //style
-import "./App.css";
+import "./App.less";
 
 //pages
 import MainView from "./pages/MainView";
