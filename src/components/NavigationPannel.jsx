@@ -8,18 +8,11 @@ import "./NavigationPannel.css";
 
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs
 import { ReactComponent as IconCustomer } from "./navIcon/home.svg";
-
 import { ReactComponent as IconMen } from "./navIcon/men.svg";
-import { ReactComponent as IconFolder} from "./navIcon/folder.svg";
+import { ReactComponent as IconFolder } from "./navIcon/folder.svg";
 import { ReactComponent as IconUser } from "./navIcon/user.svg";
 import { ReactComponent as IconSettings } from "./navIcon/settings.svg";
 import { ReactComponent as IconSignout } from "./navIcon/signout.svg";
-// import { ReactComponent as IconSchedule} from "./navIcon/calandar.svg";
-// import { ReactComponent as IconSafety } from "./navIcon/shield.svg";
-import IconEquipment from "./navIcon/digger.svg";
-import IconSetting from "./navIcon/settings.svg";
-import IconEnvironment from "./navIcon/tree.svg";
-import logoutIcon from "./navIcon/logout.svg";
 
 const menuItems = [
   {
@@ -38,10 +31,10 @@ const menuItems = [
     src: IconUser,
     to: "/yiyungate",
   },
-  {
-    src: IconSettings,
-    to: "/settings",
-  },
+  // {
+  //   src: IconSettings,
+  //   to: "/settings",
+  // },
 ];
 
 export default function NavigationPannel(props) {
@@ -60,7 +53,6 @@ export default function NavigationPannel(props) {
               key={menuItem.to}
             >
               <Link
-                style={{ display: "flex", height: "100%", width: "100%" }}
                 to={menuItem.to}
               >
                 <menuItem.src
@@ -71,6 +63,15 @@ export default function NavigationPannel(props) {
             </li>
           );
         })}
+
+        <li
+          className={"menu_basic_li"}
+        >
+          <IconSignout
+            className="icon_nav_basic"
+            fill={"white"}
+          />
+        </li>
       </div>
     </div>
   );

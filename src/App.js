@@ -13,6 +13,12 @@ import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itse
 import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
 import AnimationsContextProvider from "./contexts/AnimationsContext"; // will itself imports our Reducer
 
+
+import moment from "moment";
+import "moment/locale/zh-cn";
+moment.locale("zh-cn");
+
+
 const LoginStatus = {
   NotLoggedIn: 0,
   LoggedIn: 1,

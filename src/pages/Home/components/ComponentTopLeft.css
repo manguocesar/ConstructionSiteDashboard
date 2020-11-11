@@ -39,26 +39,14 @@
   flex-grow: 7;
   flex-direction: column;
   justify-content: center;
-
   border-radius: 8px;
   background: rgba(39, 42, 51, 0.4);
   padding-bottom: 20px;
+  padding-left: 36px;
 }
 
 .container_info_leftTop_pannel_two_top {
   display: flex;
   justify-content: center;
-  width: 60%;
-  margin: 0px auto;
-  font-size: 1.2em;
-  padding: 0px;
-}
-
-.container_info_leftTop_pannel_two_chart {
-  width: 100%;
-  margin: 0px auto;
-}
-
-.ant-table-thead {
-  font-size: 50px;
+  font-size: 16px;
 }

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 //style
 import "./index.css";
 
 //components
+import Loading from "../../components/Loading";
 import GridView from "../../components/GridView";
 import ListofSites from "./components/ListOfSites";
 import SiteLocation from "./components/SiteLocation";
@@ -11,6 +13,29 @@ import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
 
 export default function Home() {
+  const [data, setData] = useState(null);
+
+  const numberOfWorkersUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
+
+  const accessControlUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: numberOfWorkersData } = await axios.get(numberOfWorkersUrl);
+      const { data: accessControlData } = await axios.get(accessControlUrl);
+
+      setData({
+        numberOfWorkersData,
+        accessControlData,
+      });
+    }
+    fetchData();
+  }, [0]);
+
   return (
     <GridView>
       <GridView.Cell
@@ -21,7 +46,14 @@ export default function Home() {
         width="calc(66% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ComponentTopLeft />
+        {!!data ? (
+          <ComponentTopLeft
+            numberOfWorkersData={data.numberOfWorkersData}
+            accessControlData={data.accessControlData}
+          />
+        ) : (
+          <Loading />
+        )}
       </GridView.Cell>
 
       <GridView.Cell
@@ -42,7 +74,7 @@ export default function Home() {
         width="calc(34% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ComponentTopRight />
+        {!!data ? <ComponentTopRight /> : <Loading />}
       </GridView.Cell>
 
       <GridView.Cell
@@ -52,9 +84,8 @@ export default function Home() {
         width="calc(66% - 4px)"
         height="calc(50% - 4px)"
       >
-        <ListofSites/>
+        {!!data ? <ListofSites /> : <Loading />}
       </GridView.Cell>
-
 
       <GridView.Cell
         noBodyStyle={true}
@@ -64,7 +95,7 @@ export default function Home() {
         width="calc(34% - 4px)"
         height="calc(50% - 4px)"
       >
-        <SiteLocation />
+        {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>
     </GridView>
   );

@@ -1,102 +1,111 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, Divider, Button } from "antd";
-import axios from "axios"
+import axios from "axios";
 import ReactEcharts from "echarts-for-react";
+import moment from "moment";
 
 //components
+import Loading from "../../components/Loading";
 import GridView from "../../components/GridView";
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
 
 function Inspection() {
-  const { chinaDate } = useContext(TimeContext)
-  const [data, setData] = useState(null);
+  const { chinaDate } = useContext(TimeContext);
+  const [data, setData] = useState({
+    loading: true,
+    comparisonResults: [],
+    employmentRetirementRecords: [],
+    inspectionData: [],
+    patrolData: [],
+  });
 
   let comparisonResultsUrl =
-  "https://thingproxy.freeboard.io/fetch/" +
+    "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json";
 
-    //wrong data 
-    let employmentRetirementRecordsUrl =
-  "https://thingproxy.freeboard.io/fetch/" +
+  let employmentRetirementRecordsUrl =
+    "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
 
-   let inspectionRecordUrl =
+  let inspectionRecordUrl =
     "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json";
-  
-    let patrolLogUrl =
+
+  let patrolLogUrl =
     "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json";
-    let patrolLogUrlXlsx = "https://thingproxy.freeboard.io/fetch/" + "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
+  let patrolLogUrlXlsx =
+    "https://thingproxy.freeboard.io/fetch/" +
+    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
 
+  useEffect(() => {
+    async function fetchData() {
+      const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
+      const { data: employmentRetirementRecords } = await axios.get(
+        employmentRetirementRecordsUrl
+      );
+      const { data: inspectionData } = await axios.get(inspectionRecordUrl);
+      const { data: patrolData } = await axios.get(patrolLogUrl);
+      setData({
+        comparisonResults,
+        employmentRetirementRecords,
+        inspectionData,
+        patrolData,
+        loading: false,
+      });
+    }
+    fetchData();
+  }, [0]);
 
-useEffect(() => {
-  async function fetchData() {
-    const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
-    const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecordsUrl);//wrong data 
-    const { data: inspectionData } = await axios.get(inspectionRecordUrl);
-    const { data: patrolData  } = await axios.get(patrolLogUrl);
-    setData({
-      comparisonResults,
-      employmentRetirementRecords, //wrong data 
-      inspectionData,
-      patrolData,
-    });
-  }
-  fetchData();
-}, [0]);
-if (!data) {
-  return <div>Loading...</div>;
-}
-
-const comparisonResults = data.comparisonResults.map((item) => {
-  return {
-    gov_site_status: item.门禁系统,
-    gate_status: item.安标网,
-    recog_tag: item.识别标签,
-    people_count: item.人员数量,
+  const comparisonResults = data.comparisonResults.map((item) => {
+    return {
+      gov_site_status: item.门禁系统,
+      gate_status: item.安标网,
+      recog_tag: item.识别标签,
+      people_count: item.人员数量,
       action: {
-    label: "下载",
-     onClick: () => window.open(item.人员列表, "_blank"),
-    disabled: false,
-  },
- };});
+        label: "下载",
+        onClick: () => window.open(item.人员列表, "_blank"),
+        disabled: false,
+      },
+    };
+  });
 
+  const employmentRecords = data.employmentRetirementRecords.map((item) => {
+    return item.用工日期;
+  });
+  const retirementRecords = data.employmentRetirementRecords.map((item) => {
+    return item.退工日期;
+  });
+  const totalRecords = data.employmentRetirementRecords.map((item) => {
+    return item.用工日期 + item.退工日期;
+  });
+  const totalRecords2 = data.employmentRetirementRecords.map((item) => {
+    return item.用工日期 + item.退工日期 + item.退工日期;
+  });
 
- //wrong data 
- const employmentRecords = data.employmentRetirementRecords.map((item) => {
-  return  item.用工日期
- })
-const retirementRecords = data.employmentRetirementRecords.map((item) => {
-  return  item.退工日期
- })
-const totalRecords = data.employmentRetirementRecords.map((item) => {
-  return  item.用工日期 + item.退工日期
- })
- const totalRecords2 = data.employmentRetirementRecords.map((item) => {
-  return  item.用工日期 + item.退工日期 + item.退工日期
- })
- 
+  const inspectionData = data.inspectionData.map((item) => {
+    return {
+      device_id: item.device_id,
+      time:
+        moment(item.min).format("hh:mm") +
+        " - " +
+        moment(item.max).format("hh:mm"),
+      date: moment(item.min).format("YYYY-MM-DD"),
+    };
+  });
 
-const inspectionData = data.inspectionData.map((item) => {
-  return {
-    device_id: item.device_id,   min: item.min,  max: item.max
-  };});
-   
-
-const patrolData = data.patrolData.map((item) => {
-  return {
-    id: item.id,
-    name: item.name,
-    idCard: item.idCard,
-    gender: item.gender,
-    workType: item.workType,
-  };
-});
-// empty
-// patrolData && console.log("patrolData",patrolData);
+  const patrolData = data.patrolData.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      idCard: item.idCard,
+      gender: item.gender,
+      workType: item.workType,
+    };
+  });
 
   return (
     <GridView>
@@ -121,7 +130,9 @@ const patrolData = data.patrolData.map((item) => {
               color="white"
               type="vertical"
             />
-            <div><span>{chinaDate}</span></div>
+            <div>
+              <span>{chinaDate}</span>
+            </div>
           </div>
         }
         left="0"
@@ -137,9 +148,10 @@ const patrolData = data.patrolData.map((item) => {
           rowClassName="company-outsourcing"
           pagination={false}
           scroll={{ y: "20vh" }}
-          dataSource={ comparisonResults  }
+          dataSource={comparisonResults}
+          loading={data.loading}
         >
-         <Table.Column
+          <Table.Column
             title="安标网"
             dataIndex="gov_site_status"
             align="center"
@@ -153,7 +165,7 @@ const patrolData = data.patrolData.map((item) => {
           <Table.Column
             title="人员数量"
             dataIndex="people_count"
-            align="center" 
+            align="center"
             render={(val, row) => {
               return <div style={{ color: row.alarm }}>{val}</div>;
             }}
@@ -161,17 +173,17 @@ const patrolData = data.patrolData.map((item) => {
           <Table.Column
             title="人员数量"
             dataIndex="action"
-            align="center" 
+            align="center"
             render={(action, row) => {
               return (
                 <Button
-                   size="small"
-                   disabled={action.disabled}
-                   type="primary"
-                   ghost={true}
-                   onClick={action.onClick}
+                  size="small"
+                  disabled={action.disabled}
+                  type="primary"
+                  ghost={true}
+                  onClick={action.onClick}
                 >
-                  {action.label} 
+                  {action.label}
                 </Button>
               );
             }}
@@ -192,7 +204,7 @@ const patrolData = data.patrolData.map((item) => {
           }}
           option={{
             backgroundColor: "transparent",
-            color: ["#65AE9D", "#DFA03A","#D7000B", "#F7000B"],
+            color: ["#65AE9D", "#DFA03A", "#D7000B", "#F7000B"],
             tooltip: {
               trigger: "axis",
               axisPointer: {
@@ -200,7 +212,7 @@ const patrolData = data.patrolData.map((item) => {
               },
             },
             legend: {
-              data: ["合格", "核查门禁", "核查安标","无法识别"],
+              data: ["合格", "核查门禁", "核查安标", "无法识别"],
               itemGap: 20,
               bottom: 0,
               itemWidth: 16,
@@ -214,11 +226,7 @@ const patrolData = data.patrolData.map((item) => {
             },
             xAxis: {
               type: "category",
-              data: [
-                "-30天",
-                "-20天",
-                "-10天",
-              ],
+              data: ["-30天", "-20天", "-10天"],
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -270,7 +278,8 @@ const patrolData = data.patrolData.map((item) => {
                 label: "three",
                 smooth: true,
                 data: totalRecords,
-              },{
+              },
+              {
                 name: "无法识别",
                 type: "line",
                 label: "four",
@@ -291,51 +300,43 @@ const patrolData = data.patrolData.map((item) => {
       >
         <Table
           size="small"
-          onRow={null}
-          bordered={false}
-          style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={inspectionData}
           scroll={{ y: "20vh" }}
-         
+          loading={data.loading}
         >
-          <Table.Column title="日期" dataIndex="min" align="center" />
-          <Table.Column title="时间" dataIndex="max" align="center" />
+          <Table.Column title="日期" dataIndex="date" align="center" />
+          <Table.Column title="时间" dataIndex="time" align="center" />
           <Table.Column title="设备" dataIndex="device_id" align="center" />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
-      
-      title="巡检日志"
-      action={{
-        label: "下载",
+        title="巡检日志"
+        action={{
+          label: "下载",
           onClick: () => window.open(patrolLogUrlXlsx, "_blank"),
           disabled: false,
-      }}
-      right="0"
-      bottom="0"
-      width="calc(64% - 4px)"
-      height="calc(50% - 4px)"
-    >
-    
-      <Table
-        size="small"
-        onRow={null}
-        bordered={false}
-        style={{ backgroundColor: "white", color: "white" }}
-        pagination={false}
-        dataSource = {patrolData}
-scroll={{ y: "20vh" }}
+        }}
+        right="0"
+        bottom="0"
+        width="calc(64% - 4px)"
+        height="calc(50% - 4px)"
       >
-        <Table.Column title="设备" dataIndex="id" align="center" />
-        <Table.Column title="姓名" dataIndex="name" align="center" />
-        <Table.Column title="身份证" dataIndex="idCard" align="center" />
-        <Table.Column title="识别时间" dataIndex="gender" align="center" />
-        <Table.Column title="类型" dataIndex="workType" align="center" />
-          </Table>
-    </GridView.Cell>
-
+        <Table
+          size="small"
+          style={{ backgroundColor: "white", color: "white" }}
+          dataSource={patrolData}
+          scroll={{ y: "20vh" }}
+          loading={data.loading}
+        >
+          <Table.Column title="设备" dataIndex="id" align="center" />
+          <Table.Column title="姓名" dataIndex="name" align="center" />
+          <Table.Column title="身份证" dataIndex="idCard" align="center" />
+          <Table.Column title="识别时间" dataIndex="gender" align="center" />
+          <Table.Column title="类型" dataIndex="workType" align="center" />
+        </Table>
+      </GridView.Cell>
     </GridView>
   );
 }
