@@ -16,14 +16,14 @@ const ListSitesContextProvider = (props) => {
       longitude: 121.480944,
       latitude: 31.2,
     },
-    {
-      order: 2,
-      img: customerLogo,
-      text: "中原数字",
-      selected: false,
-      longitude: 121.480944,
-      latitude: 31.236171,
-    },
+    // {
+    //   order: 2,
+    //   img: customerLogo,
+    //   text: "中原数字",
+    //   selected: false,
+    //   longitude: 121.480944,
+    //   latitude: 31.236171,
+    // },
     // {
     //   order: 3,
     //   img: customerLogo,

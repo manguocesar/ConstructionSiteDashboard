@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 //style
 import "./App.css";
@@ -13,11 +13,9 @@ import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itse
 import TimeContextProvider from "./contexts/TimeContext"; // will itself imports our Reducer
 import AnimationsContextProvider from "./contexts/AnimationsContext"; // will itself imports our Reducer
 
-
 import moment from "moment";
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
-
 
 const LoginStatus = {
   NotLoggedIn: 0,
@@ -28,20 +26,18 @@ const LoginStatus = {
 function App() {
   let [loginStatus, setLoginStatus] = useState(LoginStatus.NotLoggedIn);
 
-  //set back the original state
-  function signout() {
+  const signout = useCallback(() => {
     setLoginStatus(LoginStatus.NotLoggedIn);
-  }
+  }, [setLoginStatus]);
 
-  const signin = (username, password) => {
-    if (username === "other" && password === "other") {
-      setLoginStatus(LoginStatus.LoggedInAdmin);
-    } else {
-      setLoginStatus(LoginStatus.LoggedIn);
-    }
-  };
-
-  loginStatus = LoginStatus.LoggedIn;
+  const signin = useCallback(
+    (username, password) => {
+      // if (username === "other" && password === "other") {
+        setLoginStatus(LoginStatus.LoggedIn);
+      // }
+    },
+    [setLoginStatus]
+  );
 
   return (
     <div className="App">

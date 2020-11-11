@@ -14,11 +14,11 @@
 
 .menu_basic_li {
   margin-bottom: 24px;
-  border-radius: 1vh;
+  border-radius: 12px;
   border-style: solid;
   border-width: 4px;
   border-color: transparent;
-  padding: 4px;
+  padding: 8px;
 }
 
 /* .menu_basic_li.active {
@@ -27,11 +27,17 @@
 
 .menu_basic_li:hover {
   border-color: #82cdbf;
+  cursor: pointer;
 }
 
 .menu_basic_li.active {
   border-color: #82cdbf;
   background-color: #82cdbf;
+}
+
+.icon_nav_basic_container {
+  height: 36px;
+  width: 36px;
 }
 
 .icon_nav_basic {

@@ -144,8 +144,6 @@ function Inspection() {
           size="small"
           onRow={null}
           bordered={false}
-          style={{ backgroundColor: "black" }}
-          rowClassName="company-outsourcing"
           pagination={false}
           scroll={{ y: "20vh" }}
           dataSource={comparisonResults}
@@ -329,6 +327,7 @@ function Inspection() {
           dataSource={patrolData}
           scroll={{ y: "20vh" }}
           loading={data.loading}
+          
         >
           <Table.Column title="设备" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />

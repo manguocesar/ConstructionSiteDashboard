@@ -6,7 +6,9 @@ import "./ComponentTopRight.css";
 //context
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
-export default function ComponentTopRight() {
+export default function ComponentTopRight(props) {
+
+  const { numberOfWorkersData } = props;
   const { sites } = useContext(ListSitesContext);
 
   return (
@@ -25,7 +27,7 @@ export default function ComponentTopRight() {
         <span
           className="container_info_rightTop_green_numbers"
         >
-          548
+          {numberOfWorkersData.工人数}
         </span>
       </div>
 

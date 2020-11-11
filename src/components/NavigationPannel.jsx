@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "@reach/router";
-import { useLocation } from "@reach/router";
+import { useLocation, redirectTo } from "@reach/router";
 import classnames from "classnames";
+
 
 //style
 import "./NavigationPannel.css";
@@ -40,6 +41,8 @@ const menuItems = [
 export default function NavigationPannel(props) {
   const location = useLocation();
 
+  const { signout } = props;
+
   return (
     <div className="container_nav">
       <div className="menu_basic">
@@ -52,25 +55,24 @@ export default function NavigationPannel(props) {
               })}
               key={menuItem.to}
             >
-              <Link
-                to={menuItem.to}
-              >
-                <menuItem.src
-                  className="icon_nav_basic"
-                  fill={active ? undefined : "white"}
-                />
+              <Link to={menuItem.to} style={{ textDecoration: "none" }}>
+                <div className="icon_nav_basic_container">
+                  <menuItem.src
+                    className="icon_nav_basic"
+                    fill={active ? undefined : "white"}
+                  />
+                </div>
               </Link>
             </li>
           );
         })}
 
-        <li
-          className={"menu_basic_li"}
-        >
-          <IconSignout
-            className="icon_nav_basic"
-            fill={"white"}
-          />
+        <div style={{flexGrow: 1}}></div>
+
+        <li className={"menu_basic_li"} onClick={signout}>
+          <div className="icon_nav_basic_container">
+            <IconSignout className="icon_nav_basic" fill={"white"} />
+          </div>
         </li>
       </div>
     </div>

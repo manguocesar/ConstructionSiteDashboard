@@ -74,7 +74,7 @@ export default function Home() {
         width="calc(34% - 4px)"
         height="calc(50% - 4px)"
       >
-        {!!data ? <ComponentTopRight /> : <Loading />}
+        {!!data ? <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} /> : <Loading />}
       </GridView.Cell>
 
       <GridView.Cell
