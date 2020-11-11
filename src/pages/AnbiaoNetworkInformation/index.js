@@ -43,14 +43,13 @@ function Inspection() {
       const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecords_Url);
       const { data: jobDistributionData } = await axios.get(jobDistribution_Url);
       const { data: safetyStandard } = await axios.get(safetyStandard_Url);
-  
       setData({
         employmentInfo,
         employmentRetirementRecords,
         jobDistributionData,
         safetyStandard,
       });
-    }
+       }
     fetchData();
   }, [0]);
   

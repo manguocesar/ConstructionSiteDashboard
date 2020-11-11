@@ -17,6 +17,7 @@ function Inspection() {
   "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json";
 
+    //wrong data 
     let employmentRetirementRecordsUrl =
   "https://thingproxy.freeboard.io/fetch/" +
     "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
@@ -34,12 +35,12 @@ function Inspection() {
 useEffect(() => {
   async function fetchData() {
     const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
-    const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecordsUrl);
+    const { data: employmentRetirementRecords } = await axios.get(employmentRetirementRecordsUrl);//wrong data 
     const { data: inspectionData } = await axios.get(inspectionRecordUrl);
-    const { data: patrolData } = await axios.get(patrolLogUrl);
+    const { data: patrolData  } = await axios.get(patrolLogUrl);
     setData({
       comparisonResults,
-      employmentRetirementRecords,
+      employmentRetirementRecords, //wrong data 
       inspectionData,
       patrolData,
     });
@@ -63,6 +64,8 @@ const comparisonResults = data.comparisonResults.map((item) => {
   },
  };});
 
+
+ //wrong data 
  const employmentRecords = data.employmentRetirementRecords.map((item) => {
   return  item.用工日期
  })
@@ -72,7 +75,9 @@ const retirementRecords = data.employmentRetirementRecords.map((item) => {
 const totalRecords = data.employmentRetirementRecords.map((item) => {
   return  item.用工日期 + item.退工日期
  })
-
+ const totalRecords2 = data.employmentRetirementRecords.map((item) => {
+  return  item.用工日期 + item.退工日期 + item.退工日期
+ })
  
 
 const inspectionData = data.inspectionData.map((item) => {
@@ -90,8 +95,8 @@ const patrolData = data.patrolData.map((item) => {
     workType: item.workType,
   };
 });
-
-
+// empty
+// patrolData && console.log("patrolData",patrolData);
 
   return (
     <GridView>
@@ -175,7 +180,7 @@ const patrolData = data.patrolData.map((item) => {
       </GridView.Cell>
 
       <GridView.Cell
-        title="用工/退工历史记录"
+        title="近30日人员变化趋势"
         right="0"
         top="0"
         width="calc(34% - 4px)"
@@ -183,11 +188,11 @@ const patrolData = data.patrolData.map((item) => {
       >
         <ReactEcharts
           style={{
-            height: "100%",
+            height: "95%",
           }}
           option={{
             backgroundColor: "transparent",
-            color: ["#65AE9D", "#D2E9E5"],
+            color: ["#65AE9D", "#DFA03A","#D7000B", "#F7000B"],
             tooltip: {
               trigger: "axis",
               axisPointer: {
@@ -195,34 +200,24 @@ const patrolData = data.patrolData.map((item) => {
               },
             },
             legend: {
-              data: ["进入人数", "离开人数", "工地人数"],
+              data: ["合格", "核查门禁", "核查安标","无法识别"],
               itemGap: 20,
               bottom: 0,
-              itemWidth: 12,
+              itemWidth: 16,
               itemHeight: 9,
               textStyle: {
                 color: "white",
                 width: 300,
-                fontSize: 13,
+                fontSize: 18,
                 lineHeight: "",
               },
             },
             xAxis: {
               type: "category",
               data: [
-                "08.00",
-                "",
-                "",
-                "",
-                "12.00",
-                "",
-                "",
-                "",
-                "16.00",
-                "",
-                "",
-                "",
-                "20.00",
+                "-30天",
+                "-20天",
+                "-10天",
               ],
               axisLabel: {
                 show: true,
@@ -238,12 +233,12 @@ const patrolData = data.patrolData.map((item) => {
             },
             yAxis: {
               type: "value",
-              max: "400",
+              max: "200",
               axisLabel: {
                 show: true,
                 textStyle: {
                   color: "grey",
-                  fontSize: 12,
+                  fontSize: 16,
                 },
               },
               axisTick: { show: false },
@@ -256,26 +251,31 @@ const patrolData = data.patrolData.map((item) => {
             },
             series: [
               {
-                name: "进入人数",
-                type: "bar",
-                barGap: 0,
-                barMaxWidth: 25,
+                name: "合格",
+                type: "line",
                 label: "one",
+                smooth: true,
                 data: employmentRecords,
               },
               {
-                name: "离开人数",
-                type: "bar",
+                name: "核查门禁",
+                type: "line",
                 label: "two",
-                barMaxWidth: 25,
+                smooth: true,
                 data: retirementRecords,
               },
               {
-                name: "工地人数",
+                name: "核查安标",
                 type: "line",
                 label: "three",
                 smooth: true,
                 data: totalRecords,
+              },{
+                name: "无法识别",
+                type: "line",
+                label: "four",
+                smooth: true,
+                data: totalRecords2,
               },
             ],
           }}
@@ -325,13 +325,10 @@ const patrolData = data.patrolData.map((item) => {
         bordered={false}
         style={{ backgroundColor: "white", color: "white" }}
         pagination={false}
-        dataSource={
-
- { 设备: "xx", name: "xxx", idCard: "xxx", gender: "xxx",  workType: "xxx" },
- patrolData
-        }
+        dataSource = {patrolData}
+scroll={{ y: "20vh" }}
       >
-        <Table.Column title="设备" dataIndex="设备" align="center" />
+        <Table.Column title="设备" dataIndex="id" align="center" />
         <Table.Column title="姓名" dataIndex="name" align="center" />
         <Table.Column title="身份证" dataIndex="idCard" align="center" />
         <Table.Column title="识别时间" dataIndex="gender" align="center" />
