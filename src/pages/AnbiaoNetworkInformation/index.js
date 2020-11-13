@@ -18,13 +18,20 @@ const safetyStandardUrl =
   "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json";
 
 function Inspection() {
-  const today = moment().format("M.D");
-  const yesterday = moment().subtract(1, "days").format("DD-MM");
-  const twoDaysAgo = moment().subtract(2, "days").format("DD-MM");
-  const threeDaysAgo = moment().subtract(3, "days").format("DD-MM");
-  const fourDaysAgo = moment().subtract(4, "days").format("DD-MM");
-  const fiveDaysAgo = moment().subtract(5, "days").format("DD-MM");
-  const sixDaysAgo = moment().subtract(6, "days").format("DD-MM");
+
+  let sixLastDays = []
+for (let i = 6; i >= 0;){
+sixLastDays.push(moment().subtract(i, "days").format("DD-MM"));
+i--
+}
+
+  // const today = moment().format("M.D");
+  // const yesterday = moment().subtract(1, "days").format("DD-MM");
+  // const twoDaysAgo = moment().subtract(2, "days").format("DD-MM");
+  // const threeDaysAgo = moment().subtract(3, "days").format("DD-MM");
+  // const fourDaysAgo = moment().subtract(4, "days").format("DD-MM");
+  // const fiveDaysAgo = moment().subtract(5, "days").format("DD-MM");
+  // const sixDaysAgo = moment().subtract(6, "days").format("DD-MM");
 
   const [data, setData] = useState({
     loading: true,
@@ -165,15 +172,7 @@ function Inspection() {
             },
             xAxis: {
               type: "category",
-              data: [
-                sixDaysAgo,
-                fiveDaysAgo,
-                fourDaysAgo,
-                threeDaysAgo,
-                twoDaysAgo,
-                yesterday,
-                today,
-              ],
+              data: sixLastDays,
               axisLabel: {
                 show: true,
                 textStyle: {

@@ -7,10 +7,7 @@ import "./TopPannel.css";
 // navigation reminder icons
 import {
   HomeNav,
-  OperatorsNav,
-  InspectionNav,
-  NetworkInformationNav,
-  YiYunGateNav,
+  ViewNav
 } from "./navReminder/TopNavBar";
 
 //photo
@@ -28,10 +25,9 @@ export default function TopPannel() {
       <div className="container_router">
         <Router>
           <HomeNav path="/" />
-          <OperatorsNav path="Operators" />
-          <InspectionNav path="Inspection" />
-          <NetworkInformationNav path="networkinformation" />
-          <YiYunGateNav path="yiyungate" />
+          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="移动巡检" path="Inspection" />
+          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="安标网信息" path="networkinformation" />
+          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="羿云门禁" path="yiyungate" />
         </Router>
       </div>
       <div className="display_logo">
