@@ -8,10 +8,10 @@
 }
 
 .triangle-right {
-  border-top: 0.2vw solid transparent;
-  border-left: 0.4vw solid #82cdbf;
-  border-bottom: 0.2vw solid transparent;
-  margin: 0.2vh 0.5vh 0.2vh 0.5vh;
+  border-top: 3px solid transparent;
+  border-left: 5px solid #82cdbf;
+  border-bottom: 3px solid transparent;
+  margin-right: 8px;
 }
 
 .container_consimTitle {
@@ -21,9 +21,8 @@
 
   flex-direction: column;
   color: #82cdbf;
-  /* border: blue 1px solid; */
 }
 
 .container_title_text {
-  font-size: 18px;
+  font-size: 20px;
 }

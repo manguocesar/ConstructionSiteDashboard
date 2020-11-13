@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table } from "antd";
+import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
-import Loading from "../../components/Loading";
 
 import ReactEcharts from "echarts-for-react";
 
@@ -35,20 +34,28 @@ function Inspection() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: accessControl } = await axios.get(accessControl_Url);
-      const { data: twoWeeksRecognition } = await axios.get(
-        twoWeeksRecognition_Url
-      );
-      const { data: teamDistribution } = await axios.get(teamDistribution_Url);
-      const { data: accessControlRecord } = await axios.get(
-        accessControlRecord_Url
-      );
-      setData({
-        accessControl,
-        twoWeeksRecognition,
-        teamDistribution,
-        accessControlRecord,
-      });
+      try {
+        const [
+          { data: accessControl },
+          { data: twoWeeksRecognition },
+          { data: teamDistribution },
+          { data: accessControlRecord },
+        ] = await Promise.all([
+          axios.get(accessControl_Url),
+          axios.get(twoWeeksRecognition_Url),
+          axios.get(teamDistribution_Url),
+          axios.get(accessControlRecord_Url),
+        ]);
+        setData({
+          accessControl,
+          twoWeeksRecognition,
+          teamDistribution,
+          accessControlRecord,
+          loading: false,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
     }
     fetchData();
   }, [0]);
@@ -95,29 +102,40 @@ function Inspection() {
     <GridView>
       <GridView.Cell
         title="羿云门禁信息"
+        titleAlignCenter={true}
         left="0"
         top="0"
-        width="calc(35% - 4px)"
-        height="calc(47% - 4px)"
+        width="calc(35% - 8px)"
+        height="calc(42% - 8px)"
       >
         <Table
           size="small"
           loading={data.loading}
-          style={{ backgroundColor: "black" }}
+          style={{ marginLeft: 24 }}
           pagination={false}
           dataSource={accessControl}
         >
-          <Table.Column title="" dataIndex="name"  />
-          <Table.Column title="" dataIndex="number" align="center" />
+          <Table.Column
+            title=""
+            dataIndex="name"
+            className="table-column-large table-column-bold"
+          />
+          <Table.Column
+            title=""
+            dataIndex="number"
+            align="center"
+            className="table-column-large table-column-color-primary"
+          />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
         title="近两周人脸录入记录"
+        titleAlignCenter={true}
         right="0"
         top="0"
-        width="calc(65% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(65% - 8px)"
+        height="calc(50% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -196,10 +214,11 @@ function Inspection() {
 
       <GridView.Cell
         title="班组分布"
+        titleAlignCenter={true}
         left="0"
         bottom="0"
-        width="calc(35% - 4px)"
-        height="calc(53% - 4px)"
+        width="calc(35% - 8px)"
+        height="calc(58% - 8px)"
       >
         <Table
           size="small"
@@ -207,7 +226,7 @@ function Inspection() {
           bordered={false}
           pagination={false}
           loading={data.loading}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "calc(62vh - 256px)" }}
           dataSource={teamDistribution}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
@@ -218,6 +237,7 @@ function Inspection() {
 
       <GridView.Cell
         title="门禁出入记录"
+        titleAlignCenter={true}
         action={{
           label: "下载",
           onClick: () => window.open(accessControlRecord_UrlXlsx, "_blank"),
@@ -225,8 +245,8 @@ function Inspection() {
         }}
         right="0"
         bottom="0"
-        width="calc(65% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(65% - 8px)"
+        height="calc(50% - 8px)"
       >
         <span
           style={{

@@ -37,7 +37,7 @@ export default function ListOfSites() {
 
   return (
     <div className="container_info_leftBottom">
-      <div className="container_info_leftBottom_searchBar">
+      {/* <div className="container_info_leftBottom_searchBar">
         <label className="ListOfSite_SearchBar">
           <input
             className="ListOfSite_SearchBar"
@@ -56,56 +56,58 @@ export default function ListOfSites() {
           alt=""
           src={SearchIcon}
         />
-      </div>
-        <div className="container_info_leftBottom_sitesList">
-          <Row className="row">
-            {sites.map((nbr, key) => (
-              <Col key={key} className="col" span={6}>
-                <div className={`site_item_container ${selectedSite.order === nbr.order ? 'selected' : ''}`}>
-                  <div className="site_item_inactiveBasic_container_text">
-                    <div className="site_device_name_site">
-                      <span className="site_device_name_title">
-                        复旦大学项目
-                      </span>
-                      <span className="site_device_name_subtitle">
-                        二建集团第六分公司
-                      </span>
-                    </div>
-                    <div className="site_device_numBasic">
-                      <img
-                        className="sites_icon_localisation_img"
-                        src={positionSmall}
-                        alt="positionSmall"
-                      />
-                      <span className="sites_icon_localisation_text">
-                        {nbr.text}
-                      </span>
-                    </div>
-                    <Button
-                      className="sites_button"
-                      type="primary"
-                      onClick={() => {
-                        setSelectedSiteId(nbr.order);
-                      }}
-                    >
-                      进入工地
-                    </Button>
+      </div> */}
+      <div className="container_info_leftBottom_sitesList">
+        <Row className="row">
+          {sites.map((nbr, key) => (
+            <Col key={key} className="col" span={6}>
+              <div
+                className={`site_item_container ${
+                  selectedSite.order === nbr.order ? "selected" : ""
+                }`}
+              >
+                <div className="site_item_inactiveBasic_container_text">
+                  <div className="site_device_name_site">
+                    <span className="site_device_name_title">复旦大学项目</span>
+                    <span className="site_device_name_subtitle">
+                      二建集团第六分公司
+                    </span>
                   </div>
+                  <div className="site_device_numBasic">
+                    <img
+                      className="sites_icon_localisation_img"
+                      src={positionSmall}
+                      alt="positionSmall"
+                    />
+                    <span className="sites_icon_localisation_text">
+                      {nbr.text}
+                    </span>
+                  </div>
+                  <Button
+                    className="sites_button"
+                    type="primary"
+                    onClick={() => {
+                      setSelectedSiteId(nbr.order);
+                    }}
+                  >
+                    点击进入
+                  </Button>
                 </div>
-              </Col>
-            ))}
-            {arrIcon.map((_, key) => (
-              <Col key={key} className="col" span={6}>
-                <div className="site_item_container container_emptyIcons_home">
-                  <img
-                    alt="empty_Site"
-                    src={exPlan}
-                    className="emptyIcons_home"
-                  />
-                </div>
-              </Col>
-            ))}
-          </Row>
+              </div>
+            </Col>
+          ))}
+          {arrIcon.map((_, key) => (
+            <Col key={key} className="col" span={6}>
+              <div className="site_item_container container_emptyIcons_home">
+                <img
+                  alt="empty_Site"
+                  src={exPlan}
+                  className="emptyIcons_home"
+                />
+              </div>
+            </Col>
+          ))}
+        </Row>
       </div>
     </div>
   );

@@ -41,7 +41,11 @@
 
 .companyLogo_basic {
   display: flex;
-  width: 64px;
+  height: 64px;
+}
+
+.companyLogo_text {
+  height: 32px;
 }
 
 .text_logo {

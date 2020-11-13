@@ -10,6 +10,7 @@ import "./NavigationPannel.css";
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs
 import { ReactComponent as IconCustomer } from "./navIcon/home.svg";
 import { ReactComponent as IconMen } from "./navIcon/men.svg";
+import { ReactComponent as IconSpy } from "./navIcon/spy.svg";
 import { ReactComponent as IconFolder } from "./navIcon/folder.svg";
 import { ReactComponent as IconUser } from "./navIcon/user.svg";
 import { ReactComponent as IconSettings } from "./navIcon/settings.svg";
@@ -21,7 +22,7 @@ const menuItems = [
     to: "/",
   },
   {
-    src: IconMen,
+    src: IconSpy,
     to: "/Inspection",
   },
   {
@@ -69,7 +70,7 @@ export default function NavigationPannel(props) {
 
         <div style={{flexGrow: 1}}></div>
 
-        <li className={"menu_basic_li"} onClick={signout}>
+        <li className={"menu_basic_li"}onClick={signout}>
           <div className="icon_nav_basic_container">
             <IconSignout className="icon_nav_basic" fill={"white"} />
           </div>

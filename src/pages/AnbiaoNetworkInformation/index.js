@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
@@ -43,18 +43,27 @@ i--
 
   useEffect(() => {
     async function fetchData() {
-      const { data: employmentInfo } = await axios.get(employmentInfoUrl);
-      const { data: employmentRetirementRecords } = await axios.get(
-        employmentRetirementRecordsUrl
-      );
-      const { data: jobDistributionData } = await axios.get(jobDistributionUrl);
-      const { data: safetyStandard } = await axios.get(safetyStandardUrl);
-      setData({
-        employmentInfo,
-        employmentRetirementRecords,
-        jobDistributionData,
-        safetyStandard,
-      });
+      try {
+        const [
+          { data: employmentInfo },
+          { data: employmentRetirementRecords },
+          { data: jobDistributionData },
+          { data: safetyStandard },
+        ] = await Promise.all([
+          axios.get(employmentInfoUrl),
+          axios.get(employmentRetirementRecordsUrl),
+          axios.get(jobDistributionUrl),
+          axios.get(safetyStandardUrl),
+        ]);
+        setData({
+          employmentInfo,
+          employmentRetirementRecords,
+          jobDistributionData,
+          safetyStandard,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
     }
     fetchData();
   }, [0]);
@@ -98,31 +107,43 @@ i--
     <GridView>
       <GridView.Cell
         title="安标网用工信息"
+        titleAlignCenter={true}
         left="0"
         top="0"
-        width="calc(40% - 4px)"
-        height="calc(43% - 4px)"
+        width="calc(40% - 8px)"
+        height="calc(40% - 8px)"
       >
         <Table
           size="small"
           onRow={null}
           bordered={false}
           loading={data.loading}
-          style={{ backgroundColor: "black" }}
+          style={{ marginLeft: 24 }}
           pagination={false}
           dataSource={employmentInfo}
+          showHeader={false}
         >
-          <Table.Column title="" dataIndex="type" align="center" />
-          <Table.Column title="" dataIndex="number" align="center" />
+          <Table.Column
+            title=""
+            dataIndex="type"
+            className="table-column-large table-column-bold"
+          />
+          <Table.Column
+            title=""
+            dataIndex="number"
+            align="center"
+            className="table-column-large table-column-color-primary"
+          />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
         title="用工/退工历史记录"
+        titleAlignCenter={true}
         right="0"
         top="0"
-        width="calc(60% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(60% - 8px)"
+        height="calc(50% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -205,10 +226,11 @@ i--
 
       <GridView.Cell
         title="工种分布"
+        titleAlignCenter={true}
         left="0"
         bottom="0"
-        width="calc(40% - 4px)"
-        height="calc(57% - 4px)"
+        width="calc(40% - 8px)"
+        height="calc(60% - 8px)"
       >
         <Table
           loading={data.loading}
@@ -216,7 +238,7 @@ i--
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "22vh" }}
+          scroll={{ y: "calc(62vh - 256px)" }}
           dataSource={jobDistributionData}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
@@ -227,6 +249,7 @@ i--
 
       <GridView.Cell
         title="安标网数据库"
+        titleAlignCenter={true}
         action={{
           label: "下载",
           onClick: () => window.open(safetyStandardUrlXlsx, "_blank"),
@@ -234,14 +257,14 @@ i--
         }}
         right="0"
         bottom="0"
-        width="calc(60% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(60% - 8px)"
+        height="calc(50% - 8px)"
       >
         <Table
           size="small"
           loading={data.loading}
           pagination={false}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "calc(54vh - 256px)" }}
           dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />

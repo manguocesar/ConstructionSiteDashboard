@@ -5,7 +5,7 @@
   background-color: #181a20;
   padding-left: 8px;
   padding-right: 8px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .col {
@@ -71,7 +71,6 @@
 }
 
 .site_item_inactiveBasic_container_text {
-  /* border: solid green 1px; */
   display: flex;
   flex-direction: column;
 }
@@ -85,7 +84,7 @@
 
 .site_device_name_title {
   display: flex;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 
   /* border: hotpink 1px solid; */
@@ -108,7 +107,7 @@
 
 .sites_icon_localisation_text {
   display: flex;
-  font-size: 12px;
+  font-size: 10px;
   text-align: start;
   /* border: solid 2px blue; */
 }

@@ -1,13 +1,12 @@
 .container_nav {
   display: flex;
-  flex-grow: 1;
-  padding-right: 16px;
-  padding-top: 32px;
+  margin-right: 24px;
+  margin-top: 32px;
+  margin-bottom: 48px;
 }
 
 .menu_basic {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   list-style-type: none;
 }
@@ -20,10 +19,6 @@
   border-color: transparent;
   padding: 8px;
 }
-
-/* .menu_basic_li.active {
-  background-color: #82cdbf;
-} */
 
 .menu_basic_li:hover {
   border-color: #82cdbf;
