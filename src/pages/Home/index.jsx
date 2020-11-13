@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Table } from "antd";
 
 //style
 import "./index.css";
@@ -45,10 +46,86 @@ export default function Home() {
         height="calc(50% - 8px)"
       >
         {!!data ? (
-          <ComponentTopLeft
-            numberOfWorkersData={data.numberOfWorkersData}
-            accessControlData={data.accessControlData}
-          />
+          <div className="container_top_left">
+            <div className="container_top_left_column_1">
+              <GridView.Body
+                className="container_top_left_column_1_row_1"
+                title="综合信息"
+              >
+                <Table
+                  size="small"
+                  pagination={false}
+                  dataSource={[
+                    { name: "安标网在职工人数量", value: 12 },
+                    { name: "羿云门禁人脸数量", value: 124 },
+                    { name: "今日巡检次数", value: 124 },
+                    { name: "今日巡检异常事件数量", value: 124 },
+                  ]}
+                  loading={data.loading}
+                  showHeader={false}
+                >
+                  <Table.Column dataIndex="name" align="left" />
+                  <Table.Column
+                    className="table-column-color-primary"
+                    dataIndex="value"
+                    align="right"
+                  />
+                </Table>
+              </GridView.Body>
+              <GridView.Body
+                className="container_top_left_column_1_row_2"
+                title="地域分析"
+              >
+                <Table
+                  size="small"
+                  pagination={false}
+                  dataSource={[{ name: "湖北竹山县用工报警", value: 0 }]}
+                  loading={data.loading}
+                  showHeader={false}
+                >
+                  <Table.Column dataIndex="name" />
+                  <Table.Column
+                    className="table-column-color-primary"
+                    dataIndex="value"
+                    align="center"
+                  />
+                </Table>
+              </GridView.Body>
+            </div>
+            <div className="container_top_left_column_2">
+              <GridView.Body title="年龄分析">
+                <Table
+                  size="small"
+                  pagination={false}
+                  dataSource={[
+                    { cat1: "男性普通工种:", cat2: "55周岁以下用工人数", value: 111 },
+                    { cat1: "", cat2: "55-60周岁用工人数", value: 111 },
+                    { cat1: "", cat2: "60周岁以上超龄用工人数", value: 0 },
+                    { cat1: "", cat2: "", value: "" },
+                    { cat1: "男性特殊工种:", cat2: "55周岁以上超龄用工人数", value: 111 },
+                    { cat1: "", cat2: "", value: "" },
+                    { cat1: "女性普通工种:", cat2: "45周岁以下用工人数", value: 2 },
+                    { cat1: "", cat2: "45-50周岁用工人数", value: 2 },
+                    { cat1: "", cat2: "50周岁以上超龄用工人数", value: 0 },
+                    { cat1: "", cat2: "", value: "" },
+                    { cat1: "女性特殊工种:", cat2: "45周岁以上超龄用工人数", value: 0 },
+                  ]}
+                  scroll={{ y: "26vh" }}
+                  loading={data.loading}
+                  showHeader={false}
+                >
+                  <Table.Column dataIndex="cat1" align="left" className="table-cell-very-small" width={160} />
+                  <Table.Column dataIndex="cat2" align="left" className="table-cell-very-small" />
+                  <Table.Column
+                    className="table-column-color-primary table-cell-very-small"
+                    dataIndex="value"
+                    align="right"
+                    width={100}
+                  />
+                </Table>
+              </GridView.Body>
+            </div>
+          </div>
         ) : (
           <Loading />
         )}
@@ -72,7 +149,11 @@ export default function Home() {
         width="calc(34% - 8px)"
         height="calc(50% - 8px)"
       >
-        {!!data ? <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} /> : <Loading />}
+        {!!data ? (
+          <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} />
+        ) : (
+          <Loading />
+        )}
       </GridView.Cell>
 
       <GridView.Cell

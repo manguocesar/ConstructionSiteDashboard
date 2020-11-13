@@ -160,14 +160,14 @@ function Inspection() {
         left="0"
         top="0"
         width="calc(66% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(52% - 8px)"
       >
         <Table
           size="small"
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "26vh" }}
+          scroll={{ y: "calc(57vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
         >
@@ -187,7 +187,7 @@ function Inspection() {
             dataIndex="people_count"
             align="center"
             render={(val, row) => {
-              return <div style={{ color: row.color }}>{val}</div>;
+              return <div className="table-column-large" style={{ color: row.color }}>{val}</div>;
             }}
           />
           <Table.Column
@@ -217,7 +217,7 @@ function Inspection() {
         right="0"
         top="0"
         width="calc(34% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(52% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -319,13 +319,13 @@ function Inspection() {
         left="0"
         bottom="0"
         width="calc(36% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(48% - 8px)"
       >
         <Table
           size="small"
           pagination={false}
           dataSource={inspectionData}
-          scroll={{ y: "24vh" }}
+          scroll={{ y: "calc(52vh - 256px)" }}
           loading={data.loading}
         >
           <Table.Column title="日期" dataIndex="date" align="center" />
@@ -345,12 +345,12 @@ function Inspection() {
         right="0"
         bottom="0"
         width="calc(64% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(48% - 8px)"
       >
         <Table
           size="small"
           dataSource={patrolData}
-          scroll={{ y: "24vh" }}
+          scroll={{ y: "calc(52vh - 256px)" }}
           loading={data.loading}
         >
           <Table.Column title="设备" dataIndex="id" align="center" />

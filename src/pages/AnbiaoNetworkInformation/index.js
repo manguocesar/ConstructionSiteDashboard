@@ -111,7 +111,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           loading={data.loading}
-          style={{ backgroundColor: "black" }}
+          style={{ marginLeft: 24 }}
           pagination={false}
           dataSource={employmentInfo}
           showHeader={false}
@@ -239,7 +239,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "30vh" }}
+          scroll={{ y: "calc(62vh - 256px)" }}
           dataSource={jobDistributionData}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
@@ -265,7 +265,7 @@ function Inspection() {
           size="small"
           loading={data.loading}
           pagination={false}
-          scroll={{ y: "24vh" }}
+          scroll={{ y: "calc(54vh - 256px)" }}
           dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />

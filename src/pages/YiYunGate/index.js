@@ -106,12 +106,12 @@ function Inspection() {
         left="0"
         top="0"
         width="calc(35% - 8px)"
-        height="calc(47% - 8px)"
+        height="calc(42% - 8px)"
       >
         <Table
           size="small"
           loading={data.loading}
-          style={{ backgroundColor: "black" }}
+          style={{ marginLeft: 24 }}
           pagination={false}
           dataSource={accessControl}
         >
@@ -218,7 +218,7 @@ function Inspection() {
         left="0"
         bottom="0"
         width="calc(35% - 8px)"
-        height="calc(53% - 8px)"
+        height="calc(58% - 8px)"
       >
         <Table
           size="small"
@@ -226,7 +226,7 @@ function Inspection() {
           bordered={false}
           pagination={false}
           loading={data.loading}
-          scroll={{ y: "26vh" }}
+          scroll={{ y: "calc(62vh - 256px)" }}
           dataSource={teamDistribution}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />

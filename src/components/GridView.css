@@ -49,3 +49,18 @@
   border-radius: 8px;
 }
 
+.gridview-body {
+  flex-direction: column;
+  display: flex;
+  background-color: rgba(39, 42, 51, 0.4);
+  border-radius: 24px;
+  padding-top: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+.gridview-body-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+}

@@ -67,17 +67,17 @@ function LogIn({ signin }) {
               placeholder="输入密码"
             />
             <br />
-            <p className={styles["UserLogInText"]}>忘记密码</p>
+            <p className={styles["UserLogInText"]}>{/*忘记密码*/}</p>
 
             <div style={{ textAlign: "center" }}>
-              <motion.button
+              <div
                 className={styles["btn-login"]}
                 onClick={handleClick}
                 variants={buttonVariants}
                 whileHover="hover"
               >
                 登陆
-              </motion.button>
+              </div>
             </div>
           </form>
         </div>

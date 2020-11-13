@@ -68,6 +68,15 @@ refactoriser si le temps necessaire
   border-radius: 11.3px;
   font-size: 21px;
   color: #181a20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background-color: #BBEAE1;
+  transition-duration: 400ms;
 }
 
 .input {

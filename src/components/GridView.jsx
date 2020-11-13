@@ -67,5 +67,18 @@ function Cell(props) {
   );
 }
 
+function Body(props) {
+  const { title, children, style, className = "" } = props;
+  return (
+    <div className={"gridview-body " + className} style={style}>
+      <div className="gridview-body-title">
+        {title}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
 GridView.Cell = Cell;
+GridView.Body = Body;
 export default GridView;
