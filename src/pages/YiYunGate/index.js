@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table } from "antd";
+import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
-import Loading from "../../components/Loading";
 
 import ReactEcharts from "echarts-for-react";
 
@@ -35,20 +34,28 @@ function Inspection() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: accessControl } = await axios.get(accessControl_Url);
-      const { data: twoWeeksRecognition } = await axios.get(
-        twoWeeksRecognition_Url
-      );
-      const { data: teamDistribution } = await axios.get(teamDistribution_Url);
-      const { data: accessControlRecord } = await axios.get(
-        accessControlRecord_Url
-      );
-      setData({
-        accessControl,
-        twoWeeksRecognition,
-        teamDistribution,
-        accessControlRecord,
-      });
+      try {
+        const [
+          { data: accessControl },
+          { data: twoWeeksRecognition },
+          { data: teamDistribution },
+          { data: accessControlRecord },
+        ] = await Promise.all([
+          axios.get(accessControl_Url),
+          axios.get(twoWeeksRecognition_Url),
+          axios.get(teamDistribution_Url),
+          axios.get(accessControlRecord_Url),
+        ]);
+        setData({
+          accessControl,
+          twoWeeksRecognition,
+          teamDistribution,
+          accessControlRecord,
+          loading: false,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
     }
     fetchData();
   }, [0]);
@@ -108,8 +115,17 @@ function Inspection() {
           pagination={false}
           dataSource={accessControl}
         >
-          <Table.Column title="" dataIndex="name" className="table-column-large table-column-bold" />
-          <Table.Column title="" dataIndex="number" align="center" className="table-column-large table-column-color-primary" />
+          <Table.Column
+            title=""
+            dataIndex="name"
+            className="table-column-large table-column-bold"
+          />
+          <Table.Column
+            title=""
+            dataIndex="number"
+            align="center"
+            className="table-column-large table-column-color-primary"
+          />
         </Table>
       </GridView.Cell>
 

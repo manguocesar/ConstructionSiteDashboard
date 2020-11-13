@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
@@ -36,18 +36,27 @@ function Inspection() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: employmentInfo } = await axios.get(employmentInfoUrl);
-      const { data: employmentRetirementRecords } = await axios.get(
-        employmentRetirementRecordsUrl
-      );
-      const { data: jobDistributionData } = await axios.get(jobDistributionUrl);
-      const { data: safetyStandard } = await axios.get(safetyStandardUrl);
-      setData({
-        employmentInfo,
-        employmentRetirementRecords,
-        jobDistributionData,
-        safetyStandard,
-      });
+      try {
+        const [
+          { data: employmentInfo },
+          { data: employmentRetirementRecords },
+          { data: jobDistributionData },
+          { data: safetyStandard },
+        ] = await Promise.all([
+          axios.get(employmentInfoUrl),
+          axios.get(employmentRetirementRecordsUrl),
+          axios.get(jobDistributionUrl),
+          axios.get(safetyStandardUrl),
+        ]);
+        setData({
+          employmentInfo,
+          employmentRetirementRecords,
+          jobDistributionData,
+          safetyStandard,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
     }
     fetchData();
   }, [0]);

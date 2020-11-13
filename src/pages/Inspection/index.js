@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Divider, Button } from "antd";
+import { Table, Divider, Button, message } from "antd";
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
@@ -37,25 +37,41 @@ function Inspection() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: comparisonResults } = await axios.get(comparisonResultsUrl);
-      const { data: employmentRetirementRecords } = await axios.get(
-        employmentRetirementRecordsUrl
-      );
-      const { data: inspectionData } = await axios.get(inspectionRecordUrl);
-      const { data: patrolData } = await axios.get(patrolLogUrl);
-      setData({
-        comparisonResults,
-        employmentRetirementRecords,
-        inspectionData,
-        patrolData,
-        loading: false,
-      });
+      try {
+        const [
+          { data: comparisonResults },
+          { data: employmentRetirementRecords },
+          { data: inspectionData },
+          { data: patrolData },
+        ] = await Promise.all([
+          axios.get(comparisonResultsUrl),
+          axios.get(employmentRetirementRecordsUrl),
+          axios.get(inspectionRecordUrl),
+          axios.get(patrolLogUrl),
+        ]);
+        setData({
+          comparisonResults,
+          employmentRetirementRecords,
+          inspectionData,
+          patrolData,
+          loading: false,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
     }
     fetchData();
   }, [0]);
 
   const comparisonResults = data.comparisonResults.map((item, i) => {
-    const textColors = ['#85F391', '#DFA03A', '#F7000B', '#F7000B', '#85F391', '#F7000B']
+    const textColors = [
+      "#85F391",
+      "#DFA03A",
+      "#F7000B",
+      "#F7000B",
+      "#85F391",
+      "#F7000B",
+    ];
     let action = {
       label: "下载",
       onClick: () => {},
@@ -66,7 +82,7 @@ function Inspection() {
         label: "下载",
         onClick: () => window.open(item.人员列表, "_blank"),
         disabled: false,
-      }
+      };
     }
     return {
       gov_site_status: item.门禁系统,
@@ -74,7 +90,7 @@ function Inspection() {
       recog_tag: item.识别标签,
       people_count: item.人员数量,
       action,
-      color: textColors[i]
+      color: textColors[i],
     };
   });
 
@@ -222,7 +238,7 @@ function Inspection() {
               bottom: 0,
               itemWidth: 16,
               itemHeight: 9,
-              icon: 'line',
+              icon: "line",
               textStyle: {
                 color: "white",
                 width: 300,
