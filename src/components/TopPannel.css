@@ -5,7 +5,7 @@
 
 .container_consimLogo {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .consimLogo {
@@ -45,7 +45,7 @@
 }
 
 .companyLogo_text {
-  height: 32px;
+  height: 26px;
 }
 
 .text_logo {
@@ -55,5 +55,6 @@
 
 .container_router {
   display: flex;
+  align-items: center;
   flex-grow: 1;
 }

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 12px;
+  flex-grow: 1;
 }
 
 .container_info_rightTop_head {
@@ -12,7 +13,6 @@
 
 .container_info_rightTop_pannelOne {
   display: flex;
-  flex-grow: 1;
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
@@ -39,6 +39,7 @@
 
 .container_info_rightTop_pannelThree {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   border-radius: 8px;
   padding: 8px;
@@ -53,13 +54,14 @@
 }
 
 .container_info_rightTop_green_numbers {
-  font-size: 1.6vw;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   color: #65ae9d;
 }
 
 .container_info_rightTop_title {
-  font-size: 16px;
+  font-size: 18px;
+  margin-top: 4px;
 }
 
 .container_info_rightTop_text {

@@ -26,7 +26,7 @@ refactoriser si le temps necessaire
 
 .pagetitle {
   position: absolute;
-  left: 70px;
+  left: 155px;
   top: 290px;
   font-size: 45px;
   letter-spacing: 0.56px;
@@ -40,8 +40,8 @@ refactoriser si le temps necessaire
   left: 240px;
   top: 436.5px;
   font-family: PingFangSC-Regular;
-  font-size: 19.5px;
-  color: #898d99;
+  font-size: 32px;
+  color: white;
   letter-spacing: 0.24px;
   text-align: center;
 }

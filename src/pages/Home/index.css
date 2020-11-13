@@ -33,14 +33,14 @@
 }
 
 .container_top_left_column_1 {
-  margin-right: 16px;
+  margin-right: 12px;
   flex: 2;
   display: flex;
   flex-direction: column;
 }
 
 .container_top_left_column_1_row_1 {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   flex-grow: 8;
   display: flex;
 }

@@ -36,10 +36,10 @@ function LogIn({ signin }) {
           <div className={styles["pagetitle"]}>
             舆策智能
             <br />
-            施工工地智慧化升级方案
+            施工工地移动巡检
             <br />
           </div>
-          <div className={styles["subtitle"]}>数字孪生施工管理平台</div>
+          <div className={styles["subtitle"]}>智慧管理平台</div>
         </div>
 
         {/* right side */}

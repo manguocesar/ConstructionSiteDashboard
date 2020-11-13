@@ -86,6 +86,7 @@ export default function ListOfSites() {
                   <Button
                     className="sites_button"
                     type="primary"
+                    size="small"
                     onClick={() => {
                       setSelectedSiteId(nbr.order);
                     }}

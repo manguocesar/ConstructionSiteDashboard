@@ -10,8 +10,8 @@
 
 .col {
   display: flex;
-  min-width: 168px;
-  min-height: 168px;
+  min-width: 148px;
+  min-height: 148px;
 }
 
 .row {
@@ -21,7 +21,7 @@
 .site_item_container {
   flex-grow: 1;
   margin: 8px;
-  padding: 8px;
+  padding: 12px;
   border-radius: 12px;
   background-color: rgba(39, 42, 51, 0.4);
 }
@@ -119,6 +119,7 @@
 }
 
 .sites_button {
+  font-size: 12px;
   color: black;
 }
 

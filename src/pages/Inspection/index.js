@@ -167,7 +167,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "calc(57vh - 256px)" }}
+          scroll={{ y: "calc(59vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
         >
@@ -181,16 +181,28 @@ function Inspection() {
             dataIndex="gate_status"
             align="center"
           />
-          <Table.Column title="识别标签" dataIndex="recog_tag" align="center" />
+          <Table.Column
+            title="识别标签"
+            dataIndex="recog_tag"
+            align="center"
+          />
           <Table.Column
             title="人员数量"
             dataIndex="people_count"
             align="center"
             render={(val, row) => {
-              return <div className="table-column-large" style={{ color: row.color }}>{val}</div>;
+              return (
+                <div
+                  className="table-column-large"
+                  style={{ color: row.color }}
+                >
+                  {val}
+                </div>
+              );
             }}
           />
           <Table.Column
+            className="table-cell-very-small"
             title="人员数量"
             dataIndex="action"
             align="center"
@@ -233,7 +245,10 @@ function Inspection() {
               },
             },
             legend: {
-              data: ["合格", "核查门禁", "核查安标", "无法识别"],
+              data: ["合格", "核查门禁", "核查安标", {
+                name: '无法识别',
+                icon: 'circle'
+              }],
               itemGap: 20,
               bottom: 0,
               itemWidth: 16,
@@ -307,6 +322,9 @@ function Inspection() {
                 label: "four",
                 smooth: true,
                 data: totalRecords2,
+                lineStyle: {
+                  type: 'dotted'
+                }
               },
             ],
           }}
@@ -325,7 +343,7 @@ function Inspection() {
           size="small"
           pagination={false}
           dataSource={inspectionData}
-          scroll={{ y: "calc(52vh - 256px)" }}
+          scroll={{ y: "calc(53vh - 256px)" }}
           loading={data.loading}
         >
           <Table.Column title="日期" dataIndex="date" align="center" />
@@ -350,7 +368,7 @@ function Inspection() {
         <Table
           size="small"
           dataSource={patrolData}
-          scroll={{ y: "calc(52vh - 256px)" }}
+          scroll={{ y: "calc(53vh - 256px)" }}
           loading={data.loading}
         >
           <Table.Column title="设备" dataIndex="id" align="center" />

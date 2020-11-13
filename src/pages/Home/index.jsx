@@ -43,7 +43,7 @@ export default function Home() {
         left="0"
         top="0"
         width="calc(66% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(55% - 8px)"
       >
         {!!data ? (
           <div className="container_top_left">
@@ -64,9 +64,9 @@ export default function Home() {
                   loading={data.loading}
                   showHeader={false}
                 >
-                  <Table.Column dataIndex="name" align="left" />
+                  <Table.Column dataIndex="name" align="left" className="table-cell-very-small table-column-small" />
                   <Table.Column
-                    className="table-column-color-primary"
+                    className="table-column-color-primary table-cell-very-small table-column-small"
                     dataIndex="value"
                     align="right"
                   />
@@ -83,9 +83,9 @@ export default function Home() {
                   loading={data.loading}
                   showHeader={false}
                 >
-                  <Table.Column dataIndex="name" />
+                  <Table.Column dataIndex="name" className="table-column-small" />
                   <Table.Column
-                    className="table-column-color-primary"
+                    className="table-column-color-primary table-column-small"
                     dataIndex="value"
                     align="center"
                   />
@@ -114,10 +114,10 @@ export default function Home() {
                   loading={data.loading}
                   showHeader={false}
                 >
-                  <Table.Column dataIndex="cat1" align="left" className="table-cell-very-small" width={160} />
-                  <Table.Column dataIndex="cat2" align="left" className="table-cell-very-small" />
+                  <Table.Column dataIndex="cat1" align="left" className="table-cell-very-small table-column-small" width={160} />
+                  <Table.Column dataIndex="cat2" align="left" className="table-cell-very-small table-column-small" />
                   <Table.Column
-                    className="table-column-color-primary table-cell-very-small"
+                    className="table-column-color-primary table-cell-very-small table-column-small"
                     dataIndex="value"
                     align="right"
                     width={100}
@@ -147,7 +147,7 @@ export default function Home() {
         right="0"
         top="0"
         width="calc(34% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(55% - 8px)"
       >
         {!!data ? (
           <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} />
@@ -161,7 +161,7 @@ export default function Home() {
         left="0"
         bottom="0"
         width="calc(66% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(45% - 8px)"
       >
         {!!data ? <ListofSites /> : <Loading />}
       </GridView.Cell>
@@ -172,7 +172,7 @@ export default function Home() {
         right="0"
         bottom="0"
         width="calc(34% - 8px)"
-        height="calc(50% - 8px)"
+        height="calc(45% - 8px)"
       >
         {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>

@@ -20,6 +20,7 @@ export default function SiteLocation() {
             lng: selectedSite.longitude,
             lat: selectedSite.latitude,
           }}
+          zoom={18}
         />
       </APILoader>
     </div>

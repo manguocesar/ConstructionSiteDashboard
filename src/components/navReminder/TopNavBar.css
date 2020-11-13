@@ -3,8 +3,7 @@
   flex-direction: row;
   align-items: center;
   color: #82cdbf;
-  font-size: 14px;
-  /* margin: 0.2vh 0.5vh 0.2vh 0.5vh; */
+  font-size: 16px;
 }
 
 .triangle-right {
@@ -24,5 +23,6 @@
 }
 
 .container_title_text {
-  font-size: 20px;
+  font-size: 24px;
+  line-height: 30px;
 }

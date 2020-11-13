@@ -13,8 +13,10 @@ const ListSitesContextProvider = (props) => {
       img: customerLogo,
       text: "中原数字印刷产业园项目",
       selected: false,
-      longitude: 121.480944,
-      latitude: 31.2,
+      // 31.292305, 121.504120
+      // 121.511214,31.297654
+      longitude: 121.511214,
+      latitude: 31.297654,
     },
     // {
     //   order: 2,
