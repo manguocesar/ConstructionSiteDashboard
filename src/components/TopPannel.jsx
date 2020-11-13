@@ -16,6 +16,7 @@ import {
 //photo
 import consimLogo from "./img/consimLogo.png";
 import imagecompany from "./img/logoSCG.png";
+import scgLogoText from "./img/scg_text.png";
 
 export default function TopPannel() {
   return (
@@ -35,7 +36,7 @@ export default function TopPannel() {
       </div>
       <div className="display_logo">
         <img alt="" src={imagecompany} className="companyLogo_basic" />
-        <span className="text_logo">上海建工</span>
+        <img alt="" src={scgLogoText} className="companyLogo_text" />
       </div>
     </div>
   );

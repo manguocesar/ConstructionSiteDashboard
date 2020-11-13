@@ -95,10 +95,11 @@ function Inspection() {
     <GridView>
       <GridView.Cell
         title="羿云门禁信息"
+        titleAlignCenter={true}
         left="0"
         top="0"
-        width="calc(35% - 4px)"
-        height="calc(47% - 4px)"
+        width="calc(35% - 8px)"
+        height="calc(47% - 8px)"
       >
         <Table
           size="small"
@@ -107,17 +108,18 @@ function Inspection() {
           pagination={false}
           dataSource={accessControl}
         >
-          <Table.Column title="" dataIndex="name"  />
-          <Table.Column title="" dataIndex="number" align="center" />
+          <Table.Column title="" dataIndex="name" className="table-column-large table-column-bold" />
+          <Table.Column title="" dataIndex="number" align="center" className="table-column-large table-column-color-primary" />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
         title="近两周人脸录入记录"
+        titleAlignCenter={true}
         right="0"
         top="0"
-        width="calc(65% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(65% - 8px)"
+        height="calc(50% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -196,10 +198,11 @@ function Inspection() {
 
       <GridView.Cell
         title="班组分布"
+        titleAlignCenter={true}
         left="0"
         bottom="0"
-        width="calc(35% - 4px)"
-        height="calc(53% - 4px)"
+        width="calc(35% - 8px)"
+        height="calc(53% - 8px)"
       >
         <Table
           size="small"
@@ -207,7 +210,7 @@ function Inspection() {
           bordered={false}
           pagination={false}
           loading={data.loading}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "26vh" }}
           dataSource={teamDistribution}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
@@ -218,6 +221,7 @@ function Inspection() {
 
       <GridView.Cell
         title="门禁出入记录"
+        titleAlignCenter={true}
         action={{
           label: "下载",
           onClick: () => window.open(accessControlRecord_UrlXlsx, "_blank"),
@@ -225,8 +229,8 @@ function Inspection() {
         }}
         right="0"
         bottom="0"
-        width="calc(65% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(65% - 8px)"
+        height="calc(50% - 8px)"
       >
         <span
           style={{

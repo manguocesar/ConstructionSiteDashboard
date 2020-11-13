@@ -54,17 +54,27 @@ function Inspection() {
     fetchData();
   }, [0]);
 
-  const comparisonResults = data.comparisonResults.map((item) => {
+  const comparisonResults = data.comparisonResults.map((item, i) => {
+    const textColors = ['#85F391', '#DFA03A', '#F7000B', '#F7000B', '#85F391', '#F7000B']
+    let action = {
+      label: "下载",
+      onClick: () => {},
+      disabled: true,
+    };
+    if (item.人员列表 && item.人员列表.length > 0) {
+      action = {
+        label: "下载",
+        onClick: () => window.open(item.人员列表, "_blank"),
+        disabled: false,
+      }
+    }
     return {
       gov_site_status: item.门禁系统,
       gate_status: item.安标网,
       recog_tag: item.识别标签,
       people_count: item.人员数量,
-      action: {
-        label: "下载",
-        onClick: () => window.open(item.人员列表, "_blank"),
-        disabled: false,
-      },
+      action,
+      color: textColors[i]
     };
   });
 
@@ -105,6 +115,7 @@ function Inspection() {
   return (
     <GridView>
       <GridView.Cell
+        titleAlignCenter={true}
         title={
           <div
             style={{
@@ -132,15 +143,15 @@ function Inspection() {
         }
         left="0"
         top="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(66% - 8px)"
+        height="calc(50% - 8px)"
       >
         <Table
           size="small"
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "26vh" }}
           dataSource={comparisonResults}
           loading={data.loading}
         >
@@ -160,7 +171,7 @@ function Inspection() {
             dataIndex="people_count"
             align="center"
             render={(val, row) => {
-              return <div style={{ color: row.alarm }}>{val}</div>;
+              return <div style={{ color: row.color }}>{val}</div>;
             }}
           />
           <Table.Column
@@ -185,11 +196,12 @@ function Inspection() {
       </GridView.Cell>
 
       <GridView.Cell
+        titleAlignCenter={true}
         title="近30日人员变化趋势"
         right="0"
         top="0"
-        width="calc(34% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(34% - 8px)"
+        height="calc(50% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -210,10 +222,11 @@ function Inspection() {
               bottom: 0,
               itemWidth: 16,
               itemHeight: 9,
+              icon: 'line',
               textStyle: {
                 color: "white",
                 width: 300,
-                fontSize: 18,
+                fontSize: 14,
                 lineHeight: "",
               },
             },
@@ -286,16 +299,17 @@ function Inspection() {
 
       <GridView.Cell
         title="巡检记录"
+        titleAlignCenter={true}
         left="0"
         bottom="0"
-        width="calc(36% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(36% - 8px)"
+        height="calc(50% - 8px)"
       >
         <Table
           size="small"
           pagination={false}
           dataSource={inspectionData}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "24vh" }}
           loading={data.loading}
         >
           <Table.Column title="日期" dataIndex="date" align="center" />
@@ -306,22 +320,22 @@ function Inspection() {
 
       <GridView.Cell
         title="巡检日志"
+        titleAlignCenter={true}
         action={{
-          label: "下载",
+          label: "下载巡检报告",
           onClick: () => window.open(patrolLogUrlXlsx, "_blank"),
           disabled: false,
         }}
         right="0"
         bottom="0"
-        width="calc(64% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(64% - 8px)"
+        height="calc(50% - 8px)"
       >
         <Table
           size="small"
           dataSource={patrolData}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "24vh" }}
           loading={data.loading}
-          
         >
           <Table.Column title="设备" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />

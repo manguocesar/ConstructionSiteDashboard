@@ -91,10 +91,11 @@ function Inspection() {
     <GridView>
       <GridView.Cell
         title="安标网用工信息"
+        titleAlignCenter={true}
         left="0"
         top="0"
-        width="calc(40% - 4px)"
-        height="calc(43% - 4px)"
+        width="calc(40% - 8px)"
+        height="calc(40% - 8px)"
       >
         <Table
           size="small"
@@ -104,18 +105,29 @@ function Inspection() {
           style={{ backgroundColor: "black" }}
           pagination={false}
           dataSource={employmentInfo}
+          showHeader={false}
         >
-          <Table.Column title="" dataIndex="type" align="center" />
-          <Table.Column title="" dataIndex="number" align="center" />
+          <Table.Column
+            title=""
+            dataIndex="type"
+            className="table-column-large table-column-bold"
+          />
+          <Table.Column
+            title=""
+            dataIndex="number"
+            align="center"
+            className="table-column-large table-column-color-primary"
+          />
         </Table>
       </GridView.Cell>
 
       <GridView.Cell
         title="用工/退工历史记录"
+        titleAlignCenter={true}
         right="0"
         top="0"
-        width="calc(60% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(60% - 8px)"
+        height="calc(50% - 8px)"
       >
         <ReactEcharts
           style={{
@@ -206,10 +218,11 @@ function Inspection() {
 
       <GridView.Cell
         title="工种分布"
+        titleAlignCenter={true}
         left="0"
         bottom="0"
-        width="calc(40% - 4px)"
-        height="calc(57% - 4px)"
+        width="calc(40% - 8px)"
+        height="calc(60% - 8px)"
       >
         <Table
           loading={data.loading}
@@ -217,7 +230,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "22vh" }}
+          scroll={{ y: "30vh" }}
           dataSource={jobDistributionData}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
@@ -228,6 +241,7 @@ function Inspection() {
 
       <GridView.Cell
         title="安标网数据库"
+        titleAlignCenter={true}
         action={{
           label: "下载",
           onClick: () => window.open(safetyStandardUrlXlsx, "_blank"),
@@ -235,14 +249,14 @@ function Inspection() {
         }}
         right="0"
         bottom="0"
-        width="calc(60% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(60% - 8px)"
+        height="calc(50% - 8px)"
       >
         <Table
           size="small"
           loading={data.loading}
           pagination={false}
-          scroll={{ y: "20vh" }}
+          scroll={{ y: "24vh" }}
           dataSource={safetyStandard}
         >
           <Table.Column title="ID" dataIndex="id" align="center" />

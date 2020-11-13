@@ -3,8 +3,8 @@
   display: flex;
   flex-grow: 1;
   background-color: #282c34;
-  border-radius: 2vh;
   padding: 16px;
+  border-top-left-radius: 32px;
 }
 
 .gridview-container {
@@ -17,14 +17,15 @@
   flex-direction: column;
   display: flex;
   background-color: #181a20;
-  border-radius: 16px;
+  border-radius: 24px;
   padding-top: 16px;
 }
 
 .gridview-cell-header {
   display: flex;
   position: relative;
-  justify-content: center;
+  padding-left: 16px;
+  padding-right: 16px;
   align-items: center;
   font-size: 18px;
   font-weight: 500;
@@ -40,7 +41,10 @@
 .gridview-cell-body {
   flex-grow: 1;
   background-color: #1F2129;
-  margin: 16px;
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
   padding: 16px;
   border-radius: 8px;
 }

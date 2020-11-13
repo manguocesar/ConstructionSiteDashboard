@@ -1,14 +1,11 @@
-.container_info_display_Operators {
+/* .container_info_display_Operators {
   display: flex;
   flex-grow: 1;
   position: relative;
   flex-direction: column;
-  /* height: 100%; */
-  /* width: 100%; */
   border-radius: 2vh;
   background-color: #282c34;
-  /* border: green dashed 2px; */
-}
+} */
 
 .container_bottom_Operators {
   display: flex;

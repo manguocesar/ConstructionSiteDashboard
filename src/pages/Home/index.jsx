@@ -41,8 +41,8 @@ export default function Home() {
         title="复旦大学邯郸校区中华经济文化研究中心项目"
         left="0"
         top="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(66% - 8px)"
+        height="calc(50% - 8px)"
       >
         {!!data ? (
           <ComponentTopLeft
@@ -69,8 +69,8 @@ export default function Home() {
         }
         right="0"
         top="0"
-        width="calc(34% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(34% - 8px)"
+        height="calc(50% - 8px)"
       >
         {!!data ? <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} /> : <Loading />}
       </GridView.Cell>
@@ -79,8 +79,8 @@ export default function Home() {
         noBodyStyle={true}
         left="0"
         bottom="0"
-        width="calc(66% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(66% - 8px)"
+        height="calc(50% - 8px)"
       >
         {!!data ? <ListofSites /> : <Loading />}
       </GridView.Cell>
@@ -90,8 +90,8 @@ export default function Home() {
         title="工地位置"
         right="0"
         bottom="0"
-        width="calc(34% - 4px)"
-        height="calc(50% - 4px)"
+        width="calc(34% - 8px)"
+        height="calc(50% - 8px)"
       >
         {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>

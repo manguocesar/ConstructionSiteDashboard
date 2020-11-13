@@ -88,7 +88,7 @@ export default function ListOfSites() {
                         setSelectedSiteId(nbr.order);
                       }}
                     >
-                      进入工地
+                     点击进入
                     </Button>
                   </div>
                 </div>
