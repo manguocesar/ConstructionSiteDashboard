@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import lockr from 'lockr'
+import { message } from 'antd';
 
 //style
 import "./App.less";
@@ -17,6 +18,8 @@ import AnimationsContextProvider from "./contexts/AnimationsContext"; // will it
 import moment from "moment";
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
+
+
 
 const LoginStatus = {
   NotLoggedIn: 0,
@@ -40,10 +43,14 @@ function App() {
 
   const signin = useCallback(
     (username, password) => {
-      // if (username === "other" && password === "other") {
+      const HARDCODED_USERNAME = "scg_hd";
+      const HARDCODED_PASSWORD = "123456"
+      if (username === HARDCODED_USERNAME && password === HARDCODED_PASSWORD) {
         setLoginStatus(LoginStatus.LoggedIn);
         lockr.set('login_status', true);
-      // }
+      } else {
+        message.error('用户名或密码不正确')
+      }
     },
     [setLoginStatus]
   );

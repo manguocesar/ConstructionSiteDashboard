@@ -193,8 +193,7 @@ function Inspection() {
             render={(val, row) => {
               return (
                 <div
-                  className="table-column-large"
-                  style={{ color: row.color }}
+                  style={{ color: row.color, fontSize: 20 }}
                 >
                   {val}
                 </div>
@@ -203,7 +202,7 @@ function Inspection() {
           />
           <Table.Column
             className="table-cell-very-small"
-            title="人员数量"
+            title="人员列表"
             dataIndex="action"
             align="center"
             render={(action, row) => {
