@@ -118,16 +118,6 @@ function Inspection() {
     };
   });
 
-  const patrolData = data.patrolData.map((item) => {
-    return {
-      id: item.id,
-      name: item.name,
-      idCard: item.idCard,
-      gender: item.gender,
-      workType: item.workType,
-    };
-  });
-
   return (
     <GridView>
       <GridView.Cell
@@ -366,15 +356,16 @@ function Inspection() {
       >
         <Table
           size="small"
-          dataSource={patrolData}
+          dataSource={data.patrolData}
           scroll={{ y: "calc(53vh - 256px)" }}
           loading={data.loading}
+          pagination={false}
         >
-          <Table.Column title="设备" dataIndex="id" align="center" />
-          <Table.Column title="姓名" dataIndex="name" align="center" />
-          <Table.Column title="身份证" dataIndex="idCard" align="center" />
-          <Table.Column title="识别时间" dataIndex="gender" align="center" />
-          <Table.Column title="类型" dataIndex="workType" align="center" />
+          <Table.Column title="设备" dataIndex="设备" align="center" />
+          <Table.Column title="姓名" dataIndex="姓名" align="center" />
+          <Table.Column title="身份证" dataIndex="身份证" align="center" />
+          <Table.Column title="识别时间" dataIndex="识别时间" align="center" />
+          <Table.Column title="类型" dataIndex="类型" align="center" />
         </Table>
       </GridView.Cell>
     </GridView>
