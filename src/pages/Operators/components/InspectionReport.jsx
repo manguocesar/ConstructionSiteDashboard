@@ -8,7 +8,6 @@ import ExportButton from "./ExportButton";
 export default function InspectionReport() {
   function handleExportThree(e) {
     e.preventDefault();
-    console.log("Exporting InspectionReport data");
   }
 
   return (
