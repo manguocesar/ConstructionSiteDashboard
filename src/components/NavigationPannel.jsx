@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import { useLocation, redirectTo } from "@reach/router";
 import classnames from "classnames";
 
-
 //style
 import "./NavigationPannel.css";
 
@@ -50,27 +49,27 @@ export default function NavigationPannel(props) {
         {menuItems.map((menuItem) => {
           const active = location.pathname === menuItem.to;
           return (
-            <li
-              className={classnames("menu_basic_li", {
-                active: active,
-              })}
-              key={menuItem.to}
-            >
-              <Link to={menuItem.to} style={{ textDecoration: "none" }}>
+            <Link to={menuItem.to} style={{ textDecoration: "none" }}>
+              <li
+                className={classnames("menu_basic_li", {
+                  active: active,
+                })}
+                key={menuItem.to}
+              >
                 <div className="icon_nav_basic_container">
                   <menuItem.src
                     className="icon_nav_basic"
                     fill={active ? undefined : "white"}
                   />
                 </div>
-              </Link>
-            </li>
+              </li>
+            </Link>
           );
         })}
 
-        <div style={{flexGrow: 1}}></div>
+        <div style={{ flexGrow: 1 }}></div>
 
-        <li className={"menu_basic_li"}onClick={signout}>
+        <li className={"menu_basic_li"} onClick={signout}>
           <div className="icon_nav_basic_container">
             <IconSignout className="icon_nav_basic" fill={"white"} />
           </div>
