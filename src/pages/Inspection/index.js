@@ -160,7 +160,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "calc(57vh - 256px)" }}
+          scroll={{ y: "calc(55vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
         >
