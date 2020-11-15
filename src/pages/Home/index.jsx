@@ -15,8 +15,12 @@ import ComponentTopRight from "./components/ComponentTopRight";
 
 export default function Home() {
   const [data, setData] = useState({
-    numberOfWorkersData: {},
-    homepageData: null,
+    // numberOfWorkersData: null,
+    homepageData: {
+      合信息: {
+        安标网用工数量: "",
+      },
+    },
     loading: true,
   });
 
@@ -33,14 +37,14 @@ export default function Home() {
     async function fetchData() {
       try {
         const [
-          { data: numberOfWorkersData },
+          // { data: numberOfWorkersData },
           { data: homepageData },
         ] = await Promise.all([
-          axios.get(numberOfWorkersUrl),
-          axios.get(homepageDataUrl)
+          // axios.get(numberOfWorkersUrl),
+          axios.get(homepageDataUrl),
         ]);
         setData({
-          numberOfWorkersData,
+          // numberOfWorkersData,
           homepageData,
           loading: false,
         });
@@ -122,9 +126,7 @@ export default function Home() {
                   loading={data.loading}
                   showHeader={false}
                 >
-                  <Table.Column
-                    dataIndex="name"
-                  />
+                  <Table.Column dataIndex="name" />
                   <Table.Column
                     className="table-column-color-primary"
                     dataIndex="value"
@@ -253,7 +255,9 @@ export default function Home() {
         height="calc(55% - 8px)"
       >
         {!!data ? (
-          <ComponentTopRight numberOfWorkersData={data.numberOfWorkersData} />
+          <ComponentTopRight
+            numberOfWorkers={data.homepageData.合信息.安标网用工数量}
+          />
         ) : (
           <Loading />
         )}

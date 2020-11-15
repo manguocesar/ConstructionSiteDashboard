@@ -8,7 +8,7 @@ import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
 export default function ComponentTopRight(props) {
 
-  const { numberOfWorkersData } = props;
+  const { numberOfWorkers } = props;
   const { sites } = useContext(ListSitesContext);
 
   return (
@@ -27,7 +27,7 @@ export default function ComponentTopRight(props) {
         <span
           className="container_info_rightTop_green_numbers"
         >
-          {numberOfWorkersData.工人数}
+          {numberOfWorkers}
         </span>
       </div>
 
