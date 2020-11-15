@@ -74,7 +74,7 @@ function LogIn({ signin }) {
                 className={styles["btn-login"]}
                 onClick={handleClick}
                 variants={buttonVariants}
-                whileHover="hover"
+                // whileHover="hover"
               >
                 登陆
               </div>

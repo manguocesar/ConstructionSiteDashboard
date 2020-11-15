@@ -3,6 +3,7 @@ import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
+import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
 
 import moment from "moment";
 
@@ -252,7 +253,9 @@ i--
         titleAlignCenter={true}
         action={{
           label: "下载",
-          onClick: () => window.open(safetyStandardUrlXlsx, "_blank"),
+          onClick: () => {
+            downloadExcelFile(safetyStandardUrlXlsx, convertDateFilename(safetyStandardUrlXlsx))
+          },
           disabled: false,
         }}
         right="0"

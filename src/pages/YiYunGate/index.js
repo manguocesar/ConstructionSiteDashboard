@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
+import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
@@ -241,7 +242,9 @@ function Inspection() {
         titleAlignCenter={true}
         action={{
           label: "下载",
-          onClick: () => window.open(accessControlRecord_UrlXlsx, "_blank"),
+          onClick: () => {
+            downloadExcelFile(accessControlRecord_UrlXlsx, convertDateFilename(accessControlRecord_UrlXlsx))
+          },
           disabled: false,
         }}
         right="0"

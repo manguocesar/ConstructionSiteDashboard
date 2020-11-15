@@ -3,6 +3,7 @@ import { Table, Divider, Button, message } from "antd";
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
+import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
 
 //components
 import Loading from "../../components/Loading";
@@ -80,7 +81,9 @@ function Inspection() {
     if (item.人员列表 && item.人员列表.length > 0) {
       action = {
         label: "下载",
-        onClick: () => window.open(item.人员列表, "_blank"),
+        onClick: () => {
+          downloadExcelFile(item.人员列表, convertDateFilename(item.人员列表))
+        },
         disabled: false,
       };
     }
@@ -346,7 +349,9 @@ function Inspection() {
         titleAlignCenter={true}
         action={{
           label: "下载巡检报告",
-          onClick: () => window.open(patrolLogUrlXlsx, "_blank"),
+          onClick: async () => {
+            downloadExcelFile(patrolLogUrlXlsx, convertDateFilename(patrolLogUrlXlsx))
+          },
           disabled: false,
         }}
         right="0"

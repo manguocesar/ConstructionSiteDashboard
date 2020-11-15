@@ -73,8 +73,8 @@ export default function Home() {
                   pagination={false}
                   dataSource={[
                     {
-                      name: "安标网在职工人数量",
-                      value: data.homepageData.合信息.安标网在职工人数量,
+                      name: "安标网用工数量",
+                      value: data.homepageData.合信息.安标网用工数量,
                     },
                     {
                       name: "羿云门禁人脸数量",
@@ -89,18 +89,20 @@ export default function Home() {
                       value: data.homepageData.合信息.今日巡检异常事件数量,
                     },
                   ]}
+                  scroll={{ y: "calc(50vh - 256px)" }}
                   loading={data.loading}
                   showHeader={false}
                 >
                   <Table.Column
                     dataIndex="name"
                     align="left"
-                    className="table-cell-very-small table-column-small"
+                    className="table-cell-very-small"
                   />
                   <Table.Column
-                    className="table-column-color-primary table-cell-very-small table-column-small"
+                    className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
                     align="right"
+                    width={50}
                   />
                 </Table>
               </GridView.Body>
@@ -122,10 +124,9 @@ export default function Home() {
                 >
                   <Table.Column
                     dataIndex="name"
-                    className="table-column-small"
                   />
                   <Table.Column
-                    className="table-column-color-primary table-column-small"
+                    className="table-column-color-primary"
                     dataIndex="value"
                     align="center"
                   />
@@ -203,23 +204,23 @@ export default function Home() {
                         ],
                     },
                   ]}
-                  scroll={{ y: "26vh" }}
+                  scroll={{ y: "calc(60vh - 256px)" }}
                   loading={data.loading}
                   showHeader={false}
                 >
                   <Table.Column
                     dataIndex="cat1"
                     align="left"
-                    className="table-cell-very-small table-column-small"
+                    className="table-cell-very-small"
                     width={160}
                   />
                   <Table.Column
                     dataIndex="cat2"
                     align="left"
-                    className="table-cell-very-small table-column-small"
+                    className="table-cell-very-small"
                   />
                   <Table.Column
-                    className="table-column-color-primary table-cell-very-small table-column-small"
+                    className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
                     align="right"
                     width={100}

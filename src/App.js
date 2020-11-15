@@ -8,7 +8,9 @@ import "./App.less";
 //pages
 import MainView from "./pages/MainView";
 import LogIn from "./pages/LogIn";
-import { LocationProvider } from "@reach/router";
+import { LocationProvider, redirectTo, navigate } from "@reach/router";
+
+
 
 //context
 import ListSitesContextProvider from "./contexts/ListSitesContext"; // will itself imports our Reducer
@@ -46,6 +48,7 @@ function App() {
       const HARDCODED_USERNAME = "scg_hd";
       const HARDCODED_PASSWORD = "123456"
       if (username === HARDCODED_USERNAME && password === HARDCODED_PASSWORD) {
+        navigate('/');
         setLoginStatus(LoginStatus.LoggedIn);
         lockr.set('login_status', true);
       } else {
