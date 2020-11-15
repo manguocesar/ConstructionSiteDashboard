@@ -3,7 +3,9 @@ import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
-import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
+import downloadExcelFile, {
+  convertDateFilename,
+} from "../../utils/downloadExcelFile";
 
 import moment from "moment";
 
@@ -19,20 +21,11 @@ const safetyStandardUrl =
   "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json";
 
 function Inspection() {
-
-  let sixLastDays = []
-for (let i = 6; i >= 0;){
-sixLastDays.push(moment().subtract(i, "days").format("DD-MM"));
-i--
-}
-
-  // const today = moment().format("M.D");
-  // const yesterday = moment().subtract(1, "days").format("DD-MM");
-  // const twoDaysAgo = moment().subtract(2, "days").format("DD-MM");
-  // const threeDaysAgo = moment().subtract(3, "days").format("DD-MM");
-  // const fourDaysAgo = moment().subtract(4, "days").format("DD-MM");
-  // const fiveDaysAgo = moment().subtract(5, "days").format("DD-MM");
-  // const sixDaysAgo = moment().subtract(6, "days").format("DD-MM");
+  let sixLastDays = [];
+  for (let i = 6; i >= 0; ) {
+    sixLastDays.push(moment().subtract(i, "days").format("DD-MM"));
+    i--;
+  }
 
   const [data, setData] = useState({
     loading: true,
@@ -123,6 +116,7 @@ i--
           pagination={false}
           dataSource={employmentInfo}
           showHeader={false}
+          rowKey="type"
         >
           <Table.Column
             title=""
@@ -241,6 +235,7 @@ i--
           pagination={false}
           scroll={{ y: "calc(62vh - 256px)" }}
           dataSource={jobDistributionData}
+          rowKey={(record) => record.team + record.name}
         >
           <Table.Column title="分包企业" dataIndex="name" align="center" />
           <Table.Column title="工种" dataIndex="team" align="center" />
@@ -254,7 +249,10 @@ i--
         action={{
           label: "下载",
           onClick: () => {
-            downloadExcelFile(safetyStandardUrlXlsx, convertDateFilename(safetyStandardUrlXlsx))
+            downloadExcelFile(
+              safetyStandardUrlXlsx,
+              convertDateFilename(safetyStandardUrlXlsx)
+            );
           },
           disabled: false,
         }}
@@ -269,6 +267,7 @@ i--
           pagination={false}
           scroll={{ y: "calc(54vh - 256px)" }}
           dataSource={safetyStandard}
+          rowKey="id"
         >
           <Table.Column title="ID" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />

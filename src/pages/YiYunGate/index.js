@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
-import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
+import downloadExcelFile, {
+  convertDateFilename,
+} from "../../utils/downloadExcelFile";
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
@@ -116,6 +118,7 @@ function Inspection() {
           style={{ marginLeft: 24 }}
           pagination={false}
           dataSource={accessControl}
+          rowKey="name"
         >
           <Table.Column
             title=""
@@ -224,6 +227,9 @@ function Inspection() {
       >
         <Table
           size="small"
+          rowKey={(record, index) => {
+            return record.name + record.team;
+          }}
           onRow={null}
           bordered={false}
           pagination={false}
@@ -243,7 +249,10 @@ function Inspection() {
         action={{
           label: "下载",
           onClick: () => {
-            downloadExcelFile(accessControlRecord_UrlXlsx, convertDateFilename(accessControlRecord_UrlXlsx))
+            downloadExcelFile(
+              accessControlRecord_UrlXlsx,
+              convertDateFilename(accessControlRecord_UrlXlsx)
+            );
           },
           disabled: false,
         }}
