@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import lockr from 'lockr'
 import { message } from 'antd';
+import axios from 'axios';
 
 //style
 import "./App.less";
@@ -21,7 +22,14 @@ import moment from "moment";
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
 
-
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  config.params = {
+    ...config.params,
+    c: Date.now(),
+  }
+  return config;
+});
 
 const LoginStatus = {
   NotLoggedIn: 0,
