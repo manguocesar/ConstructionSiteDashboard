@@ -13,7 +13,6 @@ export default function SiteLocation() {
   return (
     <div className="map_localisation">
       <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
-        {console.log(selectedSite)}
         <Map
           key={selectedSite.order}
           center={{

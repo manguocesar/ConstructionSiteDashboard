@@ -20,13 +20,11 @@ export default function SiteAccessInformation() {
 
   function handleClick_SiteAccessInformation(e) {
     e.preventDefault();
-    console.log("Search for => ", textTwo);
     setTextTwo("");
   }
 
   function handleExportTwo(e) {
     e.preventDefault();
-    console.log("Exporting SiteAccessInformation data");
   }
 
   return (

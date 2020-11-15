@@ -19,13 +19,11 @@ export default function SiteEmploymentInformation() {
 
   function onClickIcon(e) {
     e.preventDefault();
-    console.log("Search for => ", textOne);
     setTextOne("");
   }
 
   function handleExportOne(e) {
     e.preventDefault();
-    console.log("Exporting SiteEmploymentInformation data");
   }
 
   return (
