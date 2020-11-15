@@ -117,6 +117,7 @@ function Inspection() {
           dataSource={employmentInfo}
           showHeader={false}
           rowKey="type"
+          scroll={{ y: "calc(54vh - 256px)" }}
         >
           <Table.Column
             title=""

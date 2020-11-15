@@ -119,6 +119,7 @@ function Inspection() {
           pagination={false}
           dataSource={accessControl}
           rowKey="name"
+          scroll={{ y: "calc(56vh - 256px)" }}
         >
           <Table.Column
             title=""

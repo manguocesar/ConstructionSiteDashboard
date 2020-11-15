@@ -89,7 +89,7 @@ export default function Home() {
                       value: data.homepageData.合信息.今日巡检异常事件数量,
                     },
                   ]}
-                  scroll={{ y: "calc(50vh - 256px)" }}
+                  scroll={{ y: "calc(46vh - 256px)" }}
                   loading={data.loading}
                   showHeader={false}
                 >
