@@ -11,7 +11,8 @@ const ListSitesContextProvider = (props) => {
     {
       order: 1,
       img: customerLogo,
-      text: "中原数字印刷产业园项目",
+      title: '二建集团第六工程公司',
+      text: "邯郸路155号",
       selected: false,
       // 31.292305, 121.504120
       // 121.511214,31.297654

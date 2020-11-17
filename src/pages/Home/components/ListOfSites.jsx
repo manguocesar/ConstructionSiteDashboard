@@ -69,8 +69,8 @@ export default function ListOfSites() {
                 <div className="site_item_inactiveBasic_container_text">
                   <div className="site_device_name_site">
                     <span className="site_device_name_title">复旦大学项目</span>
+                      {nbr.title}
                     <span className="site_device_name_subtitle">
-                      二建集团第六分公司
                     </span>
                   </div>
                   <div className="site_device_numBasic">

@@ -3,7 +3,9 @@ import { Table, Divider, Button, message } from "antd";
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
-import downloadExcelFile, { convertDateFilename } from '../../utils/downloadExcelFile'
+import downloadExcelFile, {
+  convertDateFilename,
+} from "../../utils/downloadExcelFile";
 
 //components
 import Loading from "../../components/Loading";
@@ -67,8 +69,8 @@ function Inspection() {
   const comparisonResults = data.comparisonResults.map((item, i) => {
     const textColors = [
       "#85F391",
-      "#DFA03A",
       "#F7000B",
+      "#DFA03A",
       "#F7000B",
       "#85F391",
       "#F7000B",
@@ -82,7 +84,7 @@ function Inspection() {
       action = {
         label: "下载",
         onClick: () => {
-          downloadExcelFile(item.人员列表, convertDateFilename(item.人员列表))
+          downloadExcelFile(item.人员列表, convertDateFilename(item.人员列表));
         },
         disabled: false,
       };
@@ -174,22 +176,14 @@ function Inspection() {
             dataIndex="gate_status"
             align="center"
           />
-          <Table.Column
-            title="识别标签"
-            dataIndex="recog_tag"
-            align="center"
-          />
+          <Table.Column title="识别标签" dataIndex="recog_tag" align="center" />
           <Table.Column
             title="人员数量"
             dataIndex="people_count"
             align="center"
             render={(val, row) => {
               return (
-                <div
-                  style={{ color: row.color, fontSize: 20 }}
-                >
-                  {val}
-                </div>
+                <div style={{ color: row.color, fontSize: 20 }}>{val}</div>
               );
             }}
           />
@@ -237,10 +231,15 @@ function Inspection() {
               },
             },
             legend: {
-              data: ["合格", "核查门禁", "核查安标", {
-                name: '无法识别',
-                icon: 'circle'
-              }],
+              data: [
+                "合格",
+                "核查门禁",
+                "核查安标",
+                {
+                  name: "无法识别",
+                  icon: "circle",
+                },
+              ],
               itemGap: 20,
               bottom: 0,
               itemWidth: 16,
@@ -315,8 +314,8 @@ function Inspection() {
                 smooth: true,
                 data: totalRecords2,
                 lineStyle: {
-                  type: 'dotted'
-                }
+                  type: "dotted",
+                },
               },
             ],
           }}
@@ -350,7 +349,10 @@ function Inspection() {
         action={{
           label: "下载巡检报告",
           onClick: async () => {
-            downloadExcelFile(patrolLogUrlXlsx, convertDateFilename(patrolLogUrlXlsx))
+            downloadExcelFile(
+              patrolLogUrlXlsx,
+              convertDateFilename(patrolLogUrlXlsx)
+            );
           },
           disabled: false,
         }}
@@ -370,7 +372,31 @@ function Inspection() {
           <Table.Column title="姓名" dataIndex="姓名" align="center" />
           <Table.Column title="身份证" dataIndex="身份证" align="center" />
           <Table.Column title="识别时间" dataIndex="识别时间" align="center" />
-          <Table.Column title="类型" dataIndex="类型" align="center" />
+          <Table.Column
+            title="类型"
+            dataIndex="类型"
+            align="center"
+            render={(category) => {
+              const colors = {
+                合格: "#85F391",
+                管理员: "#85F391",
+                请核查门禁: "#DFA03A",
+                "⻔禁遗漏登记": "#F7000B",
+                黑名单: "#F7000B",
+                请核查安标网: "#F7000B",
+                无法识别: "#F7000B",
+              };
+              return (
+                <div
+                  style={{
+                    color: colors[category],
+                  }}
+                >
+                  {category}
+                </div>
+              );
+            }}
+          />
         </Table>
       </GridView.Cell>
     </GridView>
