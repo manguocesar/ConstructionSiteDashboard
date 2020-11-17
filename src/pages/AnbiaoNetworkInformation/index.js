@@ -21,12 +21,6 @@ const safetyStandardUrl =
   "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json";
 
 function Inspection() {
-  let sixLastDays = [];
-  for (let i = 6; i >= 0; ) {
-    sixLastDays.push(moment().subtract(i, "days").format("DD-MM"));
-    i--;
-  }
-
   const [data, setData] = useState({
     loading: true,
     employmentInfo: [],
@@ -77,6 +71,9 @@ function Inspection() {
   const retirementRecords = data.employmentRetirementRecords.map((item) => {
     return item.退工日期;
   });
+  const employeeRecordsDate = data.employmentRetirementRecords.map((item, i) => {
+    return moment().subtract(data.employmentRetirementRecords.length - 1, "month").add(i, "month").format("YYYY.MM")
+  })
 
   const jobDistributionData = data.jobDistributionData.map((item) => {
     return {
@@ -168,12 +165,12 @@ function Inspection() {
             },
             xAxis: {
               type: "category",
-              data: sixLastDays,
+              data: employeeRecordsDate,
               axisLabel: {
                 show: true,
                 textStyle: {
                   color: "grey",
-                  fontSize: 8,
+                  fontSize: 12,
                 },
               },
               axisTick: { show: false },
