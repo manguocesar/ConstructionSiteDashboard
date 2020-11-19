@@ -116,9 +116,9 @@ function Inspection() {
     return {
       device_id: item.device_id,
       time:
-        moment(item.min).format("hh:mm") +
+        moment(item.min).format("HH:mm") +
         " - " +
-        moment(item.max).format("hh:mm"),
+        moment(item.max).format("HH:mm"),
       date: moment(item.min).format("YYYY-MM-DD"),
     };
   });
