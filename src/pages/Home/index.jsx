@@ -233,11 +233,14 @@ export default function Home() {
                       if (Array.isArray(val)) {
                         return val[0]
                       }
+                      if (typeof val === 'object') {
+                        return val.安标网
+                      }
                       return val;
                     }}
                     width={100}
                   />
-                  {/* <Table.Column
+                  <Table.Column
                     title="门禁"
                     className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
@@ -245,11 +248,14 @@ export default function Home() {
                       if (Array.isArray(val)) {
                         return val[1]
                       }
+                      if (typeof val === 'object') {
+                        return val.门禁
+                      }
                       return '';
                     }}
                     align="center"
                     width={100}
-                  /> */}
+                  />
                 </Table>
               </GridView.Body>
             </div>
