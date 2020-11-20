@@ -28,7 +28,7 @@ export default function Home() {
     "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
 
   const homepageDataUrl =
-    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json?versionId=jEXQivvkx11v_ZbaL_vuZ84y9Q5oSfEM";
+    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json";
 
   // const accessControlUrl =
   // "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
@@ -230,31 +230,19 @@ export default function Home() {
                     dataIndex="value"
                     align="center"
                     render={(val) => {
-                      if (Array.isArray(val)) {
-                        return val[0]
-                      }
-                      if (typeof val === 'object') {
-                        return val.安标网
-                      }
-                      return val;
+                      return val[0]
                     }}
-                    width={100}
+                    width={80}
                   />
                   <Table.Column
                     title="门禁"
                     className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
                     render={(val) => {
-                      if (Array.isArray(val)) {
-                        return val[1]
-                      }
-                      if (typeof val === 'object') {
-                        return val.门禁
-                      }
-                      return '';
+                      return val[1]
                     }}
                     align="center"
-                    width={100}
+                    width={60}
                   />
                 </Table>
               </GridView.Body>
