@@ -138,6 +138,7 @@ export default function Home() {
             <div className="container_top_left_column_2">
               <GridView.Body title="年龄分析">
                 <Table
+                  className="age_table"
                   size="small"
                   pagination={false}
                   dataSource={[
@@ -208,23 +209,45 @@ export default function Home() {
                   ]}
                   scroll={{ y: "calc(60vh - 256px)" }}
                   loading={data.loading}
-                  showHeader={false}
                 >
                   <Table.Column
+                    title="工种"
                     dataIndex="cat1"
-                    align="left"
                     className="table-cell-very-small"
                     width={160}
+                    rowClassName={() => {
+                      return "table-column-color-primary"
+                    }}
                   />
                   <Table.Column
+                    title="分类"
                     dataIndex="cat2"
-                    align="left"
                     className="table-cell-very-small"
                   />
                   <Table.Column
+                    title="安标网"
                     className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
-                    align="right"
+                    align="center"
+                    render={(val) => {
+                      if (Array.isArray(val)) {
+                        return val[0]
+                      }
+                      return val;
+                    }}
+                    width={100}
+                  />
+                  <Table.Column
+                    title="门禁"
+                    className="table-column-color-primary table-cell-very-small"
+                    dataIndex="value"
+                    render={(val) => {
+                      if (Array.isArray(val)) {
+                        return val[1]
+                      }
+                      return '';
+                    }}
+                    align="center"
                     width={100}
                   />
                 </Table>

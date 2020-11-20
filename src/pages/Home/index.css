@@ -8,6 +8,10 @@
   /* border: green dashed 4px; */
 }
 
+.age_table .ant-table-thead > tr > th {
+  text-align: center;
+}
+
 .container_info_left {
   display: flex;
   flex-direction: column;
