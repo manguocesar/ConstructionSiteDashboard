@@ -68,10 +68,11 @@ export default function ListOfSites() {
               >
                 <div className="site_item_inactiveBasic_container_text">
                   <div className="site_device_name_site">
-                    <span className="site_device_name_title">复旦大学项目</span>
-                      {nbr.title}
-                    <span className="site_device_name_subtitle">
+                    <span className="site_device_name_title">
+                      {selectedSite.projectShortName}
                     </span>
+                    {nbr.company}
+                    <span className="site_device_name_subtitle"></span>
                   </div>
                   <div className="site_device_numBasic">
                     <img
@@ -80,7 +81,7 @@ export default function ListOfSites() {
                       alt="positionSmall"
                     />
                     <span className="sites_icon_localisation_text">
-                      {nbr.text}
+                      {nbr.location}
                     </span>
                   </div>
                   <Button

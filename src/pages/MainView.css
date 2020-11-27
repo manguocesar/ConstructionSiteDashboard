@@ -29,7 +29,11 @@
 }
 
 .container_body_router {
-  /* border: red solid 2px; */
+  display: flex;
+  flex-grow: 1;
+}
+
+.container_body_router>div {
   display: flex;
   flex-grow: 1;
 }

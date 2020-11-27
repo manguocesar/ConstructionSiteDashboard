@@ -14,10 +14,10 @@ export default function SiteLocation() {
     <div className="map_localisation">
       <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
         <Map
-          key={selectedSite.order}
+          key={selectedSite?.order}
           center={{
-            lng: selectedSite.longitude,
-            lat: selectedSite.latitude,
+            lng: selectedSite?.longitude,
+            lat: selectedSite?.latitude,
           }}
           zoom={18}
         />

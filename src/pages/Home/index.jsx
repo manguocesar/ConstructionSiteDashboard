@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Table, message } from "antd";
+import { ListSitesContext } from '../../contexts/ListSitesContext'
 
 //style
 import "./index.css";
@@ -23,6 +24,10 @@ export default function Home() {
     },
     loading: true,
   });
+
+
+  const { currentProjectName } = useContext(ListSitesContext)
+
 
   const numberOfWorkersUrl =
     "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
@@ -59,7 +64,7 @@ export default function Home() {
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title="复旦大学邯郸校区中华经济文化研究中心项目"
+        title={currentProjectName}
         left="0"
         top="0"
         width="calc(66% - 8px)"

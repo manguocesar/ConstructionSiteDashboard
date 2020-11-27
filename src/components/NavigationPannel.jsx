@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "@reach/router";
 import { useLocation, redirectTo } from "@reach/router";
 import classnames from "classnames";
+import { navigate } from '@reach/router'
+import lockr from 'lockr';
 
 //style
 import "./NavigationPannel.css";
@@ -41,7 +43,10 @@ const menuItems = [
 export default function NavigationPannel(props) {
   const location = useLocation();
 
-  const { signout } = props;
+  const signout = () => {
+    lockr.rm("login_status");
+    navigate('/login')
+  }
 
   return (
     <div className="container_nav">

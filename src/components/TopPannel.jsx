@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Router } from "@reach/router";
+import { ListSitesContext } from '../contexts/ListSitesContext'
 
 //style
 import "./TopPannel.css";
@@ -16,6 +17,7 @@ import imagecompany from "./img/logoSCG.png";
 import scgLogoText from "./img/scg_text.png";
 
 export default function TopPannel() {
+  const sitesContext = useContext(ListSitesContext)
   return (
     <div className="container_top_pannel">
       <div className="container_consimLogo">
@@ -25,9 +27,9 @@ export default function TopPannel() {
       <div className="container_router">
         <Router>
           <HomeNav path="/" />
-          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="移动巡检" path="Inspection" />
-          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="安标网信息" path="networkinformation" />
-          <ViewNav title="复旦大学邯郸校区中华经济文化研究中心" pageName="羿云门禁" path="yiyungate" />
+          <ViewNav title={sitesContext.currentProjectName} pageName="移动巡检" path="Inspection" />
+          <ViewNav title={sitesContext.currentProjectName} pageName="安标网信息" path="networkinformation" />
+          <ViewNav title={sitesContext.currentProjectName} pageName="羿云门禁" path="yiyungate" />
         </Router>
       </div>
       <div className="display_logo">
