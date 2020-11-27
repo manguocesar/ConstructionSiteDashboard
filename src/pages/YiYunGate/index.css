@@ -1,0 +1,15 @@
+
+.employee-moodal-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-moodal-container h2 {
+  color: white;
+}
+
+.employee-button {
+  margin-top: 32px;
+  width: 100px;
+  align-self: center;
+}

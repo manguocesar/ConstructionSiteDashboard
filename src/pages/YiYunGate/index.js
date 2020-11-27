@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { message, Table } from "antd";
+import { message, Table, Modal, Button } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
 import downloadExcelFile, {
@@ -10,6 +10,7 @@ import downloadExcelFile, {
 import { TimeContext } from "../../contexts/TimeContext";
 
 import ReactEcharts from "echarts-for-react";
+import "./index.css";
 
 function Inspection() {
   const [data, setData] = useState({
@@ -20,6 +21,8 @@ function Inspection() {
     accessControlRecord: [],
   });
   const { chinaDate } = useContext(TimeContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   let accessControl_Url =
     "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
@@ -142,6 +145,13 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
+        action={{
+          label: "人员退场",
+          onClick: () => {
+            setModalVisible(true);
+          },
+          disabled: false,
+        }}
       >
         <ReactEcharts
           style={{
@@ -355,6 +365,42 @@ function Inspection() {
           }}
         />
       </GridView.Cell>
+
+      <Modal
+        visible={modalVisible}
+        width="70%"
+        footer={null}
+        onCancel={() => {
+          setModalVisible(false);
+        }}
+      >
+        <div className="employee-moodal-container">
+          <h2>羿云门禁应退场工人列表</h2>
+          <Table
+            size="small"
+            rowKey={(record, index) => {
+              return record.name + record.team;
+            }}
+            onRow={null}
+            bordered={false}
+            pagination={false}
+            loading={data.loading}
+            scroll={{ y: "calc(60vh - 256px)" }}
+            dataSource={teamDistribution}
+            rowSelection={{
+              selectedRowKeys:selectedRows,
+              onChange: setSelectedRows,
+            }}
+          >
+            <Table.Column title="分包企业" dataIndex="name" align="center" />
+            <Table.Column title="工种" dataIndex="team" align="center" />
+            <Table.Column title="人数" dataIndex="nbrWorkers" align="center" />
+          </Table>
+          <Button className="employee-button" type="primary">
+            一键退场
+          </Button>
+        </div>
+      </Modal>
     </GridView>
   );
 }
