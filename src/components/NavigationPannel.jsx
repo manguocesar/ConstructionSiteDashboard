@@ -44,7 +44,9 @@ export default function NavigationPannel(props) {
   const location = useLocation();
 
   const signout = () => {
-    lockr.rm("login_status");
+    lockr.rm("last_login_time");
+    lockr.rm("current_tenant");
+    lockr.rm("pin_set");
     navigate('/login')
   }
 

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import lockr from "lockr";
 import { navigate } from "@reach/router";
 import { message } from "antd";
+import moment from 'moment';
 
 //img
 import Title from "./img/Consim_Dark.png";
@@ -64,11 +65,12 @@ function LogIn() {
         user.password === credentials.password
       ) {
         // save login info to cache so it is persisted in the browser
-        lockr.set("login_status", true);
+        lockr.set("last_login_time", moment().toDate().getTime());
         lockr.set("current_tenant", {
           projectName,
           sites,
         });
+        lockr.set("pin_set", false);
         navigate("/");
         return;
       }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Table, message, Modal } from "antd";
-import { ListSitesContext } from '../../contexts/ListSitesContext'
+import { ListSitesContext } from "../../contexts/ListSitesContext";
+import lockr from "lockr";
 
 //style
 import "./index.css";
@@ -13,7 +14,16 @@ import ListofSites from "./components/ListOfSites";
 import SiteLocation from "./components/SiteLocation";
 import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
-import PinMessage from './components/PinMessage';
+import PinMessage from "./components/PinMessage";
+
+const numberOfWorkersUrl =
+  "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
+
+const homepageDataUrl =
+  "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json";
+
+// const accessControlUrl =
+// "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
 
 export default function Home() {
   const [data, setData] = useState({
@@ -26,22 +36,16 @@ export default function Home() {
     loading: true,
   });
 
-  const [ modalVisible, setModalVisible ] = useState(false);
-  const { currentProjectName } = useContext(ListSitesContext)
-
-
-  const numberOfWorkersUrl =
-    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
-
-  const homepageDataUrl =
-    "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json";
-
-  // const accessControlUrl =
-  // "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
+  const [modalVisible, setModalVisible] = useState(false);
+  const { currentProjectName } = useContext(ListSitesContext);
 
   useEffect(() => {
-    setModalVisible(true);
+    const pinSet = lockr.get("pin_set");
+    console.warn('pinSet', pinSet)
+    setModalVisible(!pinSet);
+  }, [0]);
 
+  useEffect(() => {
     async function fetchData() {
       try {
         const [
@@ -224,7 +228,7 @@ export default function Home() {
                     className="table-cell-very-small"
                     width={160}
                     rowClassName={() => {
-                      return "table-column-color-primary"
+                      return "table-column-color-primary";
                     }}
                   />
                   <Table.Column
@@ -238,7 +242,7 @@ export default function Home() {
                     dataIndex="value"
                     align="center"
                     render={(val) => {
-                      return val[0]
+                      return val[0];
                     }}
                     width={80}
                   />
@@ -247,7 +251,7 @@ export default function Home() {
                     className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
                     render={(val) => {
-                      return val[1]
+                      return val[1];
                     }}
                     align="center"
                     width={60}
@@ -310,9 +314,11 @@ export default function Home() {
       </GridView.Cell>
 
       <Modal visible={modalVisible} footer={null} width="40%">
-        <PinMessage onClose={() => {
-          setModalVisible(false);
-        }} />
+        <PinMessage
+          onClose={() => {
+            setModalVisible(false);
+          }}
+        />
       </Modal>
     </GridView>
   );

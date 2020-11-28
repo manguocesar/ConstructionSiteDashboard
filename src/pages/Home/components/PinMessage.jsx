@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Progress } from "antd";
+import lockr from 'lockr';
 
 import "./PinMessage.css";
 
@@ -9,6 +10,8 @@ function PinMessage({ onClose }) {
 
   const confirm = () => {
     // TODO add api call
+
+    lockr.set("pin_set", true)
     setStatus("loading");
     setProgress(2);
     setTimeout(() => {
