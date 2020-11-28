@@ -8,6 +8,7 @@ function PinMessage({ onClose }) {
   const [progress, setProgress] = useState(0);
 
   const confirm = () => {
+    // TODO add api call
     setStatus("loading");
     setProgress(2);
     setTimeout(() => {

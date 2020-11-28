@@ -388,15 +388,30 @@ function Inspection() {
             scroll={{ y: "calc(60vh - 256px)" }}
             dataSource={teamDistribution}
             rowSelection={{
-              selectedRowKeys:selectedRows,
+              selectedRowKeys: selectedRows,
               onChange: setSelectedRows,
             }}
           >
-            <Table.Column title="分包企业" dataIndex="name" align="center" />
+            <Table.Column title="姓名" dataIndex="team" align="center" />
+            <Table.Column title="身份证" dataIndex="team" align="center" />
+            <Table.Column title="外包企业" dataIndex="name" align="center" />
             <Table.Column title="工种" dataIndex="team" align="center" />
-            <Table.Column title="人数" dataIndex="nbrWorkers" align="center" />
+            <Table.Column
+              title="安标退工日期"
+              dataIndex="nbrWorkers"
+              align="center"
+            />
           </Table>
-          <Button className="employee-button" type="primary">
+          <Button className="employee-button" type="primary" onClick={() => {
+            Modal.confirm({
+              title: '确认退场',
+              okText: '确认',
+              cancelText: '取消',
+              onOk: () => {
+                // TODO add api call
+              }
+            })
+          }}>
             一键退场
           </Button>
         </div>
