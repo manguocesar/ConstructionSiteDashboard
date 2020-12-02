@@ -78,7 +78,7 @@ function PinMessage({ onClose }) {
       <Form layout="inline">
         <Form.Item>
           <Input
-            placeholder="清输入安标网动态吗"
+            placeholder="请输入安标网动态吗"
             value={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
