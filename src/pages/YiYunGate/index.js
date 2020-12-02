@@ -146,7 +146,7 @@ function Inspection() {
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
         action={{
-          label: "人员退场",
+          label: "人员删除",
           onClick: () => {
             setModalVisible(true);
           },
@@ -375,7 +375,7 @@ function Inspection() {
         }}
       >
         <div className="employee-moodal-container">
-          <h2>羿云门禁应退场工人列表</h2>
+          <h2>羿云门禁应删除工人列表</h2>
           <Table
             size="small"
             rowKey={(record, index) => {
@@ -404,7 +404,7 @@ function Inspection() {
           </Table>
           <Button className="employee-button" type="primary" onClick={() => {
             Modal.confirm({
-              title: '确认退场',
+              title: '确认删除',
               okText: '确认',
               cancelText: '取消',
               onOk: () => {
@@ -412,7 +412,7 @@ function Inspection() {
               }
             })
           }}>
-            一键退场
+            一键删除
           </Button>
         </div>
       </Modal>

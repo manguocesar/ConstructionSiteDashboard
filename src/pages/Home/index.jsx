@@ -35,15 +35,7 @@ export default function Home() {
     },
     loading: true,
   });
-
-  const [modalVisible, setModalVisible] = useState(false);
   const { currentProjectName } = useContext(ListSitesContext);
-
-  useEffect(() => {
-    const pinSet = lockr.get("pin_set");
-    console.warn('pinSet', pinSet)
-    setModalVisible(!pinSet);
-  }, [0]);
 
   useEffect(() => {
     async function fetchData() {
@@ -86,6 +78,7 @@ export default function Home() {
               >
                 <Table
                   size="small"
+                  rowKey="name"
                   pagination={false}
                   dataSource={[
                     {
@@ -129,6 +122,7 @@ export default function Home() {
                 <Table
                   size="small"
                   pagination={false}
+                  rowKey="name"
                   dataSource={[
                     {
                       name: "湖北竹山县用工报警",
@@ -151,6 +145,7 @@ export default function Home() {
               <GridView.Body title="年龄分析">
                 <Table
                   className="age_table"
+                  rowKey={(row) => row.cat1 + row.cat2}
                   size="small"
                   pagination={false}
                   dataSource={[
@@ -312,14 +307,6 @@ export default function Home() {
       >
         {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>
-
-      <Modal visible={modalVisible} footer={null} width="40%">
-        <PinMessage
-          onClose={() => {
-            setModalVisible(false);
-          }}
-        />
-      </Modal>
     </GridView>
   );
 }

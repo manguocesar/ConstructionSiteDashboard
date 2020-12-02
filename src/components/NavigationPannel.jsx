@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@reach/router";
 import { useLocation, redirectTo } from "@reach/router";
 import classnames from "classnames";
-import { navigate } from '@reach/router'
-import lockr from 'lockr';
+import { Modal } from "antd";
+import PinMessage from "./PinMessage";
+import { navigate } from "@reach/router";
+import lockr from "lockr";
 
 //style
 import "./NavigationPannel.css";
@@ -16,6 +18,7 @@ import { ReactComponent as IconFolder } from "./navIcon/folder.svg";
 import { ReactComponent as IconUser } from "./navIcon/user.svg";
 import { ReactComponent as IconSettings } from "./navIcon/settings.svg";
 import { ReactComponent as IconSignout } from "./navIcon/signout.svg";
+import { ReactComponent as KeypadIcon } from "./navIcon/keypad.svg";
 
 const menuItems = [
   {
@@ -41,14 +44,20 @@ const menuItems = [
 ];
 
 export default function NavigationPannel(props) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    const pinSet = lockr.get("pin_set");
+    setModalVisible(!pinSet);
+  }, [0]);
   const location = useLocation();
 
   const signout = () => {
     lockr.rm("last_login_time");
     lockr.rm("current_tenant");
     lockr.rm("pin_set");
-    navigate('/login')
-  }
+    navigate("/login");
+  };
 
   return (
     <div className="container_nav">
@@ -56,7 +65,7 @@ export default function NavigationPannel(props) {
         {menuItems.map((menuItem) => {
           const active = location.pathname === menuItem.to;
           return (
-            <Link to={menuItem.to} style={{ textDecoration: "none" }}>
+            <Link key={menuItem.to} to={menuItem.to} style={{ textDecoration: "none" }}>
               <li
                 className={classnames("menu_basic_li", {
                   active: active,
@@ -74,6 +83,20 @@ export default function NavigationPannel(props) {
           );
         })}
 
+        <li
+          className="menu_basic_li"
+          onClick={() => {
+            setModalVisible(true);
+          }}
+        >
+          <div className="icon_nav_basic_container">
+            <KeypadIcon
+              className="icon_nav_basic"
+              // fill={active ? undefined : "white"}
+            />
+          </div>
+        </li>
+
         <div style={{ flexGrow: 1 }}></div>
 
         <li className={"menu_basic_li"} onClick={signout}>
@@ -82,6 +105,23 @@ export default function NavigationPannel(props) {
           </div>
         </li>
       </div>
+
+      <Modal
+        visible={modalVisible}
+        maskClosable={true}
+        footer={null}
+        closable={false}
+        width="40%"
+        onCancel={() => {
+          setModalVisible(false);
+        }}
+      >
+        <PinMessage
+          onClose={() => {
+            setModalVisible(false);
+          }}
+        />
+      </Modal>
     </div>
   );
 }
