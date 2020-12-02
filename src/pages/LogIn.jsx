@@ -13,8 +13,8 @@ import styles from "./Login.module.css";
 const tenants = [
   {
     credentials: {
-      username: "aaa",
-      password: "bbb",
+      username: "scg_hd",
+      password: "123456",
     },
     projectName: "复旦大学邯郸校区中华经济文化研究中心",
     sites: [
@@ -28,23 +28,23 @@ const tenants = [
       },
     ],
   },
-  {
-    credentials: {
-      username: "ccc",
-      password: "ddd",
-    },
-    projectName: "Test Project Name",
-    sites: [
-      {
-        order: 1,
-        projectShortName: "Short Name",
-        company: "Company",
-        location: "Location",
-        longitude: 121.511214,
-        latitude: 31.297654,
-      },
-    ],
-  },
+  // {
+  //   credentials: {
+  //     username: "ccc",
+  //     password: "ddd",
+  //   },
+  //   projectName: "Test Project Name",
+  //   sites: [
+  //     {
+  //       order: 1,
+  //       projectShortName: "Short Name",
+  //       company: "Company",
+  //       location: "Location",
+  //       longitude: 121.511214,
+  //       latitude: 31.297654,
+  //     },
+  //   ],
+  // },
 ];
 
 function LogIn() {

@@ -112,6 +112,7 @@ export default function NavigationPannel(props) {
         footer={null}
         closable={false}
         width="40%"
+        destroyOnClose={true}
         onCancel={() => {
           setModalVisible(false);
         }}

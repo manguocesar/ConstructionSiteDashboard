@@ -14,7 +14,6 @@ import ListofSites from "./components/ListOfSites";
 import SiteLocation from "./components/SiteLocation";
 import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
-import PinMessage from "./components/PinMessage";
 
 const numberOfWorkersUrl =
   "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";

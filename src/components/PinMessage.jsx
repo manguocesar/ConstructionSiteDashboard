@@ -11,9 +11,16 @@ function PinMessage({ onClose }) {
   const [progress, setProgress] = useState(0);
 
   const confirm = async () => {
+
+
+    if (!/^\d{6}$/.test(inputValue)) {
+      message.error("验证码格式错误");
+      return;
+    }
+
     try {
       const { data } = await axios.put(
-        "http://api.consim.cn/site/fudan-uni/sms-pin",
+        "https://api.consim.cn/site/fudan-uni/sms-pin",
         inputValue,
         {
           headers: {

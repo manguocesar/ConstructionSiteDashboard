@@ -145,13 +145,13 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        action={{
-          label: "人员删除",
-          onClick: () => {
-            setModalVisible(true);
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "人员删除",
+        //   onClick: () => {
+        //     setModalVisible(true);
+        //   },
+        //   disabled: false,
+        // }}
       >
         <ReactEcharts
           style={{
