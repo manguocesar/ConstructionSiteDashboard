@@ -16,13 +16,13 @@ import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
 
 const numberOfWorkersUrl =
-  "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
 
 const homepageDataUrl =
-  "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json";
+  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E4%B8%BB%E9%A1%B5%E6%8A%A5%E8%A1%A8.json";
 
 // const accessControlUrl =
-// "http://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
+// "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
 
 export default function Home() {
   const [data, setData] = useState({
