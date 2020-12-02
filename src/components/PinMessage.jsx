@@ -48,7 +48,7 @@ function PinMessage({ onClose }) {
         setStatus("completed");
       }, 3500);
     } catch (error) {
-      message.error("验证码无效");
+      message.error("提交验证码失败");
     }
   };
 
