@@ -90,7 +90,7 @@ function Inspection() {
       idCard: item["身份证"],
       gender: item["性别"],
       workType: item["工种"],
-      employmentDate: item["用工日期"],
+      employmentDate: moment(item["用工日期"]).format("YYYY年MM月DD日"),
     };
   });
 
@@ -276,6 +276,7 @@ function Inspection() {
             title="用工日期"
             dataIndex="employmentDate"
             align="center"
+            width={160}
           />
         </Table>
       </GridView.Cell>

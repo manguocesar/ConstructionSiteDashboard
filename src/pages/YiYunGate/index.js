@@ -322,7 +322,6 @@ function Inspection() {
             },
             yAxis: {
               type: "value",
-              max: 50,
               axisLabel: {
                 show: true,
                 textStyle: {
