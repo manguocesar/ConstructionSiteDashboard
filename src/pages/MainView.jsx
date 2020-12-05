@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Router, Redirect, navigate } from "@reach/router";
-import { message } from 'antd';
+import { message } from "antd";
 
 //components
 import TopPannel from "../components/TopPannel";
@@ -10,10 +10,10 @@ import Operators from "./Operators/index";
 import NotFound from "../components/NotFound";
 import GridView from "../components/GridView";
 import Inspection from "./Inspection";
-import Login from './LogIn'
-import moment from 'moment';
+import Login from "./LogIn";
+import moment from "moment";
 import lockr from "lockr";
-import { ListSitesContext } from '../contexts/ListSitesContext';
+import { ListSitesContext } from "../contexts/ListSitesContext";
 
 import NetworkInformation from "./AnbiaoNetworkInformation";
 import YiYunGate from "./YiYunGate";
@@ -21,46 +21,67 @@ import YiYunGate from "./YiYunGate";
 //style
 import "./MainView.css";
 
-function Root(props) {
+function shouldLogOut() {
+  const lastLoginTime = lockr.get("last_login_time");
+  const isLoggedIn = !!lastLoginTime;
 
+  if (!isLoggedIn) {
+    return false;
+  }
+
+  if (
+    moment(lastLoginTime).format("YYYYMMDD") !== moment().format("YYYYMMDD")
+  ) {
+    return true;
+  }
+  // logout automatically everday after 10pm
+  const currentHour = moment().get("hours");
+  if (currentHour >= 22) {
+    if (moment(lastLoginTime).get("hours") < 22) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function Root(props) {
   const sitesContext = useContext(ListSitesContext);
   const lastLoginTime = lockr.get("last_login_time");
   const isLoggedIn = !!lastLoginTime;
 
-  useEffect(() =>  {
+  useEffect(() => {
+    const logout = () => {
+      lockr.rm("last_login_time");
+      lockr.rm("current_tenant");
+      lockr.rm("pin_set");
+      navigate("login");
+      message.error("登录已过期。请重新登录");
+    };
+
     if (isLoggedIn) {
-
-      const logout = () => {
-        lockr.rm("last_login_time");
-        lockr.rm("current_tenant");
-        lockr.rm("pin_set");
-        navigate('login');
-        message.error('登录已过期。请重新登录');
-      }
-
-      const { projectName, sites } =  lockr.get("current_tenant");
+      const { projectName, sites } = lockr.get("current_tenant");
       sitesContext.setCurrentProjectName(projectName);
       sitesContext.setSites(sites);
 
-      if (moment(lastLoginTime).format('YYYYMMDD') !== moment().format('YYYYMMDD')) {
+      if (shouldLogOut()) {
         logout();
-        return;
-      }
-      // logout automatically everday after 10pm
-      const currentHour = moment().get('hours');
-      console.warn('currentHour', currentHour)
-      if (currentHour >= 22) {
-        if ((moment(lastLoginTime).get('hours')) < 22) {
-          logout();
-        }
       }
     }
-  }, [0])
+
+    // logout without refreshing page
+    const interval = setInterval(() => {
+      if (shouldLogOut()) {
+        logout();
+      }
+    }, 60 * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [0]);
 
   if (!isLoggedIn) {
-    return (
-      <Redirect to="login" noThrow />
-    )
+    return <Redirect to="login" noThrow />;
   }
 
   return (

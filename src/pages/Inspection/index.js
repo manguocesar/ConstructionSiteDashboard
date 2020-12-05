@@ -165,6 +165,7 @@ function Inspection() {
           scroll={{ y: "calc(55vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
+          rowKey="recog_tag"
         >
           <Table.Column
             title="安标网"
