@@ -17,7 +17,7 @@ const tenants = [
       password: "hd123456",
     },
     projectName: "复旦大学邯郸校区中华经济文化研究中心",
-    id: "fudan-uni",
+    id: "handan",
     sites: [
       {
         order: 1,
