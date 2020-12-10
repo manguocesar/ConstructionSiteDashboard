@@ -19,8 +19,9 @@ function PinMessage({ onClose }) {
     }
 
     try {
+      const { id } = lockr.get("current_tenant");
       const { data } = await axios.put(
-        "https://api.consim.cn/site/fudan-uni/sms-pin",
+        `https://api.consim.cn/site/${id}/sms-pin`,
         inputValue,
         {
           headers: {

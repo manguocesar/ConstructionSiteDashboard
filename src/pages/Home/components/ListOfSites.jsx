@@ -63,13 +63,13 @@ export default function ListOfSites() {
             <Col key={key} className="col" span={6}>
               <div
                 className={`site_item_container ${
-                  selectedSite.order === nbr.order ? "selected" : ""
+                  selectedSite?.order === nbr.order ? "selected" : ""
                 }`}
               >
                 <div className="site_item_inactiveBasic_container_text">
                   <div className="site_device_name_site">
                     <span className="site_device_name_title">
-                      {selectedSite.projectShortName}
+                      {nbr?.projectShortName}
                     </span>
                     {nbr.company}
                     <span className="site_device_name_subtitle"></span>
