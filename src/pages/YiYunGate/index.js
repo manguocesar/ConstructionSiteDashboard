@@ -392,7 +392,7 @@ function Inspection() {
             <Table.Column title="工种" dataIndex="x" align="center" />
             <Table.Column
               title="安标退工日期"
-              dataIndex="nbrWorkers"
+              dataIndex="x"
               align="center"
             />
           </Table>
