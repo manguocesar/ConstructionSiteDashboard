@@ -13,10 +13,8 @@ const downloadExcelFile = async (url, filename) => {
   document.body.removeChild(downloadLink);
 } 
 
-export const convertDateFilename = (url) => {
-  const split = url.split('/');
-  const filename = decodeURI(split[split.length - 1]);
-  return filename.replace('.xlsx', `_${moment().format('YYYYMMDD')}.xlsx`)
+export const convertDateFilename = (filename) => {
+  return `${filename}_${moment().format('YYYYMMDD')}.xlsx`;
 }
 
 export default downloadExcelFile;
