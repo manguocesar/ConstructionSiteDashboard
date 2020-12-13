@@ -15,6 +15,7 @@ function GridView(props) {
 function Cell(props) {
   const {
     title,
+    text,
     children,
     top,
     left,
@@ -41,10 +42,10 @@ function Cell(props) {
       <div
         className="gridview-cell-header"
         style={{
-          justifyContent: titleAlignCenter ? "center" : "flex-start",
+          justifyContent: titleAlignCenter ? "center" : "space-between",
         }}
       >
-        {!!title && title}
+        <p>{!!title && title}</p><p>{!!text && text}</p>
         {!!action && (
           <div className="gridview-cell-header-action">
             <Button

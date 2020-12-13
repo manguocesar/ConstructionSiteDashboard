@@ -23,7 +23,7 @@ const tenants = [
         order: 1,
         projectShortName: "复旦大学项目",
         company: "二建集团第六工程公司",
-        location: "邯郸路155号",
+        location: "上海市杨浦区国权路525号", //"邯郸路155号",
         longitude: 121.511214,
         latitude: 31.297654,
       },

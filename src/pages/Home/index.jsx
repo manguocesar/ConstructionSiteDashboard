@@ -60,16 +60,15 @@ export default function Home() {
 
   return (
 
-// stating the update
-
 
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
         title={currentProjectName}
+        text="上海市杨浦区国权路525号"
         left="0"
         top="0"
-        width="calc(66% - 8px)"
+        width="calc(100% - 8px)"
         height="calc(55% - 8px)"
       >
         {!data.loading ? (
@@ -85,7 +84,7 @@ export default function Home() {
                   pagination={false}
                   dataSource={[
                     {
-                      name: "安标网用工数量Test",
+                      name: "安标网用工数量",
                       value: data.homepageData.合信息.安标网用工数量,
                     },
                     {
@@ -119,7 +118,7 @@ export default function Home() {
                 </Table>
               </GridView.Body>
               <GridView.Body
-                className="container_top_left_column_1_row_2"
+                className="container_top_left_column_3_row_3"
                 title="地域分析"
               >
                 <Table
@@ -263,41 +262,59 @@ export default function Home() {
         )}
       </GridView.Cell>
 
+   
       <GridView.Cell
         noBodyStyle={true}
-        title={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>总体指标</div>
-          </div>
-        }
-        right="0"
-        top="0"
-        width="calc(34% - 8px)"
-        height="calc(55% - 8px)"
-      >
-        {!!data ? (
-          <ComponentTopRight
-            numberOfWorkers={data.homepageData.合信息.安标网用工数量}
-          />
-        ) : (
-          <Loading />
-        )}
-      </GridView.Cell>
-
-      <GridView.Cell
-        noBodyStyle={true}
+        title="功能菜单"
         left="0"
         bottom="0"
         width="calc(66% - 8px)"
         height="calc(45% - 8px)"
       >
-        {!!data ? <ListofSites /> : <Loading />}
+
+
+        {/* {!!data ? <ListofSites /> : <Loading />} */}
+      
+    
+        {!data.loading ? (
+          <div className="container_top_left">
+            <div className="container_top_left_column_1">
+              <GridView.Body
+                className="container_top_left_column_1_row_2"
+                title="更新管理员白名单"
+              >
+            
+                <button>模版下载</button>
+                <button>白名单导入</button>
+
+              </GridView.Body>
+              <GridView.Body
+                className="container_top_left_column_3_row_3"
+                title="门禁退工人员删除" > 
+                 <button>一键删除</button>
+               
+              </GridView.Body>
+            </div>
+            <div className="container_top_left_column_2">
+              <GridView.Body title="报告下载" style={{display:"flex", flexGrow:1}}    >
+              
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center", border: "red 1px solid"}}>
+                      <p>劳务信息及台账</p> <button>下载</button>
+                      </div>
+             
+                      <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+                      <p>安全巡检报告</p> <button>下载</button>
+                      </div>
+                      <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+                      <button>2020.01.02</button><p>至</p><button>2020.01.03</button>
+                      </div>
+              
+              </GridView.Body>
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </GridView.Cell>
 
       <GridView.Cell

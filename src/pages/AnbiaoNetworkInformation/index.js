@@ -244,16 +244,7 @@ function Inspection() {
       <GridView.Cell
         title="安标网数据库"
         titleAlignCenter={true}
-        action={{
-          label: "下载",
-          onClick: () => {
-            downloadExcelFile(
-              safetyStandardUrlXlsx,
-              convertDateFilename(safetyStandardUrlXlsx)
-            );
-          },
-          disabled: false,
-        }}
+        // action={{  }}
         right="0"
         bottom="0"
         width="calc(60% - 8px)"

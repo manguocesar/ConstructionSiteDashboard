@@ -257,16 +257,7 @@ function Inspection() {
       <GridView.Cell
         title="门禁出入记录"
         titleAlignCenter={true}
-        action={{
-          label: "下载",
-          onClick: () => {
-            downloadExcelFile(
-              accessControlRecord_UrlXlsx,
-              convertDateFilename(accessControlRecord_UrlXlsx)
-            );
-          },
-          disabled: false,
-        }}
+        // action={{  }}
         right="0"
         bottom="0"
         width="calc(65% - 8px)"
