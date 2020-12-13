@@ -143,11 +143,18 @@ function Inspection() {
         action={{
           label: "人员删除",
           onClick: async () => {
-            const { id: siteId } = lockr.get("current_tenant");
-            const unauthorizedWorkersUrl = `https://api.consim.cn/site/${siteId}/data/workers-delete-list.json`;
-            const { data } = await axios.get(unauthorizedWorkersUrl);
-            setUnauthorizedWorkers(data);
-            setModalVisible(true);
+            const hide = message.loading('加载中');
+            try {
+              const { id: siteId } = lockr.get("current_tenant");
+              const unauthorizedWorkersUrl = `https://api.consim.cn/site/${siteId}/data/workers-delete-list.json`;
+              const { data } = await axios.get(unauthorizedWorkersUrl);
+              setUnauthorizedWorkers(data);
+              setModalVisible(true);
+            } catch (error) {
+              message.error('加载失败')
+            } finally {
+              hide && hide();
+            }
           },
           disabled: false,
         }}

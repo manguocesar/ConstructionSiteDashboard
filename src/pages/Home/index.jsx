@@ -34,7 +34,9 @@ export default function Home() {
 
         const [
           // { data: numberOfWorkersData },
-          { data: homepageData },
+          {
+            data: homepageData 
+          },
         ] = await Promise.all([
           // axios.get(numberOfWorkersUrl),
           axios.get(homepageDataUrl),
@@ -75,19 +77,19 @@ export default function Home() {
                   dataSource={[
                     {
                       name: "安标网用工数量",
-                      value: data.homepageData.合信息.安标网用工数量,
+                      value: data.homepageData?.合信息?.安标网用工数量,
                     },
                     {
                       name: "羿云门禁人脸数量",
-                      value: data.homepageData.合信息.羿云门禁人脸数量,
+                      value: data.homepageData?.合信息?.羿云门禁人脸数量,
                     },
                     {
                       name: "今日巡检次数",
-                      value: data.homepageData.合信息.今日巡检次数,
+                      value: data.homepageData?.合信息?.今日巡检次数,
                     },
                     {
                       name: "今日巡检异常事件数量",
-                      value: data.homepageData.合信息.今日巡检异常事件数量,
+                      value: data.homepageData?.合信息?.今日巡检异常事件数量,
                     },
                   ]}
                   scroll={{ y: "calc(46vh - 256px)" }}
@@ -118,7 +120,7 @@ export default function Home() {
                   dataSource={[
                     {
                       name: "湖北竹山县用工报警",
-                      value: data.homepageData.低于分析.湖北竹山县用工报警,
+                      value: data.homepageData?.低于分析?.湖北竹山县用工报警,
                     },
                   ]}
                   loading={data.loading}
@@ -145,7 +147,7 @@ export default function Home() {
                       cat1: "男性普通工种:",
                       cat2: "55周岁以下用工人数",
                       value:
-                        data.homepageData.年龄分析.男性普工[
+                        data.homepageData?.年龄分析?.男性普工[
                           "55周岁以下用工人数"
                         ],
                     },
@@ -153,7 +155,7 @@ export default function Home() {
                       cat1: "",
                       cat2: "55-60周岁用工人数",
                       value:
-                        data.homepageData.年龄分析.男性普工[
+                        data.homepageData?.年龄分析?.男性普工[
                           "55-60周岁用工人数"
                         ],
                     },
@@ -161,7 +163,7 @@ export default function Home() {
                       cat1: "",
                       cat2: "60周岁以上超龄用工人数",
                       value:
-                        data.homepageData.年龄分析.男性普工[
+                        data.homepageData?.年龄分析?.男性普工[
                           "60周岁以上超龄用工人数"
                         ],
                     },
@@ -169,7 +171,7 @@ export default function Home() {
                       cat1: "男性特殊工种:",
                       cat2: "55周岁以上超龄用工人数",
                       value:
-                        data.homepageData.年龄分析.男性特殊工种[
+                        data.homepageData?.年龄分析?.男性特殊工种[
                           "55周岁以上超龄用工人数"
                         ],
                     },
@@ -177,7 +179,7 @@ export default function Home() {
                       cat1: "女性普通工种:",
                       cat2: "45周岁以下用工人数",
                       value:
-                        data.homepageData.年龄分析.女性普工[
+                        data.homepageData?.年龄分析?.女性普工[
                           "45周岁以下用工人数"
                         ],
                     },
@@ -185,7 +187,7 @@ export default function Home() {
                       cat1: "",
                       cat2: "45-50周岁用工人数",
                       value:
-                        data.homepageData.年龄分析.女性普工[
+                        data.homepageData?.年龄分析?.女性普工[
                           "45-50周岁用工人数"
                         ],
                     },
@@ -193,7 +195,7 @@ export default function Home() {
                       cat1: "",
                       cat2: "50周岁以上超龄用工人数",
                       value:
-                        data.homepageData.年龄分析.女性普工[
+                        data.homepageData?.年龄分析?.女性普工[
                           "50周岁以上超龄用工人数"
                         ],
                     },
@@ -201,7 +203,7 @@ export default function Home() {
                       cat1: "女性特殊工种:",
                       cat2: "45周岁以上超龄用工人数",
                       value:
-                        data.homepageData.年龄分析.女性特殊工种[
+                        data.homepageData?.年龄分析?.女性特殊工种[
                           "45周岁以上超龄用工人数"
                         ],
                     },
@@ -229,6 +231,9 @@ export default function Home() {
                     dataIndex="value"
                     align="center"
                     render={(val) => {
+                      if (!val) {
+                        return null
+                      }
                       return val[0];
                     }}
                     width={80}
@@ -238,6 +243,9 @@ export default function Home() {
                     className="table-column-color-primary table-cell-very-small"
                     dataIndex="value"
                     render={(val) => {
+                      if (!val) {
+                        return null
+                      }
                       return val[1];
                     }}
                     align="center"
@@ -272,7 +280,7 @@ export default function Home() {
       >
         {!!data ? (
           <ComponentTopRight
-            numberOfWorkers={data.homepageData.合信息.安标网用工数量}
+            numberOfWorkers={data.homepageData?.合信息?.安标网用工数量}
           />
         ) : (
           <Loading />
