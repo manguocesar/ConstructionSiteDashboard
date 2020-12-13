@@ -50,7 +50,7 @@ export default function NavigationPannel(props) {
     const pinSet = lockr.get("pin_set");
     setModalVisible(!pinSet);
     if (!pinSet) {
-      lockr.get("pin_set", true)
+      lockr.set("pin_set", true)
     }
   }, [0]);
   const location = useLocation();
