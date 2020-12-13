@@ -36,7 +36,7 @@
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 16px;
-  padding-top: 8px;
+  padding-top: 0px;
 }
 
 .container_top_left_column_1 {
@@ -54,17 +54,52 @@
 .container_top_left_column_1_row_2 {
   margin-bottom: 12px;
   display: flex;
+  flex: 1;
 }
 
 .container_top_left_column_2 {
   display: flex;
   flex: 1;
 }
+.container_top_left_column_3_row_3 {
+  display: flex;
+  flex: 1;
+}
 
-button {
+.downloadBtn {
   border: 1px solid #82cdbf;
   background-color: transparent;
   color: #82cdbf;
+  border-radius: 0.8vh;
+  padding: 5px 20px 5px 20px;
+  margin: 5px 15px 5px 15px;
+  width: 30%;
+}
+.downloadBtn:hover {
+  scale: 0.95;
+}
+
+.securityReport {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px 0px 10px;
+}
+
+.laborInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px 0px 30px;
+}
+
+.text_box_white {
+  border: white 1px solid;
+  color: white;
+  background-color: transparent;
+
   border-radius: 0.8vh;
   padding: 5px 20px 5px 20px;
   margin: 5px 15px 5px 15px;

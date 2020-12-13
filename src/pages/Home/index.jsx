@@ -15,6 +15,10 @@ import SiteLocation from "./components/SiteLocation";
 import ComponentTopLeft from "./components/ComponentTopLeft";
 import ComponentTopRight from "./components/ComponentTopRight";
 
+import downloadExcelFile, {
+  convertDateFilename,
+} from "../../utils/downloadExcelFile";
+
 const numberOfWorkersUrl =
   "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E4%BA%BA%E6%95%B0%E9%87%8F.json";
 
@@ -57,6 +61,12 @@ export default function Home() {
     }
     fetchData();
   }, [0]);
+
+
+const  handleDownload = () =>{console.log("dowload file"); 
+// downloadExcelFile(convertDateFilename())
+;}
+
 
   return (
 
@@ -269,7 +279,7 @@ export default function Home() {
         left="0"
         bottom="0"
         width="calc(66% - 8px)"
-        height="calc(45% - 8px)"
+        height="calc(45% - 0px)"
       >
 
 
@@ -284,29 +294,30 @@ export default function Home() {
                 title="更新管理员白名单"
               >
             
-                <button>模版下载</button>
-                <button>白名单导入</button>
+                <button  onClick={()=> console.log("Template download")}  className="downloadBtn">模版下载</button>
+                <button   onClick={()=> console.log("White list import")} className="downloadBtn">白名单导入</button>
 
               </GridView.Body>
               <GridView.Body
                 className="container_top_left_column_3_row_3"
                 title="门禁退工人员删除" > 
-                 <button>一键删除</button>
+                 <button  onClick={()=> console.log("Removal of exit guard: One click Delete")} className="downloadBtn">一键删除</button>
                
               </GridView.Body>
             </div>
             <div className="container_top_left_column_2">
               <GridView.Body title="报告下载" style={{display:"flex", flexGrow:1}}    >
               
-                    <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center", border: "red 1px solid"}}>
-                      <p>劳务信息及台账</p> <button>下载</button>
+                    <div className="laborInformation" >
+                      <p>劳务信息及台账</p> <button className="downloadBtn" onClick={()=>handleDownload()}>下载</button>
                       </div>
-             
-                      <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
-                      <p>安全巡检报告</p> <button>下载</button>
+                      <div className="laborInformation" style={{}}>
+                      <p>安全巡检报告</p> <button  className="downloadBtn" onClick={()=>handleDownload()}>下载</button>
                       </div>
-                      <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
-                      <button>2020.01.02</button><p>至</p><button>2020.01.03</button>
+                      <div className="securityReport" style={{}}>
+                      <button onClick={()=> console.log("Download inspection report by dates.")}
+                       className="text_box_white" >2020.01.02</button><p>至</p>
+                       <button onClick={()=> console.log("Download inspection report by dates.")} className="text_box_white">2020.01.03</button>
                       </div>
               
               </GridView.Body>
