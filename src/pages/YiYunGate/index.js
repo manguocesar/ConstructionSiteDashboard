@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { message, Table, Modal, Button } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
+import moment from "moment";
 import downloadExcelFile, {
   convertDateFilename,
 } from "../../utils/downloadExcelFile";
@@ -24,6 +25,7 @@ function Inspection() {
   const { chinaDate } = useContext(TimeContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [unauthorizedWorkers, setUnauthorizedWorkers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -138,13 +140,17 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        // action={{
-        //   label: "人员删除",
-        //   onClick: () => {
-        //     setModalVisible(true);
-        //   },
-        //   disabled: false,
-        // }}
+        action={{
+          label: "人员删除",
+          onClick: async () => {
+            const { id: siteId } = lockr.get("current_tenant");
+            const unauthorizedWorkersUrl = `https://api.consim.cn/site/${siteId}/data/workers-delete-list.json`;
+            const { data } = await axios.get(unauthorizedWorkersUrl);
+            setUnauthorizedWorkers(data);
+            setModalVisible(true);
+          },
+          disabled: false,
+        }}
       >
         <ReactEcharts
           style={{
@@ -364,7 +370,7 @@ function Inspection() {
         visible={modalVisible}
         width="70%"
         footer={null}
-        onCancel={() => {
+        onCancel={async () => {
           setModalVisible(false);
         }}
       >
@@ -372,31 +378,46 @@ function Inspection() {
           <h2>羿云门禁应删除工人列表</h2>
           <Table
             size="small"
-            rowKey={(record, index) => {
-              return record.name + record.team;
-            }}
+            rowKey="身份证"
             onRow={null}
             bordered={false}
             pagination={false}
             loading={data.loading}
             scroll={{ y: "calc(60vh - 256px)" }}
-            dataSource={[{ x: "xxx" }, { x: "yyy" }]}
+            dataSource={unauthorizedWorkers}
             rowSelection={{
               selectedRowKeys: selectedRows,
-              onChange: setSelectedRows,
+              onChange: (_selectedRows) => {
+                setSelectedRows(_selectedRows);
+              },
             }}
           >
-            <Table.Column title="姓名" dataIndex="x" align="center" />
-            <Table.Column title="身份证" dataIndex="x" align="center" />
-            <Table.Column title="外包企业" dataIndex="x" align="center" />
-            <Table.Column title="工种" dataIndex="x" align="center" />
+            <Table.Column title="姓名" dataIndex="姓名" align="center" />
             <Table.Column
-              title="安标退工日期"
-              dataIndex="x"
+              title="身份证"
+              dataIndex="身份证"
               align="center"
+              render={(val) => {
+                return val.slice(0, 3) + "******" + val.slice(val.length - 4);
+              }}
+            />
+            <Table.Column
+              title="外包企业"
+              dataIndex="分包企业"
+              align="center"
+            />
+            <Table.Column title="工种" dataIndex="工种" align="center" />
+            <Table.Column
+              title="安标网退工日期"
+              dataIndex="安标网退工日期"
+              align="center"
+              render={(val) => {
+                return moment(val).format("YYYY.MM.DD");
+              }}
             />
           </Table>
           <Button
+            disabled={selectedRows.length === 0}
             className="employee-button"
             type="primary"
             onClick={() => {
@@ -404,8 +425,19 @@ function Inspection() {
                 title: "确认删除",
                 okText: "确认",
                 cancelText: "取消",
-                onOk: () => {
-                  // TODO add api call
+                onOk: async () => {
+                  const { id: siteId } = lockr.get("current_tenant");
+                  try {
+                    await axios.delete(
+                      `https://api.consim.cn/site/${siteId}/workers`,
+                      {
+                        data: selectedRows,
+                      }
+                    );
+                    message.success(`操作成功`);
+                  } catch (error) {
+                    message.error(`操作失败`);
+                  }
                 },
               });
             }}
