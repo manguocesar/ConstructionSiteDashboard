@@ -74,7 +74,10 @@ function Body(props) {
       <div className="gridview-body-title">
         {title}
       </div>
-      <div>{children}</div>
+      <div style={{
+        display: 'flex',
+        flex: 1,
+      }}>{children}</div>
     </div>
   );
 }

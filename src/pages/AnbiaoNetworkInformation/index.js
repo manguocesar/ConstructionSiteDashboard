@@ -243,18 +243,6 @@ function Inspection() {
       <GridView.Cell
         title="安标网数据库"
         titleAlignCenter={true}
-        // action={{
-        //   label: "下载",
-        //   onClick: () => {
-        //     const { id: siteId } = lockr.get("current_tenant");
-        //     const safetyStandardUrlXlsx = `https://api.consim.cn/site/${siteId}/data/government-database.xlsx`;
-        //     downloadExcelFile(
-        //       safetyStandardUrlXlsx,
-        //       convertDateFilename("安标网数据库.xlsx")
-        //     );
-        //   },
-        //   disabled: false,
-        // }}
         right="0"
         bottom="0"
         width="calc(60% - 8px)"
