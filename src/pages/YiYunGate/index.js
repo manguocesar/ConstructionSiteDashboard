@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { message, Table, Modal, Button } from "antd";
 import GridView from "../../components/GridView";
 import axios from "axios";
+import moment from "moment";
 import downloadExcelFile, {
   convertDateFilename,
 } from "../../utils/downloadExcelFile";
 
+import lockr from "lockr";
 //context
 import { TimeContext } from "../../contexts/TimeContext";
 
@@ -21,26 +23,16 @@ function Inspection() {
     accessControlRecord: [],
   });
   const { chinaDate } = useContext(TimeContext);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedRows, setSelectedRows] = useState([]);
-
-  let accessControl_Url =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%BE%BF%E4%BA%91%E9%97%A8%E7%A6%81%E4%BF%A1%E6%81%AF.json";
-
-  let twoWeeksRecognition_Url =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E8%BF%91%E4%B8%A4%E5%91%A8%E4%BA%BA%E8%84%B8%E5%BD%95%E5%85%A5%E8%AE%B0%E5%BD%95.json";
-
-  let teamDistribution_Url =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json";
-
-  let accessControlRecord_UrlXlsx =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.xlsx";
-  let accessControlRecord_Url =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E9%97%A8%E7%A6%81%E5%87%BA%E5%85%A5%E8%AE%B0%E5%BD%95.json";
 
   useEffect(() => {
     async function fetchData() {
       try {
+        const { id: siteId } = lockr.get("current_tenant");
+        const accessControl_Url = `https://api.consim.cn/site/${siteId}/data/access-control-info.json`;
+        const twoWeeksRecognition_Url = `https://api.consim.cn/site/${siteId}/data/face-entry-records-last-2-weeks.json`;
+        const teamDistribution_Url = `https://api.consim.cn/site/${siteId}/data/job-distribution.json`;
+        const accessControlRecord_Url = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.json`;
+
         const [
           { data: accessControl },
           { data: twoWeeksRecognition },
@@ -145,13 +137,6 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        // action={{
-        //   label: "人员删除",
-        //   onClick: () => {
-        //     setModalVisible(true);
-        //   },
-        //   disabled: false,
-        // }}
       >
         <ReactEcharts
           style={{
@@ -257,7 +242,6 @@ function Inspection() {
       <GridView.Cell
         title="门禁出入记录"
         titleAlignCenter={true}
-        // action={{  }}
         right="0"
         bottom="0"
         width="calc(65% - 8px)"
@@ -356,56 +340,7 @@ function Inspection() {
         />
       </GridView.Cell>
 
-      <Modal
-        visible={modalVisible}
-        width="70%"
-        footer={null}
-        onCancel={() => {
-          setModalVisible(false);
-        }}
-      >
-        <div className="employee-moodal-container">
-          <h2>羿云门禁应删除工人列表</h2>
-          <Table
-            size="small"
-            rowKey={(record, index) => {
-              return record.name + record.team;
-            }}
-            onRow={null}
-            bordered={false}
-            pagination={false}
-            loading={data.loading}
-            scroll={{ y: "calc(60vh - 256px)" }}
-            dataSource={teamDistribution}
-            rowSelection={{
-              selectedRowKeys: selectedRows,
-              onChange: setSelectedRows,
-            }}
-          >
-            <Table.Column title="姓名" dataIndex="team" align="center" />
-            <Table.Column title="身份证" dataIndex="team" align="center" />
-            <Table.Column title="外包企业" dataIndex="name" align="center" />
-            <Table.Column title="工种" dataIndex="team" align="center" />
-            <Table.Column
-              title="安标退工日期"
-              dataIndex="nbrWorkers"
-              align="center"
-            />
-          </Table>
-          <Button className="employee-button" type="primary" onClick={() => {
-            Modal.confirm({
-              title: '确认删除',
-              okText: '确认',
-              cancelText: '取消',
-              onOk: () => {
-                // TODO add api call
-              }
-            })
-          }}>
-            一键删除
-          </Button>
-        </div>
-      </Modal>
+
     </GridView>
   );
 }

@@ -3,12 +3,12 @@ import { Table, Divider, Button, message } from "antd";
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
+import lockr from "lockr";
 import downloadExcelFile, {
   convertDateFilename,
 } from "../../utils/downloadExcelFile";
 
 //components
-import Loading from "../../components/Loading";
 import GridView from "../../components/GridView";
 
 //context
@@ -24,23 +24,18 @@ function Inspection() {
     patrolData: [],
   });
 
-  let comparisonResultsUrl =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E5%9C%B0%E7%94%A8%E5%B7%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C.json";
-
-  let employmentRetirementRecordsUrl =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
-
-  let inspectionRecordUrl =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E8%AE%B0%E5%BD%95.json";
-
-  let patrolLogUrl =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.json";
-  let patrolLogUrlXlsx =
-    "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A1%E6%A3%80%E6%97%A5%E5%BF%97.xlsx";
-
   useEffect(() => {
     async function fetchData() {
       try {
+        const { id: siteId } = lockr.get("current_tenant");
+        const comparisonResultsUrl = `https://api.consim.cn/site/${siteId}/data/comparison-results.json`;
+        const inspectionRecordUrl = `https://api.consim.cn/site/${siteId}/data/daily-inspections.json`;
+        const patrolLogUrl = `https://api.consim.cn/site/${siteId}/data/daily-inspection-records.json`;
+
+        // TODO this is wrong, replace with correct source
+        let employmentRetirementRecordsUrl =
+          "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
+
         const [
           { data: comparisonResults },
           { data: employmentRetirementRecords },
@@ -99,6 +94,8 @@ function Inspection() {
     };
   });
 
+
+  // TODO this is wrong, replace with correct source
   const employmentRecords = data.employmentRetirementRecords.map((item) => {
     return item.用工日期;
   });
@@ -154,7 +151,7 @@ function Inspection() {
         }
         left="0"
         top="0"
-        width="calc(66% - 8px)"
+        width="calc(50% - 8px)"
         height="calc(52% - 8px)"
       >
         <Table
@@ -196,7 +193,7 @@ function Inspection() {
         title="近30日人员变化趋势"
         right="0"
         top="0"
-        width="calc(40% - 8px)"
+        width="calc(50% - 8px)"
         height="calc(52% - 8px)"
       >
         <ReactEcharts
@@ -273,28 +270,28 @@ function Inspection() {
                 type: "line",
                 label: "one",
                 smooth: true,
-                data: employmentRecords,
+                data: [],
               },
               {
                 name: "核查门禁",
                 type: "line",
                 label: "two",
                 smooth: true,
-                data: retirementRecords,
+                data: [],
               },
               {
                 name: "核查安标",
                 type: "line",
                 label: "three",
                 smooth: true,
-                data: totalRecords,
+                data: [],
               },
               {
                 name: "无法识别",
                 type: "line",
                 label: "four",
                 smooth: true,
-                data: totalRecords2,
+                data: [],
                 lineStyle: {
                   type: "dotted",
                 },
@@ -328,7 +325,6 @@ function Inspection() {
       <GridView.Cell
         title="巡检日志"
         titleAlignCenter={true}
-       
         right="0"
         bottom="0"
         width="calc(64% - 8px)"

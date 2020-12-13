@@ -42,10 +42,10 @@ function Cell(props) {
       <div
         className="gridview-cell-header"
         style={{
-          justifyContent: titleAlignCenter ? "center" : "space-between",
+          justifyContent: titleAlignCenter ? "center" : "flex-start",
         }}
       >
-        <p>{!!title && title}</p><p>{!!text && text}</p>
+        {!!title && title}
         {!!action && (
           <div className="gridview-cell-header-action">
             <Button
@@ -75,7 +75,10 @@ function Body(props) {
       <div className="gridview-body-title">
         {title}
       </div>
-      <div>{children}</div>
+      <div style={{
+        display: 'flex',
+        flex: 1,
+      }}>{children}</div>
     </div>
   );
 }
