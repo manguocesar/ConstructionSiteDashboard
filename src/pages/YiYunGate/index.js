@@ -138,13 +138,13 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        action={{
-          label: "人员删除",
-          onClick: () => {
-            setModalVisible(true);
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "人员删除",
+        //   onClick: () => {
+        //     setModalVisible(true);
+        //   },
+        //   disabled: false,
+        // }}
       >
         <ReactEcharts
           style={{
@@ -250,18 +250,18 @@ function Inspection() {
       <GridView.Cell
         title="门禁出入记录"
         titleAlignCenter={true}
-        action={{
-          label: "下载",
-          onClick: () => {
-            const { id: siteId } = lockr.get("current_tenant");
-            const accessControlRecord_UrlXlsx = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.xlsx`;
-            downloadExcelFile(
-              accessControlRecord_UrlXlsx,
-              convertDateFilename("门禁出入记录")
-            );
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "下载",
+        //   onClick: () => {
+        //     const { id: siteId } = lockr.get("current_tenant");
+        //     const accessControlRecord_UrlXlsx = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.xlsx`;
+        //     downloadExcelFile(
+        //       accessControlRecord_UrlXlsx,
+        //       convertDateFilename("门禁出入记录")
+        //     );
+        //   },
+        //   disabled: false,
+        // }}
         right="0"
         bottom="0"
         width="calc(65% - 8px)"

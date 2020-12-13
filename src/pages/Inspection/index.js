@@ -344,18 +344,18 @@ function Inspection() {
       <GridView.Cell
         title="巡检日志"
         titleAlignCenter={true}
-        action={{
-          label: "下载巡检报告",
-          onClick: async () => {
-            const { id: siteId } = lockr.get("current_tenant");
-            const patrolLogUrlXlsx = `https://api.consim.cn/site/${siteId}/data/daily-inspection-records.xlsx`;
-            downloadExcelFile(
-              patrolLogUrlXlsx,
-              convertDateFilename("巡检日志")
-            );
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "下载巡检报告",
+        //   onClick: async () => {
+        //     const { id: siteId } = lockr.get("current_tenant");
+        //     const patrolLogUrlXlsx = `https://api.consim.cn/site/${siteId}/data/daily-inspection-records.xlsx`;
+        //     downloadExcelFile(
+        //       patrolLogUrlXlsx,
+        //       convertDateFilename("巡检日志")
+        //     );
+        //   },
+        //   disabled: false,
+        // }}
         right="0"
         bottom="0"
         width="calc(64% - 8px)"
