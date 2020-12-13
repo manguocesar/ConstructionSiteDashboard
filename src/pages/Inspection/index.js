@@ -151,7 +151,7 @@ function Inspection() {
         }
         left="0"
         top="0"
-        width="calc(66% - 8px)"
+        width="calc(50% - 8px)"
         height="calc(52% - 8px)"
       >
         <Table
@@ -185,25 +185,6 @@ function Inspection() {
               );
             }}
           />
-          <Table.Column
-            className="table-cell-very-small"
-            title="人员列表"
-            dataIndex="action"
-            align="center"
-            render={(action, row) => {
-              return (
-                <Button
-                  size="small"
-                  disabled={action.disabled}
-                  type="primary"
-                  ghost={true}
-                  onClick={action.onClick}
-                >
-                  {action.label}
-                </Button>
-              );
-            }}
-          />
         </Table>
       </GridView.Cell>
 
@@ -212,7 +193,7 @@ function Inspection() {
         title="近30日人员变化趋势"
         right="0"
         top="0"
-        width="calc(34% - 8px)"
+        width="calc(50% - 8px)"
         height="calc(52% - 8px)"
       >
         <ReactEcharts
@@ -344,18 +325,6 @@ function Inspection() {
       <GridView.Cell
         title="巡检日志"
         titleAlignCenter={true}
-        // action={{
-        //   label: "下载巡检报告",
-        //   onClick: async () => {
-        //     const { id: siteId } = lockr.get("current_tenant");
-        //     const patrolLogUrlXlsx = `https://api.consim.cn/site/${siteId}/data/daily-inspection-records.xlsx`;
-        //     downloadExcelFile(
-        //       patrolLogUrlXlsx,
-        //       convertDateFilename("巡检日志")
-        //     );
-        //   },
-        //   disabled: false,
-        // }}
         right="0"
         bottom="0"
         width="calc(64% - 8px)"

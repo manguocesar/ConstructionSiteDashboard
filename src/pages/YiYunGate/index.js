@@ -23,9 +23,6 @@ function Inspection() {
     accessControlRecord: [],
   });
   const { chinaDate } = useContext(TimeContext);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedRows, setSelectedRows] = useState([]);
-  const [unauthorizedWorkers, setUnauthorizedWorkers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -140,24 +137,6 @@ function Inspection() {
         top="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        action={{
-          label: "人员删除",
-          onClick: async () => {
-            const hide = message.loading('加载中');
-            try {
-              const { id: siteId } = lockr.get("current_tenant");
-              const unauthorizedWorkersUrl = `https://api.consim.cn/site/${siteId}/data/workers-delete-list.json`;
-              const { data } = await axios.get(unauthorizedWorkersUrl);
-              setUnauthorizedWorkers(data);
-              setModalVisible(true);
-            } catch (error) {
-              message.error('加载失败')
-            } finally {
-              hide && hide();
-            }
-          },
-          disabled: false,
-        }}
       >
         <ReactEcharts
           style={{
@@ -263,18 +242,6 @@ function Inspection() {
       <GridView.Cell
         title="门禁出入记录"
         titleAlignCenter={true}
-        // action={{
-        //   label: "下载",
-        //   onClick: () => {
-        //     const { id: siteId } = lockr.get("current_tenant");
-        //     const accessControlRecord_UrlXlsx = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.xlsx`;
-        //     downloadExcelFile(
-        //       accessControlRecord_UrlXlsx,
-        //       convertDateFilename("门禁出入记录")
-        //     );
-        //   },
-        //   disabled: false,
-        // }}
         right="0"
         bottom="0"
         width="calc(65% - 8px)"
@@ -373,86 +340,7 @@ function Inspection() {
         />
       </GridView.Cell>
 
-      <Modal
-        visible={modalVisible}
-        width="70%"
-        footer={null}
-        onCancel={async () => {
-          setModalVisible(false);
-        }}
-      >
-        <div className="employee-moodal-container">
-          <h2>羿云门禁应删除工人列表</h2>
-          <Table
-            size="small"
-            rowKey="身份证"
-            onRow={null}
-            bordered={false}
-            pagination={false}
-            loading={data.loading}
-            scroll={{ y: "calc(60vh - 256px)" }}
-            dataSource={unauthorizedWorkers}
-            rowSelection={{
-              selectedRowKeys: selectedRows,
-              onChange: (_selectedRows) => {
-                setSelectedRows(_selectedRows);
-              },
-            }}
-          >
-            <Table.Column title="姓名" dataIndex="姓名" align="center" />
-            <Table.Column
-              title="身份证"
-              dataIndex="身份证"
-              align="center"
-              render={(val) => {
-                return val.slice(0, 3) + "******" + val.slice(val.length - 4);
-              }}
-            />
-            <Table.Column
-              title="外包企业"
-              dataIndex="分包企业"
-              align="center"
-            />
-            <Table.Column title="工种" dataIndex="工种" align="center" />
-            <Table.Column
-              title="安标网退工日期"
-              dataIndex="安标网退工日期"
-              align="center"
-              render={(val) => {
-                return moment(val).format("YYYY.MM.DD");
-              }}
-            />
-          </Table>
-          <Button
-            disabled={selectedRows.length === 0}
-            className="employee-button"
-            type="primary"
-            onClick={() => {
-              Modal.confirm({
-                title: "确认删除",
-                okText: "确认",
-                cancelText: "取消",
-                onOk: async () => {
-                  const { id: siteId } = lockr.get("current_tenant");
-                  try {
-                    await axios.delete(
-                      `https://api.consim.cn/site/${siteId}/workers`,
-                      {
-                        data: selectedRows,
-                      }
-                    );
-                    message.success(`操作成功`);
-                  } catch (error) {
-                    message.error(`操作失败`);
-                  }
-                },
-              });
-            }}
-          >
-            一键删除
-          </Button>
-        </div>
-      </Modal>
+
     </GridView>
   );
 }

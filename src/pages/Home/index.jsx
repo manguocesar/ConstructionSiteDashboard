@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Table, message, Modal } from "antd";
+import { Table, message, Button, Modal } from "antd";
 import { ListSitesContext } from "../../contexts/ListSitesContext";
 import lockr from "lockr";
+import moment from 'moment';
 
 //style
 import "./index.css";
@@ -10,7 +11,6 @@ import "./index.css";
 //components
 import Loading from "../../components/Loading";
 import GridView from "../../components/GridView";
-import ListofSites from "./components/ListOfSites";
 import SiteLocation from "./components/SiteLocation";
 import ComponentTopRight from "./components/ComponentTopRight";
 
@@ -24,7 +24,12 @@ export default function Home() {
     },
     loading: true,
   });
-  const { currentProjectName } = useContext(ListSitesContext);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [unauthorizedWorkers, setUnauthorizedWorkers] = useState([]);
+
+  const { currentProjectName, selectedSite } = useContext(ListSitesContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -34,9 +39,7 @@ export default function Home() {
 
         const [
           // { data: numberOfWorkersData },
-          {
-            data: homepageData 
-          },
+          { data: homepageData },
         ] = await Promise.all([
           // axios.get(numberOfWorkersUrl),
           axios.get(homepageDataUrl),
@@ -53,14 +56,28 @@ export default function Home() {
     fetchData();
   }, [0]);
 
+  const handleDownload = () => {
+    console.log("dowload file");
+    // downloadExcelFile(convertDateFilename())
+  };
+
   return (
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title={currentProjectName}
+        title={<div style={{
+          display: 'flex',
+          flexGrow: 1,
+        }}>
+          <div style={{flex: 1}}>{currentProjectName}</div>
+          <div style={{
+            fontSize: 18,
+            fontWeight: 500
+          }}>{selectedSite?.location}</div>
+        </div>}
         left="0"
         top="0"
-        width="calc(66% - 8px)"
+        width="calc(100% - 8px)"
         height="calc(55% - 8px)"
       >
         {!data.loading ? (
@@ -110,7 +127,7 @@ export default function Home() {
                 </Table>
               </GridView.Body>
               <GridView.Body
-                className="container_top_left_column_1_row_2"
+                className="container_top_left_column_3_row_3"
                 title="地域分析"
               >
                 <Table
@@ -216,6 +233,7 @@ export default function Home() {
                     dataIndex="cat1"
                     className="table-cell-very-small"
                     width={160}
+                    align="center"
                     rowClassName={() => {
                       return "table-column-color-primary";
                     }}
@@ -224,6 +242,7 @@ export default function Home() {
                     title="分类"
                     dataIndex="cat2"
                     className="table-cell-very-small"
+                    width={160}
                   />
                   <Table.Column
                     title="安标网"
@@ -232,7 +251,7 @@ export default function Home() {
                     align="center"
                     render={(val) => {
                       if (!val) {
-                        return null
+                        return null;
                       }
                       return val[0];
                     }}
@@ -244,7 +263,7 @@ export default function Home() {
                     dataIndex="value"
                     render={(val) => {
                       if (!val) {
-                        return null
+                        return null;
                       }
                       return val[1];
                     }}
@@ -262,39 +281,129 @@ export default function Home() {
 
       <GridView.Cell
         noBodyStyle={true}
-        title={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>总体指标</div>
-          </div>
-        }
-        right="0"
-        top="0"
-        width="calc(34% - 8px)"
-        height="calc(55% - 8px)"
-      >
-        {!!data ? (
-          <ComponentTopRight
-            numberOfWorkers={data.homepageData?.合信息?.安标网用工数量}
-          />
-        ) : (
-          <Loading />
-        )}
-      </GridView.Cell>
-
-      <GridView.Cell
-        noBodyStyle={true}
         left="0"
         bottom="0"
         width="calc(66% - 8px)"
         height="calc(45% - 8px)"
       >
-        {!!data ? <ListofSites /> : <Loading />}
+        {/* {!!data ? <ListofSites /> : <Loading />} */}
+
+        {!data.loading ? (
+          <div className="container_top_left">
+            <div className="container_top_left_column_1">
+              <GridView.Body
+                className="container_top_left_column_1_row_2"
+                title="更新管理员白名单"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flex: 1,
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    type="primary"
+                    ghost={true}
+                    disabled={true}
+                    onClick={() => console.log("Template download")}
+                  >
+                    模版下载
+                  </Button>
+                  <Button
+                    type="primary"
+                    ghost={true}
+                    disabled={true}
+                    onClick={() => console.log("White list import")}
+                  >
+                    白名单导入
+                  </Button>
+                </div>
+              </GridView.Body>
+              <GridView.Body
+                className="container_top_left_column_3_row_3"
+                title="门禁退工人员删除"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    type="primary"
+                    ghost={true}
+                    onClick={async () => {
+                      const hide = message.loading("加载中");
+                      try {
+                        const { id: siteId } = lockr.get("current_tenant");
+                        const unauthorizedWorkersUrl = `https://api.consim.cn/site/${siteId}/data/workers-delete-list.json`;
+                        const { data } = await axios.get(
+                          unauthorizedWorkersUrl
+                        );
+                        setUnauthorizedWorkers(data);
+                        setModalVisible(true);
+                      } catch (error) {
+                        message.error("加载失败");
+                      } finally {
+                        hide && hide();
+                      }
+                    }}
+                  >
+                    一键删除
+                  </Button>
+                </div>
+              </GridView.Body>
+            </div>
+            <div className="container_top_left_column_2">
+              <GridView.Body
+                title="报告下载"
+                style={{ display: "flex", flexGrow: 1 }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flex: 1,
+                    flexDirection: "column",
+                    paddingTop: 16,
+                    paddingBottom: 16,
+                    paddingRight: 48,
+                    paddingLeft: 48,
+                  }}
+                >
+                  <div className="laborInformation">
+                    <div style={{ flex: 1, fontSize: 18 }}>劳务信息及台账</div>
+                    <Button
+                      type="primary"
+                      ghost={true}
+                      disabled={true}
+                      onClick={() => handleDownload()}
+                    >
+                      下载
+                    </Button>
+                  </div>
+                  <div className="laborInformation">
+                    <div style={{ flex: 1, fontSize: 18 }}>安全巡检报告</div>
+                    <Button
+                      type="primary"
+                      ghost={true}
+                      disabled={true}
+                      onClick={() => handleDownload()}
+                    >
+                      下载
+                    </Button>
+                  </div>
+                  {/* TODO date filter */}
+                </div>
+              </GridView.Body>
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </GridView.Cell>
 
       <GridView.Cell
@@ -307,6 +416,87 @@ export default function Home() {
       >
         {!!data ? <SiteLocation /> : <Loading />}
       </GridView.Cell>
+
+      <Modal
+        visible={modalVisible}
+        width="70%"
+        footer={null}
+        onCancel={async () => {
+          setModalVisible(false);
+        }}
+      >
+        <div className="employee-moodal-container">
+          <h2>羿云门禁应删除工人列表</h2>
+          <Table
+            size="small"
+            rowKey="身份证"
+            onRow={null}
+            bordered={false}
+            pagination={false}
+            loading={data.loading}
+            scroll={{ y: "calc(60vh - 256px)" }}
+            dataSource={unauthorizedWorkers}
+            rowSelection={{
+              selectedRowKeys: selectedRows,
+              onChange: (_selectedRows) => {
+                setSelectedRows(_selectedRows);
+              },
+            }}
+          >
+            <Table.Column title="姓名" dataIndex="姓名" align="center" />
+            <Table.Column
+              title="身份证"
+              dataIndex="身份证"
+              align="center"
+              render={(val) => {
+                return val.slice(0, 3) + "******" + val.slice(val.length - 4);
+              }}
+            />
+            <Table.Column
+              title="外包企业"
+              dataIndex="分包企业"
+              align="center"
+            />
+            <Table.Column title="工种" dataIndex="工种" align="center" />
+            <Table.Column
+              title="安标网退工日期"
+              dataIndex="安标网退工日期"
+              align="center"
+              render={(val) => {
+                return moment(val).format("YYYY.MM.DD");
+              }}
+            />
+          </Table>
+          <Button
+            disabled={selectedRows.length === 0}
+            className="employee-button"
+            type="primary"
+            onClick={() => {
+              Modal.confirm({
+                title: "确认删除",
+                okText: "确认",
+                cancelText: "取消",
+                onOk: async () => {
+                  const { id: siteId } = lockr.get("current_tenant");
+                  try {
+                    await axios.delete(
+                      `https://api.consim.cn/site/${siteId}/workers`,
+                      {
+                        data: selectedRows,
+                      }
+                    );
+                    message.success(`操作成功`);
+                  } catch (error) {
+                    message.error(`操作失败`);
+                  }
+                },
+              });
+            }}
+          >
+            一键删除
+          </Button>
+        </div>
+      </Modal>
     </GridView>
   );
 }
