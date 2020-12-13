@@ -59,6 +59,10 @@ export default function Home() {
   }, [0]);
 
   return (
+
+// stating the update
+
+
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
@@ -81,7 +85,7 @@ export default function Home() {
                   pagination={false}
                   dataSource={[
                     {
-                      name: "安标网用工数量",
+                      name: "安标网用工数量Test",
                       value: data.homepageData.合信息.安标网用工数量,
                     },
                     {
