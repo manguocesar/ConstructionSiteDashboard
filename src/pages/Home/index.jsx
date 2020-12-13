@@ -29,7 +29,7 @@ export default function Home() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [unauthorizedWorkers, setUnauthorizedWorkers] = useState([]);
 
-  const { currentProjectName } = useContext(ListSitesContext);
+  const { currentProjectName, selectedSite } = useContext(ListSitesContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -65,7 +65,16 @@ export default function Home() {
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title={currentProjectName}
+        title={<div style={{
+          display: 'flex',
+          flexGrow: 1,
+        }}>
+          <div style={{flex: 1}}>{currentProjectName}</div>
+          <div style={{
+            fontSize: 18,
+            fontWeight: 500
+          }}>{selectedSite?.location}</div>
+        </div>}
         left="0"
         top="0"
         width="calc(100% - 8px)"

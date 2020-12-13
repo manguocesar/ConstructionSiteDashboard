@@ -15,7 +15,6 @@ function GridView(props) {
 function Cell(props) {
   const {
     title,
-    text,
     children,
     top,
     left,
