@@ -91,6 +91,10 @@ export default function Home() {
                   size="small"
                   rowKey="name"
                   pagination={false}
+                  style={{
+                    paddingRight: 32,
+                    paddingLeft: 16
+                  }}
                   dataSource={[
                     {
                       name: "安标网用工数量",
@@ -134,6 +138,11 @@ export default function Home() {
                   size="small"
                   pagination={false}
                   rowKey="name"
+                  style={{
+                    flexGrow: 1,
+                    paddingRight: 34,
+                    paddingLeft: 16
+                  }}
                   dataSource={[
                     {
                       name: "湖北竹山县用工报警",
@@ -147,7 +156,7 @@ export default function Home() {
                   <Table.Column
                     className="table-column-color-primary"
                     dataIndex="value"
-                    align="center"
+                    align="right"
                   />
                 </Table>
               </GridView.Body>
@@ -156,6 +165,9 @@ export default function Home() {
               <GridView.Body title="年龄分析">
                 <Table
                   className="age_table"
+                  style={{
+                    paddingRight: 16,
+                  }}
                   rowKey={(row) => row.cat1 + row.cat2}
                   size="small"
                   pagination={false}
@@ -225,7 +237,7 @@ export default function Home() {
                         ],
                     },
                   ]}
-                  scroll={{ y: "calc(60vh - 256px)" }}
+                  scroll={{ y: "calc(55vh - 256px)" }}
                   loading={data.loading}
                 >
                   <Table.Column
