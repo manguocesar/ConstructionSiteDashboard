@@ -159,7 +159,7 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "calc(55vh - 256px)" }}
+          scroll={{ y: "calc(52vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
           rowKey="recog_tag"
