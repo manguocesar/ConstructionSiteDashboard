@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches: 
+	  - dev
+
+jobs:
+  prepare:
+    runs-on: [self-hosted, linux, staging]
+
+    steps:
+      - name: Update local repository branches
+        run: git fetch --all
+        working-directory: /home/atlasai/projects/inspection/
+
+      - name: checkout to right release/tag
+        run: git checkout $GITHUB_REF
+        working-directory: /home/atlasai/projects/inspection/
+
+  down:
+    needs: prepare
+    runs-on: [self-hosted, linux, staging]
+
+    steps:
+      - name: Down previous image
+        run: docker-compose down -v
+        working-directory: /home/atlasai/projects/inspection/
+
+  run:
+    needs: down
+    runs-on: [self-hosted, linux, staging]
+
+    steps:
+      - name: Build React image for docker compose build and run it
+        run: docker-compose up --force-recreate --build -d
+        working-directory: /home/atlasai/projects/inspection/
