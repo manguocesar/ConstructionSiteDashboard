@@ -6,7 +6,7 @@ on:
 
 jobs:
   prepare:
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted, linux, production]
 
     steps:
       - name: Update local repository branches
