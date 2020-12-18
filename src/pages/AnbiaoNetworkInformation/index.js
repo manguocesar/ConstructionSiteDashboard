@@ -3,22 +3,11 @@ import { message, Table } from "antd";
 import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
+import lockr from "lockr";
 import downloadExcelFile, {
   convertDateFilename,
 } from "../../utils/downloadExcelFile";
-
 import moment from "moment";
-
-const employmentInfoUrl =
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E7%94%A8%E5%B7%A5%E4%BF%A1%E6%81%AF.json";
-const employmentRetirementRecordsUrl =
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
-const jobDistributionUrl =
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%B7%A5%E7%A7%8D%E5%88%86%E5%B8%83.json";
-const safetyStandardUrlXlsx =
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.xlsx";
-const safetyStandardUrl =
-  "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E5%AE%89%E6%A0%87%E7%BD%91%E6%95%B0%E6%8D%AE%E5%BA%93.json";
 
 function Inspection() {
   const [data, setData] = useState({
@@ -32,6 +21,11 @@ function Inspection() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const { id: siteId } = lockr.get("current_tenant");
+        const employmentInfoUrl = `https://api.consim.cn/site/${siteId}/data/government-employment-info.json`;
+        const employmentRetirementRecordsUrl = `https://api.consim.cn/site/${siteId}/data/retirement-records.json`;
+        const jobDistributionUrl = `https://api.consim.cn/site/${siteId}/data/job-distribution.json`;
+        const safetyStandardUrl = `https://api.consim.cn/site/${siteId}/data/government-database.json`;
         const [
           { data: employmentInfo },
           { data: employmentRetirementRecords },
@@ -71,9 +65,14 @@ function Inspection() {
   const retirementRecords = data.employmentRetirementRecords.map((item) => {
     return item.退工日期;
   });
-  const employeeRecordsDate = data.employmentRetirementRecords.map((item, i) => {
-    return moment().subtract(data.employmentRetirementRecords.length - 1, "month").add(i, "month").format("YYYY.MM")
-  })
+  const employeeRecordsDate = data.employmentRetirementRecords.map(
+    (item, i) => {
+      return moment()
+        .subtract(data.employmentRetirementRecords.length - 1, "month")
+        .add(i, "month")
+        .format("YYYY.MM");
+    }
+  );
 
   const jobDistributionData = data.jobDistributionData.map((item) => {
     return {
@@ -244,16 +243,6 @@ function Inspection() {
       <GridView.Cell
         title="安标网数据库"
         titleAlignCenter={true}
-        action={{
-          label: "下载",
-          onClick: () => {
-            downloadExcelFile(
-              safetyStandardUrlXlsx,
-              convertDateFilename(safetyStandardUrlXlsx)
-            );
-          },
-          disabled: false,
-        }}
         right="0"
         bottom="0"
         width="calc(60% - 8px)"

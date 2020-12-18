@@ -17,111 +17,111 @@ const tenants = [
       password: "hd123456",
     },
     projectName: "复旦大学邯郸校区中华经济文化研究中心",
-    id: "fudan-uni",
+    id: "handan",
     sites: [
       {
         order: 1,
         projectShortName: "复旦大学项目",
         company: "二建集团第六工程公司",
-        location: "邯郸路155号",
+        location: "上海市杨浦区国权路525号",
+        longitude: 121.5095,
+        latitude: 31.2995,
+      },
+    ],
+  },
+  {
+    credentials: {
+      username: "scg_26_sh_sl",
+      password: "sl123456",
+    },
+    projectName: "三林镇项目",
+    id: "sanlin",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "三林镇",
+        company: "二建集团第六工程公司",
+        location: "上南路东明路路口",
+        longitude: 121.5412,
+        latitude: 31.1288,
+      },
+    ],
+  },
+  {
+    credentials: {
+      username: "scg_26_sh_lg",
+      password: "lg123456",
+    },
+    projectName: "临港新片区105社区金融西九项目",
+    id: "lingang",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "临港新片区",
+        company: "二建集团第六工程公司",
+        location: "环湖北二路与香柏路交界处",
         longitude: 121.511214,
         latitude: 31.297654,
       },
     ],
   },
-  // {
-  //   credentials: {
-  //     username: "scg_26_sh_sl",
-  //     password: "sl123456",
-  //   },
-  //   projectName: "三林镇项目",
-  //   id: "sanlin",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "三林镇",
-  //       company: "二建集团第六工程公司",
-  //       location: "上南路东明路路口",
-  //       longitude: 121.511214,
-  //       latitude: 31.297654,
-  //     },
-  //   ],
-  // },
-  // {
-  //   credentials: {
-  //     username: "scg_26_sh_lg",
-  //     password: "lg123456",
-  //   },
-  //   projectName: "临港新片区105社区金融西九项目",
-  //   id: "lingang",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "临港新片区",
-  //       company: "二建集团第六工程公司",
-  //       location: "环湖北二路与香柏路交界处",
-  //       longitude: 121.511214,
-  //       latitude: 31.297654,
-  //     },
-  //   ],
-  // },
 
-  // {
-  //   credentials: {
-  //     username: "scg_26_sh_xgmd",
-  //     password: "xgmd123456",
-  //   },
-  //   projectName: "香港名都住宅楼项目",
-  //   id: "xgmd",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "香港名都",
-  //       company: "二建集团第六工程公司",
-  //       location: "昼锦路236号",
-  //       longitude: 121.511214,
-  //       latitude: 31.297654,
-  //     },
-  //   ],
-  // },
+  {
+    credentials: {
+      username: "scg_26_sh_xgmd",
+      password: "xgmd123456",
+    },
+    projectName: "香港名都住宅楼项目",
+    id: "xgmd",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "香港名都",
+        company: "二建集团第六工程公司",
+        location: "昼锦路236号",
+        longitude: 121.4964,
+        latitude: 31.2289,
+      },
+    ],
+  },
 
-  // {
-  //   credentials: {
-  //     username: "scg_26_sh_hy",
-  //     password: "hy123456",
-  //   },
-  //   projectName: "华域汽车技术研发中心建筑工程项目",
-  //   id: "huayu",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "华域汽车",
-  //       company: "二建集团第六工程公司",
-  //       location: "科苑路501号",
-  //       longitude: 121.511214,
-  //       latitude: 31.297654,
-  //     },
-  //   ],
-  // },
+  {
+    credentials: {
+      username: "scg_26_sh_hy",
+      password: "hy123456",
+    },
+    projectName: "华域汽车技术研发中心建筑工程项目",
+    id: "huayu",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "华域汽车",
+        company: "二建集团第六工程公司",
+        location: "科苑路501号",
+        longitude: 121.5956,
+        latitude: 31.2094,
+      },
+    ],
+  },
 
-  // {
-  //   credentials: {
-  //     username: "scg_26_sh_qg",
-  //     password: "qg123456",
-  //   },
-  //   projectName: "徐汇乔高综合体开发项目 （一期）",
-  //   id: "qiaogao",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "桥高综合体",
-  //       company: "二建集团第六工程公司",
-  //       location: "苍梧路8号",
-  //       longitude: 121.4204,
-  //       latitude: 31.1736,
-  //     },
-  //   ],
-  // },
+  {
+    credentials: {
+      username: "scg_26_sh_qg",
+      password: "qg123456",
+    },
+    projectName: "徐汇乔高综合体开发项目 （一期）",
+    id: "qiaogao",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "桥高综合体",
+        company: "二建集团第六工程公司",
+        location: "苍梧路8号",
+        longitude: 121.4204,
+        latitude: 31.1736,
+      },
+    ],
+  },
 
   // {
   //   credentials: {

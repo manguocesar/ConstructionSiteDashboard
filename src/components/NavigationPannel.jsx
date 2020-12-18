@@ -49,6 +49,9 @@ export default function NavigationPannel(props) {
   useEffect(() => {
     const pinSet = lockr.get("pin_set");
     setModalVisible(!pinSet);
+    if (!pinSet) {
+      lockr.set("pin_set", true)
+    }
   }, [0]);
   const location = useLocation();
 

@@ -30,7 +30,6 @@ function PinMessage({ onClose }) {
         }
       );
 
-      lockr.set("pin_set", true);
       setStatus("loading");
       setProgress(2);
       setTimeout(() => {
