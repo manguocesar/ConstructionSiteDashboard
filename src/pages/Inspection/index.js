@@ -62,6 +62,7 @@ function Inspection() {
       管理员: [],
       无法识别: [],
       请核查安标网: [],
+      请核查门禁: [],
       合格: [],
     },
   });
@@ -96,6 +97,7 @@ function Inspection() {
 
         const inspectionStats = {
           管理员: generate30DaysArray(),
+          请核查门禁: generate30DaysArray(),
           合格: generate30DaysArray(),
           无法识别: generate30DaysArray(),
           请核查安标网: generate30DaysArray(),
