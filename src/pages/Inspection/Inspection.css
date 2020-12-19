@@ -1,0 +1,11 @@
+.inspection-logs-row-selected {
+  background-color: #82cdbf;
+  color: black;
+  font-weight: bold;
+}
+.inspection-logs-row:hover {
+  background-color: #82cdbf;
+  cursor: pointer;
+  color: black;
+}
+
