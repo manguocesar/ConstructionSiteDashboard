@@ -7,12 +7,49 @@ import lockr from "lockr";
 import downloadExcelFile, {
   convertDateFilename,
 } from "../../utils/downloadExcelFile";
+import "./Inspection.css";
 
 //components
 import GridView from "../../components/GridView";
 
 //context
 import { TimeContext } from "../../contexts/TimeContext";
+
+const generate30DaysArray = () => {
+  return [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ]
+}
 
 function Inspection() {
   const { chinaDate } = useContext(TimeContext);
@@ -21,7 +58,16 @@ function Inspection() {
     comparisonResults: [],
     employmentRetirementRecords: [],
     inspectionData: [],
-    patrolData: [],
+    inspectionStats: {
+      管理员: [],
+      无法识别: [],
+      请核查安标网: [],
+      合格: [],
+    },
+  });
+  const [patrolData, setPatrolData] = useState({
+    loading: false,
+    items: [],
   });
 
   useEffect(() => {
@@ -30,7 +76,7 @@ function Inspection() {
         const { id: siteId } = lockr.get("current_tenant");
         const comparisonResultsUrl = `https://api.consim.cn/site/${siteId}/data/comparison-results.json`;
         const inspectionRecordUrl = `https://api.consim.cn/site/${siteId}/data/daily-inspections.json`;
-        const patrolLogUrl = `https://api.consim.cn/site/${siteId}/data/daily-inspection-records.json`;
+        const inspectionStatsUrl = `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${moment().add(-30, 'days').format("YYYY-MM-DD HH:mm")}`;
 
         // TODO this is wrong, replace with correct source
         let employmentRetirementRecordsUrl =
@@ -40,18 +86,49 @@ function Inspection() {
           { data: comparisonResults },
           { data: employmentRetirementRecords },
           { data: inspectionData },
-          { data: patrolData },
+          { data: inspectionStatsRaw },
         ] = await Promise.all([
           axios.get(comparisonResultsUrl),
           axios.get(employmentRetirementRecordsUrl),
           axios.get(inspectionRecordUrl),
-          axios.get(patrolLogUrl),
+          axios.get(inspectionStatsUrl),
         ]);
+
+        const inspectionStats = {
+          管理员: generate30DaysArray(),
+          合格: generate30DaysArray(),
+          无法识别: generate30DaysArray(),
+          请核查安标网: generate30DaysArray(),
+        };
+
+        inspectionStatsRaw.forEach((record) => {
+          if (Object.keys(inspectionStats).includes(record.comment)) {
+            const daysFromToday = moment().diff(moment(record.datetime), "days");
+            // console.warn('daysFromToday', daysFromToday, record.datetime)
+            if (daysFromToday >= inspectionStats[record.comment].length) {
+              return
+            }
+            if (daysFromToday < 0) {
+              return;
+            }
+            try {
+              inspectionStats[record.comment][daysFromToday]++;
+            } catch (error) {
+              console.warn('error', error)
+            }
+          }
+        });
+
         setData({
           comparisonResults,
           employmentRetirementRecords,
-          inspectionData,
-          patrolData,
+          inspectionData: inspectionData.map((x, i) => {
+            return {
+              ...x,
+              index: i,
+            };
+          }),
+          inspectionStats: inspectionStats,
           loading: false,
         });
       } catch (error) {
@@ -94,7 +171,6 @@ function Inspection() {
     };
   });
 
-
   // TODO this is wrong, replace with correct source
   const employmentRecords = data.employmentRetirementRecords.map((item) => {
     return item.用工日期;
@@ -111,7 +187,7 @@ function Inspection() {
 
   const inspectionData = data.inspectionData.map((item) => {
     return {
-      device_id: item.device_id,
+      ...item,
       time:
         moment(item.min).format("HH:mm") +
         " - " +
@@ -119,6 +195,34 @@ function Inspection() {
       date: moment(item.min).format("YYYY-MM-DD"),
     };
   });
+
+  const fetchPatrolData = async (inspection) => {
+    setPatrolData({
+      items: [],
+      loading: true,
+      selectedIndex: inspection.index,
+    });
+
+    try {
+      const { id: siteId } = lockr.get("current_tenant");
+      const { device_id, max: end, min: start } = inspection;
+      const { data } = await axios.get(
+        `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${start}&end=${end}&device_id=${device_id}`
+      );
+      setPatrolData({
+        items: data,
+        loading: false,
+        selectedIndex: inspection.index,
+      });
+    } catch (error) {
+      message.error("加载失败");
+      setPatrolData({
+        items: [],
+        loading: false,
+        selectedIndex: null,
+      });
+    }
+  };
 
   return (
     <GridView>
@@ -162,7 +266,9 @@ function Inspection() {
           scroll={{ y: "calc(52vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
-          rowKey="recog_tag"
+          rowKey={(record) =>
+            record.recog_tag + record.gate_status + record.gov_site_status
+          }
         >
           <Table.Column
             title="安标网"
@@ -212,8 +318,8 @@ function Inspection() {
             legend: {
               data: [
                 "合格",
-                "核查门禁",
-                "核查安标",
+                "请核查门禁",
+                "请核查安标网",
                 {
                   name: "无法识别",
                   icon: "circle",
@@ -233,7 +339,7 @@ function Inspection() {
             },
             xAxis: {
               type: "category",
-              data: ["-30天", "-20天", "-10天"],
+              data: ['-30天', '', '', '', '', '', '', '', '', '', '-20天', '', '', '', '', '', '', '', '', '', '-10天', '', '', '', '', '', '', '', '', '', '0天'],
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -248,7 +354,7 @@ function Inspection() {
             },
             yAxis: {
               type: "value",
-              max: "200",
+              // max: "200",
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -270,28 +376,28 @@ function Inspection() {
                 type: "line",
                 label: "one",
                 smooth: true,
-                data: [],
+                data: [].concat(data.inspectionStats.合格).reverse(),
               },
               {
-                name: "核查门禁",
+                name: "请核查门禁",
                 type: "line",
                 label: "two",
                 smooth: true,
-                data: [],
+                data: [].concat(data.inspectionStats.请核查门禁).reverse(),
               },
               {
-                name: "核查安标",
+                name: "请核查安标网",
                 type: "line",
                 label: "three",
                 smooth: true,
-                data: [],
+                data: [].concat(data.inspectionStats.请核查安标网).reverse(),
               },
               {
                 name: "无法识别",
                 type: "line",
                 label: "four",
                 smooth: true,
-                data: [],
+                data: [].concat(data.inspectionStats.无法识别).reverse(),
                 lineStyle: {
                   type: "dotted",
                 },
@@ -312,9 +418,23 @@ function Inspection() {
         <Table
           size="small"
           pagination={false}
+          rowKey={(record) => record.date + record.time + record.device_id}
           dataSource={inspectionData}
           scroll={{ y: "calc(53vh - 256px)" }}
           loading={data.loading}
+          rowClassName={(record) =>
+            patrolData.selectedIndex === record.index
+              ? "inspection-logs-row inspection-logs-row-selected"
+              : "inspection-logs-row"
+          }
+          onRow={(row) => {
+            return {
+              onClick: () => {
+                // console.warn("row", row);
+                fetchPatrolData(row);
+              },
+            };
+          }}
         >
           <Table.Column title="日期" dataIndex="date" align="center" />
           <Table.Column title="时间" dataIndex="time" align="center" />
@@ -332,18 +452,35 @@ function Inspection() {
       >
         <Table
           size="small"
-          dataSource={data.patrolData}
+          dataSource={patrolData.items}
           scroll={{ y: "calc(53vh - 256px)" }}
-          loading={data.loading}
+          loading={patrolData.loading}
           pagination={false}
         >
-          <Table.Column title="设备" dataIndex="设备" align="center" />
-          <Table.Column title="姓名" dataIndex="姓名" align="center" />
-          <Table.Column title="身份证" dataIndex="身份证" align="center" />
-          <Table.Column title="识别时间" dataIndex="识别时间" align="center" />
+          <Table.Column title="设备" dataIndex="device_id" align="center" />
+          <Table.Column title="姓名" dataIndex="name" align="center" />
+          <Table.Column
+            title="身份证"
+            dataIndex="id_card_number"
+            align="center"
+            render={(val) => {
+              if (!val | (val === "")) {
+                return "";
+              }
+              return val.slice(0, 3) + "******" + val.slice(val.length - 4);
+            }}
+          />
+          <Table.Column
+            title="识别时间"
+            dataIndex="date"
+            render={(val) => {
+              return moment(val).format("YYYY年MM月DD日HH:mm");
+            }}
+            align="center"
+          />
           <Table.Column
             title="类型"
-            dataIndex="类型"
+            dataIndex="comment"
             align="center"
             render={(category) => {
               const colors = {
