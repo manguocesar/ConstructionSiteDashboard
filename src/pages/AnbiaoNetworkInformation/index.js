@@ -258,7 +258,17 @@ function Inspection() {
         >
           <Table.Column title="ID" dataIndex="id" align="center" />
           <Table.Column title="姓名" dataIndex="name" align="center" />
-          <Table.Column title="身份证" dataIndex="idCard" align="center" />
+          <Table.Column
+            title="身份证"
+            dataIndex="idCard"
+            align="center"
+            render={(val) => {
+              if (!val | (val === "")) {
+                return "";
+              }
+              return val.slice(0, 3) + "******" + val.slice(val.length - 4);
+            }}
+          />
           <Table.Column title="性别" dataIndex="gender" align="center" />
           <Table.Column title="工种" dataIndex="workType" align="center" />
           <Table.Column

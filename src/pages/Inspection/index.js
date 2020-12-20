@@ -48,23 +48,22 @@ const generate30DaysArray = () => {
     0,
     0,
     0,
-  ]
-}
+  ];
+};
 
 function Inspection() {
   const { chinaDate } = useContext(TimeContext);
   const [data, setData] = useState({
     loading: true,
     comparisonResults: [],
-    employmentRetirementRecords: [],
     inspectionData: [],
-    inspectionStats: {
-      管理员: [],
-      无法识别: [],
-      请核查安标网: [],
-      请核查门禁: [],
-      合格: [],
-    },
+  });
+  const [inspectionStats, setInspectionStats] = useState({
+    管理员: [],
+    无法识别: [],
+    请核查安标网: [],
+    请核查门禁: [],
+    合格: [],
   });
   const [patrolData, setPatrolData] = useState({
     loading: false,
@@ -77,21 +76,36 @@ function Inspection() {
         const { id: siteId } = lockr.get("current_tenant");
         const comparisonResultsUrl = `https://api.consim.cn/site/${siteId}/data/comparison-results.json`;
         const inspectionRecordUrl = `https://api.consim.cn/site/${siteId}/data/daily-inspections.json`;
-        const inspectionStatsUrl = `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${moment().add(-30, 'days').format("YYYY-MM-DD HH:mm")}`;
-
-        // TODO this is wrong, replace with correct source
-        let employmentRetirementRecordsUrl =
-          "https://atlas-sgc-workers.s3.cn-northwest-1.amazonaws.com.cn/export/%E7%94%A8%E5%B7%A5%E9%80%80%E5%B7%A5%E8%AE%B0%E5%BD%95.json";
-
         const [
           { data: comparisonResults },
-          { data: employmentRetirementRecords },
           { data: inspectionData },
-          { data: inspectionStatsRaw },
         ] = await Promise.all([
           axios.get(comparisonResultsUrl),
-          axios.get(employmentRetirementRecordsUrl),
           axios.get(inspectionRecordUrl),
+        ]);
+
+        setData({
+          comparisonResults,
+          inspectionData: inspectionData.map((x, i) => {
+            return {
+              ...x,
+              index: i,
+            };
+          }),
+          loading: false,
+        });
+      } catch (error) {
+        message.error("加载失败", 10);
+      }
+    }
+
+    const fetchInspectionStats = async () => {
+      try {
+        const { id: siteId } = lockr.get("current_tenant");
+        const inspectionStatsUrl = `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${moment()
+          .add(-30, "days")
+          .format("YYYY-MM-DD HH:mm")}`;
+        const [{ data: inspectionStatsRaw }] = await Promise.all([
           axios.get(inspectionStatsUrl),
         ]);
 
@@ -105,10 +119,13 @@ function Inspection() {
 
         inspectionStatsRaw.forEach((record) => {
           if (Object.keys(inspectionStats).includes(record.comment)) {
-            const daysFromToday = moment().diff(moment(record.datetime), "days");
+            const daysFromToday = moment().diff(
+              moment(record.datetime),
+              "days"
+            );
             // console.warn('daysFromToday', daysFromToday, record.datetime)
             if (daysFromToday >= inspectionStats[record.comment].length) {
-              return
+              return;
             }
             if (daysFromToday < 0) {
               return;
@@ -116,28 +133,17 @@ function Inspection() {
             try {
               inspectionStats[record.comment][daysFromToday]++;
             } catch (error) {
-              console.warn('error', error)
+              console.warn("error", error);
             }
           }
         });
-
-        setData({
-          comparisonResults,
-          employmentRetirementRecords,
-          inspectionData: inspectionData.map((x, i) => {
-            return {
-              ...x,
-              index: i,
-            };
-          }),
-          inspectionStats: inspectionStats,
-          loading: false,
-        });
+        setInspectionStats(inspectionStats);
       } catch (error) {
-        message.error("加载失败", 10);
       }
-    }
+    };
+
     fetchData();
+    fetchInspectionStats();
   }, [0]);
 
   const comparisonResults = data.comparisonResults.map((item, i) => {
@@ -173,19 +179,6 @@ function Inspection() {
     };
   });
 
-  // TODO this is wrong, replace with correct source
-  const employmentRecords = data.employmentRetirementRecords.map((item) => {
-    return item.用工日期;
-  });
-  const retirementRecords = data.employmentRetirementRecords.map((item) => {
-    return item.退工日期;
-  });
-  const totalRecords = data.employmentRetirementRecords.map((item) => {
-    return item.用工日期 + item.退工日期;
-  });
-  const totalRecords2 = data.employmentRetirementRecords.map((item) => {
-    return item.用工日期 + item.退工日期 + item.退工日期;
-  });
 
   const inspectionData = data.inspectionData.map((item) => {
     return {
@@ -341,7 +334,39 @@ function Inspection() {
             },
             xAxis: {
               type: "category",
-              data: ['-30天', '', '', '', '', '', '', '', '', '', '-20天', '', '', '', '', '', '', '', '', '', '-10天', '', '', '', '', '', '', '', '', '', '0天'],
+              data: [
+                "-30天",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "-20天",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "-10天",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "0天",
+              ],
               axisLabel: {
                 show: true,
                 textStyle: {
@@ -378,28 +403,28 @@ function Inspection() {
                 type: "line",
                 label: "one",
                 smooth: true,
-                data: [].concat(data.inspectionStats.合格).reverse(),
+                data: [].concat(inspectionStats.合格).reverse(),
               },
               {
                 name: "请核查门禁",
                 type: "line",
                 label: "two",
                 smooth: true,
-                data: [].concat(data.inspectionStats.请核查门禁).reverse(),
+                data: [].concat(inspectionStats.请核查门禁).reverse(),
               },
               {
                 name: "请核查安标网",
                 type: "line",
                 label: "three",
                 smooth: true,
-                data: [].concat(data.inspectionStats.请核查安标网).reverse(),
+                data: [].concat(inspectionStats.请核查安标网).reverse(),
               },
               {
                 name: "无法识别",
                 type: "line",
                 label: "four",
                 smooth: true,
-                data: [].concat(data.inspectionStats.无法识别).reverse(),
+                data: [].concat(inspectionStats.无法识别).reverse(),
                 lineStyle: {
                   type: "dotted",
                 },
