@@ -499,7 +499,7 @@ function Inspection() {
           />
           <Table.Column
             title="识别时间"
-            dataIndex="date"
+            dataIndex="datetime"
             render={(val) => {
               return moment(val).format("YYYY年MM月DD日HH:mm");
             }}
