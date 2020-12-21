@@ -102,7 +102,7 @@ function Inspection() {
     const fetchInspectionStats = async () => {
       try {
         const { id: siteId } = lockr.get("current_tenant");
-        const inspectionStatsUrl = `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${moment()
+        const inspectionStatsUrl = `https://api.consim.cn/site/${siteId}/inspection-logs?start=${moment()
           .add(-30, "days")
           .format("YYYY-MM-DD HH:mm")}`;
         const [{ data: inspectionStatsRaw }] = await Promise.all([
@@ -138,8 +138,7 @@ function Inspection() {
           }
         });
         setInspectionStats(inspectionStats);
-      } catch (error) {
-      }
+      } catch (error) {}
     };
 
     fetchData();
@@ -179,7 +178,6 @@ function Inspection() {
     };
   });
 
-
   const inspectionData = data.inspectionData.map((item) => {
     return {
       ...item,
@@ -202,7 +200,7 @@ function Inspection() {
       const { id: siteId } = lockr.get("current_tenant");
       const { device_id, max: end, min: start } = inspection;
       const { data } = await axios.get(
-        `https://api.consim.cn/site/${siteId}/inspection-logs.json?start=${start}&end=${end}&device_id=${device_id}`
+        `https://api.consim.cn/site/${siteId}/inspection-logs?start=${start}&end=${end}&short_device_id=${device_id}`
       );
       setPatrolData({
         items: data,
@@ -530,6 +528,7 @@ function Inspection() {
               );
             }}
           />
+          <Table.Column title="注释" dataIndex="sub_comment" align="center" />
         </Table>
       </GridView.Cell>
     </GridView>
