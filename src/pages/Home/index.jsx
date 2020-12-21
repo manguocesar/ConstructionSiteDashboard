@@ -492,7 +492,7 @@ export default function Home() {
                   const { id: siteId } = lockr.get("current_tenant");
                   try {
                     await axios.delete(
-                      `https://api.consim.cn/site/${siteId}/workers`,
+                      `https://api.consim.cn/site/${siteId}/unauthorized-workers`,
                       {
                         data: selectedRows,
                       }
