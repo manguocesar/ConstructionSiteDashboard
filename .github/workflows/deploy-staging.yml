@@ -15,7 +15,7 @@ jobs:
         working-directory: /home/atlasai/projects/inspection/
 
       - name: checkout to right release/tag
-        run: git checkout $GITHUB_REF
+        run: git checkout $GITHUB_SHA
         working-directory: /home/atlasai/projects/inspection/
 
   down:
@@ -35,3 +35,4 @@ jobs:
       - name: Build React image for docker compose build and run it
         run: docker-compose up --force-recreate --build -d
         working-directory: /home/atlasai/projects/inspection/
+
