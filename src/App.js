@@ -27,7 +27,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 axios.interceptors.response.use(undefined, function (error) {
-  if (error.response.status === 404) {
+  if (error.response?.status === 404) {
     return {
       data: []
     }

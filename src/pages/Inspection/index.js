@@ -229,7 +229,7 @@ function Inspection() {
               alignItems: "center",
             }}
           >
-            <div>工地用工数据库对结果</div>
+            <div>工地用工数据库对比结果</div>
             <Divider
               style={{
                 backgroundColor: "white",
@@ -474,6 +474,22 @@ function Inspection() {
         bottom="0"
         width="calc(64% - 8px)"
         height="calc(48% - 8px)"
+        // action={{
+        //   label: "下载巡检报告",
+        //   onClick: async () => {
+        //     const { id: siteId } = lockr.get("current_tenant");
+        //     const url = `https://api.consim.cn/site/${siteId}/data/inspection-logs.xlsx`;
+        //     try {
+        //       await downloadExcelFile(
+        //         url,
+        //         convertDateFilename("巡检日志")
+        //       );
+        //     } catch (error) {
+        //       message.error('下载失败')
+        //     }
+        //   },
+        //   disabled: false,
+        // }}
       >
         <Table
           size="small"
