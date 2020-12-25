@@ -198,6 +198,14 @@ export default function Home() {
                     },
                     {
                       cat1: "男性特殊工种:",
+                      cat2: "55周岁以下用工人数",
+                      value:
+                        data.homepageData?.年龄分析?.男性特殊工种[
+                          "55周岁以下用工人数"
+                        ],
+                    },
+                    {
+                      cat1: "",
                       cat2: "55周岁以上超龄用工人数",
                       value:
                         data.homepageData?.年龄分析?.男性特殊工种[
@@ -230,6 +238,14 @@ export default function Home() {
                     },
                     {
                       cat1: "女性特殊工种:",
+                      cat2: "45周岁以下用工人数",
+                      value:
+                        data.homepageData?.年龄分析?.女性特殊工种[
+                          "45周岁以下用工人数"
+                        ],
+                    },
+                    {
+                      cat1: "",
                       cat2: "45周岁以上超龄用工人数",
                       value:
                         data.homepageData?.年龄分析?.女性特殊工种[
