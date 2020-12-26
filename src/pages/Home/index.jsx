@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
-import { Table, message, Button, Modal } from "antd";
+import { Table, message, Button, Modal, Form, Input, Upload } from "antd";
 import { ListSitesContext } from "../../contexts/ListSitesContext";
 import lockr from "lockr";
-import moment from 'moment';
+import moment from "moment";
 
 //style
 import "./index.css";
@@ -30,6 +30,7 @@ export default function Home() {
   const [unauthorizedWorkers, setUnauthorizedWorkers] = useState([]);
 
   const { currentProjectName, selectedSite } = useContext(ListSitesContext);
+  const ref = useRef();
 
   useEffect(() => {
     async function fetchData() {
@@ -65,16 +66,24 @@ export default function Home() {
     <GridView>
       <GridView.Cell
         noBodyStyle={true}
-        title={<div style={{
-          display: 'flex',
-          flexGrow: 1,
-        }}>
-          <div style={{flex: 1}}>{currentProjectName}</div>
-          <div style={{
-            fontSize: 18,
-            fontWeight: 500
-          }}>{selectedSite?.location}</div>
-        </div>}
+        title={
+          <div
+            style={{
+              display: "flex",
+              flexGrow: 1,
+            }}
+          >
+            <div style={{ flex: 1 }}>{currentProjectName}</div>
+            <div
+              style={{
+                fontSize: 18,
+                fontWeight: 500,
+              }}
+            >
+              {selectedSite?.location}
+            </div>
+          </div>
+        }
         left="0"
         top="0"
         width="calc(100% - 8px)"
@@ -93,7 +102,7 @@ export default function Home() {
                   pagination={false}
                   style={{
                     paddingRight: 32,
-                    paddingLeft: 16
+                    paddingLeft: 16,
                   }}
                   dataSource={[
                     {
@@ -141,7 +150,7 @@ export default function Home() {
                   style={{
                     flexGrow: 1,
                     paddingRight: 34,
-                    paddingLeft: 16
+                    paddingLeft: 16,
                   }}
                   dataSource={[
                     {
@@ -339,14 +348,48 @@ export default function Home() {
                   >
                     模版下载
                   </Button>
+
                   <Button
                     type="primary"
                     ghost={true}
-                    disabled={true}
-                    onClick={() => console.log("White list import")}
+                    onClick={() => {
+                      console.warn(document.getElementById("whitelistupload").click());
+                    }}
                   >
                     白名单导入
                   </Button>
+                  <input
+                    id="whitelistupload"
+                    style={{
+                      display: "none",
+                    }}
+                    ref={ref}
+                    type="file"
+                    onChange={(x) => {
+                      const file = x.target.files[0];
+                      const reader = new FileReader();
+                      reader.readAsDataURL(file);
+                      reader.onload = async () => {
+                        try {
+                          const { id: siteId } = lockr.get("current_tenant");
+                          const { status } = await axios.put(
+                            `https://api.consim.cn/site/${siteId}/whitelist`,
+                            reader.result
+                          );
+                          if (status >= 400) {
+                            message.error(`上传失败`);
+                          } else {
+                            message.success("上传成功");
+                          }
+                        } catch (error) {
+                          message.error(`上传失败`);
+                        }
+                      };
+                      reader.onerror = (error) => {
+                        message.error(`上传失败`);
+                      };
+                    }}
+                  ></input>
                 </div>
               </GridView.Body>
               <GridView.Body
