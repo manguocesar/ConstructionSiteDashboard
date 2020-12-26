@@ -344,7 +344,7 @@ export default function Home() {
                     type="primary"
                     ghost={true}
                     onClick={() => {
-                      window.open("/白名单.xlsx", "_blank");
+                      window.open("/白名单模版.xlsx", "_blank");
                     }}
                   >
                     模版下载
@@ -372,6 +372,7 @@ export default function Home() {
                       const reader = new FileReader();
                       reader.readAsDataURL(file);
                       reader.onload = async () => {
+                        const hide = message.loading('上传中');
                         try {
                           const { id: siteId } = lockr.get("current_tenant");
                           const { status } = await axios.put(
@@ -393,6 +394,7 @@ export default function Home() {
                         } finally {
                           const el = document.getElementById("whitelistupload")
                           el.value = "";
+                          hide && hide();
                         }
                       };
                       reader.onerror = (error) => {
