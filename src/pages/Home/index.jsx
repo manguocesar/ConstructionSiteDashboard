@@ -343,8 +343,9 @@ export default function Home() {
                   <Button
                     type="primary"
                     ghost={true}
-                    disabled={true}
-                    onClick={() => console.log("Template download")}
+                    onClick={() => {
+                      window.open("/白名单.xlsx", "_blank");
+                    }}
                   >
                     模版下载
                   </Button>
@@ -353,7 +354,8 @@ export default function Home() {
                     type="primary"
                     ghost={true}
                     onClick={() => {
-                      console.warn(document.getElementById("whitelistupload").click());
+                      const el = document.getElementById("whitelistupload")
+                      el.click();
                     }}
                   >
                     白名单导入
@@ -374,7 +376,12 @@ export default function Home() {
                           const { id: siteId } = lockr.get("current_tenant");
                           const { status } = await axios.put(
                             `https://api.consim.cn/site/${siteId}/whitelist`,
-                            reader.result
+                            reader.result,
+                            {
+                              headers: {
+                                "Content-Type": "application/octet-stream",
+                              },
+                            }
                           );
                           if (status >= 400) {
                             message.error(`上传失败`);
@@ -383,6 +390,9 @@ export default function Home() {
                           }
                         } catch (error) {
                           message.error(`上传失败`);
+                        } finally {
+                          const el = document.getElementById("whitelistupload")
+                          el.value = "";
                         }
                       };
                       reader.onerror = (error) => {

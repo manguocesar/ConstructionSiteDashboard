@@ -121,25 +121,24 @@ const tenants = [
       },
     ],
   },
-
-  // {
-  //   credentials: {
-  //     username: "demo",
-  //     password: "demo",
-  //   },
-  //   projectName: "演示项目",
-  //   id: "demo",
-  //   sites: [
-  //     {
-  //       order: 1,
-  //       projectShortName: "演示项目",
-  //       company: "",
-  //       location: "国建路423",
-  //       longitude: 121.511214,
-  //       latitude: 31.297654,
-  //     },
-  //   ],
-  // }
+  {
+    credentials: {
+      username: "bunker",
+      password: "bunker123456",
+    },
+    projectName: "Agora Space",
+    id: "bunker",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "Agora Space",
+        company: "Agora Space",
+        location: "Agora Space",
+        longitude: 121.511214,
+        latitude: 31.297654,
+      },
+    ],
+  }
 ];
 
 function LogIn() {
