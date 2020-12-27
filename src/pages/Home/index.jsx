@@ -377,7 +377,7 @@ export default function Home() {
                           const { id: siteId } = lockr.get("current_tenant");
                           const { status } = await axios.put(
                             `https://api.consim.cn/site/${siteId}/whitelist`,
-                            reader.result.replace('data:application/octet-stream;base64,', ''),
+                            reader.result,
                             {
                               headers: {
                                 "Content-Type": "application/octet-stream",
