@@ -546,6 +546,9 @@ export default function Home() {
               dataIndex="安标网退工日期"
               align="center"
               render={(val) => {
+                if (val === '') {
+                  return ''
+                }
                 return moment(val).format("YYYY.MM.DD");
               }}
             />
@@ -561,6 +564,7 @@ export default function Home() {
                 cancelText: "取消",
                 onOk: async () => {
                   const { id: siteId } = lockr.get("current_tenant");
+                  const hide = message.loading('加载中', 0)
                   try {
                     await axios.delete(
                       `https://api.consim.cn/site/${siteId}/unauthorized-workers`,
@@ -569,8 +573,11 @@ export default function Home() {
                       }
                     );
                     message.success(`操作成功`);
+                    setModalVisible(false);
                   } catch (error) {
                     message.error(`操作失败`);
+                  } finally {
+                    hide && hide();
                   }
                 },
               });
