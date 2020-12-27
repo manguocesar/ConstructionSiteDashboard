@@ -146,14 +146,11 @@ function Inspection() {
   }, [0]);
 
   const comparisonResults = data.comparisonResults.map((item, i) => {
-    const textColors = [
-      "#85F391",
-      "#F7000B",
-      "#DFA03A",
-      "#F7000B",
-      "#85F391",
-      "#F7000B",
-    ];
+    const colors = {
+      green: "#85F391",
+      red: "#F7000B",
+      orange: "#DFA03A",
+    };
     let action = {
       label: "下载",
       onClick: () => {},
@@ -163,18 +160,18 @@ function Inspection() {
       action = {
         label: "下载",
         onClick: () => {
-          downloadExcelFile(item.人员列表, convertDateFilename(item.人员列表));
+          window.open(item.人员列表, "_blank");
         },
         disabled: false,
       };
     }
     return {
-      gov_site_status: item.门禁系统,
-      gate_status: item.安标网,
-      recog_tag: item.识别标签,
-      people_count: item.人员数量,
+      门禁系统: item.门禁系统,
+      安标网: item.安标网,
+      识别标签: item.识别标签,
+      人员数量: item.人员数量,
       action,
-      color: textColors[i],
+      color: colors[item.颜色],
     };
   });
 
@@ -256,31 +253,39 @@ function Inspection() {
           onRow={null}
           bordered={false}
           pagination={false}
-          scroll={{ y: "calc(52vh - 256px)" }}
+          scroll={{ y: "calc(56vh - 256px)" }}
           dataSource={comparisonResults}
           loading={data.loading}
-          rowKey={(record) =>
-            record.recog_tag + record.gate_status + record.gov_site_status
-          }
+          rowKey={(record) => record.安标网 + record.门禁系统 + record.识别标签}
         >
-          <Table.Column
-            title="安标网"
-            dataIndex="gov_site_status"
-            align="center"
-          />
-          <Table.Column
-            title="门禁系统"
-            dataIndex="gate_status"
-            align="center"
-          />
-          <Table.Column title="识别标签" dataIndex="recog_tag" align="center" />
+          <Table.Column title="安标网" dataIndex="安标网" align="center" />
+          <Table.Column title="门禁系统" dataIndex="门禁系统" align="center" />
+          <Table.Column title="识别标签" dataIndex="识别标签" align="center" />
           <Table.Column
             title="人员数量"
-            dataIndex="people_count"
+            dataIndex="人员数量"
             align="center"
             render={(val, row) => {
               return (
                 <div style={{ color: row.color, fontSize: 20 }}>{val}</div>
+              );
+            }}
+          />
+          <Table.Column
+            title="列表下载"
+            dataIndex="action"
+            align="center"
+            render={({ label, onClick, disabled }) => {
+              return (
+                <Button
+                  disabled={disabled}
+                  type="primary"
+                  ghost={true}
+                  onClick={onClick}
+                  size="small"
+                >
+                  {label}
+                </Button>
               );
             }}
           />
