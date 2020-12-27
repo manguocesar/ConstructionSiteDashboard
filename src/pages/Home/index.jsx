@@ -372,12 +372,12 @@ export default function Home() {
                       const reader = new FileReader();
                       reader.readAsDataURL(file);
                       reader.onload = async () => {
-                        const hide = message.loading('上传中');
+                        const hide = message.loading('上传中', 0);
                         try {
                           const { id: siteId } = lockr.get("current_tenant");
                           const { status } = await axios.put(
                             `https://api.consim.cn/site/${siteId}/whitelist`,
-                            reader.result,
+                            reader.result.replace('data:application/octet-stream;base64,', ''),
                             {
                               headers: {
                                 "Content-Type": "application/octet-stream",
