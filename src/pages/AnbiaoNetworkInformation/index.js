@@ -247,22 +247,22 @@ function Inspection() {
         bottom="0"
         width="calc(60% - 8px)"
         height="calc(50% - 8px)"
-        action={{
-          label: "下载",
-          onClick: async () => {
-            const { id: siteId } = lockr.get("current_tenant");
-            const url = `https://api.consim.cn/site/${siteId}/data/government-database.xlsx`;
-            try {
-              await downloadExcelFile(
-                url,
-                convertDateFilename("安标网数据库")
-              );
-            } catch (error) {
-              message.error('下载失败');
-            }
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "下载",
+        //   onClick: async () => {
+        //     const { id: siteId } = lockr.get("current_tenant");
+        //     const url = `https://api.consim.cn/site/${siteId}/data/government-database.xlsx`;
+        //     try {
+        //       await downloadExcelFile(
+        //         url,
+        //         convertDateFilename("安标网数据库")
+        //       );
+        //     } catch (error) {
+        //       message.error('下载失败');
+        //     }
+        //   },
+        //   disabled: false,
+        // }}
       >
         <Table
           size="small"

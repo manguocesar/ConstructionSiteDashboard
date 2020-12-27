@@ -246,22 +246,22 @@ function Inspection() {
         bottom="0"
         width="calc(65% - 8px)"
         height="calc(50% - 8px)"
-        action={{
-          label: "下载",
-          onClick: async () => {
-            const { id: siteId } = lockr.get("current_tenant");
-            const accessControlXlsxUrl = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.xlsx`;
-            try {
-              await downloadExcelFile(
-                accessControlXlsxUrl,
-                convertDateFilename("门禁出入记录")
-              );
-            } catch (error) {
-              message.error('下载失败')
-            }
-          },
-          disabled: false,
-        }}
+        // action={{
+        //   label: "下载",
+        //   onClick: async () => {
+        //     const { id: siteId } = lockr.get("current_tenant");
+        //     const url = `https://api.consim.cn/site/${siteId}/data/workers-in-out-log.xlsx`;
+        //     try {
+        //       await downloadExcelFile(
+        //         url,
+        //         convertDateFilename("门禁出入记录")
+        //       );
+        //     } catch (error) {
+        //       message.error('下载失败')
+        //     }
+        //   },
+        //   disabled: false,
+        // }}
       >
         <span
           style={{
