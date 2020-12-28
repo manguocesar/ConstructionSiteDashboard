@@ -159,8 +159,12 @@ function Inspection() {
     if (item.人员列表 && item.人员列表.length > 0) {
       action = {
         label: "下载",
-        onClick: () => {
-          window.open(item.人员列表, "_blank");
+        onClick: async () => {
+          try {
+            await downloadExcelFile(item.人员列表, convertDateFilename(item.注释));
+          } catch (error) {
+            message.error('下载失败');
+          }
         },
         disabled: false,
       };
