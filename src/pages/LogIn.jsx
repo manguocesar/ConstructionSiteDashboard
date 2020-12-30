@@ -145,14 +145,14 @@ const tenants = [
       username: "HQ_2021",
       password: "hq_2021",
     },
-    projectName: "HQ_",
-    id: "handan",
+    projectName: "HQ_LandingPage",
+    id: "HQ",
     sites: [
       {
         order: 1,
-        projectShortName: "复旦大学项目",
-        company: "二建集团第六工程公司",
-        location: "上海市杨浦区国权路525号",
+        projectShortName: "HQshortName",
+        company: "HQ_Company_Name",
+        location: "HQ_Location",
         longitude: 121.5095,
         latitude: 31.2995,
       },
@@ -173,7 +173,7 @@ function LogIn() {
 
     for (const tenant of tenants) {
       const { credentials, sites, projectName, id } = tenant;
-      if (
+    if (
         user.username === credentials.username &&
         user.password === credentials.password
       ) {
@@ -185,7 +185,16 @@ function LogIn() {
           sites,
         });
         lockr.set("pin_set", false);
-        navigate("/");
+
+              if (
+                user.username === "HQ_2021" &&
+                user.password === "hq_2021"
+                         ) {
+                  navigate("/hq_route");
+                         }
+                   else       
+          {navigate("/");}
+       
         return;
       }
     }

@@ -1,0 +1,12 @@
+.map_localisation {
+  flex-grow: 1;
+  margin: 16px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.hqInformation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}

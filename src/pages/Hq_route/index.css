@@ -1,0 +1,17 @@
+/* .container_info_display_Operators {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+  flex-direction: column;
+  border-radius: 2vh;
+  background-color: #282c34;
+} */
+
+.container_bottom_Operators {
+  display: flex;
+  /* height: 50%; */
+
+  flex-direction: row;
+  margin: 0vh 1vh 1vh 1vh;
+  /* border: blue solid 1px; */
+}
