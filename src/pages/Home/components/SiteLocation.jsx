@@ -7,17 +7,20 @@ import "./SiteLocation.css";
 //context
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
-export default function SiteLocation() {
+export default function SiteLocation({location}) {
   const { selectedSite } = useContext(ListSitesContext);
 
+
+
   return (
-    <div className="map_localisation">
+    <div className="map_localisation"  >
+      
       <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
         <Map
           key={selectedSite?.id}
           center={{
-            lng: selectedSite?.longitude,
-            lat: selectedSite?.latitude,
+            lng: location? location.longitude :  selectedSite?.longitude,
+            lat: location? location.latitude :  selectedSite?.latitude,
           }}
           zoom={18}
         />
