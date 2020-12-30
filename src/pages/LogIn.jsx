@@ -138,7 +138,26 @@ const tenants = [
         latitude: 31.297654,
       },
     ],
-  }
+  },
+  //HQ Level landing pag
+  {
+    credentials: {
+      username: "HQ_2021",
+      password: "hq_2021",
+    },
+    projectName: "HQ_",
+    id: "handan",
+    sites: [
+      {
+        order: 1,
+        projectShortName: "复旦大学项目",
+        company: "二建集团第六工程公司",
+        location: "上海市杨浦区国权路525号",
+        longitude: 121.5095,
+        latitude: 31.2995,
+      },
+    ],
+  },
 ];
 
 function LogIn() {
