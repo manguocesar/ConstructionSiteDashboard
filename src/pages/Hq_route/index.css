@@ -7,11 +7,10 @@
   background-color: #282c34;
 } */
 
-.container_bottom_Operators {
+.HQ_Info_Display {
   display: flex;
-  /* height: 50%; */
-
+  flex-grow: 1;
+  justify-content: space-evenly;
   flex-direction: row;
-  margin: 0vh 1vh 1vh 1vh;
-  /* border: blue solid 1px; */
+  margin: "";
 }

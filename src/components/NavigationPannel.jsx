@@ -62,10 +62,18 @@ export default function NavigationPannel(props) {
     navigate("/login");
   };
 
+
+
+console.log("location",location.pathname === "/Hq_route" )
+
   return (
     <div className="container_nav">
       <div className="menu_basic">
-        {menuItems.map((menuItem) => {
+
+
+
+        
+        {location.pathname !== "/Hq_route" && menuItems.map((menuItem) => {
           const active = location.pathname === menuItem.to;
           return (
             <Link key={menuItem.to} to={menuItem.to} style={{ textDecoration: "none" }}>
@@ -75,6 +83,7 @@ export default function NavigationPannel(props) {
                 })}
                 key={menuItem.to}
               >
+
                 <div className="icon_nav_basic_container">
                   <menuItem.src
                     className="icon_nav_basic"
@@ -86,7 +95,8 @@ export default function NavigationPannel(props) {
           );
         })}
 
-        <li
+
+         {location.pathname !== "/Hq_route" && <li
           className="menu_basic_li"
           onClick={() => {
             setModalVisible(true);
@@ -98,7 +108,7 @@ export default function NavigationPannel(props) {
               // fill={active ? undefined : "white"}
             />
           </div>
-        </li>
+        </li>}
 
         <div style={{ flexGrow: 1 }}></div>
 

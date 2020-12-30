@@ -66,15 +66,15 @@ console.log(route )
             <GridView.Body
                className="container_top_left_column_1_row_1"
               // title="复旦大学邯郸校区中华经济文化研究中心项目"
-              style={{border:"1px solid #82cdbf"}}
+              style={{border:"1px solid #82cdbf", padding:"5px", margin:"0 0px 10px 0px"}}
             >
-              <div style={{display:"flex", flexDirection:"column",width:"100%",  border: "red 1px solid", marginLeft:"10px"}}>
-              <div  style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", border: "red 1px solid"}}>
+              <div style={{display:"flex", flexDirection:"column",width:"100%",   marginLeft:"10px"}}>
+              <div  style={{display:"flex", flexDirection:"row",  justifyContent:"space-between"}}>
                 <p style={{flexGrow:1}}>复旦大学邯郸校区中华经济文化研究中心项目</p>
                 <button style={{backgroundColor:"transparent", fontWeight:"bolder", color:"#82cdbf", border: "#82cdbf 1px solid", width:"20vh", borderRadius:"8px"}}>点击进入</button>
               </div>
 
-              <div style={{display:"flex",justifyContent:"flex-start", alignItems:"center", flexDirection:"row",border: "red 1px solid"}}>
+              <div style={{display:"flex",justifyContent:"flex-start", alignItems:"center", flexDirection:"row"}}>
                 <img alt="" src={search} style={{height:"3vh", margin:"5px 5px 5px 0"}}/>
                 <p style={{margin:"5px 0px 5px 5px" }}>上海市杨浦区国权路525号</p>
               </div>
@@ -90,22 +90,23 @@ console.log(route )
                   }}
                 >
                   <div className="hqInformation">
-                    <div style={{ flex: 1, fontSize: 18,display:"flex", justifyContent:"space-evenly" }}>
-                      <span>安标网注册用工人数</span>
-                  <span style={{fontWeight:"bolder", color:"#82cdbf", marginLeft:"10px"}}>200</span>
+                    <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly" }}>
+                    <span>安标网注册用工人数</span>
+                    <span style={{fontWeight:"bolder", color:"#82cdbf"}}>200</span>
                   </div>
-                  <div style={{ flex: 1, fontSize: 18,display:"flex", justifyContent:"space-evenly"  }}> <span>今日巡检次数</span>
-                  <span style={{fontWeight:"bolder", color:"#82cdbf", marginLeft:"10px"}}>3</span></div>
+                  <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}> <span>今日巡检次数</span>
+                  <span style={{fontWeight:"bolder", color:"#82cdbf"}}>3</span></div>
                   </div>
 
                   <div className="hqInformation">
-                    <div style={{ flex: 1, fontSize: 18,display:"flex", justifyContent:"space-evenly"  }}>
+                    <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}>
                       <span>门禁人脸数量</span>
-                  <span style={{fontWeight:"bolder", color:"#82cdbf", marginLeft:"10px"}}>359</span></div>
+                  <span style={{fontWeight:"bolder", color:"#82cdbf"}}>359</span></div>
                  
 
-                  <div style={{ flex: 1, fontSize: 18,display:"flex", justifyContent:"space-evenly"  }}> <span>今日巡检异常人员</span>
-                  <span style={{fontWeight:"bolder", color:"#82cdbf", marginLeft:"10px"}}>12</span></div>
+                  <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}>
+                    <span>今日巡检异常人员</span>
+                  <span style={{fontWeight:"bolder", color:"#82cdbf"}}>12</span></div>
                   </div>
                   {/* TODO date filter */}
                 </div>
@@ -147,13 +148,35 @@ console.log(route )
 
     <GridView.Cell
       noBodyStyle={true}
-      title="工地位置"
+      title={moment().format(" YYYY年MM月DD日 h:m:s")}
+    
       right="0"
       top="0"
       width="calc(35% - 8px)"
-      height="calc(50% - 8px)"
-    >
-     <SiteLocation />
+      height="calc(55% - 8px)">
+     
+     <GridView.Body style={{margin:"6px", padding:"2px"}}   className="container_top_left_column_1_row_1">
+                  <div className="HQ_Info_Display">
+                    <span>工地数量</span>
+                    <span>2</span>
+                    </div>
+
+            </GridView.Body> 
+            <GridView.Body style={{margin:"6px", padding:"2px"}} className="container_top_left_column_1_row_1" >
+            <div className="HQ_Info_Display"><span>合格劳务工人总数</span>
+                    <span>150</span></div>
+            </GridView.Body> 
+            <GridView.Body style={{margin:"6px", padding:"2px"}} className="container_top_left_column_1_row_1"  >
+            <div className="HQ_Info_Display"><span>巡检异常人员总数</span>
+                    <span>20</span></div>
+            </GridView.Body>
+            <GridView.Body style={{margin:"6px", padding:"2px"}} className="container_top_left_column_1_row_1" >
+            <div className="HQ_Info_Display" style={{flexDirection:"column", textAlign:"center"}} >
+              <p style={{margin:"0 0 5px", padding:"2px"}}>劳务信息下载</p>
+              <p className="HQ_Info_Display" style={{display:"flex", flexDirection:"row"}}><span>工程公司台账汇总</span>
+              <button style={{backgroundColor:"transparent", fontWeight:"bolder", color:"#82cdbf", border: "#82cdbf 1px solid", width:"15vh", borderRadius:"8px"}}>下载</button></p> </div>
+            </GridView.Body>
+
     </GridView.Cell>
   
 
@@ -163,7 +186,7 @@ console.log(route )
       right="0"
       bottom="0"
       width="calc(35% - 8px)"
-      height="calc(50% - 8px)"
+      height="calc(45% - 8px)"
     >
      <SiteLocation />
     </GridView.Cell>
