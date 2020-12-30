@@ -174,31 +174,37 @@ function LogIn() {
     for (const tenant of tenants) {
       const { credentials, sites, projectName, id } = tenant;
     if (
-        user.username === credentials.username &&
-        user.password === credentials.password
-      ) {
+        user.username === "HQ_2021" &&
+        user.password === "hq_2021"
+            ) {
         // save login info to cache so it is persisted in the browser
         lockr.set("last_login_time", moment().toDate().getTime());
-        lockr.set("current_tenant", {
-          projectName,
-          id,
-          sites,
-        });
+        lockr.set("current_tenant", {  tenants});
         lockr.set("pin_set", false);
-
-              if (
-                user.username === "HQ_2021" &&
-                user.password === "hq_2021"
-                         ) {
-                  navigate("/hq_route");
-                         }
-                   else       
-          {navigate("/");}
-       
+          {navigate("/Hq_route")}
         return;
-      }
-    }
-    message.error("用户名或密码不正确");
+
+      } else if (
+
+  user.username === credentials.username &&
+  user.password === credentials.password
+            ) {
+    // save login info to cache so it is persisted in the browser
+    lockr.set("last_login_time", moment().toDate().getTime());
+    lockr.set("current_tenant", {
+      projectName,
+      id,
+      sites,
+    });
+    lockr.set("pin_set", false);
+      {navigate("/");}
+    return;
+ 
+
+} else {
+  message.error("用户名或密码不正确");} }
+
+    
   }
 
   return (

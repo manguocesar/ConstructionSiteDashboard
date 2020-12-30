@@ -8,7 +8,7 @@ const ListSitesContextProvider = (props) => {
   const [currentProjectName, setCurrentProjectName] = useState('');
   const [selectedSiteId, setSelectedSiteId] = useState(1);
 
-  const selectedSite = sites.find((x) => x.order === selectedSiteId);
+  const selectedSite = sites && sites.find((x) => x.order === selectedSiteId);
 
   return (
     <ListSitesContext.Provider
