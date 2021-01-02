@@ -46,6 +46,10 @@ const menuItems = [
 export default function NavigationPannel(props) {
   const [modalVisible, setModalVisible] = useState(false);
 
+  let HQ_level = lockr.get('HQ_level')
+
+  console.log("HQ_level",HQ_level)
+
   useEffect(() => {
     const pinSet = lockr.get("pin_set");
     setModalVisible(!pinSet);
@@ -62,9 +66,11 @@ export default function NavigationPannel(props) {
     navigate("/login");
   };
 
+const backToHQ = ()=> {
+  lockr.set("HQ_level", false);
+  navigate("/Hq_route")
+}
 
-
-console.log("location",location.pathname === "/Hq_route" )
 
   return (
     <div className="container_nav">
@@ -109,8 +115,12 @@ console.log("location",location.pathname === "/Hq_route" )
             />
           </div>
         </li>}
+        <div style={{ flexGrow: 1 }} onClick={()=> backToHQ()}>
 
-        <div style={{ flexGrow: 1 }}></div>
+{HQ_level && "Going back to HQ Level"}
+
+          
+        </div>
 
         <li className={"menu_basic_li"} onClick={signout}>
           <div className="icon_nav_basic_container">

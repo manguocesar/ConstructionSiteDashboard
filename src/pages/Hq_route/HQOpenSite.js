@@ -20,7 +20,7 @@ const handleClick = () => {
 
         let data =  lockr.get("current_tenant")
         console.log("data",data)
-
+        lockr.set("HQ_level", true);
         navigate("/")
 
 }

@@ -10,7 +10,7 @@ import { ListSitesContext } from "../../../contexts/ListSitesContext";
 export default function SiteLocation({latLong}) {
   const { selectedSite } = useContext(ListSitesContext);
 
-console.log("latLongg",latLong)
+console.log("latLong",latLong)
   return (
     <div className="map_localisation"  >
 
