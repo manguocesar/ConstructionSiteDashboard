@@ -179,7 +179,9 @@ function LogIn() {
             ) {
         // save login info to cache so it is persisted in the browser
         lockr.set("last_login_time", moment().toDate().getTime());
-        lockr.set("current_tenant", {  tenants});
+        lockr.set("HQ_level", true);
+        lockr.set("current_tenant", {tenants});
+        lockr.set("all_tenant", {tenants});
         lockr.set("pin_set", false);
           {navigate("/Hq_route")}
         return;

@@ -3,13 +3,15 @@ import axios from "axios";
 import { Table, message, Button, Modal, Form, Input, Upload } from "antd";
 import { ListSitesContext } from "../../contexts/ListSitesContext";
 import lockr from "lockr";
-import moment from "moment";
 import { useLocation  } from "@reach/router";
 import HQOpenSite from "./HQOpenSite"
 //style
 import search from "./localisation.png"
 import "./index.css";
 
+
+//context
+import { TimeContext } from "../../contexts/TimeContext";
 
 //components
 import GridView from "../../components/GridView";
@@ -18,20 +20,27 @@ import SiteLocation from "./components/SiteLocation";
 
 export default function HQRoutes() {
 
+  const { chinaDate } = useContext(TimeContext);
+
+
   const [active, setActive] = useState(0)
  
 
-  const route = useLocation()
+  // const route = useLocation()
 
- let tenants =  lockr.get("current_tenant").tenants 
+ let tenants =  lockr.get("all_tenant").tenants 
  
-console.log("tenants",tenants)
 
-const [location, setLocation] = useState(tenants[active].sites[0] )
+
+const [latLong, setLatLong] = useState(tenants[active].sites[0] )
+
+
+// console.log("latLong",latLong)
+console.log("tenantss",tenants)
 
 const handleClick = number => 
 {setActive(number);
-  setLocation(tenants[active].sites[0])}
+  setLatLong(tenants[active].sites[0])}
 
   return (
     <GridView>
@@ -74,7 +83,7 @@ const handleClick = number =>
         <div className="container_top_left">
           <div className="container_top_left_column_1">
          
-         {active === 0 ? <HQOpenSite title="复旦大学邯郸校区中华经济文化研究中心项目" address="上海市杨浦区国权路525号"  pplNbr="200" inspectionTimes="3" guardNbr="359" abnormalPpl="12" />  : 
+         {active === 0 ? <HQOpenSite  active={active} tenants={tenants} title="复旦大学邯郸校区中华经济文化研究中心项目" address="上海市杨浦区国权路525号"  pplNbr="200" inspectionTimes="3" guardNbr="359" abnormalPpl="12" />  : 
          <div  onClick={()=>handleClick(0)}>
            <GridView.Body
               className="container_top_left_column_1_row_1"
@@ -83,43 +92,42 @@ const handleClick = number =>
             </GridView.Body> </div>
          }
           
-          {active === 1 ? <HQOpenSite title="香港名都住宅楼项目" address="上海市黄浦区昼锦路236号" pplNbr="110" inspectionTimes="2" guardNbr="352" abnormalPpl="10"/> :
+          {active === 1 ? <HQOpenSite active={active} tenants={tenants} title="三林镇项目" address=" 上海市浦东新区上南路/东明路交叉口" pplNbr="110" inspectionTimes="2" guardNbr="352" abnormalPpl="10"/> :
             <div  onClick={()=>handleClick(1)}>
-              <GridView.Body
-              className="container_top_left_column_1_row_1"
-              title="香港名都住宅楼项目"
-              style={{padding:"2px 5px 2px 5px"}}
-            /></div>
-          }
-           {active === 2 ? <HQOpenSite title="三林镇项目" address="上海市浦东新区上南路/东明路交叉口" pplNbr="50" inspectionTimes="2" guardNbr="219" abnormalPpl="9"/> :
-            <div  onClick={()=>handleClick(2)}>
               <GridView.Body
               className="container_top_left_column_1_row_1"
               title="三林镇项目"
               style={{padding:"2px 5px 2px 5px"}}
+            /></div>
+          }
+           {active === 2 ? <HQOpenSite active={active} tenants={tenants} title="临港新片区105社区金融西九项目" address="上海市浦东新区环湖北二路/香柏路交叉口" pplNbr="50" inspectionTimes="2" guardNbr="219" abnormalPpl="9"/> :
+            <div  onClick={()=>handleClick(2)}>
+              <GridView.Body
+              className="container_top_left_column_1_row_1"
+              title="临港新片区105社区金融西九项目"
+              style={{padding:"2px 5px 2px 5px"}}
             > </GridView.Body></div>}
 
-            {active === 3 ? <HQOpenSite title="华域汽车技术研发中心建筑工程项目" address="上海市浦东新区科苑路501号" pplNbr="180" inspectionTimes="4" guardNbr="129" abnormalPpl="19"/> :
+            {active === 3 ? <HQOpenSite active={active} tenants={tenants} title="香港名都住宅楼项目" address="上海市浦东新区科苑路501号" pplNbr="180" inspectionTimes="4" guardNbr="129" abnormalPpl="19"/> :
             <div  onClick={()=>handleClick(3)}><GridView.Body
-           
               className="container_top_left_column_1_row_1"
-              title="华域汽车技术研发中心建筑工程项目"
+              title="香港名都住宅楼项目"
               style={{padding:"2px 5px 2px 5px"}}
             >   </GridView.Body></div>}
 
-            {active === 4 ? <HQOpenSite title="徐汇乔高综合体开发项目" address="上海市徐汇区苍梧路8号" pplNbr="220" inspectionTimes="5" guardNbr="159" abnormalPpl="5"/> :
+            {active === 4 ? <HQOpenSite active={active} tenants={tenants} title="华域汽车技术研发中心建筑工程项目" address="上海市徐汇区苍梧路8号" pplNbr="220" inspectionTimes="5" guardNbr="159" abnormalPpl="5"/> :
              <div  onClick={()=>handleClick(4)}> 
              <GridView.Body
               className="container_top_left_column_1_row_1"
-              title="徐汇乔高综合体开发项目"
+              title="华域汽车技术研发中心建筑工程项目"
               style={{padding:"2px 5px 2px 5px"}} />
              </div>}
 
-            {active === 5 ? <HQOpenSite title="临港新片区105社区金融西九项目" address="上海市浦东新区环湖北二路/香柏路交叉口" pplNbr="100" inspectionTimes="1" guardNbr="259" abnormalPpl="2"/> :
+            {active === 5 ? <HQOpenSite active={active} tenants={tenants} title="徐汇乔高综合体开发项目" address="上海市浦东新区环湖北二路/香柏路交叉口" pplNbr="100" inspectionTimes="1" guardNbr="259" abnormalPpl="2"/> :
               <div  onClick={()=>handleClick(5)}>  
                 <GridView.Body
                 className="container_top_left_column_1_row_1"
-                title="临港新片区105社区金融西九项目"
+                title="徐汇乔高综合体开发项目"
                 style={{padding:"2px 5px 2px 5px"}}/>
             </div>}
            
@@ -131,7 +139,7 @@ const handleClick = number =>
 
     <GridView.Cell
       noBodyStyle={true}
-      title={moment().format(" YYYY年MM月DD日 h:m:s")}
+      title={chinaDate}
      
       right="0"
       top="0"
@@ -172,10 +180,11 @@ const handleClick = number =>
       bottom="0"
       width="calc(35% - 8px)"
       height="calc(45% - 8px)"
-    ><p>  {location.latitude}</p>
-     <SiteLocation location={location}  />
+    ><p>  {latLong.latitude}</p>
+    {/* cannot pass down the info */}
+     <SiteLocation latLong={latLong}  />
      
-     <p>  {location.longitude}</p>
+     <p>  {latLong.longitude}</p>
     </GridView.Cell>
 
     
