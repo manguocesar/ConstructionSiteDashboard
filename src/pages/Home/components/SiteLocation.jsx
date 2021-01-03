@@ -18,11 +18,9 @@ console.log("latLong",latLong)
         <Map
           key={selectedSite?.id}
           center={{
-            lng: 
-            // location? location.longitude : 
+            lng:  latLong? latLong.longitude : 
              selectedSite?.longitude,
-            lat: 
-            // location? location.latitude : 
+            lat:  latLong? latLong.latitude : 
              selectedSite?.latitude,
           }}
           zoom={18}

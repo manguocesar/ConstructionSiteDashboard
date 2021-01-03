@@ -106,7 +106,7 @@ export default function MainView({ signout }) {
       <Login path="login" />
       <Root path="/">
         <Home path="/" />
-        <Hq_route path="Hq_route" />
+        <Hq_route  path="Hq_route" />
         <Operators path="Operators" />
         <GridView path="Equipments" />
         <Inspection path="Inspection" />

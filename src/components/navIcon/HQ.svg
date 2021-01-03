@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="34px" viewBox="0 0 35 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 2</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="overview_company_level-" transform="translate(-38.000000, -568.000000)">
+            <rect id="Rectangle" stroke="#979797" fill="#181A20" x="0" y="0" width="1080" height="778"></rect>
+            <g id="Group-2" transform="translate(39.000000, 568.000000)">
+                <text id="HQ" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" fill="#82CDBF">
+                    <tspan x="2.934" y="13">HQ</tspan>
+                </text>
+                <g id="2" transform="translate(0.000000, 8.000000)" stroke="#82CDBF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path d="M4.82926829,24.9512195 L1.79955474,24.9512195 C1.2501244,24.9512195 0.804723099,24.5010427 0.804723099,23.9537715 L0.804723103,3.41208215 M8.04878047,24.1464962 C8.04878047,24.5909325 8.40591825,24.9512193 8.85350357,24.9512193 L12.0731707,24.9512193 L32.1951219,4.82926818 C32.1951219,4.82926818 32.511324,2.76458111 31.3902439,1.60975608 C30.2691637,0.454931054 28.1707317,0.804878006 28.1707317,0.804878006 L8.04878047,20.9268291 L8.04878047,24.1464962 M26.5609756,2.41463416 L30.5853659,6.4390244 M28.1707317,4.82926828 L11.2682927,21.7317075 L28.1707317,4.82926828 M17.7073171,24.9512195 L30.3841056,24.9512195 C30.9397805,24.9512195 31.3902439,24.5079279 31.3902439,23.9514166 L31.3902439,12.0731707" id="Imported-Layers"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

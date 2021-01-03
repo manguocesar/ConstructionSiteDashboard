@@ -145,18 +145,11 @@ const tenants = [
       username: "HQ_2021",
       password: "hq_2021",
     },
-    projectName: "HQ_LandingPage",
-    id: "HQ",
+    projectName: "",
+    id: "",
     sites: [
-      {
-        order: 1,
-        projectShortName: "HQshortName",
-        company: "HQ_Company_Name",
-        location: "HQ_Location",
-        longitude: 121.5095,
-        latitude: 31.2995,
-      },
     ],
+    isHq: true
   },
 ];
 
@@ -180,9 +173,10 @@ function LogIn() {
         // save login info to cache so it is persisted in the browser
         lockr.set("last_login_time", moment().toDate().getTime());
         
-        lockr.set("current_tenant", {tenants});
+        lockr.set("current_tenant", {});
         lockr.set("all_tenant", {tenants});
         lockr.set("pin_set", false);
+        lockr.set("HQ_level", false);
           {navigate("/Hq_route")}
         return;
 

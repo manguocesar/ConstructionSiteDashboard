@@ -19,6 +19,7 @@ import { ReactComponent as IconUser } from "./navIcon/user.svg";
 import { ReactComponent as IconSettings } from "./navIcon/settings.svg";
 import { ReactComponent as IconSignout } from "./navIcon/signout.svg";
 import { ReactComponent as KeypadIcon } from "./navIcon/keypad.svg";
+import { ReactComponent as HQ } from "./navIcon/HQ.svg";
 
 const menuItems = [
   {
@@ -37,18 +38,19 @@ const menuItems = [
     src: IconUser,
     to: "/yiyungate",
   },
-  // {
-  //   src: IconSettings,
-  //   to: "/settings",
-  // },
 ];
 
 export default function NavigationPannel(props) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isHqLevel, setIsHqLevel] = useState(lockr.get('HQ_level'))
+  const location = useLocation();
+  useEffect(() => {
+    const _isHqLevel = !!lockr.get('HQ_level');
+    setIsHqLevel(_isHqLevel)
+    console.log("isHqLevel",isHqLevel)
+    console.log("_isHqLevel",_isHqLevel)
+  }, [location.pathname])
 
-  let HQ_level = lockr.get('HQ_level')
-
-  console.log("HQ_level",HQ_level)
 
   useEffect(() => {
     const pinSet = lockr.get("pin_set");
@@ -57,7 +59,7 @@ export default function NavigationPannel(props) {
       lockr.set("pin_set", true)
     }
   }, [0]);
-  const location = useLocation();
+
 
   const signout = () => {
     lockr.rm("last_login_time");
@@ -69,15 +71,14 @@ export default function NavigationPannel(props) {
 const backToHQ = ()=> {
   lockr.set("HQ_level", false);
   navigate("/Hq_route")
+  setIsHqLevel(false)
+  console.log("isHqLevel",isHqLevel)
+  
 }
-
 
   return (
     <div className="container_nav">
       <div className="menu_basic">
-
-
-
         
         {location.pathname !== "/Hq_route" && menuItems.map((menuItem) => {
           const active = location.pathname === menuItem.to;
@@ -115,12 +116,18 @@ const backToHQ = ()=> {
             />
           </div>
         </li>}
-        <div style={{ flexGrow: 1 }} onClick={()=> backToHQ()}>
 
-{HQ_level && "Going back to HQ Level"}
+     
+
+        { isHqLevel && <li className={"menu_basic_li"} >
+          <div style={{ flexGrow: 1, display:"flex", flexDirection:"column" }} onClick={()=> backToHQ()}>
+            
+            <HQ   className="icon_nav_basic"   />
+          </div></li>
+              }
 
           
-        </div>
+        
 
         <li className={"menu_basic_li"} onClick={signout}>
           <div className="icon_nav_basic_container">
