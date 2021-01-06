@@ -7,10 +7,9 @@ import "./SiteLocation.css";
 //context
 import { ListSitesContext } from "../../../contexts/ListSitesContext";
 
-export default function SiteLocation({latLong}) {
+export default function SiteLocation() {
   const { selectedSite } = useContext(ListSitesContext);
 
-console.log("latLong",latLong)
   return (
     <div className="map_localisation"  >
 
@@ -18,10 +17,8 @@ console.log("latLong",latLong)
         <Map
           key={selectedSite?.id}
           center={{
-            lng:  latLong? latLong.longitude : 
-             selectedSite?.longitude,
-            lat:  latLong? latLong.latitude : 
-             selectedSite?.latitude,
+            lng:   selectedSite?.longitude,
+            lat:    selectedSite?.latitude,
           }}
           zoom={18}
         />

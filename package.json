@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "craco-less": "^1.17.0",
+    "prettier": "2.2.1",
     "use-resize-observer": "^6.1.0"
   }
 }

@@ -3,7 +3,12 @@ import {  Button} from "antd";
 import GridView from "../../components/GridView";
 import search from "./localisation.png"
 
-export default function HQOpenSite({title, address, pplNbr, inspectionTimes, guardNbr, abnormalPpl, goToSite}) {
+export default function HQOpenSite({HQTenants,index, pplNbr, inspectionTimes, guardNbr, abnormalPpl, goToSite}) {
+
+  let title = HQTenants[index].name
+  let address =  HQTenants[index].address
+  let short_name =  HQTenants[index].short_name
+
 
     return (
         <GridView.Body
@@ -17,17 +22,14 @@ export default function HQOpenSite({title, address, pplNbr, inspectionTimes, gua
          <Button onClick={() => {goToSite()}}
           className="sites_button"
           type="primary"
-          size="small"
-          // style={{backgroundColor:"transparent", fontWeight:"bolder", color:"#82cdbf",
-          //  border: "#82cdbf 1px solid", width:"20vh", borderRadius:"8px"}}
-           >        
+          ghost={true} >        
            点击进入
          </Button>
        </div>
 
        <div style={{display:"flex",justifyContent:"flex-start", alignItems:"center", flexDirection:"row"}}>
          <img alt="" src={search} style={{height:"3vh", margin:"5px 5px 5px 0"}}/>
-         <p style={{margin:"5px 0px 5px 5px" }}>{address}</p>
+         <p style={{margin:"5px 0px 5px 5px" }}>{address ? address : short_name}</p>
        </div>
 
 
