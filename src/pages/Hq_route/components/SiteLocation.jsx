@@ -10,18 +10,17 @@ import { ListSitesContext } from "../../../contexts/ListSitesContext";
 export default function SiteLocation({latLong}) {
   const { selectedSite } = useContext(ListSitesContext);
 
-  console.log("latLong",latLong)
 
   return (
     <div className="map_localisation"  >
-<p>  {latLong && latLong.latitude} - {latLong && latLong.longitude}</p>
     <APILoader akay="GTrnXa5hwXGwgQnTBG28SHBubErMKm3f">
       <Map
         key={selectedSite?.id}
+        // when no coordinates, Fudan coordinates are displayed
         center={{
-          lng: latLong && latLong.longitude ,
-          lat: latLong && latLong.latitude 
-        }}
+          lng: latLong ? latLong.latitude : 121.5095,
+          lat:  latLong ? latLong.longitude : 31.2995
+        }} 
         zoom={18}
       />
     </APILoader>

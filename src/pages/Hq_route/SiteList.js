@@ -7,15 +7,15 @@ export default function SiteList({item, activeIndex, index, HQTenants, openSiteD
     return (
         <div>
 
- { index === activeIndex ? 
- <HQOpenSite goToSite={goToSite} index={index}  HQTenants={HQTenants}
- 
-            pplNbr="200" inspectionTimes="3" guardNbr="359" abnormalPpl="12" />  :  
+        { index === activeIndex ? 
+        <HQOpenSite goToSite={goToSite} index={index}  HQTenants={HQTenants}
+          pplNbr="200" inspectionTimes="3" guardNbr="359" abnormalPpl="12" /> 
+             :  
          <div  onClick={()=>openSiteDetails(index)}>
            <GridView.Body
-              className="container_top_left_column_1_row_1"
-              title={HQTenants && HQTenants[index].name}
-              style={{padding:"2px 5px 2px 5px"}}>
+              title=""
+              className="inactiveSite">
+              {HQTenants && HQTenants[index].name}
             </GridView.Body>  
             </div>
           } 

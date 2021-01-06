@@ -10,8 +10,45 @@
 .HQ_Info_Display {
   display: flex;
   flex-grow: 1;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-direction: row;
-  margin: "";
   border-radius: 10px;
+}
+
+.greenFigures {
+  color: #82cdbf;
+  font-size: 18px;
+  font-weight: bold;
+}
+.redFigures {
+  color: red;
+  font-size: 18px;
+}
+
+.figuresLegend {
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+}
+
+.inputSite,
+.inputSite:hover {
+  background-color: transparent;
+  border: transparent 1px solid;
+  flex-grow: 1;
+  font-size: 15px;
+}
+
+.inactiveSite {
+  padding: 5px 10px 10px 20px;
+  margin: 6px 0 6px 0;
+  color: gray;
+  align-items: flex-start;
+  font-size: 20px;
+}
+.HQOpenSiteText {
+  padding: 0px;
+  margin: 0;
+  color: white;
+  font-size: 18px;
 }

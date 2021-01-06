@@ -4,9 +4,7 @@ import GridView from "../../components/GridView";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
 import lockr from "lockr";
-import downloadExcelFile, {
-  convertDateFilename,
-} from "../../utils/downloadExcelFile";
+
 import moment from "moment";
 
 function Inspection() {

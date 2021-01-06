@@ -17,7 +17,7 @@ export default function HQOpenSite({HQTenants,index, pplNbr, inspectionTimes, gu
        style={{border:"1px solid #82cdbf", padding:"10px 15px 5px 5px", margin:"0 0px 10px 0px"}}>
        <div style={{display:"flex", flexDirection:"column",width:"100%",   marginLeft:"10px"}}>
        <div  style={{display:"flex", flexDirection:"row",  justifyContent:"space-between"}}>
-         <p style={{flexGrow:1}}>{title}</p>
+         <p className="HQOpenSiteText">{title}</p>
 
          <Button onClick={() => {goToSite()}}
           className="sites_button"
@@ -29,7 +29,7 @@ export default function HQOpenSite({HQTenants,index, pplNbr, inspectionTimes, gu
 
        <div style={{display:"flex",justifyContent:"flex-start", alignItems:"center", flexDirection:"row"}}>
          <img alt="" src={search} style={{height:"3vh", margin:"5px 5px 5px 0"}}/>
-         <p style={{margin:"5px 0px 5px 5px" }}>{address ? address : short_name}</p>
+         <p className="HQOpenSiteText" style={{color:"gray", fontSize:"14px",}}>{address ? address : short_name}</p>
        </div>
 
 
@@ -43,25 +43,25 @@ export default function HQOpenSite({HQTenants,index, pplNbr, inspectionTimes, gu
            }}
          >
            <div className="hqInformation">
-             <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly" }}>
-             <span>安标网注册用工人数</span>
-             <span style={{fontWeight:"bolder", color:"#82cdbf"}}>{pplNbr}</span>
+             <div style={{ flex: 1, display:"flex", justifyContent:"space-between", marginRight:"30px" }}>
+             <span className="HQOpenSiteText">安标网注册用工人数</span>
+             <span className="greenFigures">{pplNbr}</span>
            </div>
-           <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}> <span>今日巡检次数</span>
-           <span style={{fontWeight:"bolder", color:"#82cdbf"}}>{inspectionTimes}</span></div>
+           <div style={{ flex: 1, display:"flex", justifyContent:"space-between", margin:"0 30px 0 30px"   }}> 
+           <span className="HQOpenSiteText">今日巡检次数</span>
+           <span className="greenFigures">{inspectionTimes}</span></div>
            </div>
 
            <div className="hqInformation">
-             <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}>
-               <span>门禁人脸数量</span>
-           <span style={{fontWeight:"bolder", color:"#82cdbf"}}>{guardNbr}</span></div>
+             <div style={{ flex: 1, display:"flex", justifyContent:"space-between", marginRight:"30px"   }}>
+               <span className="HQOpenSiteText">门禁人脸数量</span>
+           <span className="greenFigures">{guardNbr}</span></div>
           
 
-           <div style={{ flex: 1, fontSize: 13,display:"flex", justifyContent:"space-evenly"  }}>
-             <span>今日巡检异常人员</span>
-           <span style={{fontWeight:"bolder", color:"#82cdbf"}}>{abnormalPpl}</span></div>
+           <div style={{ flex: 1, display:"flex", justifyContent:"space-between", margin:"0 30px 0 30px"   }}>
+             <span className="HQOpenSiteText">今日巡检异常人员</span>
+           <span className="greenFigures">{abnormalPpl}</span></div>
            </div>
-           {/* TODO date filter */}
          </div>
 
 
