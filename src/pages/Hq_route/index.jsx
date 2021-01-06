@@ -24,7 +24,7 @@ export default function HQRoutes() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [latLong, setLatLong] = useState()
   const [HQTenants, setHQTenants] = useState()
-  const [modale, setModale] = useState(false)
+  const [modal, setModale] = useState(false)
 
 
   useEffect(() => {
@@ -59,11 +59,13 @@ const openSiteDetails = (number) =>
     navigate("/")
   }
 
+  const goToHQDashboard = ()=> {
+    lockr.set("HQ_level", true);
+    navigate("/Hq_dashboard")
+  }
+
   return (
     <GridView>
-
-
-
     <GridView.Cell
       noBodyStyle={true}
       title= {
@@ -127,7 +129,7 @@ const openSiteDetails = (number) =>
               <p style={{margin:"0 0 5px", padding:"2px"}}>劳务信息下载</p>
               <p className="HQ_Info_Display" style={{display:"flex", flexDirection:"row"}}><span>工程公司台账汇总</span>
               <button
-              onClick={() => { setModale(true)
+              onClick={() => { goToHQDashboard() 
                 // alert("dowload file: Engineering account company summary")
               }}
               style={{backgroundColor:"transparent", fontWeight:"bolder", color:"#82cdbf", border: "#82cdbf 1px solid", width:"15vh", borderRadius:"8px"}}>下载</button></p> </div>

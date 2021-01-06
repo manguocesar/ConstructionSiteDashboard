@@ -7,6 +7,7 @@ import TopPannel from "../components/TopPannel";
 import NavigationPannel from "../components/NavigationPannel";
 import Home from "./Home/index";
 import Hq_route from "./Hq_route/index";
+import Hq_Dashboard from "./Hq_dashboard/index";
 import Operators from "./Operators/index";
 import NotFound from "../components/NotFound";
 import GridView from "../components/GridView";
@@ -107,6 +108,8 @@ export default function MainView({ signout }) {
       <Root path="/">
         <Home path="/" />
         <Hq_route  path="Hq_route" />
+        <Hq_route  path="Hq_route" />
+        <Hq_Dashboard  path="Hq_dashboard" />
         <Operators path="Operators" />
         <GridView path="Equipments" />
         <Inspection path="Inspection" />
