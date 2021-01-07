@@ -23,32 +23,26 @@ import { ReactComponent as HQ } from "./navIcon/HQ.svg";
 
 const menuItems = [
   {
-    src: IconCustomer,
-    to: "/",
+    src: IconCustomer,  to: "/",
   },
   {
-    src: IconSpy,
-    to: "/Inspection",
+    src: IconSpy, to: "/Inspection",
   },
   {
-    src: IconFolder,
-    to: "/networkinformation",
+    src: IconFolder, to: "/networkinformation",
   },
   {
-    src: IconUser,
-    to: "/yiyungate",
+    src: IconUser,  to: "/yiyungate",
   },
 ];
 
-export default function NavigationPannel(props) {
+export default function NavigationPannel() {
   const [modalVisible, setModalVisible] = useState(false);
   const [isHqLevel, setIsHqLevel] = useState(lockr.get('HQ_level'))
   const location = useLocation();
   useEffect(() => {
     const _isHqLevel = !!lockr.get('HQ_level');
     setIsHqLevel(_isHqLevel)
-    console.log("isHqLevel",isHqLevel)
-    console.log("_isHqLevel",_isHqLevel)
   }, [location.pathname])
 
 
@@ -72,8 +66,6 @@ const backToHQ = ()=> {
   lockr.set("HQ_level", false);
   navigate("/Hq_route")
   setIsHqLevel(false)
-  console.log("isHqLevel",isHqLevel)
-  
 }
 
   return (

@@ -24,8 +24,9 @@ export default function HQRoutes() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [latLong, setLatLong] = useState()
   const [HQTenants, setHQTenants] = useState()
-  const [modal, setModale] = useState(false)
+  const [searchInput, setSearchInput] = useState()
 
+ 
 
   useEffect(() => {
     async function getData() {
@@ -35,6 +36,7 @@ export default function HQRoutes() {
         const [{ data }] = await Promise.all([  axios.get(HQData)  ]);
         let tenants = lockr.get("all_tenant",{data});
         let filteredTenant = data.filter(item => item.enabled === true )
+        lockr.set("my_tenant",{filteredTenant});
         setHQTenants(filteredTenant)
         setLatLong(tenants[activeIndex]) 
 
@@ -49,7 +51,8 @@ export default function HQRoutes() {
   
 const openSiteDetails = (number) => 
     {setActiveIndex(number);
-      {setLatLong(HQTenants[activeIndex].coordinates)}}
+      {HQTenants[activeIndex] && setLatLong(HQTenants[activeIndex].coordinates)}
+    }
 
   const goToSite = () => {
     const { name, address, id } = HQTenants[activeIndex];
@@ -62,6 +65,16 @@ const openSiteDetails = (number) =>
   const goToHQDashboard = ()=> {
     lockr.set("HQ_level", true);
     navigate("/Hq_dashboard")
+  }
+
+  const handleSearch = (e) => {
+    if (searchInput === ""){
+      let tenants = lockr.get("my_tenant").filteredTenant;
+      setHQTenants(tenants)
+    }
+      else {
+      let searchItem = HQTenants.filter(item => item.name.includes(e.target.value))
+      setHQTenants(searchItem)}
   }
 
   return (
@@ -79,6 +92,9 @@ const openSiteDetails = (number) =>
             {/* {currentProjectName} */}
             <Input placeholder="请输入工地名称/编号。。。" 
             className="inputSite"
+            value={searchInput}
+            onChange={(e)=> setSearchInput(e.target.value)}
+            onBlur={(e)=>handleSearch(e)}
            />
             <img alt="" height="20px" src={search}/>
             </div>

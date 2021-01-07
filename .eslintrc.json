@@ -1,0 +1,77 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    /**
+     * @description rules of eslint official
+     */
+    "import/prefer-default-export": "off", // Allow single Named-export
+    "no-console": "off", // as we are backend
+    /**
+     * @description rules of @typescript-eslint
+     */
+    "@typescript-eslint/type-annotation-spacing": ["warn"],
+    "indent": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/no-floating-promises": ["warn"],
+    "@typescript-eslint/array-type": [
+      "warn",
+      {
+        "default": "array-simple"
+      }
+    ],
+    /**
+     * @description rules of eslint-plugin-react
+     */
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ], // also want to use with ".tsx"
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
+    /**
+     * @description rules of eslint-plugin-react-hooks
+     */
+    "react-hooks/rules-of-hooks": "error",
+    /**
+     * @description rules of eslint-plugin-import
+     */
+    "import/no-unresolved": "off",
+    /**
+     * @description rules of prettier
+     */
+    "prettier/prettier": "warn",
+    /**
+     * @description rules of jsx-a11y
+     */
+    "jsx-a11y/media-has-caption": "off"
+  }
+}
